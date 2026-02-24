@@ -1,0 +1,139 @@
+site_name: ScipionWeb Documentation
+site_description: Installation, configuration, and usage guide for Scipion API and Scipion Web
+site_author: Scipion Team
+site_url: https://scipion.cnb.csic.es/scipionweb-docs/
+
+repo_name: scipion-em/scipion-web
+repo_url: https://github.com/scipion-em/scipion-web
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: en
+  logo: assets/images/scipion_icon.png
+  favicon: assets/images/scipion_icon.png
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: indigo
+      accent: cyan
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: indigo
+      accent: cyan
+
+nav:
+  - Home: index.md
+
+  - Installation:
+      - Overview: installation/index.md
+      - Prerequisites: installation/prerequisites.md
+      - Download Bundles: installation/download-bundles.md
+      - One-shot Provision: installation/provision.md
+      - Manual Installation: installation/manual-install.md
+      - Upgrade / Reinstall Notes: installation/upgrade.md
+      - Production Deployment: installation/deployment-systemd.md
+
+  - Configuration:
+      - Overview: configuration/index.md
+      - SCIPION_HOME and Runtime Layout: configuration/scipion-home.md
+      - Environment Variables (.env): configuration/env.md
+      - API + Web Integrated Mode: configuration/integrated-mode.md
+      - Separate Deployment (API and Web on Different Hosts): configuration/separate-deployment.md
+  
+  - CLI Reference:
+      - Overview: cli/index.md
+      - Bootstrap: cli/bootstrap.md
+      - Install: cli/install.md
+      - Provision: cli/provision.md
+      - start / stop / restart / status / logs: cli/runtime.md
+
+  - Backend:
+      - Overview: backend/index.md
+      - Architecture: backend/architecture.md
+      - FastAPI App and Routers: backend/fastapi.md
+      - Authentication and JWT: backend/auth.md
+      - Database and Alembic Migrations: backend/database.md
+      - Celery and Redis: backend/celery.md
+      - Troubleshooting: backend/troubleshooting.md
+
+  - Frontend (Web):
+      - Overview: frontend/index.md
+      - Build and Dist Output: frontend/build.md
+      - Runtime API URL Configuration: frontend/runtime-config.md
+      - Deployment Options: frontend/deployment.md
+
+  - Development:
+      - Local Dev Workflow: development/local-workflow.md
+      - Debugging with PyCharm: development/pycharm.md
+      - Running Uvicorn Manually: development/uvicorn.md
+      - Common Errors and Fixes: development/common-errors.md
+  - Operations:
+      - Logs and PID Files: operations/logs-and-pids.md
+      - Backup and Restore (DB + SCIPION_HOME): operations/backup-restore.md
+      - Security Notes: operations/security.md
+
+  - Release and Packaging:
+      - Packaging Strategy : release/packaging-strategy.md
+      - Build API Bundle: release/build-api-bundle.md
+      - Build Web Bundle: release/build-web-bundle.md
+      - Release Checklist: release/checklist.md
+
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/scipion-em
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+copyright: >
+  © CNB-CSIC / Scipion Team
