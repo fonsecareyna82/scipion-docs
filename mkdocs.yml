@@ -128,6 +128,7 @@ plugins:
   - search
 
 extra:
+  generator: false
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/scipion-em
@@ -136,4 +137,4 @@ extra_css:
   - assets/stylesheets/extra.css
 
 copyright: >
-  © CNB-CSIC / Scipion Team
+  © CNB-CSIC ● Biocomputing Unit ● Scipion Team
