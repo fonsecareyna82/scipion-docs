@@ -7,7 +7,7 @@
 .venv
 
 #### Python
-.venv
+.venv/
 build/
 dist/
 *.egg-info/
