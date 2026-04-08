@@ -11,6 +11,17 @@ Use it when you need help with ScipionWeb installation, usage, troubleshooting, 
 
 ---
 
+## Official public support channels
+
+ScipionWeb support is currently centered around the public GitHub repository:
+
+- **ScipionWeb repository:** [fonsecareyna82/ScipionWeb](https://github.com/fonsecareyna82/ScipionWeb)
+- **Discussions:** [Ask questions and discuss ideas](https://github.com/fonsecareyna82/ScipionWeb/discussions)
+- **Issues:** [Open or review actionable reports](https://github.com/fonsecareyna82/ScipionWeb/issues)
+- **New issue chooser:** [Create a new report](https://github.com/fonsecareyna82/ScipionWeb/issues/new/choose)
+
+---
+
 ## What this section is for
 
 The Support section helps users decide whether they should:
@@ -29,8 +40,7 @@ For a public technical project, the most practical model is:
 - **GitHub Discussions** for questions, troubleshooting, and open-ended ideas
 - **GitHub Issues** for confirmed bugs and actionable feature requests
 
-!!! note "Public support repository"
-    If you want external users to report problems, the repository that hosts Discussions and Issues must be public.
+That keeps user support visible, searchable, and close to the real project.
 
 ---
 

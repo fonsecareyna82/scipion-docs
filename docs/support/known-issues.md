@@ -11,6 +11,17 @@ This page becomes more valuable over time as support discussions and bug reports
 
 ---
 
+## Where to look for current signals
+
+In addition to this page, check the public ScipionWeb support channels:
+
+- [ScipionWeb issue list](https://github.com/fonsecareyna82/ScipionWeb/issues)
+- [ScipionWeb Discussions](https://github.com/fonsecareyna82/ScipionWeb/discussions)
+
+This documentation page is useful for curated summaries and workarounds, while GitHub usually reflects the most recent raw activity.
+
+---
+
 ## What belongs here
 
 Typical candidates:

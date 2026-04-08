@@ -11,19 +11,11 @@ Improvement discussions are valuable because they help shape the roadmap before 
 
 ---
 
-## Good improvement proposals usually explain
+## Best support channel
 
-- what part of ScipionWeb feels limited or awkward
-- who is affected by the problem
-- what the current workaround is, if any
-- what better outcome you would like to achieve
-- whether the idea is about UX, performance, reliability, or functionality
+Use **GitHub Discussions** first for open-ended ideas:
 
----
-
-## Best channel for improvement proposals
-
-Use **GitHub Discussions** first for open-ended ideas.
+➡️ [Open ScipionWeb Discussions](https://github.com/fonsecareyna82/ScipionWeb/discussions)
 
 That helps clarify:
 
@@ -32,6 +24,16 @@ That helps clarify:
 - whether the proposal should later become a feature request issue
 
 When an improvement becomes concrete and actionable, it can then move into **GitHub Issues**.
+
+---
+
+## Good improvement proposals usually explain
+
+- what part of ScipionWeb feels limited or awkward
+- who is affected by the problem
+- what the current workaround is, if any
+- what better outcome you would like to achieve
+- whether the idea is about UX, performance, reliability, or functionality
 
 ---
 
@@ -51,3 +53,9 @@ Workaround today:
 
 Additional context:
 ```
+
+---
+
+## When to turn an idea into an issue
+
+Open a GitHub Issue when the proposal becomes specific enough to track as planned work.

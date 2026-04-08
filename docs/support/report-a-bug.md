@@ -11,6 +11,21 @@ A bug report is most useful when it helps another person reproduce the problem q
 
 ---
 
+## Best support channel
+
+Use **GitHub Issues** for reproducible bugs:
+
+➡️ [Open the issue chooser](https://github.com/fonsecareyna82/ScipionWeb/issues/new/choose)
+
+That gives you:
+
+- one report per problem
+- labels and prioritization
+- clear triage workflow
+- easier linking to fixes, commits, and releases
+
+---
+
 ## A strong bug report includes
 
 - exact environment and version
@@ -35,19 +50,7 @@ See also:
 
 - [Ask a Question](ask-a-question/)
 - [Known Issues and Workarounds](known-issues/)
-
----
-
-## Best channel for bug reports
-
-Use **GitHub Issues** for reproducible bugs.
-
-That gives you:
-
-- one report per problem
-- labels and prioritization
-- clear triage workflow
-- easier linking to fixes, commits, and releases
+- [ScipionWeb issue list](https://github.com/fonsecareyna82/ScipionWeb/issues)
 
 ---
 
@@ -56,6 +59,7 @@ That gives you:
 ```text
 Environment:
 ScipionWeb version:
+ScipionAPI version:
 Deployment mode:
 OS / runtime details:
 
@@ -73,3 +77,9 @@ Logs / traceback / screenshots:
 Regression?:
 Did this work before?
 ```
+
+---
+
+## When not to use this path
+
+If you are still unsure whether the behavior is a bug at all, start with [Ask a Question](ask-a-question/) in Discussions.
