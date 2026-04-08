@@ -78,6 +78,13 @@ nav:
       - Plugins: user-guide/plugins.md
       - Working Efficiently: user-guide/working-efficiently.md
 
+  - Support:
+      - Overview: support/index.md
+      - Ask a Question: support/ask-a-question.md
+      - Report a Bug: support/report-a-bug.md
+      - Suggest an Improvement: support/suggest-an-improvement.md
+      - Known Issues and Workarounds: support/known-issues.md
+
   - CLI Reference:
       - Overview: cli/index.md
       - Bootstrap: cli/bootstrap.md

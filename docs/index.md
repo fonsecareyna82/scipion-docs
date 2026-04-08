@@ -8,7 +8,7 @@ hide:
 !!! info "Overview"
     ScipionWeb combines a **FastAPI backend (ScipionAPI)** with an optional **compiled React frontend (ScipionWeb UI)** to provide a web interface for Scipion project and protocol management.
 
-    This documentation explains how to install, configure, operate, and use ScipionWeb in different modes.
+    This documentation explains how to install, configure, operate, use, and support ScipionWeb in different modes.
 
 ## Deployment Modes
 
@@ -61,6 +61,14 @@ hide:
 5. [Settings](user-guide/settings/)
 6. [Plugins](user-guide/plugins/)
 7. [Working Efficiently](user-guide/working-efficiently/)
+
+### I need help, want to report a bug, or want to suggest an improvement
+
+1. [Support Overview](support/)
+2. [Ask a Question](support/ask-a-question/)
+3. [Report a Bug](support/report-a-bug/)
+4. [Suggest an Improvement](support/suggest-an-improvement/)
+5. [Known Issues and Workarounds](support/known-issues/)
 
 ---
 
