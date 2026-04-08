@@ -8,7 +8,7 @@ hide:
 !!! info "Overview"
     ScipionWeb combines a **FastAPI backend (ScipionAPI)** with an optional **compiled React frontend (ScipionWeb UI)** to provide a web interface for Scipion project and protocol management.
 
-    This documentation explains how to install, configure, and operate ScipionWeb in different modes.
+    This documentation explains how to install, configure, operate, and use ScipionWeb in different modes.
 
 ## Deployment Modes
 
@@ -90,3 +90,44 @@ hide:
   --web-dist /path/to/scipionweb-dist.zip
 ```
 
+---
+
+## Choose Your Path
+
+Use the route that best matches your role:
+
+### I want to install ScipionWeb for the first time
+
+Start here:
+
+1. [Installation Overview](installation/)
+2. [Prerequisites](installation/prerequisites/)
+3. [Provision (One-Shot Installation)](installation/provision/)
+
+### I want to deploy or operate it in a stable environment
+
+Start here:
+
+1. [Configuration Overview](configuration/)
+2. [Environment Variables (`.env`)](configuration/env/)
+3. [Logs and PID Files](operations/logs-and-pids/)
+4. [Security Notes](operations/security/)
+
+### I am developing locally
+
+Start here:
+
+1. [Local Dev Workflow](development/local-workflow/)
+2. [Running Uvicorn Manually](development/uvicorn/)
+3. [Common Errors and Fixes](development/common-errors/)
+
+### I want to use the web application
+
+Start here:
+
+1. [User Guide Overview](user-guide/)
+2. [Projects](user-guide/projects/)
+3. [Protocol Execution](user-guide/protocols/)
+4. [Outputs and Viewers](user-guide/outputs/)
+
+---

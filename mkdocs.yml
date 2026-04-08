@@ -1,11 +1,11 @@
 site_name: ScipionWeb Documentation
 site_description: Installation, configuration, and usage guide for Scipion API and Scipion Web
 site_author: Scipion Team
-site_url: https://scipion.cnb.csic.es/scipionweb-docs/
+site_url: https://fonsecareyna82.github.io/scipion-docs/
 
-repo_name: scipion-em/scipion-web
-repo_url: https://github.com/scipion-em/scipion-web
-edit_uri: edit/main/docs/
+repo_name: fonsecareyna82/scipion-docs
+repo_url: https://github.com/fonsecareyna82/scipion-docs
+edit_uri: edit/devel/docs/
 
 docs_dir: docs
 site_dir: site
@@ -66,7 +66,15 @@ nav:
       - Environment Variables (.env): configuration/env.md
       - API + Web Integrated Mode: configuration/integrated-mode.md
       - Separate Deployment (API and Web on Different Hosts): configuration/separate-deployment.md
-  
+
+  - User Guide:
+      - Overview: user-guide/index.md
+      - First Login and Session Basics: user-guide/first-login.md
+      - Projects: user-guide/projects.md
+      - Protocol Execution: user-guide/protocols.md
+      - Outputs and Viewers: user-guide/outputs.md
+      - Sharing and Collaboration: user-guide/sharing.md
+
   - CLI Reference:
       - Overview: cli/index.md
       - Bootstrap: cli/bootstrap.md
@@ -94,17 +102,17 @@ nav:
       - Debugging with PyCharm: development/pycharm.md
       - Running Uvicorn Manually: development/uvicorn.md
       - Common Errors and Fixes: development/common-errors.md
+
   - Operations:
       - Logs and PID Files: operations/logs-and-pids.md
       - Backup and Restore (DB + SCIPION_HOME): operations/backup-restore.md
       - Security Notes: operations/security.md
 
   - Release and Packaging:
-      - Packaging Strategy : release/packaging-strategy.md
+      - Packaging Strategy: release/packaging-strategy.md
       - Build API Bundle: release/build-api-bundle.md
       - Build Web Bundle: release/build-web-bundle.md
       - Release Checklist: release/checklist.md
-
 
 markdown_extensions:
   - admonition
@@ -131,7 +139,7 @@ extra:
   generator: false
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/scipion-em
+      link: https://github.com/fonsecareyna82/scipion-docs
 
 extra_css:
   - assets/stylesheets/extra.css
