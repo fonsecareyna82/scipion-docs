@@ -60,6 +60,19 @@ hide:
 4. [Outputs and Viewers](user-guide/outputs/)
 5. [Settings](user-guide/settings/)
 6. [Plugins](user-guide/plugins/)
+7. [Working Efficiently](user-guide/working-efficiently/)
+
+---
+
+## What You Get
+
+!!! abstract "ScipionWeb Features"
+    - **REST API** for projects, protocols, outputs, plugins, authentication, and sharing
+    - **PostgreSQL persistence**
+    - **Celery + Redis** background task execution
+    - **Scipion-aware runtime integration**
+    - **Optional integrated web serving**
+    - **CLI tools** for installation, provisioning, runtime control, and logs
 
 ---
 

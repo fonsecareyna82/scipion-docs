@@ -74,6 +74,9 @@ nav:
       - Protocol Execution: user-guide/protocols.md
       - Outputs and Viewers: user-guide/outputs.md
       - Sharing and Collaboration: user-guide/sharing.md
+      - Settings: user-guide/settings.md
+      - Plugins: user-guide/plugins.md
+      - Working Efficiently: user-guide/working-efficiently.md
 
   - CLI Reference:
       - Overview: cli/index.md

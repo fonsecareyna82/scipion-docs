@@ -7,6 +7,8 @@ hide:
 
 This page describes the typical protocol flow in ScipionWeb.
 
+---
+
 ## Common workflow
 
 A standard protocol workflow usually looks like this:
@@ -19,6 +21,8 @@ A standard protocol workflow usually looks like this:
 6. monitor execution state and logs
 7. inspect outputs when execution finishes
 
+---
+
 ## Before launch
 
 Confirm these points first:
@@ -27,6 +31,11 @@ Confirm these points first:
 - required inputs are available
 - parameter values were reviewed deliberately
 - previous protocol state does not conflict with the next run
+- you understand whether you are configuring, saving, or launching
+
+A careful pre-launch check is often the difference between a clean workflow and a confusing rerun later.
+
+---
 
 ## During execution
 
@@ -39,6 +48,8 @@ Pay attention to:
 
 If the UI state does not update, refresh the project view and confirm the backend requests are succeeding.
 
+---
+
 ## After execution
 
 Once the protocol finishes, review:
@@ -47,6 +58,22 @@ Once the protocol finishes, review:
 - generated outputs
 - whether the expected viewer or output action is available
 - whether another downstream step is now unlocked
+- whether the result matches what the workflow stage should have produced
+
+---
+
+## Common sources of confusion
+
+Users often confuse these states:
+
+- parameters changed but not saved
+- configuration saved but launch not triggered yet
+- execution finished but outputs not reviewed yet
+- visible outputs belong to an earlier run rather than the latest one
+
+Whenever something feels inconsistent, go back to the project context and verify the full protocol lifecycle again.
+
+---
 
 ## If execution does not behave as expected
 
@@ -56,3 +83,4 @@ Check:
 - backend and worker logs
 - Redis and Celery health
 - whether the protocol parameters were saved correctly before launch
+- whether you are looking at the correct protocol run and project state

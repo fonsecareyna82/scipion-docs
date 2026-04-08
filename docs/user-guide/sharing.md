@@ -7,6 +7,8 @@ hide:
 
 Sharing allows multiple users to work with the same project context.
 
+---
+
 ## Typical sharing workflow
 
 A common collaboration flow usually includes:
@@ -15,6 +17,8 @@ A common collaboration flow usually includes:
 2. granting access to the intended teammate
 3. verifying that the collaborator can open the project
 4. keeping naming and ownership expectations clear
+
+---
 
 ## Before sharing a project
 
@@ -25,12 +29,31 @@ Check these basics first:
 - the target user exists in the same instance
 - your team agrees on how project changes will be coordinated
 
+---
+
 ## Good collaboration practices
 
 - share only the projects that actually need collaboration
 - keep project names stable and descriptive
 - avoid ambiguity about who is responsible for operational changes
 - communicate before high-impact changes in shared projects
+- make it clear which outputs or workflow stages are already validated
+
+!!! tip "Shared context matters"
+    Collaboration works better when teammates do not need to guess which project state is considered current or trustworthy.
+
+---
+
+## Common collaboration pitfalls
+
+Problems often appear when:
+
+- a similarly named project is shared by mistake
+- two users assume different workflow stages are current
+- high-impact actions happen without coordination
+- one user is working in a different environment than the others
+
+---
 
 ## If sharing does not work as expected
 
@@ -40,3 +63,4 @@ Check:
 - whether the share action completed successfully
 - whether the collaborator is logged into the correct environment
 - whether browser requests return auth or permission errors
+- whether stale session state is hiding recent permission changes
