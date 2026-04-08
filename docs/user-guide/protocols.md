@@ -13,27 +13,40 @@ A standard protocol workflow usually looks like this:
 
 1. open the relevant project
 2. choose the protocol to configure
-3. review required parameters
-4. save configuration changes
+3. review required parameters and inputs
+4. save configuration changes intentionally
 5. launch the protocol
-6. monitor execution status
+6. monitor execution state and logs
 7. inspect outputs when execution finishes
 
-## What to verify before launch
+## Before launch
 
-- required inputs are available
-- parameter values are intentional
+Confirm these points first:
+
 - the project context is the correct one
-- previous protocol state does not conflict with the next execution
+- required inputs are available
+- parameter values were reviewed deliberately
+- previous protocol state does not conflict with the next run
 
-## Monitoring execution
+## During execution
 
-During execution, pay attention to:
+Pay attention to:
 
 - status changes
 - progress indicators
-- log visibility
-- output availability after completion
+- visible log output
+- whether the workflow remains responsive in the browser
+
+If the UI state does not update, refresh the project view and confirm the backend requests are succeeding.
+
+## After execution
+
+Once the protocol finishes, review:
+
+- final status
+- generated outputs
+- whether the expected viewer or output action is available
+- whether another downstream step is now unlocked
 
 ## If execution does not behave as expected
 

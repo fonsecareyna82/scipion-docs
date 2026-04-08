@@ -11,14 +11,23 @@ Sharing allows multiple users to work with the same project context.
 
 A common collaboration flow usually includes:
 
-- confirming the correct project is selected
-- granting access to the intended teammate
-- verifying that the collaborator can open the project
-- keeping project naming and ownership clear
+1. confirming the correct project is selected
+2. granting access to the intended teammate
+3. verifying that the collaborator can open the project
+4. keeping naming and ownership expectations clear
+
+## Before sharing a project
+
+Check these basics first:
+
+- you are in the intended environment
+- the project is really the one meant for collaboration
+- the target user exists in the same instance
+- your team agrees on how project changes will be coordinated
 
 ## Good collaboration practices
 
-- share only the projects that need collaboration
+- share only the projects that actually need collaboration
 - keep project names stable and descriptive
 - avoid ambiguity about who is responsible for operational changes
 - communicate before high-impact changes in shared projects
