@@ -10,19 +10,19 @@ This section explains how **ScipionWeb** is configured at runtime and how config
 ScipionWeb configuration is centered around:
 
 - `SCIPION_HOME`
-- The `.env` file
-- Deployment mode (API-only, integrated, or separate)
-- Runtime environment variables and service connectivity
+- the `.env` file
+- deployment mode (API-only, integrated, or separate)
+- runtime environment variables and service connectivity
 
 The configuration model is designed to:
 
-- Keep runtime data separate from source code
-- Allow flexible deployment (single host or distributed)
-- Support production environments
-- Enable reproducible installations and upgrades
+- keep runtime data separate from source code
+- allow flexible deployment (single host or distributed)
+- support production environments
+- enable reproducible installations and upgrades
 
 !!! note "What this section covers"
-    These pages focus on **runtime configuration** after installation. For installation and upgrade steps, see the **Installation** section.
+    These pages focus on **runtime configuration after installation**. For installation and upgrade steps, see the **Installation** section.
 
 ---
 
@@ -58,7 +58,7 @@ It stores persistent runtime data and configuration, typically including:
 - `web/` *(if using integrated mode)*
 
 !!! tip "Why this matters"
-    Keeping `SCIPION_HOME` separate from the API source/bundle directory makes upgrades easier and helps preserve data across version changes.
+    Keeping `SCIPION_HOME` separate from the API source or bundle directory makes upgrades easier and helps preserve data across version changes.
 
 ---
 
@@ -68,12 +68,12 @@ The `.env` file is the **main runtime configuration file**.
 
 It typically defines:
 
-- Database connection settings
-- Redis / broker configuration
+- database connection settings
+- Redis and broker configuration
 - API host and port
-- Paths (logs, projects, web assets)
-- Security-related values (for example `SECRET_KEY`)
-- Deployment behavior flags (integrated mode, mount paths, etc.)
+- paths (logs, projects, web assets)
+- security-related values such as `SECRET_KEY`
+- deployment behavior flags such as integrated mode and mount paths
 
 !!! warning "Protect your `.env`"
     Do not commit `.env` to version control. It may contain credentials and security-sensitive settings.
@@ -116,9 +116,9 @@ If not overridden, a typical local installation uses:
 
 Learn how the runtime workspace is structured and what should live inside `SCIPION_HOME`.
 
-- Runtime directories and responsibilities
-- Path conventions
-- Permissions and persistence recommendations
+- runtime directories and responsibilities
+- path conventions
+- permissions and persistence recommendations
 
 ➡️ [Open SCIPION_HOME and Runtime Layout](scipion-home/)
 
@@ -128,11 +128,11 @@ Learn how the runtime workspace is structured and what should live inside `SCIPI
 
 Detailed reference for `.env` configuration values.
 
-- Database settings
-- API host/port
-- Redis / broker settings
-- Paths and runtime behavior
-- Security-sensitive values
+- database settings
+- API host and port
+- Redis and broker settings
+- paths and runtime behavior
+- security-sensitive values
 
 ➡️ [Open Environment Variables (.env)](env/)
 
@@ -144,8 +144,8 @@ Configuration for serving the compiled Web UI from the API process.
 
 - `SERVE_WEB`
 - `WEB_DIST_PATH`
-- API mount path / base URL alignment
-- Routing expectations
+- API mount path and base URL alignment
+- routing expectations
 
 ➡️ [Open API + Web Integrated Mode](integrated-mode/)
 
@@ -153,12 +153,12 @@ Configuration for serving the compiled Web UI from the API process.
 
 ### 4. Separate Deployment (API and Web on Different Hosts)
 
-Configuration guidance for decoupled frontend/backend deployments.
+Configuration guidance for decoupled frontend and backend deployments.
 
-- Cross-origin considerations
+- cross-origin considerations
 - API base URL setup
-- Reverse proxy and public URL alignment
-- Production deployment patterns
+- reverse proxy and public URL alignment
+- production deployment patterns
 
 ➡️ [Open Separate Deployment](separate-deployment/)
 
@@ -171,36 +171,51 @@ Configuration guidance for decoupled frontend/backend deployments.
     1. [SCIPION_HOME and Runtime Layout](scipion-home/)
     2. [Environment Variables (.env)](env/)
     3. [API + Web Integrated Mode](integrated-mode/)
+    4. [Logs and PID Files](../operations/logs-and-pids/)
 
 === "Separate frontend/backend deployment"
 
     1. [SCIPION_HOME and Runtime Layout](scipion-home/)
     2. [Environment Variables (.env)](env/)
-    3. [Separate Deployment (API and Web on Different Hosts)](separate-deployment/)
+    3. [Separate Deployment](separate-deployment/)
+    4. [Security Notes](../operations/security/)
 
 === "Troubleshooting configuration"
 
     1. [Environment Variables (.env)](env/)
     2. [SCIPION_HOME and Runtime Layout](scipion-home/)
-    3. Mode-specific page ([Integrated](integrated-mode/) or [Separate](separate-deployment/))
+    3. mode-specific page ([Integrated](integrated-mode/) or [Separate](separate-deployment/))
+    4. [Backend Troubleshooting](../backend/troubleshooting/)
 
 ---
 
 ## Best Practices
 
-- Never commit `.env` to version control
-- Keep `SCIPION_HOME` outside the source repository (or at least outside tracked files)
-- Use a strong `SECRET_KEY`
-- Use HTTPS in production
-- Use a reverse proxy for public deployments
-- Back up runtime configuration before upgrades (especially `.env`)
-- Keep API/Web versions aligned when possible
+- never commit `.env` to version control
+- keep `SCIPION_HOME` outside tracked source files when possible
+- use a strong `SECRET_KEY`
+- use HTTPS in production
+- use a reverse proxy for public deployments
+- back up runtime configuration before upgrades, especially `.env`
+- keep API and Web versions aligned when possible
 
 !!! warning "Common source of issues"
-    Many runtime errors come from mismatched paths and URLs (for example, `WEB_API_BASE_URL`, API mount path, reverse proxy routes, or stale `SCIPION_HOME` values after upgrades).
+    Many runtime errors come from mismatched paths and URLs, for example `WEB_API_BASE_URL`, API mount path, reverse proxy routes, or stale `SCIPION_HOME` values after upgrades.
 
 ---
 
+## Common configuration smells
+
+Watch for these patterns:
+
+- `.env` values that still point to an older installation path
+- frontend assets deployed correctly but API base URL still wrong
+- services running, but under a different `SCIPION_HOME` than expected
+- local defaults accidentally reused in production
+
+When behavior feels inconsistent, check paths and URLs before assuming code is broken.
+
+---
 
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
   <a href="../installation/" style="text-decoration:none; display:inline-block;">

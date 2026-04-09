@@ -5,14 +5,7 @@ hide:
 
 # Logs and PID Files
 
-ScipionAPI runtime management relies on **log files** and **PID files** to support:
-
-- Monitoring
-- Debugging
-- Service lifecycle operations
-- Production stability
-
-Understanding where these files live and how they are used makes incident response much faster.
+ScipionAPI runtime management relies on **log files** and **PID files** for monitoring, debugging, and service lifecycle operations.
 
 ---
 
@@ -22,12 +15,6 @@ Runtime logs are stored under:
 
 ```text
 SCIPION_HOME/logs/
-```
-
-Default (if not overridden):
-
-```text
-<repoRoot>/scipion_home/logs/
 ```
 
 ---
@@ -42,24 +29,14 @@ logs/
 
 ### `app.log`
 
-Usually contains:
-
-- API startup messages
-- Request handling logs
-- Error traces
-- Scipion runtime messages
+Usually contains API startup messages, request handling logs, and error traces.
 
 ### `celery.log`
 
-Usually contains:
-
-- Worker startup messages
-- Task execution logs
-- Task failures
-- Retry information
+Usually contains worker startup messages, task execution logs, failures, and retries.
 
 !!! tip "First place to look"
-    If the UI or API appears healthy but tasks fail silently, check `celery.log` before changing code.
+    If the UI or API appears healthy but tasks fail silently, check `celery.log` early.
 
 ---
 
@@ -76,13 +53,6 @@ Usually contains:
 ```bash
 tail -f scipion_home/logs/app.log
 tail -f scipion_home/logs/celery.log
-```
-
-### Useful filters (optional)
-
-```bash
-grep -i "error" scipion_home/logs/app.log
-grep -i "traceback" scipion_home/logs/celery.log
 ```
 
 ---
@@ -103,107 +73,33 @@ Typical layout:
 └── worker.pid
 ```
 
----
-
-## What PID Files Are Used For
-
-PID files store the process IDs of runtime services, typically:
-
-- `uvicorn` (API)
-- Celery worker
-
-They are used to:
-
-- Stop services safely
-- Restart services
-- Check current runtime state
+PID files help stop, restart, and inspect runtime services safely.
 
 ---
 
-## Check Running State
+## Common pitfall: stale PID files
 
-### Recommended
+After an unexpected crash, PID files may remain even though the processes are gone.
 
-```bash
-./scripts/scipionapi status
-```
+Typical symptoms:
 
-### Manual inspection
+- `status` reports a process that is not really alive
+- `start` refuses to launch because a PID file already exists
+- `stop` cannot act on the recorded PID
 
-```bash
-cat .run/api.pid
-ps -p <pid>
-```
-
-You can do the same for the worker:
-
-```bash
-cat .run/worker.pid
-ps -p <pid>
-```
+Always verify the process state before assuming the PID file is trustworthy.
 
 ---
 
-## Stale PID Files (Common After Crashes)
+## How to use logs well
 
-If a process exits unexpectedly, PID files may remain and report a false running state.
+A useful operational habit is to correlate three things together:
 
-Symptoms:
+1. the user action or failing workflow
+2. the API log around that time
+3. the worker log around that same time
 
-- `status` says a service is running but it is not
-- `start` refuses to launch due to existing PID file
-- `stop` fails because PID is stale
-
-### Cleanup stale PID files
-
-```bash
-rm -f .run/api.pid
-rm -f .run/worker.pid
-```
-
-Then restart services:
-
-```bash
-./scripts/scipionapi start
-```
-
-!!! warning "Be careful in shared hosts"
-    Only remove PID files after confirming the referenced processes are not actually running.
-
----
-
-## Production Logging Strategy
-
-Logs can grow quickly in production. Use one of these strategies:
-
-- `logrotate`
-- `systemd` + `journald`
-- Centralized logging (ELK, Loki, Graylog, etc.)
-
-### Example `logrotate` config
-
-```text
-/opt/scipionweb/runtime/logs/*.log {
-    daily
-    rotate 7
-    compress
-    missingok
-    notifempty
-}
-```
-
-!!! tip "systemd deployments"
-    If you run API and Celery as `systemd` services, journald may be a better primary source for live operational logs.
-
----
-
-## Best Practices
-
-- Monitor logs regularly
-- Rotate logs in production
-- Alert on recurring errors
-- Keep logs outside source code directories (via `SCIPION_HOME`)
-- Validate PID behavior after unexpected restarts/crashes
+This usually helps you decide whether the failure belongs to request handling, background execution, or environment state.
 
 ---
 
@@ -213,17 +109,4 @@ Logs can grow quickly in production. Use one of these strategies:
 - [ ] `app.log` updates during API requests
 - [ ] `celery.log` updates during task execution
 - [ ] `.run/` PID files match live processes
-- [ ] Log rotation is configured in production
-
----
-
-## Navigation
-
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../backup-restore/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Backup and Restore
-  </a>
-  <a href="../security/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Security Notes →
-  </a>
-</div>
+- [ ] logs are reviewed regularly in production

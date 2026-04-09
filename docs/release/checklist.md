@@ -8,8 +8,7 @@ Use this checklist before publishing any ScipionWeb release.
 
 - [ ] Clean working directory
 - [ ] Migrations apply cleanly
-- [ ] Provision works on fresh machine
-- [ ] No secrets in repo
+- [ ] Provision works on a fresh machine
 - [ ] No runtime folders included
 - [ ] README updated
 - [ ] Version bumped
@@ -19,38 +18,22 @@ Use this checklist before publishing any ScipionWeb release.
 ## Web Bundle
 
 - [ ] Build succeeds
-- [ ] dist contains correct assets
+- [ ] `dist` contains the expected assets
 - [ ] SPA routing works
 - [ ] No hardcoded API URLs
-- [ ] config.js injected correctly
+- [ ] runtime config injection works as expected
 
 ---
 
-## Integration Test
+## Integration Validation
 
 - [ ] Download API bundle
 - [ ] Download Web bundle
 - [ ] Extract both
-- [ ] Run provision with --web-dist
+- [ ] Run `provision` with `--web-dist`
 - [ ] Access UI in browser
 - [ ] Login works
 - [ ] Projects load
-
----
-
-## Security
-
-- [ ] SECRET_KEY generated per install
-- [ ] No credentials in bundles
-- [ ] HTTPS documented
-
----
-
-## Performance
-
-- [ ] API startup reasonable
-- [ ] Celery worker starts clean
-- [ ] No blocking tasks
 
 ---
 
@@ -59,6 +42,7 @@ Use this checklist before publishing any ScipionWeb release.
 - [ ] Install guide updated
 - [ ] Upgrade guide updated
 - [ ] Known issues documented
+- [ ] Support guidance still points to the correct public channels
 
 ---
 
@@ -66,20 +50,25 @@ Use this checklist before publishing any ScipionWeb release.
 
 - [ ] API zip uploaded
 - [ ] Web zip uploaded
-- [ ] Checksums uploaded (optional)
-- [ ] Version announcement prepared
+- [ ] version announcement prepared
 
 ---
 
-# Final Step
+## Final Sanity Questions
 
-Tag release:
+Before tagging, confirm:
+
+- would a new user be able to install this version from the published docs?
+- would an existing user understand the upgrade path?
+- are the support channels ready for incoming questions or bug reports?
+
+---
+
+## Final Step
+
+Tag the release:
 
 ```bash
 git tag v1.2.0
 git push origin v1.2.0
 ```
-
----
-
-# Release Complete 🎉
