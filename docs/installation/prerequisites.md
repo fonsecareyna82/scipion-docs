@@ -49,15 +49,55 @@ The installation flow later uses these pieces to:
 
 ScipionAPI uses **Conda** to manage its Python environment automatically.
 
-Check whether Conda is already installed:
+### Check whether Conda is already installed
 
 ```bash
 conda --version
 ```
 
-If that works, continue to PostgreSQL.
+If that prints a version number, continue to PostgreSQL.
 
-If not, install Miniconda, initialize your shell, and verify the command again.
+### Install Miniconda (recommended)
+
+If `conda` is not available, install Miniconda:
+
+```bash
+mkdir -p ~/Downloads
+cd ~/Downloads
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+```
+
+Follow the installer prompts.
+
+After installation, restart your terminal or run:
+
+```bash
+conda init bash
+exec bash
+```
+
+Then verify again:
+
+```bash
+conda --version
+```
+
+### If `conda` is still not found
+
+Add Miniconda to your `PATH` manually:
+
+```bash
+export PATH="$HOME/miniconda3/bin:$PATH"
+conda --version
+```
+
+If you installed **Anaconda** instead, adjust the path accordingly:
+
+```bash
+export PATH="$HOME/anaconda3/bin:$PATH"
+conda --version
+```
 
 !!! warning "Make PATH changes persistent"
     If `conda` only works after manually editing `PATH`, add that change to your shell profile before continuing.
