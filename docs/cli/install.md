@@ -10,7 +10,7 @@ The `install` command configures the **runtime workspace** and the **database** 
 It prepares the application to run, but it does **not** start runtime services.
 
 !!! note "Scope"
-    `install` handles runtime configuration, database setup/migrations, and admin-user creation. Service startup is a separate step (`start`) unless you use `provision`.
+    `install` handles runtime configuration, database setup, migrations, and admin-user creation. Service startup is a separate step unless you use `provision`.
 
 ---
 
@@ -25,13 +25,19 @@ It prepares the application to run, but it does **not** start runtime services.
 
 ---
 
-## Required Options
+## Mental model
 
-| Option | Description |
-|---|---|
-| `--user` | Admin username |
-| `--email` | Admin email |
-| `--pass` | Admin password |
+Use `install` when:
+
+- Python and dependencies are already prepared
+- you want controlled installation steps
+- you need to inspect database and runtime setup before starting services
+
+A simple sequence is:
+
+1. `bootstrap`
+2. `install`
+3. `start`
 
 ---
 
@@ -39,12 +45,12 @@ It prepares the application to run, but it does **not** start runtime services.
 
 `install` typically performs the following actions:
 
-1. Creates or updates `SCIPION_HOME`
-2. Generates `.env`
-3. Creates required folders (for example `logs/`, `projects/`)
-4. Creates the PostgreSQL role and database *(local PostgreSQL only)*
-5. Runs `alembic upgrade head`
-6. Creates or updates the admin user
+1. creates or updates `SCIPION_HOME`
+2. generates `.env`
+3. creates required folders such as `logs/` and `projects/`
+4. creates the PostgreSQL role and database in common local setups
+5. runs `alembic upgrade head`
+6. creates or updates the admin user
 
 ---
 
@@ -52,49 +58,39 @@ It prepares the application to run, but it does **not** start runtime services.
 
 ### Automatic local database bootstrap
 
-If:
+If PostgreSQL is local and the user has `sudo` privileges, the role and database can usually be created automatically.
 
-- PostgreSQL is local, and
-- the user has `sudo` privileges
-
-then the role/database can be created automatically.
-
-### Remote PostgreSQL (manual preparation)
+### Remote PostgreSQL
 
 If you use a remote PostgreSQL server:
 
-- Create the database and role manually
-- Ensure `.env` contains a valid `DATABASE_URL`
-- Confirm connectivity/credentials before running `install`
+- create the database and role manually
+- ensure `.env` contains a valid `DATABASE_URL`
+- confirm connectivity before running `install`
+
+---
+
+## What to do next
+
+After `install`, continue with:
+
+```bash
+./scripts/scipionapi start
+./scripts/scipionapi status
+curl http://localhost:8080/health
+```
 
 ---
 
 ## Idempotent Behavior
 
-Running `install` again is generally safe and useful.
+Running `install` again is generally safe.
 
 Typical behavior:
 
-- Does **not** drop the database
-- Updates admin credentials if needed
-- Ensures migrations are applied/up to date
-
----
-
-## Example
-
-```bash
-./scripts/scipionapi install \
-  --user admin \
-  --email admin@local \
-  --pass changeMe
-```
-
-After `install`, start services:
-
-```bash
-./scripts/scipionapi start
-```
+- does **not** drop the database
+- updates admin credentials if needed
+- ensures migrations are applied and up to date
 
 ---
 
@@ -104,37 +100,7 @@ After `install`, start services:
     Verify database credentials in `.env` and confirm the PostgreSQL role exists with the expected password.
 
 !!! warning "Alembic migration error"
-    Check connectivity and migration history state. A fresh empty database can help isolate migration-history problems.
+    Check connectivity and migration history state. A fresh empty database can help isolate migration problems.
 
 !!! warning "Admin user not updated as expected"
-    Re-run `install` with explicit options and inspect command output/logs for validation errors.
-
----
-
-## Recommended Follow-Up Checks
-
-After `install` and `start`:
-
-```bash
-./scripts/scipionapi status
-curl http://localhost:8080/health
-```
-
-Expected response:
-
-```json
-{"status":"ok"}
-```
-
----
-
-## Navigation
-
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../bootstrap/" style="text-decoration:none; display:inline-block;">
-    ← Previous: bootstrap
-  </a>
-  <a href="../provision/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: provision →
-  </a>
-</div>
+    Re-run `install` with explicit options and inspect output or logs for validation errors.

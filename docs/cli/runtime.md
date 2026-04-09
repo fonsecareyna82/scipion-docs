@@ -31,6 +31,20 @@ Services are typically started as detached background processes when using the C
 
 ---
 
+## Recommended mental model
+
+A practical sequence is:
+
+1. `start` to launch services
+2. `status` to confirm process state
+3. `logs` to verify real runtime behavior
+4. `restart` after configuration changes
+5. `stop` when shutting down intentionally
+
+`status` tells you whether processes exist. `logs` and `/health` tell you whether the system is actually behaving well.
+
+---
+
 ## `start`
 
 Starts the API and Celery worker.
@@ -41,8 +55,8 @@ Starts the API and Celery worker.
 
 Typical behavior:
 
-- Launches API and Celery as detached processes
-- Creates PID files under `.run/`
+- launches API and Celery as detached processes
+- creates PID files under `.run/`
 
 ---
 
@@ -56,11 +70,8 @@ Stops API and Celery.
 
 Typical behavior:
 
-- Reads PID files
-- Terminates the running processes (gracefully when possible)
-
-!!! warning "Stale PID files"
-    If a process was killed externally, PID files may become stale and require cleanup.
+- reads PID files
+- terminates the running processes when possible
 
 ---
 
@@ -75,7 +86,7 @@ Stops and starts services again.
 Useful after:
 
 - `.env` changes
-- dependency/runtime updates
+- dependency or runtime updates
 - integrated Web asset redeployments
 - transient failures
 
@@ -87,13 +98,6 @@ Shows whether services are running.
 
 ```bash
 ./scripts/scipionapi status
-```
-
-Example output:
-
-```text
-API: running (pid 1234)
-Celery: running (pid 5678)
 ```
 
 !!! note "Process state vs health"
@@ -109,86 +113,20 @@ Tails application logs.
 ./scripts/scipionapi logs
 ```
 
-This typically shows:
-
-- `app.log`
-- `celery.log`
-
-### Log location
-
-Defined by:
-
-```dotenv
-LOGS_PATH=scipion_home/logs
-```
+This typically shows the API log and the worker log together.
 
 ---
 
-## Typical Runtime Workflow
-
-```bash
-./scripts/scipionapi start
-./scripts/scipionapi status
-./scripts/scipionapi logs
-```
-
-After configuration changes:
-
-```bash
-./scripts/scipionapi restart
-./scripts/scipionapi status
-```
-
-Shutdown:
-
-```bash
-./scripts/scipionapi stop
-```
-
----
-
-## Production Note
-
-For production deployments, consider:
-
-- `systemd` services
-- reverse proxy (nginx)
-- dedicated logging/retention strategy
-
-CLI runtime commands are ideal for:
-
-- local development
-- small internal setups
-- debugging
-- temporary/manual operations
-
----
-
-## Common Issues
+## Common issues
 
 !!! warning "API starts but exits quickly"
-    Check `./scripts/scipionapi logs` and confirm `.env` settings (database, Redis, paths) are valid.
+    Check `logs` and confirm `.env` settings such as database, Redis, and paths are valid.
 
 !!! warning "Celery not running"
-    Verify Redis availability and broker configuration (`BROKER_URL`).
+    Verify Redis availability and broker configuration.
 
 !!! warning "`status` says running but requests fail"
-    Test runtime health explicitly:
-
-    ```bash
-    curl http://localhost:8080/health
-    ```
+    Test runtime health explicitly with `/health` and inspect logs.
 
 !!! warning "No logs shown"
-    Confirm `LOGS_PATH` exists and the runtime user has write permissions.
-
----
-
-## Navigation
-
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../provision/" style="text-decoration:none; display:inline-block;">
-    ← Previous: provision
-  </a>
-  <span></span>
-</div>
+    Confirm the configured logs path exists and the runtime user has write permissions.
