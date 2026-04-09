@@ -7,9 +7,9 @@ hide:
 
 This section provides the complete installation and upgrade documentation for **ScipionAPI** and **ScipionWeb**.
 
-Use the pages below to choose the installation workflow that best fits your environment:
+Use the pages below to choose the workflow that best fits your environment:
 
-- **Provision (one-shot)** for the fastest setup
+- **Provision (one-shot)** for the fastest supported setup
 - **Manual installation** for full control and debugging
 - **Upgrade guide** for updating an existing installation safely
 
@@ -22,15 +22,37 @@ Use the pages below to choose the installation workflow that best fits your envi
 
 ---
 
-## What Is Covered in This Section
+## How to choose the right path
+
+### First-time install
+
+Use **Prerequisites → Download Bundles → Provision**.
+
+This is the shortest path from zero to a working installation.
+
+### Development or deep debugging
+
+Use **Prerequisites → Download Bundles → Manual Installation**.
+
+This path is slower, but much better when you need to inspect each layer independently.
+
+### Existing installation upgrade
+
+Use **Upgrade Guide**.
+
+Upgrades should be treated as controlled operations with backup and verification.
+
+---
+
+## What this section covers
 
 This installation section includes:
 
-- System prerequisites (Conda, PostgreSQL, Redis, ports, permissions)
-- Official bundle download and extraction
-- One-shot installation using `provision`
-- Manual installation (step-by-step)
-- Upgrade workflow and rollback guidance
+- system prerequisites such as Conda, PostgreSQL, Redis, ports, and permissions
+- official bundle download and extraction
+- one-shot installation using `provision`
+- manual installation step by step
+- upgrade workflow and rollback guidance
 
 ---
 
@@ -40,97 +62,44 @@ This installation section includes:
 
 Prepare the machine and verify required services before installation.
 
-- Conda installation and verification
-- PostgreSQL installation and checks
-- Redis installation and checks
-- Ports and filesystem permissions
-- Pre-installation checklist
-
 ➡️ [Open Prerequisites](prerequisites/)
-
----
 
 ### 2. Download and Extract Bundles
 
 Download the official Scipion bundles and prepare the installation directory layout.
 
-- Official download location
-- API and optional Web bundle
-- Recommended directory structure
-- Extraction and verification steps
-
 ➡️ [Open Download and Extract Bundles](download-bundles/)
-
----
 
 ### 3. Provision (One-Shot Installation)
 
 Run a complete installation using a single command.
 
-- Conda/bootstrap + dependencies
-- Database setup and migrations
-- Admin user creation
-- API + Celery startup
-- Optional integrated Web deployment
-
 ➡️ [Open Provision (One-Shot Installation)](provision/)
-
----
 
 ### 4. Manual Installation
 
 Install ScipionAPI step by step for maximum control.
 
-- Manual Conda environment creation
-- Dependency installation
-- Manual PostgreSQL setup
-- `.env` configuration
-- Alembic migrations
-- Manual API/Celery startup
-
 ➡️ [Open Manual Installation](manual-install/)
-
----
 
 ### 5. Upgrade Guide
 
 Upgrade an existing installation safely.
 
-- Stop services
-- Backup database
-- Replace API bundle
-- Reuse `SCIPION_HOME`
-- Re-run `provision`
-- Optional Web bundle upgrade
-- Verification and rollback steps
-
 ➡️ [Open Upgrade Guide](upgrade/)
 
 ---
 
-## Choose the Right Workflow
+## Common installation split
 
-=== "First-time install (recommended)"
+A useful way to think about installation is:
 
-    Follow:
+1. **machine readiness** → prerequisites
+2. **artifacts** → bundles
+3. **runtime setup** → provision or manual install
+4. **service verification** → health, logs, and browser checks
 
-    1. [Prerequisites](prerequisites/)
-    2. [Download and Extract Bundles](download-bundles/)
-    3. [Provision](provision/)
-
-=== "Development / debugging"
-
-    Follow:
-
-    1. [Prerequisites](prerequisites/)
-    2. [Download and Extract Bundles](download-bundles/)
-    3. [Manual Installation](manual-install/)
-
-=== "Upgrade existing installation"
-
-    Follow:
-
-    1. [Upgrade Guide](upgrade/)
+This mental split makes debugging much easier when something goes wrong.
 
 ---
 

@@ -5,7 +5,7 @@ hide:
 
 # Download and Extract Bundles
 
-This section explains how to download the official Scipion bundles and prepare the installation directory.
+This page explains how to download the official Scipion bundles and prepare the installation directory.
 
 ScipionWeb is distributed as:
 
@@ -17,139 +17,88 @@ ScipionWeb is distributed as:
 
 ---
 
-## Official Download Location
+## What you should download
 
-All versioned bundles are published at:
-
-[https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/](https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/)
-
-You should download:
+You normally need:
 
 - `ScipionAPI-<version>.zip`
-- `ScipionWeb-<version>-dist.zip` *(optional)*
+- `ScipionWeb-<version>-dist.zip` if you want integrated mode
 
-!!! tip "Version placeholder"
-    Replace `<version>` with the actual published version number (for example, `3.0.0`).
+The most important rule here is version alignment: try to keep API and Web bundles on the same release whenever possible.
 
 ---
 
-## Recommended Directory Layout
+## Recommended directory layout
 
-We recommend installing everything under a dedicated directory:
-
-```bash
-$HOME/scipionweb/
-```
-
-After downloading (and extracting the API bundle), the layout should look like this:
+A clean local layout looks like this:
 
 ```text
-scipionweb/
+$HOME/scipionweb/
 ├── ScipionAPI-<version>/
-│   ├── scripts/
-│   ├── scipionapi_cli/
-│   ├── app/
-│   ├── alembic/
-│   └── pyproject.toml
-│
 └── ScipionWeb-<version>-dist.zip
 ```
 
-!!! tip "Keep the Web ZIP file"
-    If you are using **integrated mode**, you can pass the Web bundle ZIP directly to the installer with `--web-dist` (no manual extraction required).
+The Web ZIP can remain unextracted if you plan to pass it directly to `provision` using `--web-dist`.
 
 ---
 
-## Download the Bundles
+## Download approach
 
-=== "Using wget"
+Use a dedicated directory, keep the API bundle extractable, and keep the Web ZIP easy to reference from the installer.
 
-    ```bash
-    mkdir -p "$HOME/scipionweb"
-    cd "$HOME/scipionweb"
+Useful commands:
 
-    wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip
-    wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip
-    ```
+```bash
+mkdir -p "$HOME/scipionweb"
+cd "$HOME/scipionweb"
+```
 
-=== "Using curl"
-
-    ```bash
-    mkdir -p "$HOME/scipionweb"
-    cd "$HOME/scipionweb"
-
-    curl -O https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip
-    curl -O https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip
-    ```
-
-!!! warning "Optional Web bundle"
-    If you do **not** need integrated mode, you may skip downloading `ScipionWeb-<version>-dist.zip`.
+Then download the bundle files using your preferred tool.
 
 ---
 
-## Extract the API Bundle
+## Extract the API bundle
 
 ```bash
 unzip ScipionAPI-<version>.zip
 cd ScipionAPI-<version>
 ```
 
-You should now see the `scripts/scipionapi` wrapper in the extracted API directory.
+At this point, the main thing to verify is that the API directory contains the wrapper script and the expected project structure.
 
 ---
 
-## Web Bundle (Optional)
+## What to verify after extraction
 
-If you want **integrated mode** (the API serves the frontend):
-
-- You do **not** need to extract the Web ZIP manually.
-- You can pass it directly to the installer using `--web-dist`.
-
-If you want to inspect it manually, extract it with:
-
-```bash
-unzip ScipionWeb-<version>-dist.zip
-```
-
-The extracted contents should include:
-
-```text
-dist/
-  index.html
-  assets/
-```
-
-!!! note "Manual inspection only"
-    Manual extraction is useful for verification, but it is not required for a standard integrated installation.
-
----
-
-## Verify Extraction
-
-From inside the API directory, run:
-
-```bash
-ls -al
-```
-
-You should see at least:
+Inside the extracted API directory, confirm that you can see expected files such as:
 
 - `scripts/`
-- `scipionapi_cli/`
 - `app/`
 - `alembic/`
 - `pyproject.toml`
 
-!!! tip "Quick sanity check"
-    If `scripts/scipionapi` is missing, verify that you extracted the correct ZIP file and that the extraction completed successfully.
+A useful sanity check is making sure `scripts/scipionapi` exists before moving on.
 
 ---
 
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../prerequisites/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Prerequisites
-  </a>
-  <a href="../provision/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Provision →
-  </a>
-</div>
+## Web bundle usage
+
+If you want **integrated mode**:
+
+- keep the Web ZIP file available
+- pass it directly to `provision` with `--web-dist`
+
+Manual extraction of the Web bundle is optional and mostly useful for inspection.
+
+---
+
+## Common mistakes
+
+!!! warning "Wrong or mismatched bundle versions"
+    If API and Web versions drift too far apart, frontend and backend expectations may not align.
+
+!!! warning "Extracting the wrong ZIP"
+    Make sure you extracted the API bundle and not the Web bundle when looking for `scripts/scipionapi`.
+
+!!! warning "Moving files before installation planning"
+    Keep the layout simple until installation succeeds. Overcomplicated directory moves make debugging harder.

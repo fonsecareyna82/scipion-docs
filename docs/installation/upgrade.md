@@ -5,264 +5,142 @@ hide:
 
 # Upgrade Guide
 
-This guide explains how to upgrade **ScipionAPI** and, optionally, **ScipionWeb** to a newer version.
+This guide explains how to upgrade **ScipionAPI** and optionally **ScipionWeb** to a newer version.
 
 !!! note "Recommended approach"
-    Treat upgrades as a controlled operation: **stop services**, **backup first**, **upgrade**, then **verify** before resuming normal usage.
+    Treat upgrades as controlled operations: **stop services**, **backup first**, **upgrade**, then **verify** before resuming normal usage.
 
 ---
 
-## Overview
+## Upgrade mental model
 
-A typical upgrade involves:
+A safe upgrade usually means preserving three things correctly:
 
-1. Stopping services
-2. Backing up the database
-3. Replacing the API bundle
-4. Reusing the existing `SCIPION_HOME`
-5. Running migrations (via `provision`)
-6. Restarting services
-7. Optionally replacing the Web bundle
+1. the **runtime workspace** (`SCIPION_HOME`)
+2. the **database state**
+3. the **version alignment** between API and Web bundles
 
-!!! tip "Why `provision` again?"
-    The `provision` command is the recommended upgrade path because it can reuse the existing environment, apply dependency updates, and run Alembic migrations safely.
+Most upgrade mistakes come from breaking one of those three.
 
 ---
 
-## 1. Stop Services
+## Typical upgrade flow
 
-From the current installation directory, stop the running services:
+A common upgrade involves:
+
+1. stopping services
+2. backing up the database
+3. extracting the new API bundle
+4. reusing the existing `SCIPION_HOME`
+5. running `provision` from the new bundle
+6. optionally upgrading the Web bundle
+7. verifying health, logs, and basic UI behavior
+
+---
+
+## 1. Stop services
+
+From the current installation directory:
 
 ```bash
 ./scripts/scipionapi stop
-```
-
-Verify they are stopped:
-
-```bash
 ./scripts/scipionapi status
 ```
 
-!!! warning "Do not upgrade while services are running"
-    Upgrading code or schema while the API/Celery worker is still running can cause inconsistent behavior and migration conflicts.
+Do not upgrade while services are still running.
 
 ---
 
-## 2. Backup Database (Strongly Recommended)
+## 2. Back up first
 
-Create a PostgreSQL backup before upgrading.
+Before touching the new version, create a database backup.
 
-### Plain SQL backup
+This is the minimum safety step that makes rollback realistic.
 
-```bash
-pg_dump -U scipion_user scipion_db > scipion_backup.sql
-```
-
-### Compressed backup
-
-```bash
-pg_dump -U scipion_user scipion_db | gzip > scipion_backup.sql.gz
-```
-
-Store the backup in a safe location (preferably outside the installation directory).
-
-!!! tip "Production safety"
-    If this is a production deployment, also consider taking a filesystem backup of `SCIPION_HOME` (especially `.env`, `projects/`, and custom configuration files).
+If the deployment matters, also preserve the relevant runtime workspace state such as `.env` and project-related data.
 
 ---
 
-## 3. Download the New Version
+## 3. Extract the new API bundle
 
-Download the new bundles from the official release location:
+Download the new bundle and extract it into a clean directory.
 
-[https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/](https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/)
-
-Extract the new **ScipionAPI** version:
-
-```bash
-unzip ScipionAPI-<new_version>.zip
-cd ScipionAPI-<new_version>
-```
-
-!!! note "Web bundle is optional"
-    Download the new `ScipionWeb-<new_version>-dist.zip` only if you are using **integrated mode** (API serving the frontend).
+The important rule is: run the new version from the **new bundle directory**, but keep pointing to the **existing runtime workspace**.
 
 ---
 
-## 4. Reuse Existing `SCIPION_HOME`
+## 4. Reuse existing `SCIPION_HOME`
 
-Do **not** delete your existing `scipion_home`.
+Do **not** delete your existing runtime workspace.
 
-You can either:
-
-- Copy the existing `scipion_home` into the new API directory, **or**
-- Export `SCIPION_HOME` explicitly to point to the existing runtime workspace
-
-Example:
-
-```bash
-export SCIPION_HOME=/path/to/previous/scipion_home
-```
-
-Your runtime data remains intact, including:
+That workspace usually contains:
 
 - `.env`
-- `logs/`
-- `projects/`
-- deployed web assets (if previously deployed)
-- local runtime configuration
+- logs
+- projects
+- runtime configuration
+- deployed web assets in integrated setups
 
-!!! warning "Preserve your `.env`"
-    The `.env` file contains database and runtime configuration. Verify it points to the correct database and services before running the upgrade.
-
----
-
-## 5. Upgrade the Environment and Database
-
-Run `provision` again from the **new API bundle directory**:
-
-```bash
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe"
-```
-
-This typically:
-
-- Reuses the existing Conda environment (if already present)
-- Installs updated Python dependencies
-- Applies new Alembic migrations
-- Keeps your database data intact
-- Restarts API and Celery services
-
-!!! tip "Admin credentials"
-    `provision` may update the admin credentials if needed. Use the same admin account or set a new temporary password and rotate it later.
+Before proceeding, verify that the reused `.env` still points to the correct database and services.
 
 ---
 
-## 6. Upgrade Web Bundle (Optional, Integrated Mode)
+## 5. Run `provision` again
 
-If you are using **integrated mode**, re-run `provision` and pass the new Web bundle ZIP:
+From the **new API bundle directory**, run `provision` again.
 
-```bash
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe" \
-  --web-dist /path/to/ScipionWeb-<new_version>-dist.zip
-```
+The practical goal here is:
 
-This replaces the deployed frontend assets with the new version.
-
-!!! tip "Keep API and Web versions aligned"
-    Whenever possible, upgrade **ScipionAPI** and **ScipionWeb** together to avoid frontend/API compatibility mismatches.
+- refresh dependencies if needed
+- apply migrations
+- preserve data
+- bring runtime services back under the new version
 
 ---
 
-## 7. Verify the Upgrade
+## 6. Upgrade the Web bundle if needed
 
-### Check service status
+If you are using integrated mode, pass the new Web bundle with `--web-dist` during the new `provision` run.
 
-```bash
-./scripts/scipionapi status
-```
-
-### Check API health
-
-```bash
-curl http://localhost:8080/health
-```
-
-Expected response:
-
-```json
-{"status":"ok"}
-```
-
-### Check API docs
-
-Open in your browser:
-
-- **API-only mode:** `http://localhost:8080/docs`
-- **Integrated mode:** `http://localhost:8080/api/docs`
-
-!!! tip "Post-upgrade smoke test"
-    Log in, open a project, and run a basic operation to confirm the application behaves correctly after the upgrade.
+Keep API and Web versions aligned whenever possible.
 
 ---
 
-## Rolling Back (If Needed)
+## 7. Verify before calling it done
 
-If the upgrade fails and you need to roll back:
+Check:
 
-1. Stop services
-2. Restore the database backup
-3. Revert to the previous API bundle
-4. Start services again
+- `status`
+- `/health`
+- logs
+- login
+- project loading
+- one basic workflow action in the UI
 
-### Restore a plain SQL backup
-
-```bash
-psql -U scipion_user scipion_db < scipion_backup.sql
-```
-
-### Restore a compressed backup
-
-```bash
-gunzip -c scipion_backup.sql.gz | psql -U scipion_user scipion_db
-```
-
-!!! warning "Schema mismatch risk"
-    If you roll back the API code, also ensure the database is restored to a compatible pre-upgrade state. Running old code against a migrated schema may fail.
+The point is not only that processes run, but that the application behaves normally again.
 
 ---
 
-## Best Practices
+## Rollback thinking
 
-- Always create a backup before upgrading
-- Test upgrades in staging first
-- Keep the previous API bundle until the upgrade is verified
-- Review migration scripts before production deployment
-- Verify available disk space before extracting new bundles and backups
+If the upgrade fails badly, rollback usually means:
 
----
+1. stop services
+2. restore the database backup
+3. go back to the previous API bundle
+4. restart from the previously known-good state
 
-## Major Version Upgrades
-
-If upgrading across **major versions**:
-
-- Read release notes carefully
-- Verify migration compatibility
-- Test in an isolated environment first
-- Expect possible schema changes and behavior changes
-
-!!! note "Change management"
-    For major upgrades, plan a maintenance window and a rollback strategy before starting.
+Rollback is much safer when the backup was created before any migration step.
 
 ---
 
-## Summary
+## Common upgrade mistakes
 
-Recommended upgrade flow:
+!!! warning "Running the new code against the wrong runtime workspace"
+    Always verify which `SCIPION_HOME` the new bundle is actually using.
 
-1. Stop services
-2. Backup database
-3. Download and extract the new API bundle
-4. Reuse existing `SCIPION_HOME`
-5. Run `provision`
-6. Upgrade the Web bundle (optional)
-7. Verify services and application behavior
+!!! warning "Upgrading code without verified backup"
+    If migrations change the schema, rollback without a backup becomes much harder.
 
-Upgrade is generally safe when migrations are applied in order and verified backups are available.
-
----
-
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../manual-install/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Manual Installation
-  </a>
-  <a href="../deployment-systemd/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Production Deployment →
-  </a>
-</div>
+!!! warning "API and Web versions drift apart"
+    Even if the UI loads, behavior may still be inconsistent when bundle versions do not match.
