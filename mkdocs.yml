@@ -51,6 +51,15 @@ theme:
 nav:
   - Home: index.md
 
+  - Installation:
+      - Overview: installation/index.md
+      - Prerequisites: installation/prerequisites.md
+      - Download Bundles: installation/download-bundles.md
+      - Recommended Installation: installation/provision.md
+      - Manual Installation: installation/manual-install.md
+      - Upgrade / Reinstall Notes: installation/upgrade.md
+      - Production Deployment: installation/deployment-systemd.md
+
   - User Guide:
       - Overview: user-guide/index.md
       - First Login and Session Basics: user-guide/first-login.md
@@ -61,15 +70,6 @@ nav:
       - Settings: user-guide/settings.md
       - Plugins: user-guide/plugins.md
       - Working Efficiently: user-guide/working-efficiently.md
-
-  - Installation:
-      - Overview: installation/index.md
-      - Prerequisites: installation/prerequisites.md
-      - Download Bundles: installation/download-bundles.md
-      - Recommended Installation: installation/provision.md
-      - Manual Installation: installation/manual-install.md
-      - Upgrade / Reinstall Notes: installation/upgrade.md
-      - Production Deployment: installation/deployment-systemd.md
 
   - Support:
       - Overview: support/index.md
