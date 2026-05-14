@@ -25,6 +25,10 @@ After a protocol finishes, you will usually:
 5. Open the preview or viewer action associated with that output.
 6. Confirm that the viewer content matches the expected output type.
 
+![Outputs viewer dialog](../assets/images/screenshots/user-guide/outputs-viewer-dialog.png)
+
+*Outputs can be opened from the project context using the available viewer actions.*
+
 Before assuming a viewer is broken, confirm that:
 
 - the protocol completed successfully
@@ -46,6 +50,10 @@ Typical examples include:
 - tilt-series viewers
 - CTF tomography viewers
 - generic file previews
+
+![Metadata viewer table](../assets/images/screenshots/user-guide/metadata-viewer-table.png)
+
+*Metadata outputs can be inspected in a table-oriented viewer.*
 
 The exact viewer depends on the output class and the backend data available for that output.
 
