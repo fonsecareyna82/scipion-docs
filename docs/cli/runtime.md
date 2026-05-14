@@ -1,8 +1,3 @@
----
-hide:
-  - toc
----
-
 # Runtime Commands (`start`, `stop`, `restart`, `status`, `logs`)
 
 These commands manage ScipionAPI runtime services.
