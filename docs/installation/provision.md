@@ -1,8 +1,3 @@
----
-hide:
-  - toc
----
-
 # Provision (One-Shot Installation)
 
 The `provision` command performs a complete installation in a single step.
