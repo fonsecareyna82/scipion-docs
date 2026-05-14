@@ -7,6 +7,12 @@ hide:
 
 Use this page for the first actions after opening ScipionWeb in the browser.
 
+Start from the login page, sign in with your user credentials, and then verify that the main application area loads correctly.
+
+![Login page](../assets/images/screenshots/user-guide/login-page.png)
+
+*ScipionWeb login page used to start a user session.*
+
 After signing in, the first useful check is usually whether the main application area loads and the projects page is reachable.
 
 ![Projects page after login](../assets/images/screenshots/user-guide/projects-page.png)
