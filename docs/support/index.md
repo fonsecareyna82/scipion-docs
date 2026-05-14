@@ -5,9 +5,20 @@ hide:
 
 # Support Overview
 
-This section is the entry point for **software support**, not only documentation feedback.
+Use this section when you need help with ScipionWeb, want to report a problem, or want to suggest an improvement.
 
-Use it when you need help with ScipionWeb installation, usage, troubleshooting, bug reporting, or improvement proposals.
+The goal is to help you choose the right support path quickly.
+
+---
+
+## Choose the right path
+
+| Situation | Best place to start |
+|---|---|
+| I do not know how to do something | [Ask a Question](ask-a-question/) |
+| Something fails repeatedly | [Report a Bug](report-a-bug/) |
+| I have an idea to improve the UI or workflow | [Suggest an Improvement](suggest-an-improvement/) |
+| I want to check recurring problems first | [Known Issues and Workarounds](known-issues/) |
 
 ---
 
@@ -22,68 +33,53 @@ ScipionWeb support is currently centered around the public GitHub repository:
 
 ---
 
-## What this section is for
-
-The Support section helps users decide whether they should:
-
-- ask a question
-- report a reproducible bug
-- suggest an improvement
-- check whether a problem is already known
-
----
-
-## Recommended support model
-
-For a public technical project, the most practical model is:
-
-- **GitHub Discussions** for questions, troubleshooting, and open-ended ideas
-- **GitHub Issues** for confirmed bugs and actionable feature requests
-
-That keeps user support visible, searchable, and close to the real project.
-
----
-
-## When to use each channel
-
-### Ask a Question
+## When to ask a question
 
 Use this path when:
 
 - you are not sure whether behavior is expected
 - you need help with installation or runtime setup
+- you need help using a workflow in the web interface
 - you want clarification before opening a bug report
 
 ➡️ [Open Ask a Question](ask-a-question/)
 
-### Report a Bug
+---
+
+## When to report a bug
 
 Use this path when:
 
 - the behavior is reproducible
 - something clearly fails or regressed
 - you can describe steps, environment, and expected behavior
+- you have logs, screenshots, or error messages that help explain the problem
 
 ➡️ [Open Report a Bug](report-a-bug/)
 
-### Suggest an Improvement
+---
+
+## When to suggest an improvement
 
 Use this path when:
 
-- you want to propose a UX, workflow, or capability improvement
 - the software is working but could work better
-- you want to discuss a feature before it becomes an issue or task
+- you want to propose a UX, workflow, or capability improvement
+- you want to discuss an idea before it becomes a task
 
 ➡️ [Open Suggest an Improvement](suggest-an-improvement/)
 
-### Known Issues and Workarounds
+---
 
-Use this page first when:
+## Before opening a new report
 
-- you suspect the problem may already be known
-- you want a workaround before opening a new report
+It is often useful to check:
 
-➡️ [Open Known Issues and Workarounds](known-issues/)
+- [Known Issues and Workarounds](known-issues/)
+- existing GitHub Issues
+- existing GitHub Discussions
+
+This reduces duplicate reports and may give you a workaround immediately.
 
 ---
 
@@ -99,6 +95,11 @@ Support becomes much faster and more useful when users provide:
 
 ---
 
-## Why this belongs in the docs
+## Recommended support model
 
-The documentation is often the first place users visit when ScipionWeb is not yet installed correctly, not reachable, or behaving unexpectedly. That makes it the best place to centralize support guidance, even if the real discussion and issue tracking happen in GitHub.
+For a public technical project, the most practical model is:
+
+- **GitHub Discussions** for questions, troubleshooting, and open-ended ideas
+- **GitHub Issues** for confirmed bugs and actionable feature requests
+
+That keeps user support visible, searchable, and close to the real project.
