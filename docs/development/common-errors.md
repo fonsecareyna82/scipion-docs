@@ -24,6 +24,7 @@ Then confirm:
 - `SCIPION_HOME` points to the right runtime workspace
 - `.env` exists and contains the expected values
 - PostgreSQL and Redis are reachable
+- API and Celery are reading the same runtime configuration
 
 ---
 
@@ -31,15 +32,20 @@ Then confirm:
 
 ### Typical cause
 
-You are not running inside the expected Conda environment.
+You are not running inside the expected Conda environment, or the worker was started outside the environment prepared by the wrapper script.
 
 ### Fix
 
 ```bash
 conda activate scipion4Web
+python -c "import pyworkflow; print(pyworkflow.__file__)"
 ```
 
-If you are using the wrapper script, rerun the command from the ScipionAPI bundle directory.
+If you are using the wrapper script, rerun the command from the ScipionAPI bundle directory:
+
+```bash
+./scripts/scipionapi restart
+```
 
 ---
 
@@ -82,6 +88,8 @@ test -f "$SCIPION_HOME/.env" && echo ".env found"
 - avoid editing migrations that were already applied
 - test on a fresh empty database when state is unclear
 
+For real deployments, create a database backup before stamping or repairing migration state.
+
 ---
 
 ## 4. Redis connection refused
@@ -110,12 +118,14 @@ PONG
 - Redis is reachable
 - the broker URL matches between API and worker
 - worker logs show task receipt/execution
+- `SCIPION_HOME` is available to the worker process
 
 ### Useful commands
 
 ```bash
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
+redis-cli ping
 ```
 
 If tasks stay in `PENDING`, confirm both the API and the worker are using the same runtime configuration.
@@ -135,6 +145,20 @@ If tasks stay in `PENDING`, confirm both the API and the worker are using the sa
 - verify scheme, host, and port match the real frontend URL
 - check that reverse proxies are not rewriting origins unexpectedly
 
+For local development, the browser origin is usually similar to:
+
+```text
+http://localhost:5173
+```
+
+The API may be running at:
+
+```text
+http://localhost:8080
+```
+
+Both values must match the configured development setup.
+
 ---
 
 ## 7. JWT invalid signature or invalid token
@@ -151,6 +175,8 @@ If tasks stay in `PENDING`, confirm both the API and the worker are using the sa
 - clear stored tokens or log in again
 - restart the backend if configuration changed recently
 
+A private browser window is a quick way to test whether stale local state is involved.
+
 ---
 
 ## 8. Port already in use
@@ -163,9 +189,22 @@ Address already in use
 
 ### Fix
 
+Identify the process first:
+
 ```bash
 lsof -i :8080
+```
+
+Then stop it only if it is safe to do so:
+
+```bash
 kill <pid>
+```
+
+Use forceful termination only as a last resort:
+
+```bash
+kill -9 <pid>
 ```
 
 Or change the configured API port if another service is meant to keep using that port.
@@ -177,10 +216,15 @@ Or change the configured API port if another service is meant to keep using that
 ### Fix
 
 ```bash
-chmod -R u+rw "$SCIPION_HOME"
+chmod -R u+rwX "$SCIPION_HOME"
 ```
 
-Also confirm that the same user owns the runtime files and starts the services.
+Also confirm that the same user owns the runtime files and starts the services:
+
+```bash
+ls -ld "$SCIPION_HOME"
+ls -ld "$SCIPION_HOME/logs"
+```
 
 ---
 
@@ -192,6 +236,8 @@ Go to [Backend Troubleshooting](../backend/troubleshooting/) when the issue invo
 - database connectivity in shared or production environments
 - Redis or Celery runtime mismatches
 - authentication problems that reproduce outside local development
+
+For recurring operational problems, also check [Known Issues and Workarounds](../support/known-issues/).
 
 ---
 
