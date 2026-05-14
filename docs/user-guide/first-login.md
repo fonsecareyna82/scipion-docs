@@ -7,6 +7,12 @@ hide:
 
 Use this page for the first actions after opening ScipionWeb in the browser.
 
+After signing in, the first useful check is usually whether the main application area loads and the projects page is reachable.
+
+![Projects page after login](../assets/images/screenshots/user-guide/projects-page.png)
+
+*After login, the Projects page is a quick way to confirm that the session and protected API requests are working.*
+
 ---
 
 ## Before you troubleshoot login
