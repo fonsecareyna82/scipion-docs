@@ -1,8 +1,3 @@
----
-hide:
-  - toc
----
-
 # Manual Installation
 
 This guide describes how to install **ScipionAPI** manually, step by step.
