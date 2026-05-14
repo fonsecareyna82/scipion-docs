@@ -5,42 +5,39 @@ hide:
 
 # Installation Overview
 
-This section provides the complete installation and upgrade documentation for **ScipionAPI** and **ScipionWeb**.
+Use this section when you want to install **ScipionWeb for users** or upgrade an existing installation.
 
-Use the pages below to choose the workflow that best fits your environment:
+For most installations, the recommended path is **Integrated Mode (API + Web)**. In that mode, ScipionAPI serves the compiled ScipionWeb interface and the API from the same runtime, so users can open the web application directly in the browser.
 
-- **Provision (one-shot)** for the fastest supported setup
-- **Manual installation** for full control and debugging
-- **Upgrade guide** for updating an existing installation safely
-
-!!! note "Recommended path for most users"
+!!! note "Recommended path for most installations"
     If you are installing for the first time on a local Linux machine, follow this sequence:
 
     1. [Prerequisites](prerequisites/)
     2. [Download and Extract Bundles](download-bundles/)
-    3. [Provision (One-Shot Installation)](provision/)
+    3. [Recommended Installation](provision/)
 
 ---
 
-## How to choose the right path
+## Which path should I use?
 
-### First-time install
+### Recommended installation
 
-Use **Prerequisites → Download Bundles → Provision**.
+Use **Prerequisites → Download Bundles → Recommended Installation** when you want the fastest path to a working ScipionWeb instance with both API and Web UI.
 
-This is the shortest path from zero to a working installation.
+This is the normal path for user-facing installations.
 
-### Development or deep debugging
+### Manual installation
 
-Use **Prerequisites → Download Bundles → Manual Installation**.
+Use **Manual Installation** only when you need full control over each layer, for example:
 
-This path is slower, but much better when you need to inspect each layer independently.
+- remote PostgreSQL setup
+- debugging installation problems
+- custom deployment requirements
+- development environments
 
-### Existing installation upgrade
+### Upgrade or reinstall
 
-Use **Upgrade Guide**.
-
-Upgrades should be treated as controlled operations with backup and verification.
+Use **Upgrade / Reinstall Notes** when an existing installation already exists and you need to preserve runtime data, database state, and configuration.
 
 ---
 
@@ -50,13 +47,13 @@ This installation section includes:
 
 - system prerequisites such as Conda, PostgreSQL, Redis, ports, and permissions
 - official bundle download and extraction
-- one-shot installation using `provision`
-- manual installation step by step
+- recommended integrated installation using `provision` and `--web-dist`
+- manual installation step by step for advanced setups
 - upgrade workflow and rollback guidance
 
 ---
 
-## Installation Pages
+## Installation pages
 
 ### 1. Prerequisites
 
@@ -66,15 +63,15 @@ Prepare the machine and verify required services before installation.
 
 ### 2. Download and Extract Bundles
 
-Download the official Scipion bundles and prepare the installation directory layout.
+Download the official ScipionAPI and ScipionWeb bundles and prepare the installation directory layout.
 
 ➡️ [Open Download and Extract Bundles](download-bundles/)
 
-### 3. Provision (One-Shot Installation)
+### 3. Recommended Installation
 
-Run a complete installation using a single command.
+Run a complete integrated installation using a single command.
 
-➡️ [Open Provision (One-Shot Installation)](provision/)
+➡️ [Open Recommended Installation](provision/)
 
 ### 4. Manual Installation
 
@@ -82,11 +79,11 @@ Install ScipionAPI step by step for maximum control.
 
 ➡️ [Open Manual Installation](manual-install/)
 
-### 5. Upgrade Guide
+### 5. Upgrade / Reinstall Notes
 
 Upgrade an existing installation safely.
 
-➡️ [Open Upgrade Guide](upgrade/)
+➡️ [Open Upgrade / Reinstall Notes](upgrade/)
 
 ---
 
@@ -96,17 +93,17 @@ A useful way to think about installation is:
 
 1. **machine readiness** → prerequisites
 2. **artifacts** → bundles
-3. **runtime setup** → provision or manual install
-4. **service verification** → health, logs, and browser checks
+3. **runtime setup** → recommended installation or manual installation
+4. **service verification** → browser, health endpoint, logs, and project loading
 
 This mental split makes debugging much easier when something goes wrong.
 
 ---
 
-## Quick Notes
+## Quick notes
 
-!!! tip "Integrated mode"
-    If you want the API to serve the frontend, download the **ScipionWeb** compiled bundle and use the `--web-dist` option during `provision`.
+!!! tip "Integrated mode is the normal user-facing mode"
+    If you want users to open ScipionWeb in the browser, download the **ScipionWeb** compiled bundle and use the `--web-dist` option during `provision`.
 
 !!! warning "Backup before upgrade"
     Always create a PostgreSQL backup before running an upgrade, especially in production or shared environments.
