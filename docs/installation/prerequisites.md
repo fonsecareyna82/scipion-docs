@@ -1,8 +1,3 @@
----
-hide:
-  - toc
----
-
 # Prerequisites
 
 Before installing **ScipionAPI** and optionally the compiled **ScipionWeb** bundle, prepare the target machine with the required system software, services, and permissions.
