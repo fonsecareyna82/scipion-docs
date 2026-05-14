@@ -1,8 +1,3 @@
----
-hide:
-  - toc
----
-
 # Logs and PID Files
 
 ScipionAPI runtime management relies on **log files** and **PID files** for monitoring, debugging, and service lifecycle operations.
