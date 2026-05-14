@@ -7,17 +7,23 @@ hide:
 
 Use this page for the first actions after opening ScipionWeb in the browser.
 
-Start from the login page, sign in with your user credentials, and then verify that the main application area loads correctly.
+Start from the login page and sign in with your user credentials.
 
 ![Login page](../assets/images/screenshots/user-guide/login-page.png)
 
 *ScipionWeb login page used to start a user session.*
 
-After signing in, the first useful check is usually whether the main application area loads and the projects page is reachable.
+After signing in, ScipionWeb opens the dashboard. This is the first place to check that the application loaded correctly and that your session is active.
+
+![Dashboard page after login](../assets/images/screenshots/user-guide/dashboard-page.png)
+
+*Dashboard page shown after a successful login.*
+
+From the dashboard, open the Projects area to confirm that protected API requests and project data load correctly.
 
 ![Projects page after login](../assets/images/screenshots/user-guide/projects-page.png)
 
-*After login, the Projects page is a quick way to confirm that the session and protected API requests are working.*
+*The Projects page is a useful follow-up check because it confirms that session state and protected API requests are working.*
 
 ---
 
@@ -34,6 +40,7 @@ Confirm these basics first:
 
 ## After login, verify that
 
+- the dashboard loads correctly
 - the main navigation loads correctly
 - your user identity appears as expected
 - the projects area opens without errors
