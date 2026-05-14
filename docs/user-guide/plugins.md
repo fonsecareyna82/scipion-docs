@@ -7,6 +7,10 @@ hide:
 
 Plugins extend Scipion capabilities and may expose actions both in the backend and in the web interface.
 
+![Plugins page](../assets/images/screenshots/user-guide/plugins-page.png)
+
+*Plugins page where available and installed plugins can be reviewed.*
+
 ---
 
 ## Typical plugin-related tasks
