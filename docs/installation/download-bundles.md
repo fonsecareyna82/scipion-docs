@@ -17,12 +17,19 @@ ScipionWeb is distributed as:
 
 ---
 
-## What you should download
+## Official download location
+
+All versioned bundles are published at:
+
+[https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/](https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/)
 
 You normally need:
 
 - `ScipionAPI-<version>.zip`
 - `ScipionWeb-<version>-dist.zip` if you want integrated mode
+
+!!! tip "Version placeholder"
+    Replace `<version>` with the actual published version number.
 
 The most important rule here is version alignment: try to keep API and Web bundles on the same release whenever possible.
 
@@ -53,7 +60,7 @@ mkdir -p "$HOME/scipionweb"
 cd "$HOME/scipionweb"
 ```
 
-Then download the bundle files using your preferred tool.
+Then download the bundle files from the official download location using your preferred tool.
 
 ---
 
@@ -73,6 +80,7 @@ At this point, the main thing to verify is that the API directory contains the w
 Inside the extracted API directory, confirm that you can see expected files such as:
 
 - `scripts/`
+- `scipionapi_cli/`
 - `app/`
 - `alembic/`
 - `pyproject.toml`
