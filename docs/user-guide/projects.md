@@ -4,6 +4,10 @@ Projects are the main workspace unit in ScipionWeb. They group protocols, output
 
 Use this page when you need to create, open, rename, review, or share a project safely.
 
+![Projects page](../assets/images/screenshots/user-guide/projects-page.png)
+
+*Projects page with project cards and project-level actions.*
+
 ---
 
 ## Typical project workflow
@@ -28,6 +32,10 @@ A common project-oriented flow looks like this:
 5. Confirm the creation action.
 6. Open the new project and verify that the project page loads correctly.
 
+![New project dialog](../assets/images/screenshots/user-guide/new-project-dialog.png)
+
+*New project dialog used to create a project workspace.*
+
 After creating a project, confirm:
 
 - the project appears in the project list
@@ -43,6 +51,10 @@ After creating a project, confirm:
 3. Check the project name, description, thumbnail, or recent status before opening it.
 4. Open the project.
 5. Review the visible workflow before launching or editing anything.
+
+![Project workflow view](../assets/images/screenshots/user-guide/project-workflow-view.png)
+
+*Project workflow view where protocols, status, and workflow context are reviewed.*
 
 Verify these basics first:
 
