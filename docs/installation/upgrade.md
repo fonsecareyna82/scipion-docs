@@ -1,8 +1,3 @@
----
-hide:
-  - toc
----
-
 # Upgrade Guide
 
 This guide explains how to upgrade **ScipionAPI** and optionally **ScipionWeb** to a newer version.
