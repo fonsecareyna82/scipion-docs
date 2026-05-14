@@ -8,11 +8,20 @@ hide:
 !!! info "What is ScipionWeb?"
     ScipionWeb is a web interface for managing **Scipion projects, protocols, outputs, viewers, plugins, and collaboration workflows** from the browser.
 
-    This documentation helps users, installers, administrators, and developers find the right information without having to understand the whole system first.
+    This documentation helps installers, users, administrators, and developers find the right information without having to understand the whole system first.
 
 ---
 
 ## What do you want to do?
+
+### Install ScipionWeb
+
+Start here if you want to install ScipionWeb for users. The recommended path is **Integrated Mode**, where the API serves the Web UI from the same installation.
+
+1. [Installation Overview](installation/)
+2. [Prerequisites](installation/prerequisites/)
+3. [Download and Extract Bundles](installation/download-bundles/)
+4. [Recommended Installation](installation/provision/)
 
 ### Use ScipionWeb
 
@@ -23,15 +32,6 @@ Start here if you already have access to a running ScipionWeb instance and want 
 3. [Projects](user-guide/projects/)
 4. [Protocol Execution](user-guide/protocols/)
 5. [Outputs and Viewers](user-guide/outputs/)
-
-### Install ScipionWeb
-
-Start here if you want to install ScipionWeb for users. The recommended path is **Integrated Mode**, where the API serves the Web UI from the same installation.
-
-1. [Installation Overview](installation/)
-2. [Prerequisites](installation/prerequisites/)
-3. [Download and Extract Bundles](installation/download-bundles/)
-4. [Recommended Installation](installation/provision/)
 
 ### Get help or report something
 
