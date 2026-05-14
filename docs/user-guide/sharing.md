@@ -7,6 +7,10 @@ hide:
 
 Sharing allows multiple users to work with the same project context.
 
+![Sharing dialog](../assets/images/screenshots/user-guide/sharing-dialog.png)
+
+*Sharing dialog used to grant project access to collaborators.*
+
 ---
 
 ## Typical sharing workflow
