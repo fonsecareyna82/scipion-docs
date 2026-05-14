@@ -27,6 +27,10 @@ A standard protocol workflow usually looks like this:
 5. Select inputs deliberately, especially pointer-like parameters that refer to outputs from previous protocols.
 6. Review optional parameters only after the required inputs are correct.
 
+![Protocol form inputs](../assets/images/screenshots/user-guide/protocol-form-inputs.png)
+
+*Protocol form showing configurable parameters and input fields.*
+
 Before changing values, confirm that you are editing the intended protocol run and not a similarly named one.
 
 ---
@@ -66,6 +70,10 @@ A careful pre-launch check is often the difference between a clean workflow and 
 3. Open logs when available.
 4. Keep an eye on progress indicators and error messages.
 5. Refresh the project view if status appears stale.
+
+![Protocol execution logs](../assets/images/screenshots/user-guide/protocol-execution-logs.png)
+
+*Protocol logs help users confirm what happened during execution.*
 
 During execution, pay attention to:
 
