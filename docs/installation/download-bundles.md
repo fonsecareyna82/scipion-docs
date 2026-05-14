@@ -49,18 +49,30 @@ The Web ZIP can remain unextracted if you plan to pass it directly to `provision
 
 ---
 
-## Download approach
+## Download the bundles
 
-Use a dedicated directory, keep the API bundle extractable, and keep the Web ZIP easy to reference from the installer.
+=== "Using wget"
 
-Useful commands:
+    ```bash
+    mkdir -p "$HOME/scipionweb"
+    cd "$HOME/scipionweb"
 
-```bash
-mkdir -p "$HOME/scipionweb"
-cd "$HOME/scipionweb"
-```
+    wget "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip"
+    wget "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip"
+    ```
 
-Then download the bundle files from the official download location using your preferred tool.
+=== "Using curl"
+
+    ```bash
+    mkdir -p "$HOME/scipionweb"
+    cd "$HOME/scipionweb"
+
+    curl -O "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip"
+    curl -O "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip"
+    ```
+
+!!! warning "Optional Web bundle"
+    If you do **not** need integrated mode, you may skip downloading `ScipionWeb-<version>-dist.zip`.
 
 ---
 
@@ -97,6 +109,20 @@ If you want **integrated mode**:
 - pass it directly to `provision` with `--web-dist`
 
 Manual extraction of the Web bundle is optional and mostly useful for inspection.
+
+If you want to inspect it manually, extract it with:
+
+```bash
+unzip ScipionWeb-<version>-dist.zip
+```
+
+The extracted contents should include:
+
+```text
+dist/
+  index.html
+  assets/
+```
 
 ---
 
