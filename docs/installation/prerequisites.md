@@ -111,12 +111,43 @@ PostgreSQL stores application data such as:
 
 In common local setups, the installer can create the database and role automatically, but only if PostgreSQL is installed, running, and reachable.
 
-Useful checks:
+### Install PostgreSQL on Ubuntu or Debian
+
+```bash
+sudo apt update
+sudo apt install -y postgresql postgresql-contrib
+```
+
+### Start and enable PostgreSQL
+
+```bash
+sudo systemctl enable postgresql
+sudo systemctl start postgresql
+```
+
+### Verify PostgreSQL
 
 ```bash
 sudo systemctl status postgresql
 sudo -u postgres psql -c "SELECT version();"
 ```
+
+### Why sudo matters
+
+The installer can automatically create the PostgreSQL user and database in common local setups using commands such as:
+
+```bash
+sudo -u postgres psql ...
+```
+
+This usually requires:
+
+- a local PostgreSQL server
+- a valid sudo session
+- permission to run commands as the `postgres` system user
+
+!!! note "Manual database bootstrap"
+    If you prefer not to use automatic database bootstrap, create the database and user manually before running the installer.
 
 ---
 
@@ -124,7 +155,21 @@ sudo -u postgres psql -c "SELECT version();"
 
 Redis is used as the **Celery broker** and **result backend**.
 
-Useful checks:
+### Install Redis on Ubuntu or Debian
+
+```bash
+sudo apt update
+sudo apt install -y redis-server
+```
+
+### Start and enable Redis
+
+```bash
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+```
+
+### Verify Redis
 
 ```bash
 sudo systemctl status redis-server
@@ -139,7 +184,29 @@ PONG
 
 ---
 
-## 4. Verify ports and permissions
+## 4. Install recommended system utilities
+
+Make sure the following utilities are available:
+
+```bash
+sudo apt update
+sudo apt install -y \
+  bash \
+  coreutils \
+  curl \
+  wget \
+  unzip \
+  tar \
+  git \
+  ca-certificates
+```
+
+!!! tip "Why these utilities?"
+    They are commonly used during installation, troubleshooting, archive extraction, downloads, and repository operations.
+
+---
+
+## 5. Verify ports and permissions
 
 By default, the services use:
 
@@ -158,15 +225,19 @@ Also confirm that the installation user will have write access to:
 - the extracted ScipionAPI directory
 - the selected `SCIPION_HOME` location
 
+!!! caution "Avoid permission mismatches"
+    Do not mix `root`-owned files with a regular-user installation directory unless you intentionally manage ownership and permissions.
+
 ---
 
-## 5. Pre-installation checklist
+## 6. Pre-installation checklist
 
 Before continuing, confirm that:
 
 - `conda --version` works
-- PostgreSQL is running
-- Redis is running
+- PostgreSQL is installed and running
+- Redis is installed and running
+- required utilities such as `curl`, `wget`, and `unzip` are available
 - you have `sudo` access if you want automatic local DB bootstrap
 - required ports are available
 - disk space is sufficient for bundles, runtime data, and logs
@@ -199,14 +270,45 @@ You want to see:
 
 Usually a PATH or shell-initialization issue.
 
+```bash
+export PATH="$HOME/miniconda3/bin:$PATH"
+conda init bash
+exec bash
+```
+
+If the command works after exporting `PATH`, add the export line to your shell profile.
+
 ### PostgreSQL not starting
 
-Usually a service or package-level problem that should be fixed before running any Scipion installer.
+Inspect the service status and recent logs:
+
+```bash
+sudo systemctl status postgresql
+journalctl -u postgresql --no-pager -n 100
+```
 
 ### Redis not responding
 
-Background task execution will not work correctly until Redis is healthy.
+Inspect the service status and recent logs:
+
+```bash
+sudo systemctl status redis-server
+journalctl -u redis-server --no-pager -n 100
+```
 
 ### `sudo -u postgres` fails
 
-Automatic local database bootstrap may fail if your `sudo` session is not valid or PostgreSQL auth rules were customized.
+Try refreshing your sudo session:
+
+```bash
+sudo -v
+```
+
+If it still fails, manually create the PostgreSQL user and database before running the installer.
+
+Common causes include:
+
+- your user is not in the `sudoers` group
+- sudo credentials expired
+- PostgreSQL service is not running
+- local PostgreSQL authentication rules were customized
