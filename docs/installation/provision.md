@@ -1,44 +1,37 @@
----
-hide:
-  - toc
----
-
 # Provision (One-Shot Installation)
 
 The `provision` command performs a complete installation in a single step.
 
+For most user-facing installations, the recommended setup is **Integrated Mode (API + Web)**. In this mode, ScipionAPI serves both the REST API and the compiled ScipionWeb interface from the same runtime.
+
 It can:
 
-- Bootstrap the Conda environment
-- Install Python dependencies
-- Create or update `SCIPION_HOME`
-- Create PostgreSQL role and database (local PostgreSQL)
-- Run Alembic migrations
-- Create or update the admin user
-- Start the API and Celery worker
-- Optionally deploy and serve the Web bundle
+- bootstrap the Conda environment
+- install Python dependencies
+- create or update `SCIPION_HOME`
+- create PostgreSQL role and database in common local setups
+- run Alembic migrations
+- create or update the admin user
+- deploy and serve the Web bundle
+- start the API and Celery worker
 
 !!! note "What this page covers"
     This page documents the **one-shot installation path** using `provision`. If you need fine-grained control over each step, use the **manual installation** workflow instead.
 
 ---
 
-## Recommended Usage
+## Recommended mode: Integrated Mode (API + Web)
 
-Run the command from inside the extracted **ScipionAPI** directory:
+Integrated mode is the recommended path for normal ScipionWeb users because it provides a complete working application:
 
-```bash
-./scripts/scipionapi provision --user "admin" --email "admin@example.com" --pass "changeMe"
-```
+- Web UI served at `/`
+- API mounted at `/api`
+- API docs at `/api/docs`
+- API and Web assets deployed together
 
-!!! warning "Credentials in shell history"
-    Passing passwords directly on the command line may store them in your shell history. Use a temporary admin password for installation and change it afterwards if required.
+This avoids asking users to install the backend without the web interface they actually need to use the platform.
 
----
-
-## Integrated Mode (API + Web)
-
-To serve the compiled Web UI together with the API, pass the Web bundle ZIP with `--web-dist`:
+Run the command from inside the extracted **ScipionAPI** directory and pass the compiled Web bundle ZIP with `--web-dist`:
 
 ```bash
 ./scripts/scipionapi provision \
@@ -48,134 +41,92 @@ To serve the compiled Web UI together with the API, pass the Web bundle ZIP with
   --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
 ```
 
-This enables:
-
-- Web UI served at `/`
-- API mounted at `/api`
-- API docs at `/api/docs`
-
-!!! tip "No manual extraction required"
-    You can pass the Web ZIP file directly. The installer handles deployment internally.
+!!! warning "Credentials in shell history"
+    Passing passwords directly on the command line may store them in your shell history. Use a temporary admin password for installation and change it afterwards if required.
 
 ---
 
-## What the `provision` Command Does
+## API-only mode
 
-!!! info "Installation steps performed"
-    1. Bootstraps the Conda environment (default: `scipion4Web`)
-    2. Installs Python dependencies
-    3. Creates `SCIPION_HOME` (default: `<repoRoot>/scipion_home`)
-    4. Generates `.env`
-    5. Creates local PostgreSQL role and database (when using local PostgreSQL)
-    6. Applies `alembic upgrade head`
-    7. Creates or updates the admin user
-    8. Deploys the Web bundle (if `--web-dist` is provided)
-    9. Starts API and Celery as detached services
+API-only mode is available, but it is mainly useful for developers, infrastructure testing, or deployments where the frontend is hosted separately.
 
----
-
-## Integrated vs API-Only Modes
-
-=== "API-only mode"
-
-    ```bash
-    ./scripts/scipionapi provision \
-      --user "admin" \
-      --email "admin@example.com" \
-      --pass "changeMe"
-    ```
-
-    Access endpoints:
-
-    - API docs: `http://localhost:8080/docs`
-
-=== "Integrated mode"
-
-    ```bash
-    ./scripts/scipionapi provision \
-      --user "admin" \
-      --email "admin@example.com" \
-      --pass "changeMe" \
-      --web-dist /path/to/web-dist.zip
-    ```
-
-    Access endpoints:
-
-    - Web UI: `http://localhost:8080/`
-    - API docs: `http://localhost:8080/api/docs`
-
----
-
-## Advanced Example
-
-Use custom mount paths when deploying behind a reverse proxy or when you want explicit API path separation:
+Use it only if you intentionally do **not** want ScipionAPI to serve the compiled Web UI:
 
 ```bash
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
-  --pass "changeMe" \
-  --web-dist /path/to/web-dist.zip \
-  --api-mount-path /api \
-  --api-base-url /api
+  --pass "changeMe"
 ```
 
-!!! tip "Path consistency"
-    In integrated mode, `--api-mount-path` and `--api-base-url` should normally match to avoid frontend/API routing issues.
+In API-only mode:
+
+- the API is served directly by the backend
+- the compiled Web UI is not deployed by this command
+- users will need another frontend deployment to use ScipionWeb as an application
 
 ---
 
-## After Provisioning
+## When to choose `provision`
 
-Useful operational commands:
+`provision` is the right default when:
 
-### Check service status
+- you want the fastest supported setup path
+- you are installing on a local Linux machine
+- PostgreSQL and Redis are already available or easy to prepare
+- you want API and worker services started for you
+- you want the Web UI deployed together with the API
+
+If you want to inspect every installation layer manually, use `bootstrap` + `install` instead.
+
+---
+
+## What `provision` does
+
+A typical integrated-mode run performs these steps in sequence:
+
+1. prepares the Conda environment
+2. installs Python dependencies
+3. creates `SCIPION_HOME`
+4. generates `.env`
+5. prepares database state and migrations
+6. creates or updates the admin user
+7. deploys the Web bundle passed with `--web-dist`
+8. starts API and Celery as detached services
+
+---
+
+## What to verify after it finishes
+
+Run these checks immediately:
 
 ```bash
 ./scripts/scipionapi status
-```
-
-### View logs
-
-```bash
 ./scripts/scipionapi logs
-```
-
-### Restart services
-
-```bash
-./scripts/scipionapi restart
-```
-
----
-
-## Verify the Installation
-
-### Check API health
-
-```bash
 curl http://localhost:8080/health
 ```
 
-Expected response:
+For the recommended integrated mode, also verify that:
 
-```json
-{"status":"ok"}
-```
-
-### Check API docs
-
-Open in your browser:
-
-- **API-only mode:** `http://localhost:8080/docs`
-- **Integrated mode:** `http://localhost:8080/api/docs`
-
-!!! tip "If `/health` fails"
-    Check service status and logs first (`status`, `logs`) before re-running `provision`.
+- `http://localhost:8080/` loads the Web UI
+- `http://localhost:8080/api/docs` opens correctly
 
 ---
 
-## Common Issues
+## Re-running `provision`
+
+You may safely re-run `provision` in most common cases:
+
+- it does **not** recreate the Conda environment if it already exists
+- it does **not** drop existing databases
+- it updates admin credentials if needed
+- it redeploys the Web bundle if `--web-dist` is provided again
+
+That makes it useful after a failed first attempt once prerequisites are fixed.
+
+---
+
+## Common issues
 
 !!! warning "Conda not found"
     Ensure `conda --version` works before running `provision`.
@@ -184,39 +135,10 @@ Open in your browser:
     Verify the configured database credentials match the actual PostgreSQL role and password.
 
 !!! warning "Redis not running"
-    Start Redis and retry:
-    ```bash
-    sudo systemctl start redis-server
-    ```
+    Start Redis and retry.
 
-!!! warning "Alembic migration error"
-    If migration history was modified manually, test with a **fresh empty database** before retrying.
+!!! warning "Web UI does not load after provisioning"
+    Confirm that `--web-dist` pointed to the correct `ScipionWeb-<version>-dist.zip` file and that the API was restarted after deployment.
 
 !!! warning "Port already in use"
     If port `8080` is already in use, stop the conflicting service or update your configuration before provisioning.
-
----
-
-## Re-running `provision`
-
-You may safely re-run `provision` in most cases:
-
-- It does **not** recreate the Conda environment if it already exists
-- It does **not** drop existing databases
-- It updates admin credentials if needed
-- It redeploys the Web bundle if `--web-dist` is provided again
-
-!!! note "Idempotent workflow (practical)"
-    Re-running `provision` is useful after configuration changes, Web bundle updates, or failed first attempts once prerequisites are fixed.
-
----
-
-
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../download-bundles/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Download Bundles (API + Web)
-  </a>
-  <a href="../manual-install/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Manual Installation →
-  </a>
-</div>

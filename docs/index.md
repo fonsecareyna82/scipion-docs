@@ -3,90 +3,105 @@ hide:
   - toc
 ---
 
-# ScipionWeb Deployment Guide
+# ScipionWeb Documentation
 
-!!! info "Overview"
-    ScipionWeb combines a **FastAPI backend (ScipionAPI)** with an optional **compiled React frontend (ScipionWeb UI)** to provide a web interface for Scipion project and protocol management.
+!!! info "What is ScipionWeb?"
+    ScipionWeb is a web interface for managing **Scipion projects, protocols, outputs, viewers, plugins, and collaboration workflows** from the browser.
 
-    This documentation explains how to install, configure, and operate ScipionWeb in different modes.
+    This documentation helps installers, users, administrators, and developers find the right information without having to understand the whole system first.
 
-## Deployment Modes
+---
 
-=== "Integrated mode (recommended)"
+## What do you want to do?
+
+### Install ScipionWeb
+
+Start here if you want to install ScipionWeb for users. The recommended path is **Integrated Mode**, where the API serves the Web UI from the same installation.
+
+1. [Installation Overview](installation/index.md)
+2. [Prerequisites](installation/prerequisites.md)
+3. [Download and Extract Bundles](installation/download-bundles.md)
+4. [Recommended Installation](installation/provision.md)
+
+### Use ScipionWeb
+
+Start here if you already have access to a running ScipionWeb instance and want to work with projects, protocols, outputs, viewers, settings, plugins, or sharing.
+
+1. [User Guide Overview](user-guide/index.md)
+2. [First Login and Session Basics](user-guide/first-login.md)
+3. [Projects](user-guide/projects.md)
+4. [Protocol Execution](user-guide/protocols.md)
+5. [Outputs and Viewers](user-guide/outputs.md)
+
+### Get help or report something
+
+Start here if something does not work as expected, you need help, or you want to suggest an improvement.
+
+1. [Support Overview](support/index.md)
+2. [Ask a Question](support/ask-a-question.md)
+3. [Report a Bug](support/report-a-bug.md)
+4. [Known Issues and Workarounds](support/known-issues.md)
+
+### Administer or troubleshoot an installation
+
+Start here if you manage a ScipionWeb instance, configure runtime settings, review logs, handle backups, or investigate deployment problems.
+
+1. [Configuration Overview](configuration/index.md)
+2. [Environment Variables](configuration/env.md)
+3. [Logs and PID Files](operations/logs-and-pids.md)
+4. [Backup and Restore](operations/backup-restore.md)
+5. [Security Notes](operations/security.md)
+
+### Develop or extend ScipionWeb
+
+Start here if you work on ScipionAPI, ScipionWeb, CLI commands, backend internals, frontend builds, or release packaging.
+
+1. [Command Line Reference](cli/index.md)
+2. [Backend Overview](backend/index.md)
+3. [Frontend Overview](frontend/index.md)
+4. [Local Dev Workflow](development/local-workflow.md)
+5. [Release and Packaging](release/packaging-strategy.md)
+
+---
+
+## Recommended deployment mode
+
+=== "Integrated Mode (recommended)"
     The backend serves the compiled frontend and mounts the API under `/api`.
 
     - Web UI: `http://host:8080/`
     - API docs: `http://host:8080/api/docs`
 
-    !!! tip
-        Enable this mode during provisioning by passing a compiled frontend bundle with `--web-dist`.
+    This is the recommended mode when installing ScipionWeb for users.
 
-=== "API-only mode"
-    Use this mode when you want to host the frontend elsewhere or keep the backend standalone.
+=== "Separate frontend/backend"
+    Use this when the frontend is hosted separately from the API, usually in more advanced infrastructure setups.
 
-    - API docs: `http://host:8080/docs`
-
-=== "Development mode"
-    Run components independently:
-
-    - React/Vite frontend: `http://localhost:5173`
-    - FastAPI backend: `http://localhost:8080`
-
-    !!! note
-        This is the preferred mode for active development and debugging.
+=== "API-only"
+    Use this mainly for development, testing, or deployments where another service provides the frontend.
 
 ---
 
-## What You Get
-
-!!! abstract "ScipionWeb Features"
-    - **REST API** for projects, protocols, outputs, plugins, authentication, and sharing
-    - **PostgreSQL persistence**
-    - **Celery + Redis** background task execution
-    - **Scipion-aware runtime integration**
-    - **Optional integrated web serving** (compiled React frontend mounted by the backend)
-    - **CLI tools** for installation, provisioning, runtime control, and logs
-
----
-
-## Recommended Installation Model
-
-!!! success "Bundle-based deployment (recommended)"
-    1. Download the **ScipionAPI bundle** (server)
-    2. Download the **ScipionWeb bundle** (compiled web UI, optional for integrated mode)
-    3. Extract both bundles
-    4. Run a single provisioning command
-
----
-
-## High-level Install Flow
-
-!!! example "Typical first-time installation on Linux"
-    1. Install prerequisites:
-        - Conda (Miniconda or Anaconda)
-        - PostgreSQL
-        - Redis
-    2. Download ScipionAPI and (optionally) ScipionWeb compiled bundle
-    3. Extract bundles
-    4. Run provisioning:
-        - creates the Conda environment (if missing)
-        - installs Python dependencies
-        - generates `SCIPION_HOME/.env`
-        - creates local PostgreSQL role/database (if configured for local PostgreSQL)
-        - runs Alembic migrations
-        - creates/updates admin user
-        - starts API and Celery worker
-        - optionally deploys and serves the compiled web UI
-
----
-
-## Quick Example
+## Quick install example
 
 ```bash
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
   --pass "changeMe" \
-  --web-dist /path/to/scipionweb-dist.zip
+  --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
 ```
 
+---
+
+## What ScipionWeb provides
+
+!!! abstract "Main capabilities"
+    - Web-based project and protocol management
+    - Output previews and specialized viewers
+    - User authentication and sharing workflows
+    - Plugin-related workflows
+    - PostgreSQL persistence
+    - Celery + Redis background task execution
+    - Integrated API + Web deployment mode
+    - CLI tools for installation, provisioning, runtime control, and logs
