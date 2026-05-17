@@ -47,7 +47,7 @@ Start here if something does not work as expected, you need help, or you want to
 Start here if you manage a ScipionWeb instance, configure runtime settings, review logs, handle backups, or investigate deployment problems.
 
 1. [Configuration Overview](configuration/index.md)
-2. [Environment Variables (`.env`)](configuration/env.md)
+2. [Environment Variables](configuration/env.md)
 3. [Logs and PID Files](operations/logs-and-pids.md)
 4. [Backup and Restore](operations/backup-restore.md)
 5. [Security Notes](operations/security.md)
