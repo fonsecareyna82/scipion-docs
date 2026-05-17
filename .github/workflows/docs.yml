@@ -2,7 +2,7 @@ name: Deploy docs
 
 on:
   push:
-    branches: [ "devel" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 permissions:
