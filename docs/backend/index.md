@@ -7,21 +7,21 @@ hide:
 
 ScipionAPI is a **FastAPI-based backend** that exposes a REST API for:
 
-- Project management
-- Protocol execution
-- Output previews
-- Plugin management
-- Authentication and authorization
+- project management
+- protocol execution
+- output previews
+- plugin management
+- authentication and authorization
 
 It is designed to:
 
-- Run inside a Scipion-capable Python environment
-- Use PostgreSQL for persistence
-- Use Redis for background task brokering
-- Support both integrated and distributed deployments
+- run inside a Scipion-capable Python environment
+- use PostgreSQL for persistence
+- use Redis for background task brokering
+- support both integrated and distributed deployments
 
 !!! note "Scope of this section"
-    This section documents the **backend architecture and runtime internals** (FastAPI, auth, database, Celery, and debugging). For installation and runtime configuration, see the **Installation** and **Configuration** sections.
+    This section documents the **backend architecture and runtime internals**. For installation and runtime configuration, see the **Installation** and **Configuration** sections.
 
 ---
 
@@ -29,40 +29,14 @@ It is designed to:
 
 The backend is responsible for:
 
-- Managing users and authentication
-- Managing projects and protocols
-- Executing background tasks
-- Serving output previews
-- Integrating with the Scipion runtime
-- Persisting metadata in PostgreSQL
+- managing users and authentication
+- managing projects and protocols
+- executing background tasks
+- serving output previews
+- integrating with the Scipion runtime
+- persisting metadata in PostgreSQL
 
----
-
-## Technology Stack
-
-- **API Framework**  
-  **FastAPI** + **Uvicorn**
-
-  Small, typed, high-performance HTTP layer for REST endpoints and OpenAPI docs.
-
-- **Persistence**  
-  **PostgreSQL**, **SQLAlchemy ORM**, **Alembic**
-
-  Relational storage, ORM models, and versioned schema migrations.
-
-- **Background Processing**  
-  **Celery** + **Redis** *(broker / result backend)*
-
-  Asynchronous task execution for long-running or heavy operations.
-
-- **Security**  
-  **JWT (HS256)** + **bcrypt**
-
-  Token-based authentication and secure password hashing.
-{: .grid .cards}
-
-!!! tip "Why this layout"
-    This version uses a card-friendly Markdown list (`{: .grid .cards}`), which is more reliable in MkDocs Material than mixing Markdown lists inside raw HTML blocks.
+A practical mental model is that the backend is the operational center of ScipionWeb: the web UI requests data and actions, but persistence, orchestration, permissions, and asynchronous execution live here.
 
 ---
 
@@ -94,88 +68,13 @@ app/backend/
 
 At startup, ScipionAPI typically:
 
-1. Loads environment from `SCIPION_HOME/.env`
-2. Initializes the Scipion environment
-3. Registers routers
-4. Applies middleware and error handlers
-5. Starts serving API requests
+1. loads environment from `SCIPION_HOME/.env`
+2. initializes the Scipion environment
+3. registers routers
+4. applies middleware and error handlers
+5. starts serving API requests
 
----
-
-## Modes of Operation
-
-ScipionAPI supports:
-
-- **API-only mode**
-- **Integrated mode** (API serves frontend)
-- **Separate deployment** (API and Web on different hosts)
-
-See the **Configuration** section for deployment-mode details.
-
----
-
-## Backend Topics in This Section
-
-### 1. Architecture
-
-Layered design and request flow:
-
-- Routers → Services → ORM / Mapper → Database
-- Dependency injection boundaries
-- Separation of concerns and extensibility
-
-➡️ [Open Backend Architecture](architecture/)
-
-### 2. FastAPI App and Routers
-
-Application initialization and router registration:
-
-- `main.py`
-- CORS and error handlers
-- Health endpoint and docs routes
-
-➡️ [Open FastAPI App and Routers](fastapi/)
-
-### 3. Authentication and JWT
-
-Security model and token verification:
-
-- JWT (HS256)
-- `Authorization: Bearer <token>`
-- `SECRET_KEY` and password hashing
-
-➡️ [Open Authentication and JWT](auth/)
-
-### 4. Database and Alembic Migrations
-
-Persistence layer and schema evolution:
-
-- PostgreSQL + SQLAlchemy
-- Alembic migration flow
-- Migration best practices
-
-➡️ [Open Database and Alembic Migrations](database/)
-
-### 5. Celery and Redis
-
-Background tasks and worker runtime:
-
-- Redis broker/backend
-- Celery worker entry point
-- Operational and production guidance
-
-➡️ [Open Celery and Redis](celery/)
-
-### 6. Backend Troubleshooting
-
-Common backend failure modes and recovery steps:
-
-- Import/runtime environment issues
-- DB/Redis/Celery connectivity
-- JWT/CORS problems
-- Log-based debugging workflow
-
-➡️ [Open Backend Troubleshooting](troubleshooting/)
+If background execution is expected, a healthy Celery worker and Redis broker are also part of the effective runtime, even though they are not the same process as the API server.
 
 ---
 
@@ -196,12 +95,20 @@ Common backend failure modes and recovery steps:
     2. [Database and Alembic Migrations](database/)
     3. [Celery and Redis](celery/)
     4. [Backend Troubleshooting](troubleshooting/)
+    5. [Logs and PID Files](../operations/logs-and-pids/)
 
-=== "Security-focused review"
+---
 
-    1. [Authentication and JWT](auth/)
-    2. [FastAPI App and Routers](fastapi/)
-    3. [Backend Troubleshooting](troubleshooting/)
+## Common backend failure boundaries
+
+Many problems that feel like a single backend failure actually belong to different layers:
+
+- API starts, but authentication fails
+- API is healthy, but tasks never finish
+- UI loads, but data is inconsistent
+- migrations fail during upgrade
+
+Identifying the layer first usually shortens debugging dramatically.
 
 ---
 

@@ -7,11 +7,11 @@ hide:
 
 ScipionAPI provides a command-line interface (CLI) to manage the full lifecycle of a deployment:
 
-- Environment bootstrapping
-- Runtime/database installation
-- One-shot provisioning
-- Service lifecycle management
-- Logs and runtime status inspection
+- environment bootstrapping
+- runtime and database installation
+- one-shot provisioning
+- service lifecycle management
+- logs and runtime status inspection
 
 The main entrypoint is the wrapper script:
 
@@ -30,13 +30,24 @@ scipionapi
 
 ---
 
-## Command Groups
+## How to think about the CLI
 
-ScipionAPI CLI commands can be grouped into three categories:
+A simple mental model is:
+
+- `bootstrap` prepares Python and dependencies
+- `install` prepares runtime configuration and database state
+- `provision` combines setup into one guided path
+- `start`, `stop`, `restart`, `status`, and `logs` manage the running services
+
+If you remember that split, the CLI becomes much easier to understand.
+
+---
+
+## Command Groups
 
 | Category | Commands | Purpose |
 |---|---|---|
-| Environment | `bootstrap` | Create/prepare Conda runtime and install Python dependencies |
+| Environment | `bootstrap` | Create or refresh the Conda runtime and install Python dependencies |
 | Installation | `install`, `provision` | Configure runtime workspace, database, admin user, and optional web deployment |
 | Runtime | `start`, `stop`, `restart`, `status`, `logs` | Manage API/Celery processes and inspect runtime logs |
 
@@ -69,7 +80,7 @@ ScipionAPI CLI commands can be grouped into three categories:
       --pass "changeMe"
     ```
 
-=== "Step-by-step (advanced / debugging)"
+=== "Step-by-step (advanced or debugging)"
 
     ```bash
     ./scripts/scipionapi bootstrap
@@ -91,9 +102,28 @@ ScipionAPI CLI commands can be grouped into three categories:
 
 The wrapper script typically:
 
-1. Detects or prepares the Conda environment
-2. Runs the CLI inside that environment
-3. Ensures Python dependencies are available for execution
+1. detects or prepares the Conda environment
+2. runs the CLI inside that environment
+3. ensures Python dependencies are available for execution
+
+That is why using the wrapper is often more reliable than invoking scattered commands manually.
+
+---
+
+## Recommended Reading Order
+
+### First-time install
+
+1. [provision](provision/)
+2. [runtime commands](runtime/)
+3. [logs and PID files](../operations/logs-and-pids/)
+
+### Manual or debugging-oriented setup
+
+1. [bootstrap](bootstrap/)
+2. [install](install/)
+3. [runtime commands](runtime/)
+4. [Backend Troubleshooting](../backend/troubleshooting/)
 
 ---
 
@@ -115,17 +145,6 @@ The wrapper script typically:
 
 ---
 
-## Recommended Reading Order
-
-For a first-time CLI-driven setup:
-
-1. [bootstrap](bootstrap/)
-2. [install](install/)
-3. [provision](provision/) *(alternative one-shot path)*
-4. [runtime commands](runtime/)
-
----
-
 ## Common Mistakes
 
 !!! warning "Mixing `provision` and partial manual steps without checking state"
@@ -135,7 +154,7 @@ For a first-time CLI-driven setup:
     Use the wrapper from the API bundle directory so relative paths resolve correctly.
 
 !!! warning "Forgetting to inspect logs after startup"
-    A service can start and still fail shortly after. Use `status` + `logs` to verify runtime health.
+    A service can start and still fail shortly after. Use `status` and `logs` to verify runtime health.
 
 ---
 

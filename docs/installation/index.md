@@ -5,139 +5,105 @@ hide:
 
 # Installation Overview
 
-This section provides the complete installation and upgrade documentation for **ScipionAPI** and **ScipionWeb**.
+Use this section when you want to install **ScipionWeb for users** or upgrade an existing installation.
 
-Use the pages below to choose the installation workflow that best fits your environment:
+For most installations, the recommended path is **Integrated Mode (API + Web)**. In that mode, ScipionAPI serves the compiled ScipionWeb interface and the API from the same runtime, so users can open the web application directly in the browser.
 
-- **Provision (one-shot)** for the fastest setup
-- **Manual installation** for full control and debugging
-- **Upgrade guide** for updating an existing installation safely
-
-!!! note "Recommended path for most users"
+!!! note "Recommended path for most installations"
     If you are installing for the first time on a local Linux machine, follow this sequence:
 
     1. [Prerequisites](prerequisites/)
     2. [Download and Extract Bundles](download-bundles/)
-    3. [Provision (One-Shot Installation)](provision/)
+    3. [Recommended Installation](provision/)
 
 ---
 
-## What Is Covered in This Section
+## Which path should I use?
+
+### Recommended installation
+
+Use **Prerequisites → Download Bundles → Recommended Installation** when you want the fastest path to a working ScipionWeb instance with both API and Web UI.
+
+This is the normal path for user-facing installations.
+
+### Manual installation
+
+Use **Manual Installation** only when you need full control over each layer, for example:
+
+- remote PostgreSQL setup
+- debugging installation problems
+- custom deployment requirements
+- development environments
+
+### Upgrade or reinstall
+
+Use **Upgrade / Reinstall Notes** when an existing installation already exists and you need to preserve runtime data, database state, and configuration.
+
+---
+
+## What this section covers
 
 This installation section includes:
 
-- System prerequisites (Conda, PostgreSQL, Redis, ports, permissions)
-- Official bundle download and extraction
-- One-shot installation using `provision`
-- Manual installation (step-by-step)
-- Upgrade workflow and rollback guidance
+- system prerequisites such as Conda, PostgreSQL, Redis, ports, and permissions
+- official bundle download and extraction
+- recommended integrated installation using `provision` and `--web-dist`
+- manual installation step by step for advanced setups
+- upgrade workflow and rollback guidance
 
 ---
 
-## Installation Pages
+## Installation pages
 
 ### 1. Prerequisites
 
 Prepare the machine and verify required services before installation.
 
-- Conda installation and verification
-- PostgreSQL installation and checks
-- Redis installation and checks
-- Ports and filesystem permissions
-- Pre-installation checklist
-
 ➡️ [Open Prerequisites](prerequisites/)
-
----
 
 ### 2. Download and Extract Bundles
 
-Download the official Scipion bundles and prepare the installation directory layout.
-
-- Official download location
-- API and optional Web bundle
-- Recommended directory structure
-- Extraction and verification steps
+Download the official ScipionAPI and ScipionWeb bundles and prepare the installation directory layout.
 
 ➡️ [Open Download and Extract Bundles](download-bundles/)
 
----
+### 3. Recommended Installation
 
-### 3. Provision (One-Shot Installation)
+Run a complete integrated installation using a single command.
 
-Run a complete installation using a single command.
-
-- Conda/bootstrap + dependencies
-- Database setup and migrations
-- Admin user creation
-- API + Celery startup
-- Optional integrated Web deployment
-
-➡️ [Open Provision (One-Shot Installation)](provision/)
-
----
+➡️ [Open Recommended Installation](provision/)
 
 ### 4. Manual Installation
 
 Install ScipionAPI step by step for maximum control.
 
-- Manual Conda environment creation
-- Dependency installation
-- Manual PostgreSQL setup
-- `.env` configuration
-- Alembic migrations
-- Manual API/Celery startup
-
 ➡️ [Open Manual Installation](manual-install/)
 
----
-
-### 5. Upgrade Guide
+### 5. Upgrade / Reinstall Notes
 
 Upgrade an existing installation safely.
 
-- Stop services
-- Backup database
-- Replace API bundle
-- Reuse `SCIPION_HOME`
-- Re-run `provision`
-- Optional Web bundle upgrade
-- Verification and rollback steps
-
-➡️ [Open Upgrade Guide](upgrade/)
+➡️ [Open Upgrade / Reinstall Notes](upgrade/)
 
 ---
 
-## Choose the Right Workflow
+## Common installation split
 
-=== "First-time install (recommended)"
+A useful way to think about installation is:
 
-    Follow:
+1. **machine readiness** → prerequisites
+2. **artifacts** → bundles
+3. **runtime setup** → recommended installation or manual installation
+4. **service verification** → browser, health endpoint, logs, and project loading
 
-    1. [Prerequisites](prerequisites/)
-    2. [Download and Extract Bundles](download-bundles/)
-    3. [Provision](provision/)
-
-=== "Development / debugging"
-
-    Follow:
-
-    1. [Prerequisites](prerequisites/)
-    2. [Download and Extract Bundles](download-bundles/)
-    3. [Manual Installation](manual-install/)
-
-=== "Upgrade existing installation"
-
-    Follow:
-
-    1. [Upgrade Guide](upgrade/)
+This mental split makes debugging much easier when something goes wrong.
 
 ---
 
-## Quick Notes
+## Quick notes
 
-!!! tip "Integrated mode"
-    If you want the API to serve the frontend, download the **ScipionWeb** compiled bundle and use the `--web-dist` option during `provision`.
+!!! tip "Integrated mode is the normal user-facing mode"
+    If you want users to open ScipionWeb in the browser, download the **ScipionWeb** compiled bundle and use the `--web-dist` option during `provision`.
 
 !!! warning "Backup before upgrade"
     Always create a PostgreSQL backup before running an upgrade, especially in production or shared environments.
