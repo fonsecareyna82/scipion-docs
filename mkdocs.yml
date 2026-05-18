@@ -10,7 +10,6 @@ edit_uri: edit/devel/docs/
 docs_dir: docs
 site_dir: site
 exclude_docs: |
-  architecture.md
   getting-started/overview.md
 
 theme:
