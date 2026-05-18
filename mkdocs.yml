@@ -9,7 +9,8 @@ edit_uri: edit/devel/docs/
 
 docs_dir: docs
 site_dir: site
-exclude_docs: |
+not_in_nav: |
+  architecture.md
   getting-started/overview.md
   frontend/deployment.md
 
