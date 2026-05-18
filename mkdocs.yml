@@ -27,6 +27,8 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.indexes
@@ -42,14 +44,14 @@ theme:
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
-      primary: indigo
-      accent: cyan
+      primary: blue
+      accent: light-blue
     - scheme: slate
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
-      primary: indigo
-      accent: cyan
+      primary: blue
+      accent: light-blue
 
 nav:
   - Home: index.md
