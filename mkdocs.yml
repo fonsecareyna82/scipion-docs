@@ -10,7 +10,6 @@ edit_uri: edit/devel/docs/
 docs_dir: docs
 site_dir: site
 exclude_docs: |
-  architecture.md
   getting-started/overview.md
 
 theme:
@@ -27,6 +26,8 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.indexes
@@ -42,18 +43,17 @@ theme:
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
-      primary: indigo
-      accent: cyan
+      primary: blue
+      accent: light-blue
     - scheme: slate
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
-      primary: indigo
-      accent: cyan
+      primary: blue
+      accent: light-blue
 
 nav:
   - Home: index.md
-
   - Installation:
       - Overview: installation/index.md
       - Prerequisites: installation/prerequisites.md
@@ -62,7 +62,6 @@ nav:
       - Manual Installation: installation/manual-install.md
       - Upgrade / Reinstall Notes: installation/upgrade.md
       - Production Deployment: installation/deployment-systemd.md
-
   - User Guide:
       - Overview: user-guide/index.md
       - First Login and Session Basics: user-guide/first-login.md
@@ -73,14 +72,12 @@ nav:
       - Settings: user-guide/settings.md
       - Plugins: user-guide/plugins.md
       - Working Efficiently: user-guide/working-efficiently.md
-
   - Support:
       - Overview: support/index.md
       - Ask a Question: support/ask-a-question.md
       - Report a Bug: support/report-a-bug.md
       - Suggest an Improvement: support/suggest-an-improvement.md
       - Known Issues and Workarounds: support/known-issues.md
-
   - Administration:
       - Configuration:
           - Overview: configuration/index.md
@@ -92,7 +89,6 @@ nav:
           - Logs and PID Files: operations/logs-and-pids.md
           - Backup and Restore: operations/backup-restore.md
           - Security Notes: operations/security.md
-
   - Developer Reference:
       - Command Line Reference:
           - Overview: cli/index.md
@@ -118,7 +114,6 @@ nav:
           - Debugging with PyCharm: development/pycharm.md
           - Running Uvicorn Manually: development/uvicorn.md
           - Common Errors and Fixes: development/common-errors.md
-
   - Release and Packaging:
       - Packaging Strategy: release/packaging-strategy.md
       - Build API Bundle: release/build-api-bundle.md
@@ -148,6 +143,9 @@ plugins:
 
 extra:
   generator: false
+  version:
+    provider: mike
+    default: latest
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/fonsecareyna82/scipion-docs

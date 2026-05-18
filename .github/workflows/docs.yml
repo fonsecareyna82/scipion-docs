@@ -4,21 +4,38 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Documentation version to publish"
+        required: true
+        default: "dev"
+      aliases:
+        description: "Optional aliases, separated by spaces"
+        required: false
+        default: ""
+      set_default:
+        description: "Set this version or alias as the default version"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -27,26 +44,32 @@ jobs:
       - name: Install docs dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install mkdocs-material
+          pip install -r requirements.txt
 
-      - name: Build site
+      - name: Configure Git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Validate docs build
         run: mkdocs build --strict
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Deploy development docs
+        if: github.event_name == 'push'
+        run: |
+          mike deploy --push --update-aliases dev latest
+          mike set-default --push latest
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy selected docs version
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          ALIASES="${{ github.event.inputs.aliases }}"
+          if [ -n "$ALIASES" ]; then
+            mike deploy --push --update-aliases "$VERSION" $ALIASES
+          else
+            mike deploy --push "$VERSION"
+          fi
+          if [ "${{ github.event.inputs.set_default }}" = "true" ]; then
+            mike set-default --push "$VERSION"
+          fi
