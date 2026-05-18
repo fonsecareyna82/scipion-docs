@@ -12,6 +12,7 @@ site_dir: site
 not_in_nav: |
   architecture.md
   getting-started/overview.md
+  frontend/deployment.md
 
 theme:
   name: material
@@ -109,7 +110,6 @@ nav:
           - Overview: frontend/index.md
           - Build and Dist Output: frontend/build.md
           - Runtime API URL Configuration: frontend/runtime-config.md
-          - Deployment Options: frontend/deployment.md
       - Local Development:
           - Local Dev Workflow: development/local-workflow.md
           - Debugging with PyCharm: development/pycharm.md
