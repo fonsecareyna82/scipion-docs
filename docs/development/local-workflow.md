@@ -47,8 +47,7 @@ Run install:
 ```
 ./scripts/scipionapi install \
   --user admin \
-  --email admin@local \
-  --pass changeMe
+  --email admin@example.org
 ```
 
 ---
