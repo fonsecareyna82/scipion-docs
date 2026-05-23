@@ -12,6 +12,7 @@ ScipionAPI provides a command-line interface (CLI) to manage the full lifecycle 
 - one-shot provisioning
 - service lifecycle management
 - logs and runtime status inspection
+- read-only diagnostics with `doctor`
 
 The main entrypoint is the wrapper script:
 
@@ -37,6 +38,7 @@ A simple mental model is:
 - `bootstrap` prepares Python and dependencies
 - `install` prepares runtime configuration and database state
 - `provision` combines setup into one guided path
+- `doctor` checks whether the environment looks healthy
 - `start`, `stop`, `restart`, `status`, and `logs` manage the running services
 
 If you remember that split, the CLI becomes much easier to understand.
@@ -49,6 +51,7 @@ If you remember that split, the CLI becomes much easier to understand.
 |---|---|---|
 | Environment | `bootstrap` | Create or refresh the Conda runtime and install Python dependencies |
 | Installation | `install`, `provision` | Configure runtime workspace, database, admin user, and optional web deployment |
+| Diagnostics | `doctor` | Run read-only checks for config, Conda, DB, Redis, imports, and runtime state |
 | Runtime | `start`, `stop`, `restart`, `status`, `logs` | Manage API/Celery processes and inspect runtime logs |
 
 !!! tip "Fastest path"
@@ -61,11 +64,34 @@ If you remember that split, the CLI becomes much easier to understand.
 - `bootstrap`
 - `install`
 - `provision`
+- `doctor`
 - `start`
 - `stop`
 - `restart`
 - `status`
 - `logs`
+
+---
+
+## Admin Password Handling
+
+For interactive installations, omit the password option and let the CLI ask for it using a hidden prompt:
+
+```bash
+./scripts/scipionapi install --user "admin" --email "admin@example.com"
+```
+
+For automated installations, provide the password through an environment variable:
+
+```bash
+export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+./scripts/scipionapi install \
+  --user "admin" \
+  --email "admin@example.com" \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD
+```
+
+`--pass` and `--password` are still supported for compatibility, but they are not recommended because command-line arguments may be stored in shell history.
 
 ---
 
@@ -76,15 +102,26 @@ If you remember that split, the CLI becomes much easier to understand.
     ```bash
     ./scripts/scipionapi provision \
       --user "admin" \
+      --email "admin@example.com"
+    ```
+
+=== "Automated setup"
+
+    ```bash
+    export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+
+    ./scripts/scipionapi provision \
+      --user "admin" \
       --email "admin@example.com" \
-      --pass "changeMe"
+      --password-env SCIPIONAPI_ADMIN_PASSWORD
     ```
 
 === "Step-by-step (advanced or debugging)"
 
     ```bash
     ./scripts/scipionapi bootstrap
-    ./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"
+    ./scripts/scipionapi install --user "admin" --email "admin@example.com"
+    ./scripts/scipionapi doctor
     ./scripts/scipionapi start
     ```
 
@@ -92,6 +129,7 @@ If you remember that split, the CLI becomes much easier to understand.
 
     ```bash
     ./scripts/scipionapi status
+    ./scripts/scipionapi doctor --quick
     ./scripts/scipionapi logs
     ./scripts/scipionapi restart
     ```
@@ -115,15 +153,17 @@ That is why using the wrapper is often more reliable than invoking scattered com
 ### First-time install
 
 1. [provision](provision/)
-2. [runtime commands](runtime/)
-3. [logs and PID files](../operations/logs-and-pids/)
+2. [doctor](doctor/)
+3. [runtime commands](runtime/)
+4. [logs and PID files](../operations/logs-and-pids/)
 
 ### Manual or debugging-oriented setup
 
 1. [bootstrap](bootstrap/)
 2. [install](install/)
-3. [runtime commands](runtime/)
-4. [Backend Troubleshooting](../backend/troubleshooting/)
+3. [doctor](doctor/)
+4. [runtime commands](runtime/)
+5. [Backend Troubleshooting](../backend/troubleshooting/)
 
 ---
 
@@ -140,12 +180,16 @@ That is why using the wrapper is often more reliable than invoking scattered com
 ```bash
 ./scripts/scipionapi provision --help
 ./scripts/scipionapi install --help
+./scripts/scipionapi doctor --help
 ./scripts/scipionapi start --help
 ```
 
 ---
 
 ## Common Mistakes
+
+!!! warning "Passing admin passwords directly with `--pass`"
+    `--pass` is supported for compatibility, but hidden prompts or `--password-env` are preferred because they avoid storing secrets in shell history.
 
 !!! warning "Mixing `provision` and partial manual steps without checking state"
     `provision` is idempotent in common cases, but always confirm your runtime paths and database target before re-running commands.
@@ -154,7 +198,7 @@ That is why using the wrapper is often more reliable than invoking scattered com
     Use the wrapper from the API bundle directory so relative paths resolve correctly.
 
 !!! warning "Forgetting to inspect logs after startup"
-    A service can start and still fail shortly after. Use `status` and `logs` to verify runtime health.
+    A service can start and still fail shortly after. Use `status`, `doctor`, and `logs` to verify runtime health.
 
 ---
 
