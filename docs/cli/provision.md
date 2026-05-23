@@ -21,11 +21,23 @@ It combines:
 
 ## Usage (API-only mode)
 
+Interactive mode asks for the admin password using a hidden prompt:
+
 ```bash
 ./scripts/scipionapi provision \
   --user "admin" \
+  --email "admin@example.com"
+```
+
+For automated runs, pass the name of an environment variable containing the password:
+
+```bash
+export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+
+./scripts/scipionapi provision \
+  --user "admin" \
   --email "admin@example.com" \
-  --pass "changeMe"
+  --password-env SCIPIONAPI_ADMIN_PASSWORD
 ```
 
 ---
@@ -36,9 +48,23 @@ It combines:
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
-  --pass "changeMe" \
   --web-dist /path/to/ScipionWeb-dist.zip
 ```
+
+Automated integrated-mode example:
+
+```bash
+export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+
+./scripts/scipionapi provision \
+  --user "admin" \
+  --email "admin@example.com" \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD \
+  --web-dist /path/to/ScipionWeb-dist.zip
+```
+
+!!! note "Compatibility"
+    `--pass` and `--password` are still supported, but `--password-env` or the hidden prompt are preferred because command-line arguments may be stored in shell history.
 
 ---
 
@@ -48,10 +74,14 @@ It combines:
 |---|---|
 | `--user` | Admin username |
 | `--email` | Admin email |
-| `--pass` | Admin password |
+| `--password-env` | Name of an environment variable containing the admin password |
+| `--pass`, `--password` | Admin password passed directly on the command line; supported for compatibility, not recommended |
 | `--web-dist` | Path to compiled Web bundle (`.zip`) or extracted `dist/` folder |
 | `--api-mount-path` | API mount path (default: `/api`) |
 | `--api-base-url` | API base URL used by the frontend |
+| `--bootstrap`, `--no-bootstrap` | Enable or skip the bootstrap phase |
+| `--env-name` | Target Conda environment name |
+| `--python` | Python version used when creating the Conda environment |
 
 ---
 
@@ -110,8 +140,7 @@ Typical behavior:
     ```bash
     ./scripts/scipionapi provision \
       --user "admin" \
-      --email "admin@example.com" \
-      --pass "changeMe"
+      --email "admin@example.com"
     ```
 
 === "Integrated mode with frontend bundle"
@@ -120,7 +149,18 @@ Typical behavior:
     ./scripts/scipionapi provision \
       --user "admin" \
       --email "admin@example.com" \
-      --pass "changeMe" \
+      --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
+    ```
+
+=== "Automated integrated setup"
+
+    ```bash
+    export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+
+    ./scripts/scipionapi provision \
+      --user "admin" \
+      --email "admin@example.com" \
+      --password-env SCIPIONAPI_ADMIN_PASSWORD \
       --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
     ```
 
@@ -130,7 +170,6 @@ Typical behavior:
     ./scripts/scipionapi provision \
       --user "admin" \
       --email "admin@example.com" \
-      --pass "changeMe" \
       --web-dist /path/to/ScipionWeb-dist.zip \
       --api-mount-path /api \
       --api-base-url /api
@@ -142,6 +181,7 @@ Typical behavior:
 
 ```bash
 ./scripts/scipionapi status
+./scripts/scipionapi doctor --quick
 curl http://localhost:8080/health
 ```
 
@@ -164,7 +204,7 @@ Then open:
   <a href="../install/" style="text-decoration:none; display:inline-block;">
     ← Previous: install
   </a>
-  <a href="../runtime/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: runtime commands →
+  <a href="../doctor/" style="text-decoration:none; display:inline-block; margin-left:auto;">
+    Next: doctor →
   </a>
 </div>
