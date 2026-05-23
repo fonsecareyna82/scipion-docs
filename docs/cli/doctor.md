@@ -18,25 +18,25 @@ Use it to verify the repository layout, Python environment, Conda setup, `.env` 
 
 Run the default full diagnostics:
 
-```bash
+```
 ./scripts/scipionapi doctor
 ```
 
 Run a faster check that skips heavier operations such as importing the FastAPI app and checking Alembic state:
 
-```bash
+```
 ./scripts/scipionapi doctor --quick
 ```
 
 Run in strict mode, which exits with code `1` when failures are detected:
 
-```bash
+```
 ./scripts/scipionapi doctor --strict
 ```
 
 You can combine both options:
 
-```bash
+```
 ./scripts/scipionapi doctor --quick --strict
 ```
 
@@ -68,7 +68,7 @@ You can combine both options:
 
 Run `doctor` after installation:
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com"
@@ -78,14 +78,14 @@ Run `doctor` after installation:
 
 Run it after starting services:
 
-```bash
+```
 ./scripts/scipionapi start
 ./scripts/scipionapi doctor --quick
 ```
 
 Run it in automation or installer tests:
 
-```bash
+```
 ./scripts/scipionapi doctor --quick --strict
 ```
 
