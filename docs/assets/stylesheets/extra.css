@@ -169,6 +169,27 @@
   border-radius: 0.2rem;
 }
 
+/* Preserve command blocks exactly as written. */
+.md-typeset div.highlight,
+.md-typeset pre {
+  overflow-x: auto;
+}
+
+.md-typeset pre,
+.md-typeset pre > code,
+.md-typeset div.highlight pre,
+.md-typeset div.highlight code {
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.md-typeset .highlighttable,
+.md-typeset .highlighttable pre,
+.md-typeset .highlighttable code {
+  white-space: pre;
+}
+
 /* Generic card grid for Markdown lists using {: .grid .cards} */
 .md-typeset .grid.cards {
   display: grid;
