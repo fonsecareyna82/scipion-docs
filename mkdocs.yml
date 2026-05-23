@@ -97,6 +97,7 @@ nav:
           - Bootstrap: cli/bootstrap.md
           - Install: cli/install.md
           - Provision: cli/provision.md
+          - Doctor: cli/doctor.md
           - start / stop / restart / status / logs: cli/runtime.md
       - Backend:
           - Overview: backend/index.md
