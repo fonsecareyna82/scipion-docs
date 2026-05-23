@@ -23,7 +23,7 @@ It combines:
 
 Interactive mode asks for the admin password using a hidden prompt:
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com"
@@ -31,7 +31,7 @@ Interactive mode asks for the admin password using a hidden prompt:
 
 For automated runs, pass the name of an environment variable containing the password:
 
-```bash
+```
 export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 ./scripts/scipionapi provision \
@@ -44,7 +44,7 @@ export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 ## Usage (Integrated mode: API + Web)
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
@@ -53,7 +53,7 @@ export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 Automated integrated-mode example:
 
-```bash
+```
 export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 ./scripts/scipionapi provision \
@@ -137,7 +137,7 @@ Typical behavior:
 
 === "First-time local setup"
 
-    ```bash
+    ```
     ./scripts/scipionapi provision \
       --user "admin" \
       --email "admin@example.com"
@@ -145,7 +145,7 @@ Typical behavior:
 
 === "Integrated mode with frontend bundle"
 
-    ```bash
+    ```
     ./scripts/scipionapi provision \
       --user "admin" \
       --email "admin@example.com" \
@@ -154,7 +154,7 @@ Typical behavior:
 
 === "Automated integrated setup"
 
-    ```bash
+    ```
     export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
     ./scripts/scipionapi provision \
@@ -166,7 +166,7 @@ Typical behavior:
 
 === "Custom API mount path"
 
-    ```bash
+    ```
     ./scripts/scipionapi provision \
       --user "admin" \
       --email "admin@example.com" \
@@ -179,7 +179,7 @@ Typical behavior:
 
 ## Verification After Provision
 
-```bash
+```
 ./scripts/scipionapi status
 ./scripts/scipionapi doctor --quick
 curl http://localhost:8080/health
