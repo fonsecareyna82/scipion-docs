@@ -88,9 +88,10 @@ Start here if you work on ScipionAPI, ScipionWeb, CLI commands, backend internal
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
-  --pass "changeMe" \
   --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
 ```
+
+The CLI will ask for the admin password using a hidden prompt.
 
 ---
 
@@ -104,4 +105,4 @@ Start here if you work on ScipionAPI, ScipionWeb, CLI commands, backend internal
     - PostgreSQL persistence
     - Celery + Redis background task execution
     - Integrated API + Web deployment mode
-    - CLI tools for installation, provisioning, runtime control, and logs
+    - CLI tools for installation, provisioning, diagnostics, runtime control, and logs
