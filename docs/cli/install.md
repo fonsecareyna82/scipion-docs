@@ -18,7 +18,7 @@ It prepares the application to run, but it does **not** start runtime services.
 
 Interactive mode asks for the admin password using a hidden prompt:
 
-```bash
+```
 ./scripts/scipionapi install \
   --user "admin" \
   --email "admin@example.com"
@@ -26,7 +26,7 @@ Interactive mode asks for the admin password using a hidden prompt:
 
 For automated runs, pass the name of an environment variable containing the password:
 
-```bash
+```
 export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 ./scripts/scipionapi install \
@@ -92,7 +92,7 @@ If you use a remote PostgreSQL server:
 
 After `install`, continue with:
 
-```bash
+```
 ./scripts/scipionapi doctor
 ./scripts/scipionapi start
 ./scripts/scipionapi status
