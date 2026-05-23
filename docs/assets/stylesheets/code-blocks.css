@@ -1,0 +1,59 @@
+/* Code block rendering overrides.
+ * Keep command examples readable and hide language badges such as bash/text.
+ */
+
+.md-typeset pre,
+.md-typeset pre code,
+.md-typeset .highlight,
+.md-typeset .highlight pre,
+.md-typeset .highlight code,
+.md-typeset .highlighttable,
+.md-typeset .highlighttable pre,
+.md-typeset .highlighttable code {
+  white-space: pre !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  text-wrap: nowrap !important;
+}
+
+.md-typeset pre,
+.md-typeset .highlight,
+.md-typeset .highlighttable {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+.md-typeset pre code,
+.md-typeset .highlight code,
+.md-typeset .highlighttable code {
+  display: block !important;
+  width: max-content;
+  min-width: 100%;
+  tab-size: 2;
+}
+
+.md-typeset pre code span,
+.md-typeset .highlight code span,
+.md-typeset .highlighttable code span {
+  white-space: inherit !important;
+}
+
+.md-typeset pre::before,
+.md-typeset pre::after,
+.md-typeset pre code::before,
+.md-typeset pre code::after,
+.md-typeset .highlight::before,
+.md-typeset .highlight::after,
+.md-typeset .highlight code::before,
+.md-typeset .highlight code::after,
+.md-typeset [class^="language-"]::before,
+.md-typeset [class^="language-"]::after,
+.md-typeset [class*=" language-"]::before,
+.md-typeset [class*=" language-"]::after,
+.md-typeset .filename,
+.md-typeset span.filename,
+.md-typeset .md-code__title,
+.md-typeset .md-code__language {
+  display: none !important;
+  content: none !important;
+}
