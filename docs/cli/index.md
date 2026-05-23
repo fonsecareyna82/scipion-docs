@@ -16,13 +16,13 @@ ScipionAPI provides a command-line interface (CLI) to manage the full lifecycle 
 
 The main entrypoint is the wrapper script:
 
-```bash
+```
 ./scripts/scipionapi
 ```
 
 If the package is already available inside the active environment, you may also use:
 
-```bash
+```
 scipionapi
 ```
 
@@ -77,13 +77,13 @@ If you remember that split, the CLI becomes much easier to understand.
 
 For interactive installations, omit the password option and let the CLI ask for it using a hidden prompt:
 
-```bash
+```
 ./scripts/scipionapi install --user "admin" --email "admin@example.com"
 ```
 
 For automated installations, provide the password through an environment variable:
 
-```bash
+```
 export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 ./scripts/scipionapi install \
   --user "admin" \
@@ -99,7 +99,7 @@ export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 === "Recommended (one-shot setup)"
 
-    ```bash
+    ```
     ./scripts/scipionapi provision \
       --user "admin" \
       --email "admin@example.com"
@@ -107,7 +107,7 @@ export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 === "Automated setup"
 
-    ```bash
+    ```
     export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
     ./scripts/scipionapi provision \
@@ -118,7 +118,7 @@ export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 === "Step-by-step (advanced or debugging)"
 
-    ```bash
+    ```
     ./scripts/scipionapi bootstrap
     ./scripts/scipionapi install --user "admin" --email "admin@example.com"
     ./scripts/scipionapi doctor
@@ -127,7 +127,7 @@ export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 === "Daily runtime operations"
 
-    ```bash
+    ```
     ./scripts/scipionapi status
     ./scripts/scipionapi doctor --quick
     ./scripts/scipionapi logs
@@ -171,13 +171,13 @@ That is why using the wrapper is often more reliable than invoking scattered com
 
 ### General help
 
-```bash
+```
 ./scripts/scipionapi --help
 ```
 
 ### Command-specific help
 
-```bash
+```
 ./scripts/scipionapi provision --help
 ./scripts/scipionapi install --help
 ./scripts/scipionapi doctor --help
