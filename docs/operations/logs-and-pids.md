@@ -39,13 +39,13 @@ Usually contains worker startup messages, task execution logs, failures, and ret
 
 ### CLI shortcut
 
-```bash
+```
 ./scripts/scipionapi logs
 ```
 
 ### Manual live tail
 
-```bash
+```
 tail -f scipion_home/logs/app.log
 tail -f scipion_home/logs/celery.log
 ```

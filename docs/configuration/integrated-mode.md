@@ -42,7 +42,7 @@ http://localhost:8080/api/docs
 
 Integrated mode is typically enabled during provisioning by passing the compiled Web bundle ZIP:
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
@@ -110,7 +110,7 @@ WEB_API_BASE_URL=/api
 
 === "One-shot provisioning (recommended)"
 
-    ```bash
+    ```
     ./scripts/scipionapi provision \
       --user "admin" \
       --email "admin@example.com" \
@@ -172,7 +172,7 @@ After enabling integrated mode:
 
 ### 1. Check API health
 
-```bash
+```
 curl http://localhost:8080/health
 ```
 

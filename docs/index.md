@@ -84,7 +84,7 @@ Start here if you work on ScipionAPI, ScipionWeb, CLI commands, backend internal
 
 ## Quick install example
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \

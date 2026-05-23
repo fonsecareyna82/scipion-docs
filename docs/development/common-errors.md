@@ -11,7 +11,7 @@ This page collects frequent **development-time problems** and the fastest checks
 
 Before going deep, verify the basics:
 
-```bash
+```
 conda activate scipion4Web
 ./scripts/scipionapi status
 curl http://localhost:8080/health
@@ -36,14 +36,14 @@ You are not running inside the expected Conda environment, or the worker was sta
 
 ### Fix
 
-```bash
+```
 conda activate scipion4Web
 python -c "import pyworkflow; print(pyworkflow.__file__)"
 ```
 
 If you are using the wrapper script, rerun the command from the ScipionAPI bundle directory:
 
-```bash
+```
 ./scripts/scipionapi restart
 ```
 
@@ -65,7 +65,7 @@ KeyError: DATABASE_URL
 
 Useful check:
 
-```bash
+```
 echo "$SCIPION_HOME"
 test -f "$SCIPION_HOME/.env" && echo ".env found"
 ```
@@ -96,7 +96,7 @@ For real deployments, create a database backup before stamping or repairing migr
 
 ### Fix
 
-```bash
+```
 sudo systemctl start redis-server
 sudo systemctl status redis-server
 redis-cli ping
@@ -122,7 +122,7 @@ PONG
 
 ### Useful commands
 
-```bash
+```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
 redis-cli ping
@@ -191,19 +191,19 @@ Address already in use
 
 Identify the process first:
 
-```bash
+```
 lsof -i :8080
 ```
 
 Then stop it only if it is safe to do so:
 
-```bash
+```
 kill <pid>
 ```
 
 Use forceful termination only as a last resort:
 
-```bash
+```
 kill -9 <pid>
 ```
 
@@ -215,13 +215,13 @@ Or change the configured API port if another service is meant to keep using that
 
 ### Fix
 
-```bash
+```
 chmod -R u+rwX "$SCIPION_HOME"
 ```
 
 Also confirm that the same user owns the runtime files and starts the services:
 
-```bash
+```
 ls -ld "$SCIPION_HOME"
 ls -ld "$SCIPION_HOME/logs"
 ```

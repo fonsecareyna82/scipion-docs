@@ -37,7 +37,7 @@ A common upgrade involves:
 
 From the current installation directory:
 
-```bash
+```
 ./scripts/scipionapi stop
 ./scripts/scipionapi status
 ```

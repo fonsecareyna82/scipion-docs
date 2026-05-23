@@ -53,7 +53,7 @@ The Web ZIP can remain unextracted if you plan to pass it directly to `provision
 
 === "Using wget"
 
-    ```bash
+    ```
     mkdir -p "$HOME/scipionweb"
     cd "$HOME/scipionweb"
 
@@ -63,7 +63,7 @@ The Web ZIP can remain unextracted if you plan to pass it directly to `provision
 
 === "Using curl"
 
-    ```bash
+    ```
     mkdir -p "$HOME/scipionweb"
     cd "$HOME/scipionweb"
 
@@ -78,7 +78,7 @@ The Web ZIP can remain unextracted if you plan to pass it directly to `provision
 
 ## Extract the API bundle
 
-```bash
+```
 unzip ScipionAPI-<version>.zip
 cd ScipionAPI-<version>
 ```
@@ -112,7 +112,7 @@ Manual extraction of the Web bundle is optional and mostly useful for inspection
 
 If you want to inspect it manually, extract it with:
 
-```bash
+```
 unzip ScipionWeb-<version>-dist.zip
 ```
 

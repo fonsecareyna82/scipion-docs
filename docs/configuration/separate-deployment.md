@@ -201,7 +201,7 @@ If the API is mounted under `/api`, ensure your reverse proxy configuration pres
 
 ### 1. Check API health directly
 
-```bash
+```
 curl https://api.yourdomain.com/health
 ```
 

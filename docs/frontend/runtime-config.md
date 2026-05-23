@@ -80,7 +80,7 @@ VITE_API_URL="https://api.yourdomain.com"
 
 Then rebuild the frontend:
 
-```bash
+```
 npm run build
 ```
 

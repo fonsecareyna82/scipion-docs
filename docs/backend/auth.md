@@ -133,7 +133,7 @@ Passwords are stored **hashed** (bcrypt).
 
 ## Debugging Checklist
 
-```bash
+```
 # Check runtime health first
 curl http://localhost:8080/health
 

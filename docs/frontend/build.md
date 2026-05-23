@@ -21,7 +21,7 @@ This page covers:
 
 From inside the frontend repository:
 
-```bash
+```
 npm install
 npm run dev
 ```
@@ -60,7 +60,7 @@ VITE_API_URL="http://localhost:8080"
 
 Generate the production bundle:
 
-```bash
+```
 npm run build
 ```
 
@@ -105,13 +105,13 @@ The `dist/` folder is static and can be:
 
 To distribute the compiled frontend bundle:
 
-```bash
+```
 zip -r ScipionWeb-<version>-dist.zip dist/
 ```
 
 This ZIP can be used with ScipionAPI provisioning:
 
-```bash
+```
 ./scripts/scipionapi provision --web-dist ScipionWeb-<version>-dist.zip
 ```
 

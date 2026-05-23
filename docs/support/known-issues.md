@@ -23,7 +23,7 @@ This page is intentionally curated. GitHub Issues and Discussions may contain ne
 
 ### Checks
 
-```bash
+```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
 redis-cli ping
@@ -39,7 +39,7 @@ PONG
 
 Restart the runtime after verifying that `SCIPION_HOME`, `CELERY_BROKER_URL`, and `CELERY_RESULT_BACKEND` are consistent:
 
-```bash
+```
 ./scripts/scipionapi restart
 ```
 
@@ -61,7 +61,7 @@ Restart the runtime after verifying that `SCIPION_HOME`, `CELERY_BROKER_URL`, an
 
 ### Checks
 
-```bash
+```
 sudo systemctl status redis-server
 redis-cli ping
 ```
@@ -70,7 +70,7 @@ redis-cli ping
 
 Start or restart Redis, then restart ScipionAPI services:
 
-```bash
+```
 sudo systemctl restart redis-server
 ./scripts/scipionapi restart
 ```
@@ -93,7 +93,7 @@ sudo systemctl restart redis-server
 
 ### Checks
 
-```bash
+```
 echo "$SCIPION_HOME"
 test -f "$SCIPION_HOME/.env" && echo ".env found"
 ./scripts/scipionapi logs
@@ -103,7 +103,7 @@ test -f "$SCIPION_HOME/.env" && echo ".env found"
 
 Start API and worker through the same runtime command so both processes share the same configuration source:
 
-```bash
+```
 ./scripts/scipionapi restart
 ```
 
@@ -124,7 +124,7 @@ Start API and worker through the same runtime command so both processes share th
 
 ### Checks
 
-```bash
+```
 conda activate scipion4Web
 python -c "import pyworkflow; print(pyworkflow.__file__)"
 ```
@@ -133,7 +133,7 @@ python -c "import pyworkflow; print(pyworkflow.__file__)"
 
 Activate the expected environment and restart using the wrapper script from the ScipionAPI bundle directory:
 
-```bash
+```
 conda activate scipion4Web
 ./scripts/scipionapi restart
 ```
@@ -181,7 +181,7 @@ Add the exact frontend origin to the backend CORS configuration and restart the 
 
 ### Checks
 
-```bash
+```
 alembic current
 alembic heads
 ```
@@ -205,7 +205,7 @@ For real deployments, do not edit migration history blindly. Back up the databas
 
 ### Checks
 
-```bash
+```
 lsof -i :8080
 ```
 

@@ -45,7 +45,7 @@ This module defines/loads the Celery app and task registration used by the worke
 
 ### Via CLI (recommended for local usage)
 
-```bash
+```
 ./scripts/scipionapi start
 ```
 
@@ -56,7 +56,7 @@ This typically starts both:
 
 ### Manual worker start (advanced)
 
-```bash
+```
 celery -A app.workers.task_queue worker --loglevel=info
 ```
 
@@ -133,7 +133,7 @@ Operational behavior typically includes:
 
 ## Quick Verification
 
-```bash
+```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
 sudo systemctl status redis-server

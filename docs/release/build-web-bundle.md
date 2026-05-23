@@ -6,7 +6,7 @@ This document explains how to build and package the ScipionWeb frontend.
 
 # Step 1 — Install Dependencies
 
-```bash
+```
 npm install
 ```
 
@@ -14,7 +14,7 @@ npm install
 
 # Step 2 — Production Build
 
-```bash
+```
 npm run build
 ```
 
@@ -37,7 +37,7 @@ dist/assets/
 
 Open locally:
 
-```bash
+```
 npx serve dist
 ```
 
@@ -47,13 +47,13 @@ npx serve dist
 
 Option A — Zip dist directly:
 
-```bash
+```
 zip -r scipionweb-1.2.0-dist.zip dist/
 ```
 
 Option B — Versioned folder:
 
-```bash
+```
 mkdir scipionweb-1.2.0
 cp -r dist scipionweb-1.2.0/
 zip -r scipionweb-1.2.0-dist.zip scipionweb-1.2.0/

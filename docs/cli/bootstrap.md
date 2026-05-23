@@ -22,7 +22,7 @@ It prepares the Python runtime and dependencies, but it does **not** perform ins
 
 ## Usage
 
-```bash
+```
 ./scripts/scipionapi bootstrap
 ```
 
@@ -64,7 +64,7 @@ Use `bootstrap` when you need to:
 
 === "Manual / advanced flow"
 
-    ```bash
+    ```
     ./scripts/scipionapi bootstrap
     ./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"
     ./scripts/scipionapi start
@@ -72,7 +72,7 @@ Use `bootstrap` when you need to:
 
 === "One-shot alternative"
 
-    ```bash
+    ```
     ./scripts/scipionapi provision --user "admin" --email "admin@example.com" --pass "changeMe"
     ```
 
@@ -91,13 +91,13 @@ Typical behavior:
 
 ## Example
 
-```bash
+```
 ./scripts/scipionapi bootstrap
 ```
 
 After completion:
 
-```bash
+```
 conda activate scipion4Web
 scipionapi --help
 ```
@@ -109,14 +109,14 @@ scipionapi --help
 !!! warning "Conda not found"
     Confirm Conda is installed and available in `PATH`:
 
-    ```bash
+    ```
     conda --version
     ```
 
 !!! warning "Environment created but command still fails"
     Activate the environment manually and test:
 
-    ```bash
+    ```
     conda activate scipion4Web
     scipionapi --help
     ```
@@ -130,13 +130,13 @@ scipionapi --help
 
 After `bootstrap`, continue with:
 
-```bash
+```
 ./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"
 ```
 
 Or use the one-shot alternative:
 
-```bash
+```
 ./scripts/scipionapi provision --user "admin" --email "admin@example.com" --pass "changeMe"
 ```
 

@@ -42,7 +42,7 @@ A typical production deployment with `systemd` includes:
 
 If you previously started services with the ScipionAPI CLI, stop them first to avoid port conflicts and duplicate workers.
 
-```bash
+```
 ./scripts/scipionapi stop
 ```
 
@@ -150,7 +150,7 @@ WantedBy=multi-user.target
 
 Reload the `systemd` daemon after creating or modifying service files:
 
-```bash
+```
 sudo systemctl daemon-reload
 ```
 
@@ -160,7 +160,7 @@ sudo systemctl daemon-reload
 
 Enable both services so they start automatically after reboot:
 
-```bash
+```
 sudo systemctl enable scipionapi
 sudo systemctl enable scipion-celery
 ```
@@ -171,7 +171,7 @@ sudo systemctl enable scipion-celery
 
 Start both services:
 
-```bash
+```
 sudo systemctl start scipionapi
 sudo systemctl start scipion-celery
 ```
@@ -185,14 +185,14 @@ sudo systemctl start scipion-celery
 
 Verify both services are active:
 
-```bash
+```
 sudo systemctl status scipionapi
 sudo systemctl status scipion-celery
 ```
 
 For a quick summary:
 
-```bash
+```
 systemctl is-active scipionapi
 systemctl is-active scipion-celery
 ```
@@ -210,7 +210,7 @@ active
 
 Follow logs in real time with `journalctl`:
 
-```bash
+```
 journalctl -u scipionapi -f
 journalctl -u scipion-celery -f
 ```
@@ -275,7 +275,7 @@ Before upgrading ScipionAPI/ScipionWeb, backup:
 
 After deployment, verify service restarts:
 
-```bash
+```
 sudo systemctl restart scipionapi
 sudo systemctl restart scipion-celery
 sudo systemctl status scipionapi scipion-celery

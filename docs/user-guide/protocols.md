@@ -126,7 +126,7 @@ Check:
 
 Useful checks for administrators or developers:
 
-```bash
+```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
 redis-cli ping

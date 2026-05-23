@@ -24,7 +24,7 @@ SCIPION_HOME=<repoRoot>/scipion_home
 
 You can override it by exporting the variable before starting the application:
 
-```bash
+```
 export SCIPION_HOME=/opt/scipionweb/runtime
 ```
 
@@ -203,7 +203,7 @@ Recommended practices:
 
 Run these checks to confirm the runtime workspace is correctly configured:
 
-```bash
+```
 echo "$SCIPION_HOME"
 ls -al "$SCIPION_HOME"
 test -f "$SCIPION_HOME/.env" && echo ".env found"

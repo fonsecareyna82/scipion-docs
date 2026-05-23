@@ -44,7 +44,7 @@ Manual installation typically consists of:
 
 Run the following commands from inside the extracted **ScipionAPI** directory:
 
-```bash
+```
 conda create -n scipion4Web python=3.8 -y
 conda activate scipion4Web
 python -m pip install --upgrade pip
@@ -54,7 +54,7 @@ python -m pip install --upgrade pip
 
 ## 2. Install Dependencies
 
-```bash
+```
 pip install -r requirements.txt
 pip install -e .
 scipionapi --help
@@ -84,7 +84,7 @@ The key point is to be sure the values you create here match what you will later
 
 Create a runtime workspace such as:
 
-```bash
+```
 mkdir -p scipion_home
 export SCIPION_HOME="$(pwd)/scipion_home"
 ```
@@ -103,7 +103,7 @@ Populate it with a valid `DATABASE_URL`, `SECRET_KEY`, API host and port, broker
 
 Load the environment values and apply migrations:
 
-```bash
+```
 set -a
 source scipion_home/.env
 set +a
@@ -118,7 +118,7 @@ At this point the database schema should be ready.
 
 Run:
 
-```bash
+```
 scipionapi install \
   --user "admin" \
   --email "admin@example.com" \
@@ -133,7 +133,7 @@ This step ensures the admin user exists and aligns runtime configuration with th
 
 Start the API and the Celery worker, then verify:
 
-```bash
+```
 curl http://localhost:8080/health
 ```
 
