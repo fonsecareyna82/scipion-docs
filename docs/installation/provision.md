@@ -33,7 +33,7 @@ This avoids asking users to install the backend without the web interface they a
 
 Run the command from inside the extracted **ScipionAPI** directory and pass the compiled Web bundle ZIP with `--web-dist`:
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
@@ -44,7 +44,7 @@ The CLI will ask for the admin password using a hidden prompt.
 
 For automated installations, store the admin password in an environment variable and pass its name with `--password-env`:
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
@@ -63,7 +63,7 @@ API-only mode is available, but it is mainly useful for developers, infrastructu
 
 Use it only if you intentionally do **not** want ScipionAPI to serve the compiled Web UI:
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com"
@@ -110,7 +110,7 @@ A typical integrated-mode run performs these steps in sequence:
 
 Run these checks immediately:
 
-```bash
+```
 ./scripts/scipionapi status
 ./scripts/scipionapi doctor --quick
 ./scripts/scipionapi logs
