@@ -150,6 +150,7 @@ extra:
 
 extra_css:
   - assets/stylesheets/extra.css
+  - assets/stylesheets/code-blocks.css
 
 copyright: >
   © CNB-CSIC ● Biocomputing Unit ● Scipion Team
