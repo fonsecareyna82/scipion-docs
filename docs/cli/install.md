@@ -16,12 +16,27 @@ It prepares the application to run, but it does **not** start runtime services.
 
 ## Usage
 
+Interactive mode asks for the admin password using a hidden prompt:
+
 ```bash
 ./scripts/scipionapi install \
   --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe"
+  --email "admin@example.com"
 ```
+
+For automated runs, pass the name of an environment variable containing the password:
+
+```bash
+export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+
+./scripts/scipionapi install \
+  --user "admin" \
+  --email "admin@example.com" \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD
+```
+
+!!! note "Compatibility"
+    `--pass` and `--password` are still supported, but they are not recommended because command-line arguments may be stored in shell history.
 
 ---
 
@@ -37,7 +52,8 @@ A simple sequence is:
 
 1. `bootstrap`
 2. `install`
-3. `start`
+3. `doctor`
+4. `start`
 
 ---
 
@@ -52,6 +68,8 @@ A simple sequence is:
 5. runs `alembic upgrade head`
 6. creates or updates the admin user
 
+The admin password is used to create or update the user but is not persisted as `ADMIN_PASSWORD` in `.env`.
+
 ---
 
 ## Database Creation Behavior
@@ -64,7 +82,7 @@ If PostgreSQL is local and the user has `sudo` privileges, the role and database
 
 If you use a remote PostgreSQL server:
 
-- create the database and role manually
+- create the database and role manually, or provide PostgreSQL admin credentials through the supported environment variables
 - ensure `.env` contains a valid `DATABASE_URL`
 - confirm connectivity before running `install`
 
@@ -75,6 +93,7 @@ If you use a remote PostgreSQL server:
 After `install`, continue with:
 
 ```bash
+./scripts/scipionapi doctor
 ./scripts/scipionapi start
 ./scripts/scipionapi status
 curl http://localhost:8080/health
@@ -89,7 +108,7 @@ Running `install` again is generally safe.
 Typical behavior:
 
 - does **not** drop the database
-- updates admin credentials if needed
+- updates admin credentials if a password is provided
 - ensures migrations are applied and up to date
 
 ---
@@ -104,3 +123,6 @@ Typical behavior:
 
 !!! warning "Admin user not updated as expected"
     Re-run `install` with explicit options and inspect output or logs for validation errors.
+
+!!! warning "Environment looks inconsistent"
+    Run `./scripts/scipionapi doctor` to inspect Conda, `.env`, database, Redis, imports, and runtime state.
