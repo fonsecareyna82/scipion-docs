@@ -238,19 +238,19 @@ Look for browser console/network errors such as blocked cross-origin requests.
 
 ## Integrated vs Separate Deployment (Quick Comparison)
 
-=== "Integrated Mode"
+### Integrated Mode
 
-    - Simpler setup
-    - Single host / single endpoint
-    - No CORS in common deployments
-    - Easier for local/internal use
+- Simpler setup
+- Single host / single endpoint
+- No CORS in common deployments
+- Easier for local/internal use
 
-=== "Separate Deployment"
+### Separate Deployment
 
-    - More flexible and scalable
-    - Frontend and API deploy independently
-    - CORS and proxy configuration required
-    - Better fit for cloud/production platforms
+- More flexible and scalable
+- Frontend and API deploy independently
+- CORS and proxy configuration required
+- Better fit for cloud/production platforms
 
 ---
 
