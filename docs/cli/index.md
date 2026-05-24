@@ -97,42 +97,42 @@ export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 ## Typical Workflows
 
-=== "Recommended (one-shot setup)"
+### Recommended one-shot setup
 
-    ```
-    ./scripts/scipionapi provision \
-      --user "admin" \
-      --email "admin@example.com"
-    ```
+```
+./scripts/scipionapi provision \
+  --user "admin" \
+  --email "admin@example.com"
+```
 
-=== "Automated setup"
+### Automated setup
 
-    ```
-    export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+```
+export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
-    ./scripts/scipionapi provision \
-      --user "admin" \
-      --email "admin@example.com" \
-      --password-env SCIPIONAPI_ADMIN_PASSWORD
-    ```
+./scripts/scipionapi provision \
+  --user "admin" \
+  --email "admin@example.com" \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD
+```
 
-=== "Step-by-step (advanced or debugging)"
+### Step-by-step advanced or debugging setup
 
-    ```
-    ./scripts/scipionapi bootstrap
-    ./scripts/scipionapi install --user "admin" --email "admin@example.com"
-    ./scripts/scipionapi doctor
-    ./scripts/scipionapi start
-    ```
+```
+./scripts/scipionapi bootstrap
+./scripts/scipionapi install --user "admin" --email "admin@example.com"
+./scripts/scipionapi doctor
+./scripts/scipionapi start
+```
 
-=== "Daily runtime operations"
+### Daily runtime operations
 
-    ```
-    ./scripts/scipionapi status
-    ./scripts/scipionapi doctor --quick
-    ./scripts/scipionapi logs
-    ./scripts/scipionapi restart
-    ```
+```
+./scripts/scipionapi status
+./scripts/scipionapi doctor --quick
+./scripts/scipionapi logs
+./scripts/scipionapi restart
+```
 
 ---
 
