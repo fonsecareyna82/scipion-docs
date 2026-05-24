@@ -135,45 +135,45 @@ Typical behavior:
 
 ## Common Usage Patterns
 
-=== "First-time local setup"
+### First-time local setup
 
-    ```
-    ./scripts/scipionapi provision \
-      --user "admin" \
-      --email "admin@example.com"
-    ```
+```
+./scripts/scipionapi provision \
+  --user "admin" \
+  --email "admin@example.com"
+```
 
-=== "Integrated mode with frontend bundle"
+### Integrated mode with frontend bundle
 
-    ```
-    ./scripts/scipionapi provision \
-      --user "admin" \
-      --email "admin@example.com" \
-      --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
-    ```
+```
+./scripts/scipionapi provision \
+  --user "admin" \
+  --email "admin@example.com" \
+  --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
+```
 
-=== "Automated integrated setup"
+### Automated integrated setup
 
-    ```
-    export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+```
+export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
-    ./scripts/scipionapi provision \
-      --user "admin" \
-      --email "admin@example.com" \
-      --password-env SCIPIONAPI_ADMIN_PASSWORD \
-      --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
-    ```
+./scripts/scipionapi provision \
+  --user "admin" \
+  --email "admin@example.com" \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD \
+  --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
+```
 
-=== "Custom API mount path"
+### Custom API mount path
 
-    ```
-    ./scripts/scipionapi provision \
-      --user "admin" \
-      --email "admin@example.com" \
-      --web-dist /path/to/ScipionWeb-dist.zip \
-      --api-mount-path /api \
-      --api-base-url /api
-    ```
+```
+./scripts/scipionapi provision \
+  --user "admin" \
+  --email "admin@example.com" \
+  --web-dist /path/to/ScipionWeb-dist.zip \
+  --api-mount-path /api \
+  --api-base-url /api
+```
 
 ---
 
