@@ -127,6 +127,7 @@ markdown_extensions:
   - attr_list
   - footnotes
   - tables
+  - fenced_code
   - toc:
       permalink: true
       toc_depth: 3
@@ -150,7 +151,6 @@ extra:
 
 extra_css:
   - assets/stylesheets/extra.css
-  - assets/stylesheets/code-blocks.css
 
 copyright: >
   © CNB-CSIC ● Biocomputing Unit ● Scipion Team
