@@ -62,19 +62,19 @@ Use `bootstrap` when you need to:
 - Rebuild or refresh the Python runtime
 - Perform a manual installation flow before `install`
 
-=== "Manual / advanced flow"
+### Manual / advanced flow
 
-    ```
-    ./scripts/scipionapi bootstrap
-    ./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"
-    ./scripts/scipionapi start
-    ```
+```
+./scripts/scipionapi bootstrap
+./scripts/scipionapi install --user "admin" --email "admin@example.com"
+./scripts/scipionapi start
+```
 
-=== "One-shot alternative"
+### One-shot alternative
 
-    ```
-    ./scripts/scipionapi provision --user "admin" --email "admin@example.com" --pass "changeMe"
-    ```
+```
+./scripts/scipionapi provision --user "admin" --email "admin@example.com"
+```
 
 ---
 
@@ -131,13 +131,13 @@ scipionapi --help
 After `bootstrap`, continue with:
 
 ```
-./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"
+./scripts/scipionapi install --user "admin" --email "admin@example.com"
 ```
 
 Or use the one-shot alternative:
 
 ```
-./scripts/scipionapi provision --user "admin" --email "admin@example.com" --pass "changeMe"
+./scripts/scipionapi provision --user "admin" --email "admin@example.com"
 ```
 
 ---
