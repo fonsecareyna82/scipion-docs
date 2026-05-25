@@ -46,7 +46,7 @@ ScipionAPI uses **Conda** to manage its Python environment automatically.
 
 ### Check whether Conda is already installed
 
-```bash
+```
 conda --version
 ```
 
@@ -56,7 +56,7 @@ If that prints a version number, continue to PostgreSQL.
 
 If `conda` is not available, install Miniconda:
 
-```bash
+```
 mkdir -p ~/Downloads
 cd ~/Downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -67,14 +67,14 @@ Follow the installer prompts.
 
 After installation, restart your terminal or run:
 
-```bash
+```
 conda init bash
 exec bash
 ```
 
 Then verify again:
 
-```bash
+```
 conda --version
 ```
 
@@ -82,14 +82,14 @@ conda --version
 
 Add Miniconda to your `PATH` manually:
 
-```bash
+```
 export PATH="$HOME/miniconda3/bin:$PATH"
 conda --version
 ```
 
 If you installed **Anaconda** instead, adjust the path accordingly:
 
-```bash
+```
 export PATH="$HOME/anaconda3/bin:$PATH"
 conda --version
 ```
@@ -113,21 +113,21 @@ In common local setups, the installer can create the database and role automatic
 
 ### Install PostgreSQL on Ubuntu or Debian
 
-```bash
+```
 sudo apt update
 sudo apt install -y postgresql postgresql-contrib
 ```
 
 ### Start and enable PostgreSQL
 
-```bash
+```
 sudo systemctl enable postgresql
 sudo systemctl start postgresql
 ```
 
 ### Verify PostgreSQL
 
-```bash
+```
 sudo systemctl status postgresql
 sudo -u postgres psql -c "SELECT version();"
 ```
@@ -136,7 +136,7 @@ sudo -u postgres psql -c "SELECT version();"
 
 The installer can automatically create the PostgreSQL user and database in common local setups using commands such as:
 
-```bash
+```
 sudo -u postgres psql ...
 ```
 
@@ -157,21 +157,21 @@ Redis is used as the **Celery broker** and **result backend**.
 
 ### Install Redis on Ubuntu or Debian
 
-```bash
+```
 sudo apt update
 sudo apt install -y redis-server
 ```
 
 ### Start and enable Redis
 
-```bash
+```
 sudo systemctl enable redis-server
 sudo systemctl start redis-server
 ```
 
 ### Verify Redis
 
-```bash
+```
 sudo systemctl status redis-server
 redis-cli ping
 ```
@@ -188,7 +188,7 @@ PONG
 
 Make sure the following utilities are available:
 
-```bash
+```
 sudo apt update
 sudo apt install -y \
   bash \
@@ -216,7 +216,7 @@ By default, the services use:
 
 Check whether those ports are already in use:
 
-```bash
+```
 ss -ltnp | grep -E ':(8080|5432|6379)\b'
 ```
 
@@ -248,7 +248,7 @@ Before continuing, confirm that:
 
 Run these together:
 
-```bash
+```
 conda --version
 sudo systemctl is-active postgresql
 sudo systemctl is-active redis-server
@@ -270,7 +270,7 @@ You want to see:
 
 Usually a PATH or shell-initialization issue.
 
-```bash
+```
 export PATH="$HOME/miniconda3/bin:$PATH"
 conda init bash
 exec bash
@@ -282,7 +282,7 @@ If the command works after exporting `PATH`, add the export line to your shell p
 
 Inspect the service status and recent logs:
 
-```bash
+```
 sudo systemctl status postgresql
 journalctl -u postgresql --no-pager -n 100
 ```
@@ -291,7 +291,7 @@ journalctl -u postgresql --no-pager -n 100
 
 Inspect the service status and recent logs:
 
-```bash
+```
 sudo systemctl status redis-server
 journalctl -u redis-server --no-pager -n 100
 ```
@@ -300,7 +300,7 @@ journalctl -u redis-server --no-pager -n 100
 
 Try refreshing your sudo session:
 
-```bash
+```
 sudo -v
 ```
 

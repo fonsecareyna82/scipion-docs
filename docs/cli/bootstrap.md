@@ -22,7 +22,7 @@ It prepares the Python runtime and dependencies, but it does **not** perform ins
 
 ## Usage
 
-```bash
+```
 ./scripts/scipionapi bootstrap
 ```
 
@@ -62,19 +62,19 @@ Use `bootstrap` when you need to:
 - Rebuild or refresh the Python runtime
 - Perform a manual installation flow before `install`
 
-=== "Manual / advanced flow"
+### Manual / advanced flow
 
-    ```bash
-    ./scripts/scipionapi bootstrap
-    ./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"
-    ./scripts/scipionapi start
-    ```
+```
+./scripts/scipionapi bootstrap
+./scripts/scipionapi install --user "admin" --email "admin@example.com"
+./scripts/scipionapi start
+```
 
-=== "One-shot alternative"
+### One-shot alternative
 
-    ```bash
-    ./scripts/scipionapi provision --user "admin" --email "admin@example.com" --pass "changeMe"
-    ```
+```
+./scripts/scipionapi provision --user "admin" --email "admin@example.com"
+```
 
 ---
 
@@ -91,13 +91,13 @@ Typical behavior:
 
 ## Example
 
-```bash
+```
 ./scripts/scipionapi bootstrap
 ```
 
 After completion:
 
-```bash
+```
 conda activate scipion4Web
 scipionapi --help
 ```
@@ -109,14 +109,14 @@ scipionapi --help
 !!! warning "Conda not found"
     Confirm Conda is installed and available in `PATH`:
 
-    ```bash
+    ```
     conda --version
     ```
 
 !!! warning "Environment created but command still fails"
     Activate the environment manually and test:
 
-    ```bash
+    ```
     conda activate scipion4Web
     scipionapi --help
     ```
@@ -130,14 +130,14 @@ scipionapi --help
 
 After `bootstrap`, continue with:
 
-```bash
-./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"
+```
+./scripts/scipionapi install --user "admin" --email "admin@example.com"
 ```
 
 Or use the one-shot alternative:
 
-```bash
-./scripts/scipionapi provision --user "admin" --email "admin@example.com" --pass "changeMe"
+```
+./scripts/scipionapi provision --user "admin" --email "admin@example.com"
 ```
 
 ---

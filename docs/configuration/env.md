@@ -258,7 +258,7 @@ WEB_API_BASE_URL=/api
 
 If you need to export `.env` variables into your current shell session for CLI tools:
 
-```bash
+```
 set -a
 source "$SCIPION_HOME/.env"
 set +a
@@ -281,7 +281,7 @@ set +a
 !!! warning "Permission example"
     A common production setup is:
 
-    ```bash
+    ```
     chmod 600 "$SCIPION_HOME/.env"
     chown <service-user>:<service-user> "$SCIPION_HOME/.env"
     ```
@@ -308,14 +308,14 @@ set +a
 
 Run a quick sanity check after editing `.env`:
 
-```bash
+```
 test -f "$SCIPION_HOME/.env" && echo ".env found"
 grep -E '^(DATABASE_URL|API_HOST|API_PORT|BROKER_URL|SERVE_WEB)=' "$SCIPION_HOME/.env" || true
 ```
 
 Then verify the runtime:
 
-```bash
+```
 curl http://localhost:8080/health
 ```
 

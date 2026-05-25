@@ -165,7 +165,7 @@ Use it for:
 
 After starting services:
 
-```bash
+```
 ./scripts/scipionapi status
 curl http://localhost:8080/health
 ```

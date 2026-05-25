@@ -66,13 +66,13 @@ Recommended baseline strategy:
 
 ### Plain SQL dump
 
-```bash
+```
 pg_dump -U scipion_user scipion_db > scipion_backup.sql
 ```
 
 ### Compressed dump
 
-```bash
+```
 pg_dump -U scipion_user scipion_db | gzip > scipion_backup.sql.gz
 ```
 
@@ -85,13 +85,13 @@ pg_dump -U scipion_user scipion_db | gzip > scipion_backup.sql.gz
 
 Create a compressed archive:
 
-```bash
+```
 tar -czf scipion_home_backup.tar.gz scipion_home/
 ```
 
 If your `SCIPION_HOME` lives elsewhere, use the absolute path:
 
-```bash
+```
 tar -czf scipion_home_backup.tar.gz /opt/scipionweb/scipion_home/
 ```
 
@@ -101,7 +101,7 @@ tar -czf scipion_home_backup.tar.gz /opt/scipionweb/scipion_home/
 
 Minimal one-shot example:
 
-```bash
+```
 pg_dump -U scipion_user scipion_db | gzip > db_backup.sql.gz
 tar -czf scipion_home_backup.tar.gz scipion_home/
 ```
@@ -130,19 +130,19 @@ Recommended restore order:
 
 ### Step 1: Create an empty database
 
-```bash
+```
 createdb -U scipion_user scipion_db
 ```
 
 ### Step 2: Restore from plain SQL dump
 
-```bash
+```
 psql -U scipion_user scipion_db < scipion_backup.sql
 ```
 
 ### Step 3: Restore from compressed dump (if applicable)
 
-```bash
+```
 gunzip -c db_backup.sql.gz | psql -U scipion_user scipion_db
 ```
 
@@ -155,19 +155,19 @@ gunzip -c db_backup.sql.gz | psql -U scipion_user scipion_db
 
 Extract the archive:
 
-```bash
+```
 tar -xzf scipion_home_backup.tar.gz
 ```
 
 Ensure the service user can read/write the restored workspace:
 
-```bash
+```
 chmod -R u+rw scipion_home
 ```
 
 If using a dedicated service account, also fix ownership as needed:
 
-```bash
+```
 chown -R youruser:yourgroup scipion_home
 ```
 
@@ -185,7 +185,7 @@ After restoring both components:
 
 ### Health check
 
-```bash
+```
 curl http://localhost:8080/health
 ```
 
@@ -197,7 +197,7 @@ Expected:
 
 ### Runtime checks
 
-```bash
+```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
 ```

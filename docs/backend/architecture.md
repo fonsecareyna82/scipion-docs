@@ -170,26 +170,26 @@ A new feature typically requires:
 
 ## Example Change Path
 
-=== "Simple read-only feature"
+### Simple read-only feature
 
-    1. Add service query method
-    2. Add router endpoint
-    3. Return serialized response
+1. Add service query method
+2. Add router endpoint
+3. Return serialized response
 
-=== "State-changing feature"
+### State-changing feature
 
-    1. Add service method
-    2. Add router endpoint
-    3. Update ORM / mapper logic
-    4. Add tests
-    5. Add migration if schema changed
+1. Add service method
+2. Add router endpoint
+3. Update ORM / mapper logic
+4. Add tests
+5. Add migration if schema changed
 
-=== "Heavy/long-running feature"
+### Heavy/long-running feature
 
-    1. Add service entrypoint
-    2. Enqueue Celery task
-    3. Track task status / logs
-    4. Return async-friendly API response
+1. Add service entrypoint
+2. Enqueue Celery task
+3. Track task status / logs
+4. Return async-friendly API response
 
 ---
 

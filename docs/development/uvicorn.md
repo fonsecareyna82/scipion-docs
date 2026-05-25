@@ -6,7 +6,7 @@ For development, it is recommended to run Uvicorn manually instead of using the 
 
 # Basic Command
 
-```bash
+```
 uvicorn app.backend.main:app --reload --host 0.0.0.0 --port 8080
 ```
 
@@ -24,7 +24,7 @@ uvicorn app.backend.main:app --reload --host 0.0.0.0 --port 8080
 
 Before running:
 
-```bash
+```
 conda activate scipion4Web
 export SCIPION_HOME=$(pwd)/scipion_home
 ```
@@ -35,7 +35,7 @@ Ensure `.env` exists inside `SCIPION_HOME`.
 
 # Running on Different Port
 
-```bash
+```
 uvicorn app.backend.main:app --reload --port 9000
 ```
 

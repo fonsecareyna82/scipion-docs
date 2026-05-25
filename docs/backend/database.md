@@ -66,7 +66,7 @@ Alembic tracks schema revisions and applies them in order.
 
 Run:
 
-```bash
+```
 alembic upgrade head
 ```
 
@@ -81,7 +81,7 @@ This upgrades the database schema to the latest known revision.
 
 Generate a migration:
 
-```bash
+```
 alembic revision --autogenerate -m "description"
 ```
 
@@ -136,19 +136,19 @@ If migration state becomes inconsistent:
 
 Verify connectivity before migrations:
 
-```bash
+```
 psql -U user -d db
 ```
 
 Then run:
 
-```bash
+```
 alembic upgrade head
 ```
 
 After migration, validate expected tables:
 
-```bash
+```
 psql -U user -d db -c "\dt"
 ```
 

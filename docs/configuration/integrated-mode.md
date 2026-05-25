@@ -42,11 +42,10 @@ http://localhost:8080/api/docs
 
 Integrated mode is typically enabled during provisioning by passing the compiled Web bundle ZIP:
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
-  --pass "changeMe" \
   --web-dist /path/to/web-dist.zip
 ```
 
@@ -108,24 +107,23 @@ WEB_API_BASE_URL=/api
 
 ## Typical Deployment Flow
 
-=== "One-shot provisioning (recommended)"
+### One-shot provisioning (recommended)
 
-    ```bash
-    ./scripts/scipionapi provision \
-      --user "admin" \
-      --email "admin@example.com" \
-      --pass "changeMe" \
-      --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
-    ```
+```
+./scripts/scipionapi provision \
+  --user "admin" \
+  --email "admin@example.com" \
+  --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
+```
 
-    This is the easiest path for a fresh local/server deployment.
+This is the easiest path for a fresh local/server deployment.
 
-=== "Manual integrated mode"
+### Manual integrated mode
 
-    1. Extract the Web bundle
-    2. Set integrated-mode variables in `SCIPION_HOME/.env`
-    3. Ensure `WEB_DIST_PATH` points to the deployed `dist/`
-    4. Restart the API service
+1. Extract the Web bundle
+2. Set integrated-mode variables in `SCIPION_HOME/.env`
+3. Ensure `WEB_DIST_PATH` points to the deployed `dist/`
+4. Restart the API service
 
 ---
 
@@ -172,7 +170,7 @@ After enabling integrated mode:
 
 ### 1. Check API health
 
-```bash
+```
 curl http://localhost:8080/health
 ```
 

@@ -22,7 +22,7 @@ This page collects common backend issues and a practical debugging workflow for 
 
 Before deep debugging:
 
-```bash
+```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
 curl http://localhost:8080/health
@@ -44,13 +44,13 @@ Then verify:
 
 ### Fix
 
-```bash
+```
 conda activate scipion4Web
 ```
 
 If using the wrapper script, re-run commands from the ScipionAPI bundle directory:
 
-```bash
+```
 ./scripts/scipionapi status
 ```
 
@@ -67,7 +67,7 @@ If using the wrapper script, re-run commands from the ScipionAPI bundle director
 
 ### Test manually
 
-```bash
+```
 psql -U user -d db
 ```
 
@@ -97,7 +97,7 @@ psql -U user -d db
 
 Check Redis service status:
 
-```bash
+```
 sudo systemctl status redis-server
 ```
 
@@ -120,7 +120,7 @@ BROKER_URL=redis://localhost:6379/0
 
 ### Useful commands
 
-```bash
+```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
 ```
@@ -172,7 +172,7 @@ Recommended sequence:
 
 ## When in Doubt (Recovery Loop)
 
-```bash
+```
 ./scripts/scipionapi stop
 ./scripts/scipionapi logs
 ./scripts/scipionapi start

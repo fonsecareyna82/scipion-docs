@@ -80,22 +80,22 @@ If background execution is expected, a healthy Celery worker and Redis broker ar
 
 ## Recommended Reading Paths
 
-=== "Backend developer onboarding"
+### Backend developer onboarding
 
-    1. [Architecture](architecture/)
-    2. [FastAPI App and Routers](fastapi/)
-    3. [Database and Alembic Migrations](database/)
-    4. [Authentication and JWT](auth/)
-    5. [Celery and Redis](celery/)
-    6. [Backend Troubleshooting](troubleshooting/)
+1. [Architecture](architecture/)
+2. [FastAPI App and Routers](fastapi/)
+3. [Database and Alembic Migrations](database/)
+4. [Authentication and JWT](auth/)
+5. [Celery and Redis](celery/)
+6. [Backend Troubleshooting](troubleshooting/)
 
-=== "Ops / deployment debugging"
+### Ops / deployment debugging
 
-    1. [FastAPI App and Routers](fastapi/)
-    2. [Database and Alembic Migrations](database/)
-    3. [Celery and Redis](celery/)
-    4. [Backend Troubleshooting](troubleshooting/)
-    5. [Logs and PID Files](../operations/logs-and-pids/)
+1. [FastAPI App and Routers](fastapi/)
+2. [Database and Alembic Migrations](database/)
+3. [Celery and Redis](celery/)
+4. [Backend Troubleshooting](troubleshooting/)
+5. [Logs and PID Files](../operations/logs-and-pids/)
 
 ---
 

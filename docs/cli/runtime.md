@@ -44,7 +44,7 @@ A practical sequence is:
 
 Starts the API and Celery worker.
 
-```bash
+```
 ./scripts/scipionapi start
 ```
 
@@ -59,7 +59,7 @@ Typical behavior:
 
 Stops API and Celery.
 
-```bash
+```
 ./scripts/scipionapi stop
 ```
 
@@ -74,7 +74,7 @@ Typical behavior:
 
 Stops and starts services again.
 
-```bash
+```
 ./scripts/scipionapi restart
 ```
 
@@ -91,7 +91,7 @@ Useful after:
 
 Shows whether services are running.
 
-```bash
+```
 ./scripts/scipionapi status
 ```
 
@@ -104,7 +104,7 @@ Shows whether services are running.
 
 Tails application logs.
 
-```bash
+```
 ./scripts/scipionapi logs
 ```
 

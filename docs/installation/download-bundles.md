@@ -51,25 +51,25 @@ The Web ZIP can remain unextracted if you plan to pass it directly to `provision
 
 ## Download the bundles
 
-=== "Using wget"
+### Using wget
 
-    ```bash
-    mkdir -p "$HOME/scipionweb"
-    cd "$HOME/scipionweb"
+```
+mkdir -p "$HOME/scipionweb"
+cd "$HOME/scipionweb"
 
-    wget "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip"
-    wget "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip"
-    ```
+wget "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip"
+wget "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip"
+```
 
-=== "Using curl"
+### Using curl
 
-    ```bash
-    mkdir -p "$HOME/scipionweb"
-    cd "$HOME/scipionweb"
+```
+mkdir -p "$HOME/scipionweb"
+cd "$HOME/scipionweb"
 
-    curl -O "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip"
-    curl -O "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip"
-    ```
+curl -O "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip"
+curl -O "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip"
+```
 
 !!! warning "Optional Web bundle"
     If you do **not** need integrated mode, you may skip downloading `ScipionWeb-<version>-dist.zip`.
@@ -78,7 +78,7 @@ The Web ZIP can remain unextracted if you plan to pass it directly to `provision
 
 ## Extract the API bundle
 
-```bash
+```
 unzip ScipionAPI-<version>.zip
 cd ScipionAPI-<version>
 ```
@@ -112,7 +112,7 @@ Manual extraction of the Web bundle is optional and mostly useful for inspection
 
 If you want to inspect it manually, extract it with:
 
-```bash
+```
 unzip ScipionWeb-<version>-dist.zip
 ```
 

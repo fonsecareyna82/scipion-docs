@@ -8,7 +8,7 @@ This document explains how to package the ScipionAPI backend into a distributabl
 
 From repo root:
 
-```bash
+```
 git clean -xfd
 ```
 
@@ -46,7 +46,7 @@ __pycache__/
 
 # Step 4 — Create Release Folder
 
-```bash
+```
 mkdir scipionapi-1.2.0
 rsync -av --exclude scipion_home --exclude .run ./ scipionapi-1.2.0/
 ```
@@ -55,7 +55,7 @@ rsync -av --exclude scipion_home --exclude .run ./ scipionapi-1.2.0/
 
 # Step 5 — Create ZIP
 
-```bash
+```
 zip -r scipionapi-1.2.0-linux-x86_64.zip scipionapi-1.2.0/
 ```
 
@@ -73,7 +73,7 @@ https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
 
 # Optional: Checksum
 
-```bash
+```
 sha256sum scipionapi-1.2.0-linux-x86_64.zip > scipionapi-1.2.0.sha256
 ```
 

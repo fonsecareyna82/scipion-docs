@@ -148,14 +148,14 @@ Protect runtime configuration and data:
 
 Example:
 
-```bash
+```
 chmod 600 scipion_home/.env
 chmod -R 750 scipion_home
 ```
 
 Optional ownership fix:
 
-```bash
+```
 chown -R youruser:yourgroup scipion_home
 ```
 

@@ -33,16 +33,27 @@ This avoids asking users to install the backend without the web interface they a
 
 Run the command from inside the extracted **ScipionAPI** directory and pass the compiled Web bundle ZIP with `--web-dist`:
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
-  --pass "changeMe" \
   --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
 ```
 
-!!! warning "Credentials in shell history"
-    Passing passwords directly on the command line may store them in your shell history. Use a temporary admin password for installation and change it afterwards if required.
+The CLI will ask for the admin password using a hidden prompt.
+
+For automated installations, store the admin password in an environment variable and pass its name with `--password-env`:
+
+```
+./scripts/scipionapi provision \
+  --user "admin" \
+  --email "admin@example.com" \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD \
+  --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
+```
+
+!!! note "Password options"
+    `--pass` and `--password` are still supported for compatibility, but `--password-env` or the hidden prompt are preferred because command-line arguments may be stored in shell history.
 
 ---
 
@@ -52,11 +63,10 @@ API-only mode is available, but it is mainly useful for developers, infrastructu
 
 Use it only if you intentionally do **not** want ScipionAPI to serve the compiled Web UI:
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe"
+  --email "admin@example.com"
 ```
 
 In API-only mode:
@@ -100,8 +110,9 @@ A typical integrated-mode run performs these steps in sequence:
 
 Run these checks immediately:
 
-```bash
+```
 ./scripts/scipionapi status
+./scripts/scipionapi doctor --quick
 ./scripts/scipionapi logs
 curl http://localhost:8080/health
 ```
@@ -119,7 +130,7 @@ You may safely re-run `provision` in most common cases:
 
 - it does **not** recreate the Conda environment if it already exists
 - it does **not** drop existing databases
-- it updates admin credentials if needed
+- it updates admin credentials when a password is provided
 - it redeploys the Web bundle if `--web-dist` is provided again
 
 That makes it useful after a failed first attempt once prerequisites are fixed.
@@ -129,7 +140,7 @@ That makes it useful after a failed first attempt once prerequisites are fixed.
 ## Common issues
 
 !!! warning "Conda not found"
-    Ensure `conda --version` works before running `provision`.
+    Ensure `conda --version` works before running `provision`, or set `SCIPIONAPI_CONDA_EXE` to the Conda executable path.
 
 !!! warning "PostgreSQL authentication failed"
     Verify the configured database credentials match the actual PostgreSQL role and password.
@@ -142,3 +153,6 @@ That makes it useful after a failed first attempt once prerequisites are fixed.
 
 !!! warning "Port already in use"
     If port `8080` is already in use, stop the conflicting service or update your configuration before provisioning.
+
+!!! tip "Use doctor for diagnostics"
+    Run `./scripts/scipionapi doctor` to inspect Conda, `.env`, PostgreSQL, Redis, imports, runtime PID files, and Web deployment state.

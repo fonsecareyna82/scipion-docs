@@ -166,26 +166,26 @@ Configuration guidance for decoupled frontend and backend deployments.
 
 ## Recommended Reading Paths
 
-=== "First-time deployment (integrated mode)"
+### First-time deployment (integrated mode)
 
-    1. [SCIPION_HOME and Runtime Layout](scipion-home/)
-    2. [Environment Variables (.env)](env/)
-    3. [API + Web Integrated Mode](integrated-mode/)
-    4. [Logs and PID Files](../operations/logs-and-pids/)
+1. [SCIPION_HOME and Runtime Layout](scipion-home/)
+2. [Environment Variables (.env)](env/)
+3. [API + Web Integrated Mode](integrated-mode/)
+4. [Logs and PID Files](../operations/logs-and-pids/)
 
-=== "Separate frontend/backend deployment"
+### Separate frontend/backend deployment
 
-    1. [SCIPION_HOME and Runtime Layout](scipion-home/)
-    2. [Environment Variables (.env)](env/)
-    3. [Separate Deployment](separate-deployment/)
-    4. [Security Notes](../operations/security/)
+1. [SCIPION_HOME and Runtime Layout](scipion-home/)
+2. [Environment Variables (.env)](env/)
+3. [Separate Deployment](separate-deployment/)
+4. [Security Notes](../operations/security/)
 
-=== "Troubleshooting configuration"
+### Troubleshooting configuration
 
-    1. [Environment Variables (.env)](env/)
-    2. [SCIPION_HOME and Runtime Layout](scipion-home/)
-    3. mode-specific page ([Integrated](integrated-mode/) or [Separate](separate-deployment/))
-    4. [Backend Troubleshooting](../backend/troubleshooting/)
+1. [Environment Variables (.env)](env/)
+2. [SCIPION_HOME and Runtime Layout](scipion-home/)
+3. Mode-specific page: [Integrated](integrated-mode/) or [Separate](separate-deployment/)
+4. [Backend Troubleshooting](../backend/troubleshooting/)
 
 ---
 

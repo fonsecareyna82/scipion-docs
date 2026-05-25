@@ -66,31 +66,35 @@ Start here if you work on ScipionAPI, ScipionWeb, CLI commands, backend internal
 
 ## Recommended deployment mode
 
-=== "Integrated Mode (recommended)"
-    The backend serves the compiled frontend and mounts the API under `/api`.
+### Integrated Mode (recommended)
 
-    - Web UI: `http://host:8080/`
-    - API docs: `http://host:8080/api/docs`
+The backend serves the compiled frontend and mounts the API under `/api`.
 
-    This is the recommended mode when installing ScipionWeb for users.
+- Web UI: `http://host:8080/`
+- API docs: `http://host:8080/api/docs`
 
-=== "Separate frontend/backend"
-    Use this when the frontend is hosted separately from the API, usually in more advanced infrastructure setups.
+This is the recommended mode when installing ScipionWeb for users.
 
-=== "API-only"
-    Use this mainly for development, testing, or deployments where another service provides the frontend.
+### Separate frontend/backend
+
+Use this when the frontend is hosted separately from the API, usually in more advanced infrastructure setups.
+
+### API-only
+
+Use this mainly for development, testing, or deployments where another service provides the frontend.
 
 ---
 
 ## Quick install example
 
-```bash
+```
 ./scripts/scipionapi provision \
   --user "admin" \
   --email "admin@example.com" \
-  --pass "changeMe" \
   --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
 ```
+
+The CLI will ask for the admin password using a hidden prompt.
 
 ---
 
@@ -104,4 +108,4 @@ Start here if you work on ScipionAPI, ScipionWeb, CLI commands, backend internal
     - PostgreSQL persistence
     - Celery + Redis background task execution
     - Integrated API + Web deployment mode
-    - CLI tools for installation, provisioning, runtime control, and logs
+    - CLI tools for installation, provisioning, diagnostics, runtime control, and logs

@@ -12,7 +12,7 @@ It assumes:
 
 # 1. Clone Repository
 
-```bash
+```
 git clone <repository-url>
 cd ScipionAPI
 ```
@@ -21,13 +21,13 @@ cd ScipionAPI
 
 # 2. Bootstrap Environment
 
-```bash
+```
 ./scripts/scipionapi bootstrap
 ```
 
 Activate environment:
 
-```bash
+```
 conda activate scipion4Web
 ```
 
@@ -37,18 +37,17 @@ conda activate scipion4Web
 
 Create a development runtime directory:
 
-```bash
+```
 export SCIPION_HOME=$(pwd)/scipion_home
 mkdir -p "$SCIPION_HOME"
 ```
 
 Run install:
 
-```bash
+```
 ./scripts/scipionapi install \
   --user admin \
-  --email admin@local \
-  --pass changeMe
+  --email admin@example.org
 ```
 
 ---
@@ -57,7 +56,7 @@ Run install:
 
 Instead of using `start`, run uvicorn manually:
 
-```bash
+```
 uvicorn app.backend.main:app --reload --host 0.0.0.0 --port 8080
 ```
 
@@ -69,7 +68,7 @@ This enables auto-reload on code changes.
 
 In another terminal:
 
-```bash
+```
 celery -A app.workers.task_queue worker --loglevel=info
 ```
 
