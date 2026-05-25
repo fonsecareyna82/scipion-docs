@@ -1474,6 +1474,8 @@
       
         
       
+        
+      
     
     
       
@@ -1701,6 +1703,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2500,11 +2523,23 @@
 </div>
 <hr />
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p><code>bash
+<p>Interactive mode asks for the admin password using a hidden prompt:</p>
+<pre><code>./scripts/scipionapi install \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot;
+</code></pre>
+<p>For automated runs, pass the name of an environment variable containing the password:</p>
+<pre><code>export SCIPIONAPI_ADMIN_PASSWORD=&quot;&lt;admin-password&gt;&quot;
+
 ./scripts/scipionapi install \
-  --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe"</code></p>
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot; \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Compatibility</p>
+<p><code>--pass</code> and <code>--password</code> are still supported, but they are not recommended because command-line arguments may be stored in shell history.</p>
+</div>
 <hr />
 <h2 id="mental-model">Mental model<a class="headerlink" href="#mental-model" title="Permanent link">&para;</a></h2>
 <p>Use <code>install</code> when:</p>
@@ -2517,6 +2552,7 @@
 <ol>
 <li><code>bootstrap</code></li>
 <li><code>install</code></li>
+<li><code>doctor</code></li>
 <li><code>start</code></li>
 </ol>
 <hr />
@@ -2530,6 +2566,7 @@
 <li>runs <code>alembic upgrade head</code></li>
 <li>creates or updates the admin user</li>
 </ol>
+<p>The admin password is used to create or update the user but is not persisted as <code>ADMIN_PASSWORD</code> in <code>.env</code>.</p>
 <hr />
 <h2 id="database-creation-behavior">Database Creation Behavior<a class="headerlink" href="#database-creation-behavior" title="Permanent link">&para;</a></h2>
 <h3 id="automatic-local-database-bootstrap">Automatic local database bootstrap<a class="headerlink" href="#automatic-local-database-bootstrap" title="Permanent link">&para;</a></h3>
@@ -2537,24 +2574,25 @@
 <h3 id="remote-postgresql">Remote PostgreSQL<a class="headerlink" href="#remote-postgresql" title="Permanent link">&para;</a></h3>
 <p>If you use a remote PostgreSQL server:</p>
 <ul>
-<li>create the database and role manually</li>
+<li>create the database and role manually, or provide PostgreSQL admin credentials through the supported environment variables</li>
 <li>ensure <code>.env</code> contains a valid <code>DATABASE_URL</code></li>
 <li>confirm connectivity before running <code>install</code></li>
 </ul>
 <hr />
 <h2 id="what-to-do-next">What to do next<a class="headerlink" href="#what-to-do-next" title="Permanent link">&para;</a></h2>
 <p>After <code>install</code>, continue with:</p>
-<p><code>bash
+<pre><code>./scripts/scipionapi doctor
 ./scripts/scipionapi start
 ./scripts/scipionapi status
-curl http://localhost:8080/health</code></p>
+curl http://localhost:8080/health
+</code></pre>
 <hr />
 <h2 id="idempotent-behavior">Idempotent Behavior<a class="headerlink" href="#idempotent-behavior" title="Permanent link">&para;</a></h2>
 <p>Running <code>install</code> again is generally safe.</p>
 <p>Typical behavior:</p>
 <ul>
 <li>does <strong>not</strong> drop the database</li>
-<li>updates admin credentials if needed</li>
+<li>updates admin credentials if a password is provided</li>
 <li>ensures migrations are applied and up to date</li>
 </ul>
 <hr />
@@ -2570,6 +2608,10 @@ curl http://localhost:8080/health</code></p>
 <div class="admonition warning">
 <p class="admonition-title">Admin user not updated as expected</p>
 <p>Re-run <code>install</code> with explicit options and inspect output or logs for validation errors.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Environment looks inconsistent</p>
+<p>Run <code>./scripts/scipionapi doctor</code> to inspect Conda, <code>.env</code>, database, Redis, imports, and runtime state.</p>
 </div>
 
 

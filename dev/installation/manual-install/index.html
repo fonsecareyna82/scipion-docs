@@ -1607,6 +1607,8 @@
       
         
       
+        
+      
     
     
       
@@ -1706,6 +1708,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2534,16 +2557,16 @@
 <hr />
 <h2 id="1-create-conda-environment">1. Create Conda Environment<a class="headerlink" href="#1-create-conda-environment" title="Permanent link">&para;</a></h2>
 <p>Run the following commands from inside the extracted <strong>ScipionAPI</strong> directory:</p>
-<p><code>bash
-conda create -n scipion4Web python=3.8 -y
+<pre><code>conda create -n scipion4Web python=3.8 -y
 conda activate scipion4Web
-python -m pip install --upgrade pip</code></p>
+python -m pip install --upgrade pip
+</code></pre>
 <hr />
 <h2 id="2-install-dependencies">2. Install Dependencies<a class="headerlink" href="#2-install-dependencies" title="Permanent link">&para;</a></h2>
-<p><code>bash
-pip install -r requirements.txt
+<pre><code>pip install -r requirements.txt
 pip install -e .
-scipionapi --help</code></p>
+scipionapi --help
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Editable install</p>
 <p><code>pip install -e .</code> is recommended for local development because code changes are picked up without reinstalling the package.</p>
@@ -2562,36 +2585,36 @@ scipionapi --help</code></p>
 <hr />
 <h2 id="4-configure-environment-env">4. Configure Environment (<code>.env</code>)<a class="headerlink" href="#4-configure-environment-env" title="Permanent link">&para;</a></h2>
 <p>Create a runtime workspace such as:</p>
-<p><code>bash
-mkdir -p scipion_home
-export SCIPION_HOME="$(pwd)/scipion_home"</code></p>
+<pre><code>mkdir -p scipion_home
+export SCIPION_HOME=&quot;$(pwd)/scipion_home&quot;
+</code></pre>
 <p>Then create:</p>
-<p><code>text
-scipion_home/.env</code></p>
+<pre><code class="language-text">scipion_home/.env
+</code></pre>
 <p>Populate it with a valid <code>DATABASE_URL</code>, <code>SECRET_KEY</code>, API host and port, broker URL, and runtime paths.</p>
 <hr />
 <h2 id="5-run-alembic-migrations">5. Run Alembic Migrations<a class="headerlink" href="#5-run-alembic-migrations" title="Permanent link">&para;</a></h2>
 <p>Load the environment values and apply migrations:</p>
-<p><code>bash
-set -a
+<pre><code>set -a
 source scipion_home/.env
 set +a
-alembic upgrade head</code></p>
+alembic upgrade head
+</code></pre>
 <p>At this point the database schema should be ready.</p>
 <hr />
 <h2 id="6-create-admin-user">6. Create Admin User<a class="headerlink" href="#6-create-admin-user" title="Permanent link">&para;</a></h2>
 <p>Run:</p>
-<p><code>bash
-scipionapi install \
-  --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe"</code></p>
+<pre><code>scipionapi install \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot; \
+  --pass &quot;changeMe&quot;
+</code></pre>
 <p>This step ensures the admin user exists and aligns runtime configuration with the installation state.</p>
 <hr />
 <h2 id="7-start-services">7. Start Services<a class="headerlink" href="#7-start-services" title="Permanent link">&para;</a></h2>
 <p>Start the API and the Celery worker, then verify:</p>
-<p><code>bash
-curl http://localhost:8080/health</code></p>
+<pre><code>curl http://localhost:8080/health
+</code></pre>
 <p>If you are running manually, keep API and worker logs visible in separate terminals while testing.</p>
 <hr />
 <h2 id="when-this-path-is-best">When this path is best<a class="headerlink" href="#when-this-path-is-best" title="Permanent link">&para;</a></h2>

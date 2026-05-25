@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2529,8 +2552,8 @@
 
 <h1 id="fastapi-app-and-routers">FastAPI App and Routers<a class="headerlink" href="#fastapi-app-and-routers" title="Permanent link">&para;</a></h1>
 <p>The FastAPI application is defined in:</p>
-<p><code>text
-app/backend/main.py</code></p>
+<pre><code class="language-text">app/backend/main.py
+</code></pre>
 <p>This module is responsible for application initialization, middleware/error setup, router registration, and exposing the API runtime.</p>
 <hr />
 <h2 id="application-initialization">Application Initialization<a class="headerlink" href="#application-initialization" title="Permanent link">&para;</a></h2>
@@ -2551,11 +2574,11 @@ app/backend/main.py</code></p>
 <h2 id="cors-configuration">CORS Configuration<a class="headerlink" href="#cors-configuration" title="Permanent link">&para;</a></h2>
 <p>CORS is defined in <code>main.py</code>.</p>
 <p>Example (development):</p>
-<p><code>python
-allow_origins = [
-    "http://localhost:5173",
-    "http://localhost:5174"
-]</code></p>
+<pre><code class="language-python">allow_origins = [
+    &quot;http://localhost:5173&quot;,
+    &quot;http://localhost:5174&quot;
+]
+</code></pre>
 <p>Production guidance:</p>
 <ul>
 <li>Restrict origins to trusted frontend URLs</li>
@@ -2569,8 +2592,8 @@ allow_origins = [
 <hr />
 <h2 id="router-modules">Router Modules<a class="headerlink" href="#router-modules" title="Permanent link">&para;</a></h2>
 <p>Router modules are typically located in:</p>
-<p><code>text
-app/backend/api/routers/</code></p>
+<pre><code class="language-text">app/backend/api/routers/
+</code></pre>
 <p>Common router groups include:</p>
 <ul>
 <li><code>project_router</code></li>
@@ -2585,10 +2608,10 @@ app/backend/api/routers/</code></p>
 </div>
 <hr />
 <h2 id="example-router-pattern">Example Router Pattern<a class="headerlink" href="#example-router-pattern" title="Permanent link">&para;</a></h2>
-<p><code>python
-@router.get("/projects")
+<pre><code class="language-python">@router.get(&quot;/projects&quot;)
 def listProjects():
-    return service.getProjects()</code></p>
+    return service.getProjects()
+</code></pre>
 <p>This illustrates the desired pattern:</p>
 <ul>
 <li>router defines HTTP endpoint</li>
@@ -2601,8 +2624,8 @@ def listProjects():
 <hr />
 <h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
 <p>Custom error handlers are registered via:</p>
-<p><code>text
-registerAllErrorHandlers(app)</code></p>
+<pre><code class="language-text">registerAllErrorHandlers(app)
+</code></pre>
 <p>Typical handled categories:</p>
 <ul>
 <li>Validation errors</li>
@@ -2619,11 +2642,11 @@ registerAllErrorHandlers(app)</code></p>
 <hr />
 <h2 id="openapi-docs">OpenAPI Docs<a class="headerlink" href="#openapi-docs" title="Permanent link">&para;</a></h2>
 <p>FastAPI documentation is available at:</p>
-<p><code>text
-/docs</code></p>
+<pre><code class="language-text">/docs
+</code></pre>
 <p>In integrated mode, it is commonly available at:</p>
-<p><code>text
-/api/docs</code></p>
+<pre><code class="language-text">/api/docs
+</code></pre>
 <p><em>(actual final path depends on API mount configuration)</em></p>
 <div class="admonition tip">
 <p class="admonition-title">Integrated mode reminder</p>
@@ -2632,11 +2655,11 @@ registerAllErrorHandlers(app)</code></p>
 <hr />
 <h2 id="health-endpoint">Health Endpoint<a class="headerlink" href="#health-endpoint" title="Permanent link">&para;</a></h2>
 <p>Health endpoint:</p>
-<p><code>text
-GET /health</code></p>
+<pre><code class="language-text">GET /health
+</code></pre>
 <p>Expected response:</p>
-<p><code>json
-{"status":"ok"}</code></p>
+<pre><code class="language-json">{&quot;status&quot;:&quot;ok&quot;}
+</code></pre>
 <p>Use it for:</p>
 <ul>
 <li>runtime validation after startup</li>
@@ -2647,9 +2670,9 @@ GET /health</code></p>
 <hr />
 <h2 id="operational-checks">Operational Checks<a class="headerlink" href="#operational-checks" title="Permanent link">&para;</a></h2>
 <p>After starting services:</p>
-<p><code>bash
-./scripts/scipionapi status
-curl http://localhost:8080/health</code></p>
+<pre><code>./scripts/scipionapi status
+curl http://localhost:8080/health
+</code></pre>
 <p>If requests fail in browser but <code>curl</code> works, inspect:</p>
 <ul>
 <li>CORS configuration</li>

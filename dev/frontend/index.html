@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2405,8 +2428,8 @@
 <hr />
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <p>High-level request flow:</p>
-<p><code>text
-Browser → React App → REST API → Backend</code></p>
+<pre><code class="language-text">Browser → React App → REST API → Backend
+</code></pre>
 <p>The frontend communicates with ScipionAPI through HTTP requests only.</p>
 <hr />
 <h2 id="build-and-distribution-model">Build and Distribution Model<a class="headerlink" href="#build-and-distribution-model" title="Permanent link">&para;</a></h2>
@@ -2423,8 +2446,8 @@ Browser → React App → REST API → Backend</code></p>
 <hr />
 <h2 id="runtime-api-configuration">Runtime API Configuration<a class="headerlink" href="#runtime-api-configuration" title="Permanent link">&para;</a></h2>
 <p>The frontend API base URL is controlled by:</p>
-<p><code>dotenv
-VITE_API_URL</code></p>
+<pre><code class="language-dotenv">VITE_API_URL
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Build-time + runtime behavior</p>
 <p>The frontend can use <code>VITE_API_URL</code> at build time and may also consume injected runtime configuration in integrated mode.</p>

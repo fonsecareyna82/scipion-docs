@@ -1470,6 +1470,8 @@
       
         
       
+        
+      
     
     
       
@@ -1572,6 +1574,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2283,11 +2306,14 @@
 <hr />
 <h1 id="2-configure-python-interpreter">2. Configure Python Interpreter<a class="headerlink" href="#2-configure-python-interpreter" title="Permanent link">&para;</a></h1>
 <p>Go to:</p>
-<p><code>Settings → Project → Python Interpreter</code></p>
+<pre><code>Settings → Project → Python Interpreter
+</code></pre>
 <p>Select:</p>
-<p><code>Conda environment → scipion4Web</code></p>
+<pre><code>Conda environment → scipion4Web
+</code></pre>
 <p>If not detected, manually point to:</p>
-<p><code>~/miniconda3/envs/scipion4Web/bin/python</code></p>
+<pre><code>~/miniconda3/envs/scipion4Web/bin/python
+</code></pre>
 <hr />
 <h1 id="3-create-run-configuration">3. Create Run Configuration<a class="headerlink" href="#3-create-run-configuration" title="Permanent link">&para;</a></h1>
 <p>Create a new Python configuration:</p>
@@ -2295,13 +2321,17 @@
 <li>Script path: leave empty</li>
 <li>Module name:</li>
 </ul>
-<p><code>uvicorn</code></p>
+<pre><code>uvicorn
+</code></pre>
 <p>Parameters:</p>
-<p><code>app.backend.main:app --reload --host 0.0.0.0 --port 8080</code></p>
+<pre><code>app.backend.main:app --reload --host 0.0.0.0 --port 8080
+</code></pre>
 <p>Working directory:</p>
-<p><code>&lt;project-root&gt;</code></p>
+<pre><code>&lt;project-root&gt;
+</code></pre>
 <p>Environment variables:</p>
-<p><code>SCIPION_HOME=/absolute/path/to/scipion_home</code></p>
+<pre><code>SCIPION_HOME=/absolute/path/to/scipion_home
+</code></pre>
 <hr />
 <h1 id="4-enable-debugging">4. Enable Debugging<a class="headerlink" href="#4-enable-debugging" title="Permanent link">&para;</a></h1>
 <p>Set breakpoints inside:</p>

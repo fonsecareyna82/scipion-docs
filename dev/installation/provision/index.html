@@ -1571,6 +1571,8 @@
       
         
       
+        
+      
     
     
       
@@ -1670,6 +1672,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2454,25 +2477,31 @@
 </ul>
 <p>This avoids asking users to install the backend without the web interface they actually need to use the platform.</p>
 <p>Run the command from inside the extracted <strong>ScipionAPI</strong> directory and pass the compiled Web bundle ZIP with <code>--web-dist</code>:</p>
-<p><code>bash
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe" \
-  --web-dist "$HOME/scipionweb/ScipionWeb-&lt;version&gt;-dist.zip"</code></p>
-<div class="admonition warning">
-<p class="admonition-title">Credentials in shell history</p>
-<p>Passing passwords directly on the command line may store them in your shell history. Use a temporary admin password for installation and change it afterwards if required.</p>
+<pre><code>./scripts/scipionapi provision \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot; \
+  --web-dist &quot;$HOME/scipionweb/ScipionWeb-&lt;version&gt;-dist.zip&quot;
+</code></pre>
+<p>The CLI will ask for the admin password using a hidden prompt.</p>
+<p>For automated installations, store the admin password in an environment variable and pass its name with <code>--password-env</code>:</p>
+<pre><code>./scripts/scipionapi provision \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot; \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD \
+  --web-dist &quot;$HOME/scipionweb/ScipionWeb-&lt;version&gt;-dist.zip&quot;
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Password options</p>
+<p><code>--pass</code> and <code>--password</code> are still supported for compatibility, but <code>--password-env</code> or the hidden prompt are preferred because command-line arguments may be stored in shell history.</p>
 </div>
 <hr />
 <h2 id="api-only-mode">API-only mode<a class="headerlink" href="#api-only-mode" title="Permanent link">&para;</a></h2>
 <p>API-only mode is available, but it is mainly useful for developers, infrastructure testing, or deployments where the frontend is hosted separately.</p>
 <p>Use it only if you intentionally do <strong>not</strong> want ScipionAPI to serve the compiled Web UI:</p>
-<p><code>bash
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe"</code></p>
+<pre><code>./scripts/scipionapi provision \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot;
+</code></pre>
 <p>In API-only mode:</p>
 <ul>
 <li>the API is served directly by the backend</li>
@@ -2506,10 +2535,11 @@
 <hr />
 <h2 id="what-to-verify-after-it-finishes">What to verify after it finishes<a class="headerlink" href="#what-to-verify-after-it-finishes" title="Permanent link">&para;</a></h2>
 <p>Run these checks immediately:</p>
-<p><code>bash
-./scripts/scipionapi status
+<pre><code>./scripts/scipionapi status
+./scripts/scipionapi doctor --quick
 ./scripts/scipionapi logs
-curl http://localhost:8080/health</code></p>
+curl http://localhost:8080/health
+</code></pre>
 <p>For the recommended integrated mode, also verify that:</p>
 <ul>
 <li><code>http://localhost:8080/</code> loads the Web UI</li>
@@ -2521,7 +2551,7 @@ curl http://localhost:8080/health</code></p>
 <ul>
 <li>it does <strong>not</strong> recreate the Conda environment if it already exists</li>
 <li>it does <strong>not</strong> drop existing databases</li>
-<li>it updates admin credentials if needed</li>
+<li>it updates admin credentials when a password is provided</li>
 <li>it redeploys the Web bundle if <code>--web-dist</code> is provided again</li>
 </ul>
 <p>That makes it useful after a failed first attempt once prerequisites are fixed.</p>
@@ -2529,7 +2559,7 @@ curl http://localhost:8080/health</code></p>
 <h2 id="common-issues">Common issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Conda not found</p>
-<p>Ensure <code>conda --version</code> works before running <code>provision</code>.</p>
+<p>Ensure <code>conda --version</code> works before running <code>provision</code>, or set <code>SCIPIONAPI_CONDA_EXE</code> to the Conda executable path.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">PostgreSQL authentication failed</p>
@@ -2546,6 +2576,10 @@ curl http://localhost:8080/health</code></p>
 <div class="admonition warning">
 <p class="admonition-title">Port already in use</p>
 <p>If port <code>8080</code> is already in use, stop the conflicting service or update your configuration before provisioning.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Use doctor for diagnostics</p>
+<p>Run <code>./scripts/scipionapi doctor</code> to inspect Conda, <code>.env</code>, PostgreSQL, Redis, imports, runtime PID files, and Web deployment state.</p>
 </div>
 
 

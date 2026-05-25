@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2801,10 +2824,10 @@
 <hr />
 <h2 id="quick-triage-checklist">Quick Triage Checklist<a class="headerlink" href="#quick-triage-checklist" title="Permanent link">&para;</a></h2>
 <p>Before deep debugging:</p>
-<p><code>bash
-./scripts/scipionapi status
+<pre><code>./scripts/scipionapi status
 ./scripts/scipionapi logs
-curl http://localhost:8080/health</code></p>
+curl http://localhost:8080/health
+</code></pre>
 <p>Then verify:</p>
 <ul>
 <li><code>SCIPION_HOME</code> points to the expected runtime workspace</li>
@@ -2818,11 +2841,11 @@ curl http://localhost:8080/health</code></p>
 <li>Not running inside the correct Conda environment</li>
 </ul>
 <h3 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">&para;</a></h3>
-<p><code>bash
-conda activate scipion4Web</code></p>
+<pre><code>conda activate scipion4Web
+</code></pre>
 <p>If using the wrapper script, re-run commands from the ScipionAPI bundle directory:</p>
-<p><code>bash
-./scripts/scipionapi status</code></p>
+<pre><code>./scripts/scipionapi status
+</code></pre>
 <hr />
 <h2 id="2-database-connection-error">2. Database Connection Error<a class="headerlink" href="#2-database-connection-error" title="Permanent link">&para;</a></h2>
 <h3 id="check">Check<a class="headerlink" href="#check" title="Permanent link">&para;</a></h3>
@@ -2833,8 +2856,8 @@ conda activate scipion4Web</code></p>
 <li>Network/firewall access is correct (remote DB setups)</li>
 </ul>
 <h3 id="test-manually">Test manually<a class="headerlink" href="#test-manually" title="Permanent link">&para;</a></h3>
-<p><code>bash
-psql -U user -d db</code></p>
+<pre><code>psql -U user -d db
+</code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Credential mismatches</p>
 <p>If <code>.env</code> was changed recently, ensure the running service was restarted and is not using stale environment values.</p>
@@ -2857,11 +2880,11 @@ psql -U user -d db</code></p>
 <hr />
 <h2 id="4-redis-connection-error">4. Redis Connection Error<a class="headerlink" href="#4-redis-connection-error" title="Permanent link">&para;</a></h2>
 <p>Check Redis service status:</p>
-<p><code>bash
-sudo systemctl status redis-server</code></p>
+<pre><code>sudo systemctl status redis-server
+</code></pre>
 <p>Also verify the broker URL in <code>.env</code>:</p>
-<p><code>dotenv
-BROKER_URL=redis://localhost:6379/0</code></p>
+<pre><code class="language-dotenv">BROKER_URL=redis://localhost:6379/0
+</code></pre>
 <hr />
 <h2 id="5-celery-worker-not-processing-tasks">5. Celery Worker Not Processing Tasks<a class="headerlink" href="#5-celery-worker-not-processing-tasks" title="Permanent link">&para;</a></h2>
 <h3 id="check_1">Check<a class="headerlink" href="#check_1" title="Permanent link">&para;</a></h3>
@@ -2872,9 +2895,9 @@ BROKER_URL=redis://localhost:6379/0</code></p>
 <li><code>BROKER_URL</code> matches between API and worker runtime</li>
 </ul>
 <h3 id="useful-commands">Useful commands<a class="headerlink" href="#useful-commands" title="Permanent link">&para;</a></h3>
-<p><code>bash
-./scripts/scipionapi status
-./scripts/scipionapi logs</code></p>
+<pre><code>./scripts/scipionapi status
+./scripts/scipionapi logs
+</code></pre>
 <hr />
 <h2 id="6-cors-errors">6. CORS Errors<a class="headerlink" href="#6-cors-errors" title="Permanent link">&para;</a></h2>
 <h3 id="ensure">Ensure<a class="headerlink" href="#ensure" title="Permanent link">&para;</a></h3>
@@ -2915,12 +2938,12 @@ BROKER_URL=redis://localhost:6379/0</code></p>
 </ol>
 <hr />
 <h2 id="when-in-doubt-recovery-loop">When in Doubt (Recovery Loop)<a class="headerlink" href="#when-in-doubt-recovery-loop" title="Permanent link">&para;</a></h2>
-<p><code>bash
-./scripts/scipionapi stop
+<pre><code>./scripts/scipionapi stop
 ./scripts/scipionapi logs
 ./scripts/scipionapi start
 ./scripts/scipionapi status
-curl http://localhost:8080/health</code></p>
+curl http://localhost:8080/health
+</code></pre>
 <p>If the problem persists, isolate by subsystem:</p>
 <ul>
 <li>API startup only</li>

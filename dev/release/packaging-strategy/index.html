@@ -1465,6 +1465,8 @@
       
         
       
+        
+      
     
     
       
@@ -1564,6 +1566,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2295,20 +2318,22 @@
 <hr />
 <h1 id="bundle-layout">Bundle Layout<a class="headerlink" href="#bundle-layout" title="Permanent link">&para;</a></h1>
 <h2 id="api-bundle">API Bundle<a class="headerlink" href="#api-bundle" title="Permanent link">&para;</a></h2>
-<p><code>scipionapi-X.Y.Z/
+<pre><code>scipionapi-X.Y.Z/
 ├── alembic/
 ├── app/
 ├── scipionapi_cli/
 ├── scripts/
 ├── requirements.txt
 ├── pyproject.toml
-└── README.md</code></p>
+└── README.md
+</code></pre>
 <h2 id="web-bundle">Web Bundle<a class="headerlink" href="#web-bundle" title="Permanent link">&para;</a></h2>
-<p><code>scipionweb-X.Y.Z/
+<pre><code>scipionweb-X.Y.Z/
 └── dist/
     ├── index.html
     ├── assets/
-    └── config.js (runtime injected)</code></p>
+    └── config.js (runtime injected)
+</code></pre>
 <hr />
 <h1 id="why-two-bundles">Why Two Bundles?<a class="headerlink" href="#why-two-bundles" title="Permanent link">&para;</a></h1>
 <p>Separation enables:</p>
@@ -2349,9 +2374,11 @@
 <hr />
 <h1 id="versioning-strategy">Versioning Strategy<a class="headerlink" href="#versioning-strategy" title="Permanent link">&para;</a></h1>
 <p>Recommended:</p>
-<p><code>MAJOR.MINOR.PATCH</code></p>
+<pre><code>MAJOR.MINOR.PATCH
+</code></pre>
 <p>Example:</p>
-<p><code>1.2.0</code></p>
+<pre><code>1.2.0
+</code></pre>
 <p>Where:</p>
 <ul>
 <li>MAJOR: breaking schema/runtime</li>
@@ -2360,12 +2387,14 @@
 </ul>
 <hr />
 <h1 id="release-artifact-naming">Release Artifact Naming<a class="headerlink" href="#release-artifact-naming" title="Permanent link">&para;</a></h1>
-<p><code>scipionapi-1.2.0-linux-x86_64.zip
-scipionweb-1.2.0-dist.zip</code></p>
+<pre><code>scipionapi-1.2.0-linux-x86_64.zip
+scipionweb-1.2.0-dist.zip
+</code></pre>
 <hr />
 <h1 id="distribution-endpoint">Distribution Endpoint<a class="headerlink" href="#distribution-endpoint" title="Permanent link">&para;</a></h1>
 <p>Example:</p>
-<p><code>https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/</code></p>
+<pre><code>https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
+</code></pre>
 <hr />
 <h1 id="design-principles">Design Principles<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h1>
 <p>✔ No git required<br />

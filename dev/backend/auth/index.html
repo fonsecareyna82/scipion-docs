@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -1855,6 +1878,15 @@
   <a href="#debugging-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       Debugging Checklist
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigation
     </span>
   </a>
   
@@ -2461,6 +2493,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigation
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2482,8 +2523,8 @@
 <h1 id="authentication-and-jwt">Authentication and JWT<a class="headerlink" href="#authentication-and-jwt" title="Permanent link">&para;</a></h1>
 <p>ScipionAPI uses <strong>JWT-based authentication</strong> for API access control.</p>
 <p>Algorithm:</p>
-<p><code>text
-HS256</code></p>
+<pre><code class="language-text">HS256
+</code></pre>
 <hr />
 <h2 id="token-model">Token Model<a class="headerlink" href="#token-model" title="Permanent link">&para;</a></h2>
 <p>Common token concepts:</p>
@@ -2508,8 +2549,8 @@ HS256</code></p>
 <hr />
 <h2 id="authorization-header">Authorization Header<a class="headerlink" href="#authorization-header" title="Permanent link">&para;</a></h2>
 <p>Clients must send:</p>
-<p><code>text
-Authorization: Bearer &lt;token&gt;</code></p>
+<pre><code class="language-text">Authorization: Bearer &lt;token&gt;
+</code></pre>
 <p>This header is typically included on protected API requests.</p>
 <div class="admonition warning">
 <p class="admonition-title">Common client error</p>
@@ -2518,8 +2559,8 @@ Authorization: Bearer &lt;token&gt;</code></p>
 <hr />
 <h2 id="jwt-verification">JWT Verification<a class="headerlink" href="#jwt-verification" title="Permanent link">&para;</a></h2>
 <p>JWT verification is performed in:</p>
-<p><code>text
-api/dependencies.py</code></p>
+<pre><code class="language-text">api/dependencies.py
+</code></pre>
 <p>Typical verification steps:</p>
 <ol>
 <li>Decode token using <code>SECRET_KEY</code></li>
@@ -2534,8 +2575,8 @@ api/dependencies.py</code></p>
 <hr />
 <h2 id="secret_key"><code>SECRET_KEY</code><a class="headerlink" href="#secret_key" title="Permanent link">&para;</a></h2>
 <p>Defined in <code>.env</code>:</p>
-<p><code>dotenv
-SECRET_KEY=...</code></p>
+<pre><code class="language-dotenv">SECRET_KEY=...
+</code></pre>
 <p>Requirements:</p>
 <ul>
 <li>Strong</li>
@@ -2586,12 +2627,12 @@ SECRET_KEY=...</code></p>
 </div>
 <hr />
 <h2 id="debugging-checklist">Debugging Checklist<a class="headerlink" href="#debugging-checklist" title="Permanent link">&para;</a></h2>
-<p>```bash</p>
-<h1 id="check-runtime-health-first">Check runtime health first<a class="headerlink" href="#check-runtime-health-first" title="Permanent link">&para;</a></h1>
-<p>curl http://localhost:8080/health</p>
-<h1 id="then-inspect-backend-logs">Then inspect backend logs<a class="headerlink" href="#then-inspect-backend-logs" title="Permanent link">&para;</a></h1>
-<p>./scripts/scipionapi logs
-```</p>
+<pre><code># Check runtime health first
+curl http://localhost:8080/health
+
+# Then inspect backend logs
+./scripts/scipionapi logs
+</code></pre>
 <p>Inspect:</p>
 <ul>
 <li>auth-related exceptions</li>

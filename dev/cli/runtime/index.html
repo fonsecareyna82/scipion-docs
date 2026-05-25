@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://fonsecareyna82.github.io/scipion-docs/dev/cli/runtime/">
       
       
-        <link rel="prev" href="../provision/">
+        <link rel="prev" href="../doctor/">
       
       
         <link rel="next" href="../../backend/">
@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1572,6 +1574,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2515,8 +2538,8 @@
 <hr />
 <h2 id="start"><code>start</code><a class="headerlink" href="#start" title="Permanent link">&para;</a></h2>
 <p>Starts the API and Celery worker.</p>
-<p><code>bash
-./scripts/scipionapi start</code></p>
+<pre><code>./scripts/scipionapi start
+</code></pre>
 <p>Typical behavior:</p>
 <ul>
 <li>launches API and Celery as detached processes</li>
@@ -2525,8 +2548,8 @@
 <hr />
 <h2 id="stop"><code>stop</code><a class="headerlink" href="#stop" title="Permanent link">&para;</a></h2>
 <p>Stops API and Celery.</p>
-<p><code>bash
-./scripts/scipionapi stop</code></p>
+<pre><code>./scripts/scipionapi stop
+</code></pre>
 <p>Typical behavior:</p>
 <ul>
 <li>reads PID files</li>
@@ -2535,8 +2558,8 @@
 <hr />
 <h2 id="restart"><code>restart</code><a class="headerlink" href="#restart" title="Permanent link">&para;</a></h2>
 <p>Stops and starts services again.</p>
-<p><code>bash
-./scripts/scipionapi restart</code></p>
+<pre><code>./scripts/scipionapi restart
+</code></pre>
 <p>Useful after:</p>
 <ul>
 <li><code>.env</code> changes</li>
@@ -2547,8 +2570,8 @@
 <hr />
 <h2 id="status"><code>status</code><a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
 <p>Shows whether services are running.</p>
-<p><code>bash
-./scripts/scipionapi status</code></p>
+<pre><code>./scripts/scipionapi status
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Process state vs health</p>
 <p><code>status</code> confirms process state, but not necessarily application health. Also check logs and <code>/health</code>.</p>
@@ -2556,8 +2579,8 @@
 <hr />
 <h2 id="logs"><code>logs</code><a class="headerlink" href="#logs" title="Permanent link">&para;</a></h2>
 <p>Tails application logs.</p>
-<p><code>bash
-./scripts/scipionapi logs</code></p>
+<pre><code>./scripts/scipionapi logs
+</code></pre>
 <p>This typically shows the API log and the worker log together.</p>
 <hr />
 <h2 id="common-issues">Common issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>

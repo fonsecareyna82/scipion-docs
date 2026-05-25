@@ -1731,6 +1731,8 @@
       
         
       
+        
+      
     
     
       
@@ -1830,6 +1832,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2811,11 +2834,11 @@
 <hr />
 <h2 id="backup-the-database">Backup the Database<a class="headerlink" href="#backup-the-database" title="Permanent link">&para;</a></h2>
 <h3 id="plain-sql-dump">Plain SQL dump<a class="headerlink" href="#plain-sql-dump" title="Permanent link">&para;</a></h3>
-<p><code>bash
-pg_dump -U scipion_user scipion_db &gt; scipion_backup.sql</code></p>
+<pre><code>pg_dump -U scipion_user scipion_db &gt; scipion_backup.sql
+</code></pre>
 <h3 id="compressed-dump">Compressed dump<a class="headerlink" href="#compressed-dump" title="Permanent link">&para;</a></h3>
-<p><code>bash
-pg_dump -U scipion_user scipion_db | gzip &gt; scipion_backup.sql.gz</code></p>
+<pre><code>pg_dump -U scipion_user scipion_db | gzip &gt; scipion_backup.sql.gz
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Compressed backups</p>
 <p>Compressed dumps are usually better for storage efficiency and transfer.</p>
@@ -2823,17 +2846,17 @@ pg_dump -U scipion_user scipion_db | gzip &gt; scipion_backup.sql.gz</code></p>
 <hr />
 <h2 id="backup-scipion_home">Backup <code>SCIPION_HOME</code><a class="headerlink" href="#backup-scipion_home" title="Permanent link">&para;</a></h2>
 <p>Create a compressed archive:</p>
-<p><code>bash
-tar -czf scipion_home_backup.tar.gz scipion_home/</code></p>
+<pre><code>tar -czf scipion_home_backup.tar.gz scipion_home/
+</code></pre>
 <p>If your <code>SCIPION_HOME</code> lives elsewhere, use the absolute path:</p>
-<p><code>bash
-tar -czf scipion_home_backup.tar.gz /opt/scipionweb/scipion_home/</code></p>
+<pre><code>tar -czf scipion_home_backup.tar.gz /opt/scipionweb/scipion_home/
+</code></pre>
 <hr />
 <h2 id="full-backup-script-example">Full Backup Script Example<a class="headerlink" href="#full-backup-script-example" title="Permanent link">&para;</a></h2>
 <p>Minimal one-shot example:</p>
-<p><code>bash
-pg_dump -U scipion_user scipion_db | gzip &gt; db_backup.sql.gz
-tar -czf scipion_home_backup.tar.gz scipion_home/</code></p>
+<pre><code>pg_dump -U scipion_user scipion_db | gzip &gt; db_backup.sql.gz
+tar -czf scipion_home_backup.tar.gz scipion_home/
+</code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Store backups outside the host</p>
 <p>Keep copies in a secure external location (separate disk, backup server, object storage, etc.). Backups on the same machine are not enough for disaster recovery.</p>
@@ -2855,14 +2878,14 @@ tar -czf scipion_home_backup.tar.gz scipion_home/</code></p>
 <hr />
 <h2 id="restore-the-database">Restore the Database<a class="headerlink" href="#restore-the-database" title="Permanent link">&para;</a></h2>
 <h3 id="step-1-create-an-empty-database">Step 1: Create an empty database<a class="headerlink" href="#step-1-create-an-empty-database" title="Permanent link">&para;</a></h3>
-<p><code>bash
-createdb -U scipion_user scipion_db</code></p>
+<pre><code>createdb -U scipion_user scipion_db
+</code></pre>
 <h3 id="step-2-restore-from-plain-sql-dump">Step 2: Restore from plain SQL dump<a class="headerlink" href="#step-2-restore-from-plain-sql-dump" title="Permanent link">&para;</a></h3>
-<p><code>bash
-psql -U scipion_user scipion_db &lt; scipion_backup.sql</code></p>
+<pre><code>psql -U scipion_user scipion_db &lt; scipion_backup.sql
+</code></pre>
 <h3 id="step-3-restore-from-compressed-dump-if-applicable">Step 3: Restore from compressed dump (if applicable)<a class="headerlink" href="#step-3-restore-from-compressed-dump-if-applicable" title="Permanent link">&para;</a></h3>
-<p><code>bash
-gunzip -c db_backup.sql.gz | psql -U scipion_user scipion_db</code></p>
+<pre><code>gunzip -c db_backup.sql.gz | psql -U scipion_user scipion_db
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Existing database</p>
 <p>If the target database already exists and contains data, ensure you are restoring into the correct target and expected state before executing restore commands.</p>
@@ -2870,14 +2893,14 @@ gunzip -c db_backup.sql.gz | psql -U scipion_user scipion_db</code></p>
 <hr />
 <h2 id="restore-scipion_home">Restore <code>SCIPION_HOME</code><a class="headerlink" href="#restore-scipion_home" title="Permanent link">&para;</a></h2>
 <p>Extract the archive:</p>
-<p><code>bash
-tar -xzf scipion_home_backup.tar.gz</code></p>
+<pre><code>tar -xzf scipion_home_backup.tar.gz
+</code></pre>
 <p>Ensure the service user can read/write the restored workspace:</p>
-<p><code>bash
-chmod -R u+rw scipion_home</code></p>
+<pre><code>chmod -R u+rw scipion_home
+</code></pre>
 <p>If using a dedicated service account, also fix ownership as needed:</p>
-<p><code>bash
-chown -R youruser:yourgroup scipion_home</code></p>
+<pre><code>chown -R youruser:yourgroup scipion_home
+</code></pre>
 <hr />
 <h2 id="post-restore-validation">Post-Restore Validation<a class="headerlink" href="#post-restore-validation" title="Permanent link">&para;</a></h2>
 <p>After restoring both components:</p>
@@ -2889,15 +2912,15 @@ chown -R youruser:yourgroup scipion_home</code></p>
 <li>Inspect logs</li>
 </ol>
 <h3 id="health-check">Health check<a class="headerlink" href="#health-check" title="Permanent link">&para;</a></h3>
-<p><code>bash
-curl http://localhost:8080/health</code></p>
+<pre><code>curl http://localhost:8080/health
+</code></pre>
 <p>Expected:</p>
-<p><code>json
-{"status":"ok"}</code></p>
+<pre><code class="language-json">{&quot;status&quot;:&quot;ok&quot;}
+</code></pre>
 <h3 id="runtime-checks">Runtime checks<a class="headerlink" href="#runtime-checks" title="Permanent link">&para;</a></h3>
-<p><code>bash
-./scripts/scipionapi status
-./scripts/scipionapi logs</code></p>
+<pre><code>./scripts/scipionapi status
+./scripts/scipionapi logs
+</code></pre>
 <hr />
 <h2 id="disaster-recovery-checklist">Disaster Recovery Checklist<a class="headerlink" href="#disaster-recovery-checklist" title="Permanent link">&para;</a></h2>
 <p>Use this checklist during incidents:</p>

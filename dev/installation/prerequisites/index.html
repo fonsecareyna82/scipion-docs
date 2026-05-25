@@ -1763,6 +1763,8 @@
       
         
       
+        
+      
     
     
       
@@ -1862,6 +1864,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2848,33 +2871,33 @@
 <h2 id="1-install-conda">1. Install Conda<a class="headerlink" href="#1-install-conda" title="Permanent link">&para;</a></h2>
 <p>ScipionAPI uses <strong>Conda</strong> to manage its Python environment automatically.</p>
 <h3 id="check-whether-conda-is-already-installed">Check whether Conda is already installed<a class="headerlink" href="#check-whether-conda-is-already-installed" title="Permanent link">&para;</a></h3>
-<p><code>bash
-conda --version</code></p>
+<pre><code>conda --version
+</code></pre>
 <p>If that prints a version number, continue to PostgreSQL.</p>
 <h3 id="install-miniconda-recommended">Install Miniconda (recommended)<a class="headerlink" href="#install-miniconda-recommended" title="Permanent link">&para;</a></h3>
 <p>If <code>conda</code> is not available, install Miniconda:</p>
-<p><code>bash
-mkdir -p ~/Downloads
+<pre><code>mkdir -p ~/Downloads
 cd ~/Downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh</code></p>
+bash Miniconda3-latest-Linux-x86_64.sh
+</code></pre>
 <p>Follow the installer prompts.</p>
 <p>After installation, restart your terminal or run:</p>
-<p><code>bash
-conda init bash
-exec bash</code></p>
+<pre><code>conda init bash
+exec bash
+</code></pre>
 <p>Then verify again:</p>
-<p><code>bash
-conda --version</code></p>
+<pre><code>conda --version
+</code></pre>
 <h3 id="if-conda-is-still-not-found">If <code>conda</code> is still not found<a class="headerlink" href="#if-conda-is-still-not-found" title="Permanent link">&para;</a></h3>
 <p>Add Miniconda to your <code>PATH</code> manually:</p>
-<p><code>bash
-export PATH="$HOME/miniconda3/bin:$PATH"
-conda --version</code></p>
+<pre><code>export PATH=&quot;$HOME/miniconda3/bin:$PATH&quot;
+conda --version
+</code></pre>
 <p>If you installed <strong>Anaconda</strong> instead, adjust the path accordingly:</p>
-<p><code>bash
-export PATH="$HOME/anaconda3/bin:$PATH"
-conda --version</code></p>
+<pre><code>export PATH=&quot;$HOME/anaconda3/bin:$PATH&quot;
+conda --version
+</code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Make PATH changes persistent</p>
 <p>If <code>conda</code> only works after manually editing <code>PATH</code>, add that change to your shell profile before continuing.</p>
@@ -2891,21 +2914,21 @@ conda --version</code></p>
 </ul>
 <p>In common local setups, the installer can create the database and role automatically, but only if PostgreSQL is installed, running, and reachable.</p>
 <h3 id="install-postgresql-on-ubuntu-or-debian">Install PostgreSQL on Ubuntu or Debian<a class="headerlink" href="#install-postgresql-on-ubuntu-or-debian" title="Permanent link">&para;</a></h3>
-<p><code>bash
-sudo apt update
-sudo apt install -y postgresql postgresql-contrib</code></p>
+<pre><code>sudo apt update
+sudo apt install -y postgresql postgresql-contrib
+</code></pre>
 <h3 id="start-and-enable-postgresql">Start and enable PostgreSQL<a class="headerlink" href="#start-and-enable-postgresql" title="Permanent link">&para;</a></h3>
-<p><code>bash
-sudo systemctl enable postgresql
-sudo systemctl start postgresql</code></p>
+<pre><code>sudo systemctl enable postgresql
+sudo systemctl start postgresql
+</code></pre>
 <h3 id="verify-postgresql">Verify PostgreSQL<a class="headerlink" href="#verify-postgresql" title="Permanent link">&para;</a></h3>
-<p><code>bash
-sudo systemctl status postgresql
-sudo -u postgres psql -c "SELECT version();"</code></p>
+<pre><code>sudo systemctl status postgresql
+sudo -u postgres psql -c &quot;SELECT version();&quot;
+</code></pre>
 <h3 id="why-sudo-matters">Why sudo matters<a class="headerlink" href="#why-sudo-matters" title="Permanent link">&para;</a></h3>
 <p>The installer can automatically create the PostgreSQL user and database in common local setups using commands such as:</p>
-<p><code>bash
-sudo -u postgres psql ...</code></p>
+<pre><code>sudo -u postgres psql ...
+</code></pre>
 <p>This usually requires:</p>
 <ul>
 <li>a local PostgreSQL server</li>
@@ -2920,25 +2943,24 @@ sudo -u postgres psql ...</code></p>
 <h2 id="3-install-redis">3. Install Redis<a class="headerlink" href="#3-install-redis" title="Permanent link">&para;</a></h2>
 <p>Redis is used as the <strong>Celery broker</strong> and <strong>result backend</strong>.</p>
 <h3 id="install-redis-on-ubuntu-or-debian">Install Redis on Ubuntu or Debian<a class="headerlink" href="#install-redis-on-ubuntu-or-debian" title="Permanent link">&para;</a></h3>
-<p><code>bash
-sudo apt update
-sudo apt install -y redis-server</code></p>
+<pre><code>sudo apt update
+sudo apt install -y redis-server
+</code></pre>
 <h3 id="start-and-enable-redis">Start and enable Redis<a class="headerlink" href="#start-and-enable-redis" title="Permanent link">&para;</a></h3>
-<p><code>bash
-sudo systemctl enable redis-server
-sudo systemctl start redis-server</code></p>
+<pre><code>sudo systemctl enable redis-server
+sudo systemctl start redis-server
+</code></pre>
 <h3 id="verify-redis">Verify Redis<a class="headerlink" href="#verify-redis" title="Permanent link">&para;</a></h3>
-<p><code>bash
-sudo systemctl status redis-server
-redis-cli ping</code></p>
+<pre><code>sudo systemctl status redis-server
+redis-cli ping
+</code></pre>
 <p>Expected output:</p>
-<p><code>text
-PONG</code></p>
+<pre><code class="language-text">PONG
+</code></pre>
 <hr />
 <h2 id="4-install-recommended-system-utilities">4. Install recommended system utilities<a class="headerlink" href="#4-install-recommended-system-utilities" title="Permanent link">&para;</a></h2>
 <p>Make sure the following utilities are available:</p>
-<p><code>bash
-sudo apt update
+<pre><code>sudo apt update
 sudo apt install -y \
   bash \
   coreutils \
@@ -2947,7 +2969,8 @@ sudo apt install -y \
   unzip \
   tar \
   git \
-  ca-certificates</code></p>
+  ca-certificates
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Why these utilities?</p>
 <p>They are commonly used during installation, troubleshooting, archive extraction, downloads, and repository operations.</p>
@@ -2961,8 +2984,8 @@ sudo apt install -y \
 <li><strong>Redis:</strong> <code>6379</code></li>
 </ul>
 <p>Check whether those ports are already in use:</p>
-<p><code>bash
-ss -ltnp | grep -E ':(8080|5432|6379)\b'</code></p>
+<pre><code>ss -ltnp | grep -E ':(8080|5432|6379)\b'
+</code></pre>
 <p>Also confirm that the installation user will have write access to:</p>
 <ul>
 <li>the extracted ScipionAPI directory</li>
@@ -2987,11 +3010,11 @@ ss -ltnp | grep -E ':(8080|5432|6379)\b'</code></p>
 <hr />
 <h2 id="fast-sanity-check">Fast sanity check<a class="headerlink" href="#fast-sanity-check" title="Permanent link">&para;</a></h2>
 <p>Run these together:</p>
-<p><code>bash
-conda --version
+<pre><code>conda --version
 sudo systemctl is-active postgresql
 sudo systemctl is-active redis-server
-redis-cli ping</code></p>
+redis-cli ping
+</code></pre>
 <p>You want to see:</p>
 <ul>
 <li>a Conda version</li>
@@ -3003,25 +3026,25 @@ redis-cli ping</code></p>
 <h2 id="common-prerequisite-failures">Common prerequisite failures<a class="headerlink" href="#common-prerequisite-failures" title="Permanent link">&para;</a></h2>
 <h3 id="conda-not-found">Conda not found<a class="headerlink" href="#conda-not-found" title="Permanent link">&para;</a></h3>
 <p>Usually a PATH or shell-initialization issue.</p>
-<p><code>bash
-export PATH="$HOME/miniconda3/bin:$PATH"
+<pre><code>export PATH=&quot;$HOME/miniconda3/bin:$PATH&quot;
 conda init bash
-exec bash</code></p>
+exec bash
+</code></pre>
 <p>If the command works after exporting <code>PATH</code>, add the export line to your shell profile.</p>
 <h3 id="postgresql-not-starting">PostgreSQL not starting<a class="headerlink" href="#postgresql-not-starting" title="Permanent link">&para;</a></h3>
 <p>Inspect the service status and recent logs:</p>
-<p><code>bash
-sudo systemctl status postgresql
-journalctl -u postgresql --no-pager -n 100</code></p>
+<pre><code>sudo systemctl status postgresql
+journalctl -u postgresql --no-pager -n 100
+</code></pre>
 <h3 id="redis-not-responding">Redis not responding<a class="headerlink" href="#redis-not-responding" title="Permanent link">&para;</a></h3>
 <p>Inspect the service status and recent logs:</p>
-<p><code>bash
-sudo systemctl status redis-server
-journalctl -u redis-server --no-pager -n 100</code></p>
+<pre><code>sudo systemctl status redis-server
+journalctl -u redis-server --no-pager -n 100
+</code></pre>
 <h3 id="sudo-u-postgres-fails"><code>sudo -u postgres</code> fails<a class="headerlink" href="#sudo-u-postgres-fails" title="Permanent link">&para;</a></h3>
 <p>Try refreshing your sudo session:</p>
-<p><code>bash
-sudo -v</code></p>
+<pre><code>sudo -v
+</code></pre>
 <p>If it still fails, manually create the PostgreSQL user and database before running the installer.</p>
 <p>Common causes include:</p>
 <ul>

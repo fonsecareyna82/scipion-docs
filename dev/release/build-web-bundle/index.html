@@ -1465,6 +1465,8 @@
       
         
       
+        
+      
     
     
       
@@ -1564,6 +1566,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2265,45 +2288,49 @@
 <p>This document explains how to build and package the ScipionWeb frontend.</p>
 <hr />
 <h1 id="step-1-install-dependencies">Step 1 — Install Dependencies<a class="headerlink" href="#step-1-install-dependencies" title="Permanent link">&para;</a></h1>
-<p><code>bash
-npm install</code></p>
+<pre><code>npm install
+</code></pre>
 <hr />
 <h1 id="step-2-production-build">Step 2 — Production Build<a class="headerlink" href="#step-2-production-build" title="Permanent link">&para;</a></h1>
-<p><code>bash
-npm run build</code></p>
+<pre><code>npm run build
+</code></pre>
 <p>This produces:</p>
-<p><code>dist/</code></p>
+<pre><code>dist/
+</code></pre>
 <hr />
 <h1 id="step-3-validate-dist">Step 3 — Validate Dist<a class="headerlink" href="#step-3-validate-dist" title="Permanent link">&para;</a></h1>
 <p>Ensure:</p>
-<p><code>dist/index.html
-dist/assets/</code></p>
+<pre><code>dist/index.html
+dist/assets/
+</code></pre>
 <p>Open locally:</p>
-<p><code>bash
-npx serve dist</code></p>
+<pre><code>npx serve dist
+</code></pre>
 <hr />
 <h1 id="step-4-create-bundle">Step 4 — Create Bundle<a class="headerlink" href="#step-4-create-bundle" title="Permanent link">&para;</a></h1>
 <p>Option A — Zip dist directly:</p>
-<p><code>bash
-zip -r scipionweb-1.2.0-dist.zip dist/</code></p>
+<pre><code>zip -r scipionweb-1.2.0-dist.zip dist/
+</code></pre>
 <p>Option B — Versioned folder:</p>
-<p><code>bash
-mkdir scipionweb-1.2.0
+<pre><code>mkdir scipionweb-1.2.0
 cp -r dist scipionweb-1.2.0/
-zip -r scipionweb-1.2.0-dist.zip scipionweb-1.2.0/</code></p>
+zip -r scipionweb-1.2.0-dist.zip scipionweb-1.2.0/
+</code></pre>
 <hr />
 <h1 id="step-5-upload">Step 5 — Upload<a class="headerlink" href="#step-5-upload" title="Permanent link">&para;</a></h1>
 <p>Upload to:</p>
-<p><code>https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/</code></p>
+<pre><code>https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
+</code></pre>
 <hr />
 <h1 id="runtime-configuration">Runtime Configuration<a class="headerlink" href="#runtime-configuration" title="Permanent link">&para;</a></h1>
 <p>The API installer injects:</p>
-<p><code>dist/config.js</code></p>
+<pre><code>dist/config.js
+</code></pre>
 <p>Which defines:</p>
-<p><code>js
-window.__SCIPION_WEB_CONFIG__ = {
-  apiBaseUrl: "/api"
-}</code></p>
+<pre><code class="language-js">window.__SCIPION_WEB_CONFIG__ = {
+  apiBaseUrl: &quot;/api&quot;
+}
+</code></pre>
 <p>No rebuild required for different deployments.</p>
 <hr />
 <h1 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h1>

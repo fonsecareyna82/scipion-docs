@@ -1627,6 +1627,8 @@
       
         
       
+        
+      
     
     
       
@@ -1726,6 +1728,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2534,14 +2557,14 @@
 <hr />
 <h2 id="log-location">Log Location<a class="headerlink" href="#log-location" title="Permanent link">&para;</a></h2>
 <p>Runtime logs are stored under:</p>
-<p><code>text
-SCIPION_HOME/logs/</code></p>
+<pre><code class="language-text">SCIPION_HOME/logs/
+</code></pre>
 <hr />
 <h2 id="typical-log-files">Typical Log Files<a class="headerlink" href="#typical-log-files" title="Permanent link">&para;</a></h2>
-<p><code>text
-logs/
+<pre><code class="language-text">logs/
 ├── app.log
-└── celery.log</code></p>
+└── celery.log
+</code></pre>
 <h3 id="applog"><code>app.log</code><a class="headerlink" href="#applog" title="Permanent link">&para;</a></h3>
 <p>Usually contains API startup messages, request handling logs, and error traces.</p>
 <h3 id="celerylog"><code>celery.log</code><a class="headerlink" href="#celerylog" title="Permanent link">&para;</a></h3>
@@ -2553,22 +2576,22 @@ logs/
 <hr />
 <h2 id="viewing-logs">Viewing Logs<a class="headerlink" href="#viewing-logs" title="Permanent link">&para;</a></h2>
 <h3 id="cli-shortcut">CLI shortcut<a class="headerlink" href="#cli-shortcut" title="Permanent link">&para;</a></h3>
-<p><code>bash
-./scripts/scipionapi logs</code></p>
+<pre><code>./scripts/scipionapi logs
+</code></pre>
 <h3 id="manual-live-tail">Manual live tail<a class="headerlink" href="#manual-live-tail" title="Permanent link">&para;</a></h3>
-<p><code>bash
-tail -f scipion_home/logs/app.log
-tail -f scipion_home/logs/celery.log</code></p>
+<pre><code>tail -f scipion_home/logs/app.log
+tail -f scipion_home/logs/celery.log
+</code></pre>
 <hr />
 <h2 id="pid-files">PID Files<a class="headerlink" href="#pid-files" title="Permanent link">&para;</a></h2>
 <p>When using CLI runtime commands (<code>start</code>, <code>stop</code>, <code>restart</code>), ScipionAPI writes PID files under:</p>
-<p><code>text
-.run/</code></p>
+<pre><code class="language-text">.run/
+</code></pre>
 <p>Typical layout:</p>
-<p><code>text
-.run/
+<pre><code class="language-text">.run/
 ├── api.pid
-└── worker.pid</code></p>
+└── worker.pid
+</code></pre>
 <p>PID files help stop, restart, and inspect runtime services safely.</p>
 <hr />
 <h2 id="common-pitfall-stale-pid-files">Common pitfall: stale PID files<a class="headerlink" href="#common-pitfall-stale-pid-files" title="Permanent link">&para;</a></h2>

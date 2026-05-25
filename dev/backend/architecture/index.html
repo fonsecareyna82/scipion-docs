@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -1860,6 +1883,39 @@
       Example Change Path
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Example Change Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-read-only-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple read-only feature
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-changing-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      State-changing feature
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heavylong-running-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heavy/long-running feature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2567,6 +2623,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Example Change Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-read-only-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple read-only feature
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-changing-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      State-changing feature
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heavylong-running-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heavy/long-running feature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2608,8 +2697,8 @@
 <h1 id="backend-architecture">Backend Architecture<a class="headerlink" href="#backend-architecture" title="Permanent link">&para;</a></h1>
 <p>ScipionAPI follows a <strong>layered architecture</strong> designed to keep HTTP concerns, business logic, and persistence logic clearly separated.</p>
 <p>Core flow:</p>
-<p><code>text
-Routers → Services → ORM / Mapper → Database</code></p>
+<pre><code class="language-text">Routers → Services → ORM / Mapper → Database
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Why this matters</p>
 <p>This separation improves maintainability, testability, and feature evolution. Changes in one layer are less likely to leak across the whole backend.</p>
@@ -2618,8 +2707,8 @@ Routers → Services → ORM / Mapper → Database</code></p>
 <h2 id="layered-design">Layered Design<a class="headerlink" href="#layered-design" title="Permanent link">&para;</a></h2>
 <h3 id="routers">Routers<a class="headerlink" href="#routers" title="Permanent link">&para;</a></h3>
 <p>Located in:</p>
-<p><code>text
-app/backend/api/routers/</code></p>
+<pre><code class="language-text">app/backend/api/routers/
+</code></pre>
 <p>Responsibilities:</p>
 <ul>
 <li>Define HTTP endpoints</li>
@@ -2631,8 +2720,8 @@ app/backend/api/routers/</code></p>
 <hr />
 <h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
 <p>Located in:</p>
-<p><code>text
-app/backend/api/services/</code></p>
+<pre><code class="language-text">app/backend/api/services/
+</code></pre>
 <p>Responsibilities:</p>
 <ul>
 <li>Business logic</li>
@@ -2648,8 +2737,8 @@ app/backend/api/services/</code></p>
 <hr />
 <h3 id="models-orm">Models (ORM)<a class="headerlink" href="#models-orm" title="Permanent link">&para;</a></h3>
 <p>Located in:</p>
-<p><code>text
-app/backend/models/</code></p>
+<pre><code class="language-text">app/backend/models/
+</code></pre>
 <p>Technology:</p>
 <ul>
 <li>SQLAlchemy ORM</li>
@@ -2674,8 +2763,8 @@ app/backend/models/</code></p>
 <hr />
 <h2 id="request-flow">Request Flow<a class="headerlink" href="#request-flow" title="Permanent link">&para;</a></h2>
 <p>Typical request path:</p>
-<p><code>text
-Client → Router → Dependency Injection → Service → DB → Response</code></p>
+<pre><code class="language-text">Client → Router → Dependency Injection → Service → DB → Response
+</code></pre>
 <h3 id="expanded-interpretation">Expanded interpretation<a class="headerlink" href="#expanded-interpretation" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Client</strong> sends HTTP request</li>
@@ -2694,8 +2783,8 @@ Client → Router → Dependency Injection → Service → DB → Response</code
 <li>Database session</li>
 </ul>
 <p>Defined in:</p>
-<p><code>text
-api/dependencies.py</code></p>
+<pre><code class="language-text">api/dependencies.py
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Strong dependency contracts</p>
 <p>Keep dependency helpers focused and reusable (for example auth, DB session, permission checks). This keeps routers consistent and easier to audit.</p>
@@ -2735,16 +2824,13 @@ api/dependencies.py</code></p>
 </div>
 <hr />
 <h2 id="example-change-path">Example Change Path<a class="headerlink" href="#example-change-path" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Simple read-only feature</label><label for="__tabbed_1_2">State-changing feature</label><label for="__tabbed_1_3">Heavy/long-running feature</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h3 id="simple-read-only-feature">Simple read-only feature<a class="headerlink" href="#simple-read-only-feature" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Add service query method</li>
 <li>Add router endpoint</li>
 <li>Return serialized response</li>
 </ol>
-</div>
-<div class="tabbed-block">
+<h3 id="state-changing-feature">State-changing feature<a class="headerlink" href="#state-changing-feature" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Add service method</li>
 <li>Add router endpoint</li>
@@ -2752,17 +2838,13 @@ api/dependencies.py</code></p>
 <li>Add tests</li>
 <li>Add migration if schema changed</li>
 </ol>
-</div>
-<div class="tabbed-block">
+<h3 id="heavylong-running-feature">Heavy/long-running feature<a class="headerlink" href="#heavylong-running-feature" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Add service entrypoint</li>
 <li>Enqueue Celery task</li>
 <li>Track task status / logs</li>
 <li>Return async-friendly API response</li>
 </ol>
-</div>
-</div>
-</div>
 <hr />
 <h2 id="common-architecture-smells">Common Architecture Smells<a class="headerlink" href="#common-architecture-smells" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">

@@ -1465,6 +1465,8 @@
       
         
       
+        
+      
     
     
       
@@ -1564,6 +1566,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2266,8 +2289,8 @@
 <hr />
 <h1 id="step-1-clean-workspace">Step 1 — Clean Workspace<a class="headerlink" href="#step-1-clean-workspace" title="Permanent link">&para;</a></h1>
 <p>From repo root:</p>
-<p><code>bash
-git clean -xfd</code></p>
+<pre><code>git clean -xfd
+</code></pre>
 <p>Or manually ensure:</p>
 <ul>
 <li>No logs</li>
@@ -2286,27 +2309,29 @@ git clean -xfd</code></p>
 <hr />
 <h1 id="step-3-exclude-runtime-artifacts">Step 3 — Exclude Runtime Artifacts<a class="headerlink" href="#step-3-exclude-runtime-artifacts" title="Permanent link">&para;</a></h1>
 <p>Make sure these are NOT included:</p>
-<p><code>scipion_home/
+<pre><code>scipion_home/
 .run/
 .env
-__pycache__/</code></p>
+__pycache__/
+</code></pre>
 <hr />
 <h1 id="step-4-create-release-folder">Step 4 — Create Release Folder<a class="headerlink" href="#step-4-create-release-folder" title="Permanent link">&para;</a></h1>
-<p><code>bash
-mkdir scipionapi-1.2.0
-rsync -av --exclude scipion_home --exclude .run ./ scipionapi-1.2.0/</code></p>
+<pre><code>mkdir scipionapi-1.2.0
+rsync -av --exclude scipion_home --exclude .run ./ scipionapi-1.2.0/
+</code></pre>
 <hr />
 <h1 id="step-5-create-zip">Step 5 — Create ZIP<a class="headerlink" href="#step-5-create-zip" title="Permanent link">&para;</a></h1>
-<p><code>bash
-zip -r scipionapi-1.2.0-linux-x86_64.zip scipionapi-1.2.0/</code></p>
+<pre><code>zip -r scipionapi-1.2.0-linux-x86_64.zip scipionapi-1.2.0/
+</code></pre>
 <hr />
 <h1 id="step-6-upload">Step 6 — Upload<a class="headerlink" href="#step-6-upload" title="Permanent link">&para;</a></h1>
 <p>Upload bundle to release server:</p>
-<p><code>https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/</code></p>
+<pre><code>https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
+</code></pre>
 <hr />
 <h1 id="optional-checksum">Optional: Checksum<a class="headerlink" href="#optional-checksum" title="Permanent link">&para;</a></h1>
-<p><code>bash
-sha256sum scipionapi-1.2.0-linux-x86_64.zip &gt; scipionapi-1.2.0.sha256</code></p>
+<pre><code>sha256sum scipionapi-1.2.0-linux-x86_64.zip &gt; scipionapi-1.2.0.sha256
+</code></pre>
 <hr />
 <h1 id="recommended-automation">Recommended Automation<a class="headerlink" href="#recommended-automation" title="Permanent link">&para;</a></h1>
 <p>Eventually automate with:</p>

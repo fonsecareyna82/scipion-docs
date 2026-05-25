@@ -1641,6 +1641,8 @@
       
         
       
+        
+      
     
     
       
@@ -1740,6 +1742,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2567,11 +2590,11 @@
 <hr />
 <h2 id="default-location">Default Location<a class="headerlink" href="#default-location" title="Permanent link">&para;</a></h2>
 <p>If <code>SCIPION_HOME</code> is not set explicitly, ScipionAPI typically uses:</p>
-<p><code>text
-SCIPION_HOME=&lt;repoRoot&gt;/scipion_home</code></p>
+<pre><code class="language-text">SCIPION_HOME=&lt;repoRoot&gt;/scipion_home
+</code></pre>
 <p>You can override it by exporting the variable before starting the application:</p>
-<p><code>bash
-export SCIPION_HOME=/opt/scipionweb/runtime</code></p>
+<pre><code>export SCIPION_HOME=/opt/scipionweb/runtime
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Production recommendation</p>
 <p>In production, use a dedicated path outside the API bundle directory (for example <code>/opt/scipionweb/runtime</code>) so upgrades do not affect runtime data.</p>
@@ -2579,8 +2602,7 @@ export SCIPION_HOME=/opt/scipionweb/runtime</code></p>
 <hr />
 <h2 id="typical-directory-structure">Typical Directory Structure<a class="headerlink" href="#typical-directory-structure" title="Permanent link">&para;</a></h2>
 <p>Example layout:</p>
-<p><code>text
-scipion_home/
+<pre><code class="language-text">scipion_home/
 ├── .env
 ├── logs/
 │   ├── app.log
@@ -2589,7 +2611,8 @@ scipion_home/
 │   └── &lt;project folders&gt;
 ├── config/
 └── web/
-    └── dist/</code></p>
+    └── dist/
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Mode-dependent directories</p>
 <p>The <code>web/</code> directory is typically present only in <strong>integrated mode</strong> (when the API serves the Web UI).</p>
@@ -2651,11 +2674,11 @@ scipion_home/
 <h3 id="web"><code>web/</code><a class="headerlink" href="#web" title="Permanent link">&para;</a></h3>
 <p>Present when using <strong>integrated mode</strong>.</p>
 <p>Typical contents:</p>
-<p><code>text
-web/dist/
+<pre><code class="language-text">web/dist/
     index.html
     assets/
-    config.js</code></p>
+    config.js
+</code></pre>
 <p>This directory stores the deployed frontend assets served by the API.</p>
 <div class="admonition tip">
 <p class="admonition-title">Web bundle upgrades</p>
@@ -2691,8 +2714,8 @@ web/dist/
 <hr />
 <h2 id="production-recommendations">Production Recommendations<a class="headerlink" href="#production-recommendations" title="Permanent link">&para;</a></h2>
 <p>For production deployments, prefer a dedicated runtime path such as:</p>
-<p><code>text
-/opt/scipionweb/runtime</code></p>
+<pre><code class="language-text">/opt/scipionweb/runtime
+</code></pre>
 <p>instead of storing runtime data inside the API source or extracted bundle directory.</p>
 <p>Recommended practices:</p>
 <ul>
@@ -2719,12 +2742,12 @@ web/dist/
 <hr />
 <h2 id="quick-verification">Quick Verification<a class="headerlink" href="#quick-verification" title="Permanent link">&para;</a></h2>
 <p>Run these checks to confirm the runtime workspace is correctly configured:</p>
-<p><code>bash
-echo "$SCIPION_HOME"
-ls -al "$SCIPION_HOME"
-test -f "$SCIPION_HOME/.env" &amp;&amp; echo ".env found"
-test -d "$SCIPION_HOME/projects" &amp;&amp; echo "projects/ found"
-test -d "$SCIPION_HOME/logs" &amp;&amp; echo "logs/ found"</code></p>
+<pre><code>echo &quot;$SCIPION_HOME&quot;
+ls -al &quot;$SCIPION_HOME&quot;
+test -f &quot;$SCIPION_HOME/.env&quot; &amp;&amp; echo &quot;.env found&quot;
+test -d &quot;$SCIPION_HOME/projects&quot; &amp;&amp; echo &quot;projects/ found&quot;
+test -d &quot;$SCIPION_HOME/logs&quot; &amp;&amp; echo &quot;logs/ found&quot;
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">If a path is missing</p>
 <p>Some directories may be created lazily depending on how the application is used. The most critical item to verify early is <code>SCIPION_HOME/.env</code>.</p>

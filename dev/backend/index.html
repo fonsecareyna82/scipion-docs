@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2293,6 +2316,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Recommended Reading Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-developer-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backend developer onboarding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ops-deployment-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ops / deployment debugging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2366,8 +2413,7 @@
 <hr />
 <h2 id="runtime-structure">Runtime Structure<a class="headerlink" href="#runtime-structure" title="Permanent link">&para;</a></h2>
 <p>Key modules (high-level):</p>
-<p><code>text
-app/backend/
+<pre><code class="language-text">app/backend/
 ├── main.py
 ├── database.py
 ├── bootstrap.py
@@ -2378,7 +2424,8 @@ app/backend/
 │   └── dependencies.py
 ├── models/
 ├── mapper/
-├── utils/</code></p>
+├── utils/
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Read this section in order</p>
 <p>Start with <strong>Architecture</strong>, then <strong>FastAPI</strong>, <strong>Auth</strong>, <strong>Database</strong>, and <strong>Celery</strong>. Finish with <strong>Troubleshooting</strong> for operational debugging patterns.</p>
@@ -2396,9 +2443,7 @@ app/backend/
 <p>If background execution is expected, a healthy Celery worker and Redis broker are also part of the effective runtime, even though they are not the same process as the API server.</p>
 <hr />
 <h2 id="recommended-reading-paths">Recommended Reading Paths<a class="headerlink" href="#recommended-reading-paths" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Backend developer onboarding</label><label for="__tabbed_1_2">Ops / deployment debugging</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h3 id="backend-developer-onboarding">Backend developer onboarding<a class="headerlink" href="#backend-developer-onboarding" title="Permanent link">&para;</a></h3>
 <ol>
 <li><a href="architecture/">Architecture</a></li>
 <li><a href="fastapi/">FastAPI App and Routers</a></li>
@@ -2407,8 +2452,7 @@ app/backend/
 <li><a href="celery/">Celery and Redis</a></li>
 <li><a href="troubleshooting/">Backend Troubleshooting</a></li>
 </ol>
-</div>
-<div class="tabbed-block">
+<h3 id="ops-deployment-debugging">Ops / deployment debugging<a class="headerlink" href="#ops-deployment-debugging" title="Permanent link">&para;</a></h3>
 <ol>
 <li><a href="fastapi/">FastAPI App and Routers</a></li>
 <li><a href="database/">Database and Alembic Migrations</a></li>
@@ -2416,9 +2460,6 @@ app/backend/
 <li><a href="troubleshooting/">Backend Troubleshooting</a></li>
 <li><a href="../operations/logs-and-pids/">Logs and PID Files</a></li>
 </ol>
-</div>
-</div>
-</div>
 <hr />
 <h2 id="common-backend-failure-boundaries">Common backend failure boundaries<a class="headerlink" href="#common-backend-failure-boundaries" title="Permanent link">&para;</a></h2>
 <p>Many problems that feel like a single backend failure actually belong to different layers:</p>

@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2512,19 +2535,19 @@
 <h1 id="runtime-api-url-configuration">Runtime API URL Configuration<a class="headerlink" href="#runtime-api-url-configuration" title="Permanent link">&para;</a></h1>
 <p>The frontend communicates with ScipionAPI using a base API URL.</p>
 <p>This is primarily defined by:</p>
-<p><code>dotenv
-VITE_API_URL</code></p>
+<pre><code class="language-dotenv">VITE_API_URL
+</code></pre>
 <hr />
 <h2 id="build-time-configuration">Build-Time Configuration<a class="headerlink" href="#build-time-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="development">Development<a class="headerlink" href="#development" title="Permanent link">&para;</a></h3>
-<p><code>dotenv
-VITE_API_URL="http://localhost:8080"</code></p>
+<pre><code class="language-dotenv">VITE_API_URL=&quot;http://localhost:8080&quot;
+</code></pre>
 <h3 id="production-separate-deployment-example">Production (separate deployment example)<a class="headerlink" href="#production-separate-deployment-example" title="Permanent link">&para;</a></h3>
-<p><code>dotenv
-VITE_API_URL="https://api.yourdomain.com"</code></p>
+<pre><code class="language-dotenv">VITE_API_URL=&quot;https://api.yourdomain.com&quot;
+</code></pre>
 <p>The variable is typically consumed as:</p>
-<p><code>ts
-export const BASE_URL = import.meta.env.VITE_API_URL;</code></p>
+<pre><code class="language-ts">export const BASE_URL = import.meta.env.VITE_API_URL;
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Vite behavior</p>
 <p>Values from <code>VITE_*</code> variables are injected into the frontend build and are not automatically updated after build time.</p>
@@ -2538,13 +2561,13 @@ export const BASE_URL = import.meta.env.VITE_API_URL;</code></p>
 </ul>
 <p>No external API host is required for the frontend.</p>
 <p>The installer can inject runtime configuration through:</p>
-<p><code>text
-window.__SCIPION_WEB_CONFIG__</code></p>
+<pre><code class="language-text">window.__SCIPION_WEB_CONFIG__
+</code></pre>
 <p>Example payload:</p>
-<p><code>json
-{
-  "apiBaseUrl": "/api"
-}</code></p>
+<pre><code class="language-json">{
+  &quot;apiBaseUrl&quot;: &quot;/api&quot;
+}
+</code></pre>
 <p>The frontend can prefer this runtime value when present, allowing a single build artifact to adapt to integrated deployments.</p>
 <div class="admonition tip">
 <p class="admonition-title">Why runtime injection helps</p>
@@ -2553,11 +2576,11 @@ window.__SCIPION_WEB_CONFIG__</code></p>
 <hr />
 <h2 id="separate-deployment">Separate Deployment<a class="headerlink" href="#separate-deployment" title="Permanent link">&para;</a></h2>
 <p>If frontend and API run on different hosts, define the API URL in the frontend <code>.env</code> before building:</p>
-<p><code>dotenv
-VITE_API_URL="https://api.yourdomain.com"</code></p>
+<pre><code class="language-dotenv">VITE_API_URL=&quot;https://api.yourdomain.com&quot;
+</code></pre>
 <p>Then rebuild the frontend:</p>
-<p><code>bash
-npm run build</code></p>
+<pre><code>npm run build
+</code></pre>
 <hr />
 <h2 id="configuration-matrix">Configuration Matrix<a class="headerlink" href="#configuration-matrix" title="Permanent link">&para;</a></h2>
 <table>

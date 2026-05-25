@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2556,8 +2579,8 @@
 <hr />
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>Defined in <code>.env</code>:</p>
-<p><code>dotenv
-BROKER_URL=redis://localhost:6379/0</code></p>
+<pre><code class="language-dotenv">BROKER_URL=redis://localhost:6379/0
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Redis role</p>
 <p>In this backend architecture, Redis is used by Celery infrastructure and must be available for task dispatching and processing.</p>
@@ -2565,22 +2588,22 @@ BROKER_URL=redis://localhost:6379/0</code></p>
 <hr />
 <h2 id="worker-entry-point">Worker Entry Point<a class="headerlink" href="#worker-entry-point" title="Permanent link">&para;</a></h2>
 <p>Celery worker entry point:</p>
-<p><code>text
-app/workers/task_queue.py</code></p>
+<pre><code class="language-text">app/workers/task_queue.py
+</code></pre>
 <p>This module defines/loads the Celery app and task registration used by the worker process.</p>
 <hr />
 <h2 id="starting-the-worker">Starting the Worker<a class="headerlink" href="#starting-the-worker" title="Permanent link">&para;</a></h2>
 <h3 id="via-cli-recommended-for-local-usage">Via CLI (recommended for local usage)<a class="headerlink" href="#via-cli-recommended-for-local-usage" title="Permanent link">&para;</a></h3>
-<p><code>bash
-./scripts/scipionapi start</code></p>
+<pre><code>./scripts/scipionapi start
+</code></pre>
 <p>This typically starts both:</p>
 <ul>
 <li>FastAPI/uvicorn</li>
 <li>Celery worker</li>
 </ul>
 <h3 id="manual-worker-start-advanced">Manual worker start (advanced)<a class="headerlink" href="#manual-worker-start-advanced" title="Permanent link">&para;</a></h3>
-<p><code>bash
-celery -A app.workers.task_queue worker --loglevel=info</code></p>
+<pre><code>celery -A app.workers.task_queue worker --loglevel=info
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Manual mode</p>
 <p>Manual Celery startup is useful for debugging worker behavior independently from API startup.</p>
@@ -2597,8 +2620,8 @@ celery -A app.workers.task_queue worker --loglevel=info</code></p>
 <hr />
 <h2 id="task-flow">Task Flow<a class="headerlink" href="#task-flow" title="Permanent link">&para;</a></h2>
 <p>High-level task lifecycle:</p>
-<p><code>text
-API → Celery Broker (Redis) → Worker → Redis (result/state) → API / client polling</code></p>
+<pre><code class="language-text">API → Celery Broker (Redis) → Worker → Redis (result/state) → API / client polling
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Response model</p>
 <p>Depending on the API endpoint design, clients may receive immediate acknowledgement and then track progress/status asynchronously.</p>
@@ -2648,10 +2671,10 @@ API → Celery Broker (Redis) → Worker → Redis (result/state) → API / clie
 </div>
 <hr />
 <h2 id="quick-verification">Quick Verification<a class="headerlink" href="#quick-verification" title="Permanent link">&para;</a></h2>
-<p><code>bash
-./scripts/scipionapi status
+<pre><code>./scripts/scipionapi status
 ./scripts/scipionapi logs
-sudo systemctl status redis-server</code></p>
+sudo systemctl status redis-server
+</code></pre>
 <p>Look for:</p>
 <ul>
 <li>worker process running</li>

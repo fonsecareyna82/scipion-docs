@@ -1773,6 +1773,8 @@
       
         
       
+        
+      
     
     
       
@@ -1872,6 +1874,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2824,8 +2847,8 @@
 <h1 id="environment-variables-env">Environment Variables (<code>.env</code>)<a class="headerlink" href="#environment-variables-env" title="Permanent link">&para;</a></h1>
 <p>The <code>.env</code> file is the <strong>central runtime configuration file</strong> for <strong>ScipionAPI</strong>.</p>
 <p>It is typically stored at:</p>
-<p><code>text
-SCIPION_HOME/.env</code></p>
+<pre><code class="language-text">SCIPION_HOME/.env
+</code></pre>
 <p>This file defines how the API connects to PostgreSQL and Redis, where runtime data is stored, how the API is exposed, and whether the Web UI is served in integrated mode.</p>
 <div class="admonition warning">
 <p class="admonition-title">Sensitive configuration</p>
@@ -2851,11 +2874,11 @@ SCIPION_HOME/.env</code></p>
 <hr />
 <h2 id="file-location">File Location<a class="headerlink" href="#file-location" title="Permanent link">&para;</a></h2>
 <p>Expected location:</p>
-<p><code>text
-SCIPION_HOME/.env</code></p>
+<pre><code class="language-text">SCIPION_HOME/.env
+</code></pre>
 <p>Example:</p>
-<p><code>text
-/opt/scipionweb/runtime/.env</code></p>
+<pre><code class="language-text">/opt/scipionweb/runtime/.env
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Runtime separation</p>
 <p>Keeping <code>.env</code> inside <code>SCIPION_HOME</code> (instead of the API bundle directory) makes upgrades safer and helps preserve configuration across bundle replacements.</p>
@@ -2863,11 +2886,11 @@ SCIPION_HOME/.env</code></p>
 <hr />
 <h2 id="core-database-variables">Core Database Variables<a class="headerlink" href="#core-database-variables" title="Permanent link">&para;</a></h2>
 <p>These variables configure the PostgreSQL connection.</p>
-<p><code>dotenv
-DATABASE_URL=postgresql://user:password@host:5432/database
+<pre><code class="language-dotenv">DATABASE_URL=postgresql://user:password@host:5432/database
 DATABASE_NAME=scipion_db
 DATABASE_USER=scipion_user
-DATABASE_PASS=securePassword</code></p>
+DATABASE_PASS=securePassword
+</code></pre>
 <h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>DATABASE_URL</code> is typically the <strong>authoritative connection string</strong></li>
@@ -2880,8 +2903,8 @@ DATABASE_PASS=securePassword</code></p>
 <hr />
 <h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
 <h3 id="secret_key"><code>SECRET_KEY</code><a class="headerlink" href="#secret_key" title="Permanent link">&para;</a></h3>
-<p><code>dotenv
-SECRET_KEY=generate_a_long_random_string</code></p>
+<pre><code class="language-dotenv">SECRET_KEY=generate_a_long_random_string
+</code></pre>
 <p>Used for:</p>
 <ul>
 <li>JWT token signing</li>
@@ -2900,9 +2923,9 @@ SECRET_KEY=generate_a_long_random_string</code></p>
 <hr />
 <h2 id="api-runtime">API Runtime<a class="headerlink" href="#api-runtime" title="Permanent link">&para;</a></h2>
 <p>These variables define where the API listens.</p>
-<p><code>dotenv
-API_HOST=0.0.0.0
-API_PORT=8080</code></p>
+<pre><code class="language-dotenv">API_HOST=0.0.0.0
+API_PORT=8080
+</code></pre>
 <h3 id="notes_1">Notes<a class="headerlink" href="#notes_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>0.0.0.0</code> binds the API to all network interfaces</li>
@@ -2916,9 +2939,9 @@ API_PORT=8080</code></p>
 <hr />
 <h2 id="celery-redis">Celery / Redis<a class="headerlink" href="#celery-redis" title="Permanent link">&para;</a></h2>
 <p>These variables configure the Celery broker/runtime behavior.</p>
-<p><code>dotenv
-BROKER_URL=redis://localhost:6379/0
-CELERY_LOGLEVEL=info</code></p>
+<pre><code class="language-dotenv">BROKER_URL=redis://localhost:6379/0
+CELERY_LOGLEVEL=info
+</code></pre>
 <h3 id="notes_2">Notes<a class="headerlink" href="#notes_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>BROKER_URL</code> points to the Redis instance used by Celery</li>
@@ -2931,9 +2954,9 @@ CELERY_LOGLEVEL=info</code></p>
 <hr />
 <h2 id="filesystem-paths">Filesystem Paths<a class="headerlink" href="#filesystem-paths" title="Permanent link">&para;</a></h2>
 <p>These variables define runtime storage locations used by ScipionAPI.</p>
-<p><code>dotenv
-LOGS_PATH=scipion_home/logs
-PROJECTS_PATH=scipion_home/projects</code></p>
+<pre><code class="language-dotenv">LOGS_PATH=scipion_home/logs
+PROJECTS_PATH=scipion_home/projects
+</code></pre>
 <h3 id="notes_3">Notes<a class="headerlink" href="#notes_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Paths may be relative (depending on how your runtime is structured) or absolute</li>
@@ -2946,11 +2969,11 @@ PROJECTS_PATH=scipion_home/projects</code></p>
 <hr />
 <h2 id="integrated-mode-flags">Integrated Mode Flags<a class="headerlink" href="#integrated-mode-flags" title="Permanent link">&para;</a></h2>
 <p>These variables are used when the API also serves the compiled Web UI (<strong>integrated mode</strong>).</p>
-<p><code>dotenv
-SERVE_WEB=1
+<pre><code class="language-dotenv">SERVE_WEB=1
 API_MOUNT_PATH=/api
 WEB_DIST_PATH=/absolute/path/to/dist
-WEB_API_BASE_URL=/api</code></p>
+WEB_API_BASE_URL=/api
+</code></pre>
 <h3 id="behavior">Behavior<a class="headerlink" href="#behavior" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>SERVE_WEB=1</code> enables integrated mode</li>
@@ -2965,9 +2988,9 @@ WEB_API_BASE_URL=/api</code></p>
 <hr />
 <h2 id="conda-integration">Conda Integration<a class="headerlink" href="#conda-integration" title="Permanent link">&para;</a></h2>
 <p>Provisioning and install workflows may auto-detect Conda and store related variables.</p>
-<p><code>dotenv
-CONDA_EXE=/home/user/miniconda3/bin/conda
-CONDA_ACTIVATION_CMD=...</code></p>
+<pre><code class="language-dotenv">CONDA_EXE=/home/user/miniconda3/bin/conda
+CONDA_ACTIVATION_CMD=...
+</code></pre>
 <h3 id="notes_4">Notes<a class="headerlink" href="#notes_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li>These values may be auto-generated during provisioning</li>
@@ -2980,10 +3003,10 @@ CONDA_ACTIVATION_CMD=...</code></p>
 <hr />
 <h2 id="admin-bootstrap">Admin Bootstrap<a class="headerlink" href="#admin-bootstrap" title="Permanent link">&para;</a></h2>
 <p>Some workflows use admin bootstrap values during installation/provisioning.</p>
-<p><code>dotenv
-ADMIN_USERNAME=admin
+<pre><code class="language-dotenv">ADMIN_USERNAME=admin
 ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD=...</code></p>
+ADMIN_PASSWORD=...
+</code></pre>
 <h3 id="notes_5">Notes<a class="headerlink" href="#notes_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Used during install/provision bootstrap workflows</li>
@@ -2996,23 +3019,27 @@ ADMIN_PASSWORD=...</code></p>
 <hr />
 <h2 id="example-env-local-integrated-mode">Example <code>.env</code> (Local / Integrated Mode)<a class="headerlink" href="#example-env-local-integrated-mode" title="Permanent link">&para;</a></h2>
 <p>This is an example composition using common values:</p>
-<p>```dotenv
-DATABASE_URL=postgresql://scipion_user:securePassword@localhost:5432/scipion_db
+<pre><code class="language-dotenv">DATABASE_URL=postgresql://scipion_user:securePassword@localhost:5432/scipion_db
 DATABASE_NAME=scipion_db
 DATABASE_USER=scipion_user
-DATABASE_PASS=securePassword</p>
-<p>SECRET_KEY=replace_with_a_strong_random_secret</p>
-<p>API_HOST=0.0.0.0
-API_PORT=8080</p>
-<p>BROKER_URL=redis://localhost:6379/0
-CELERY_LOGLEVEL=info</p>
-<p>LOGS_PATH=scipion_home/logs
-PROJECTS_PATH=scipion_home/projects</p>
-<p>SERVE_WEB=1
+DATABASE_PASS=securePassword
+
+SECRET_KEY=replace_with_a_strong_random_secret
+
+API_HOST=0.0.0.0
+API_PORT=8080
+
+BROKER_URL=redis://localhost:6379/0
+CELERY_LOGLEVEL=info
+
+LOGS_PATH=scipion_home/logs
+PROJECTS_PATH=scipion_home/projects
+
+SERVE_WEB=1
 API_MOUNT_PATH=/api
 WEB_DIST_PATH=/opt/scipionweb/runtime/web/dist
 WEB_API_BASE_URL=/api
-```</p>
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Keep examples separate from real secrets</p>
 <p>Use documentation examples or template files for onboarding, but never store real production credentials in shared examples.</p>
@@ -3020,10 +3047,10 @@ WEB_API_BASE_URL=/api
 <hr />
 <h2 id="loading-env-in-shell-sessions-optional">Loading <code>.env</code> in Shell Sessions (Optional)<a class="headerlink" href="#loading-env-in-shell-sessions-optional" title="Permanent link">&para;</a></h2>
 <p>If you need to export <code>.env</code> variables into your current shell session for CLI tools:</p>
-<p><code>bash
-set -a
-source "$SCIPION_HOME/.env"
-set +a</code></p>
+<pre><code>set -a
+source &quot;$SCIPION_HOME/.env&quot;
+set +a
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Why <code>set -a</code>?</p>
 <p>Many <code>.env</code> files use <code>KEY=value</code> format without <code>export</code>. <code>set -a</code> automatically exports variables loaded via <code>source</code>.</p>
@@ -3041,8 +3068,7 @@ set +a</code></p>
 <div class="admonition warning">
 <p class="admonition-title">Permission example</p>
 <p>A common production setup is:</p>
-<p><code>bash
-chmod 600 "$SCIPION_HOME/.env"
+<p><code>chmod 600 "$SCIPION_HOME/.env"
 chown &lt;service-user&gt;:&lt;service-user&gt; "$SCIPION_HOME/.env"</code></p>
 </div>
 <hr />
@@ -3066,15 +3092,15 @@ chown &lt;service-user&gt;:&lt;service-user&gt; "$SCIPION_HOME/.env"</code></p>
 <hr />
 <h2 id="quick-verification">Quick Verification<a class="headerlink" href="#quick-verification" title="Permanent link">&para;</a></h2>
 <p>Run a quick sanity check after editing <code>.env</code>:</p>
-<p><code>bash
-test -f "$SCIPION_HOME/.env" &amp;&amp; echo ".env found"
-grep -E '^(DATABASE_URL|API_HOST|API_PORT|BROKER_URL|SERVE_WEB)=' "$SCIPION_HOME/.env" || true</code></p>
+<pre><code>test -f &quot;$SCIPION_HOME/.env&quot; &amp;&amp; echo &quot;.env found&quot;
+grep -E '^(DATABASE_URL|API_HOST|API_PORT|BROKER_URL|SERVE_WEB)=' &quot;$SCIPION_HOME/.env&quot; || true
+</code></pre>
 <p>Then verify the runtime:</p>
-<p><code>bash
-curl http://localhost:8080/health</code></p>
+<pre><code>curl http://localhost:8080/health
+</code></pre>
 <p>Expected response:</p>
-<p><code>json
-{"status":"ok"}</code></p>
+<pre><code class="language-json">{&quot;status&quot;:&quot;ok&quot;}
+</code></pre>
 <hr />
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
   <a href="../scipion-home/" style="text-decoration:none; display:inline-block;">

@@ -1626,6 +1626,8 @@
       
         
       
+        
+      
     
     
       
@@ -1725,6 +1727,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2552,9 +2575,9 @@
 <li>TLS certificates (Let's Encrypt or enterprise CA)</li>
 </ul>
 <p>Example public endpoints:</p>
-<p><code>text
-https://yourdomain.com
-https://api.yourdomain.com</code></p>
+<pre><code class="language-text">https://yourdomain.com
+https://api.yourdomain.com
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Why HTTPS is mandatory</p>
 <p>HTTPS protects credentials, tokens, and session traffic from interception.</p>
@@ -2581,11 +2604,11 @@ https://api.yourdomain.com</code></p>
 <hr />
 <h2 id="3-restrict-cors">3. Restrict CORS<a class="headerlink" href="#3-restrict-cors" title="Permanent link">&para;</a></h2>
 <p>Avoid permissive production CORS policies such as:</p>
-<p><code>python
-allow_origins=["*"]</code></p>
+<pre><code class="language-python">allow_origins=[&quot;*&quot;]
+</code></pre>
 <p>Use explicit origins instead:</p>
-<p><code>python
-allow_origins=["https://yourdomain.com"]</code></p>
+<pre><code class="language-python">allow_origins=[&quot;https://yourdomain.com&quot;]
+</code></pre>
 <p>If you use separate frontend/API hosts, include only the required frontend origins.</p>
 <hr />
 <h2 id="4-database-security-postgresql">4. Database Security (PostgreSQL)<a class="headerlink" href="#4-database-security-postgresql" title="Permanent link">&para;</a></h2>
@@ -2643,12 +2666,12 @@ allow_origins=["https://yourdomain.com"]</code></p>
 <li>Ensure correct ownership for the runtime user/service</li>
 </ul>
 <p>Example:</p>
-<p><code>bash
-chmod 600 scipion_home/.env
-chmod -R 750 scipion_home</code></p>
+<pre><code>chmod 600 scipion_home/.env
+chmod -R 750 scipion_home
+</code></pre>
 <p>Optional ownership fix:</p>
-<p><code>bash
-chown -R youruser:yourgroup scipion_home</code></p>
+<pre><code>chown -R youruser:yourgroup scipion_home
+</code></pre>
 <hr />
 <h2 id="9-production-hardening-checklist">9. Production Hardening Checklist<a class="headerlink" href="#9-production-hardening-checklist" title="Permanent link">&para;</a></h2>
 <ul>

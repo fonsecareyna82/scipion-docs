@@ -548,6 +548,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Recommended deployment mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrated-mode-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrated Mode (recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-frontendbackend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate frontend/backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      API-only
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1592,6 +1625,8 @@
       
         
       
+        
+      
     
     
       
@@ -1691,6 +1726,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2434,6 +2490,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Recommended deployment mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrated-mode-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrated Mode (recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-frontendbackend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate frontend/backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      API-only
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2525,32 +2614,25 @@
 </ol>
 <hr />
 <h2 id="recommended-deployment-mode">Recommended deployment mode<a class="headerlink" href="#recommended-deployment-mode" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Integrated Mode (recommended)</label><label for="__tabbed_1_2">Separate frontend/backend</label><label for="__tabbed_1_3">API-only</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h3 id="integrated-mode-recommended">Integrated Mode (recommended)<a class="headerlink" href="#integrated-mode-recommended" title="Permanent link">&para;</a></h3>
 <p>The backend serves the compiled frontend and mounts the API under <code>/api</code>.</p>
 <ul>
 <li>Web UI: <code>http://host:8080/</code></li>
 <li>API docs: <code>http://host:8080/api/docs</code></li>
 </ul>
 <p>This is the recommended mode when installing ScipionWeb for users.</p>
-</div>
-<div class="tabbed-block">
+<h3 id="separate-frontendbackend">Separate frontend/backend<a class="headerlink" href="#separate-frontendbackend" title="Permanent link">&para;</a></h3>
 <p>Use this when the frontend is hosted separately from the API, usually in more advanced infrastructure setups.</p>
-</div>
-<div class="tabbed-block">
+<h3 id="api-only">API-only<a class="headerlink" href="#api-only" title="Permanent link">&para;</a></h3>
 <p>Use this mainly for development, testing, or deployments where another service provides the frontend.</p>
-</div>
-</div>
-</div>
 <hr />
 <h2 id="quick-install-example">Quick install example<a class="headerlink" href="#quick-install-example" title="Permanent link">&para;</a></h2>
-<p><code>bash
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe" \
-  --web-dist "$HOME/scipionweb/ScipionWeb-&lt;version&gt;-dist.zip"</code></p>
+<pre><code>./scripts/scipionapi provision \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot; \
+  --web-dist &quot;$HOME/scipionweb/ScipionWeb-&lt;version&gt;-dist.zip&quot;
+</code></pre>
+<p>The CLI will ask for the admin password using a hidden prompt.</p>
 <hr />
 <h2 id="what-scipionweb-provides">What ScipionWeb provides<a class="headerlink" href="#what-scipionweb-provides" title="Permanent link">&para;</a></h2>
 <div class="admonition abstract">
@@ -2563,7 +2645,7 @@
 <li>PostgreSQL persistence</li>
 <li>Celery + Redis background task execution</li>
 <li>Integrated API + Web deployment mode</li>
-<li>CLI tools for installation, provisioning, runtime control, and logs</li>
+<li>CLI tools for installation, provisioning, diagnostics, runtime control, and logs</li>
 </ul>
 </div>
 

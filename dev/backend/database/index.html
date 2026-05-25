@@ -1472,6 +1472,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2508,8 +2531,8 @@
 <hr />
 <h2 id="database-url">Database URL<a class="headerlink" href="#database-url" title="Permanent link">&para;</a></h2>
 <p>Defined in <code>.env</code>:</p>
-<p><code>dotenv
-DATABASE_URL=postgresql://user:pass@host:5432/db</code></p>
+<pre><code class="language-dotenv">DATABASE_URL=postgresql://user:pass@host:5432/db
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Keep it consistent</p>
 <p>If your deployment also uses split DB variables (<code>DATABASE_NAME</code>, <code>DATABASE_USER</code>, <code>DATABASE_PASS</code>), keep them aligned with <code>DATABASE_URL</code>.</p>
@@ -2517,8 +2540,8 @@ DATABASE_URL=postgresql://user:pass@host:5432/db</code></p>
 <hr />
 <h2 id="orm-models">ORM Models<a class="headerlink" href="#orm-models" title="Permanent link">&para;</a></h2>
 <p>Models are located in:</p>
-<p><code>text
-app/backend/models/</code></p>
+<pre><code class="language-text">app/backend/models/
+</code></pre>
 <p>Typical entities include:</p>
 <ul>
 <li><code>User</code></li>
@@ -2535,14 +2558,14 @@ app/backend/models/</code></p>
 <hr />
 <h2 id="alembic">Alembic<a class="headerlink" href="#alembic" title="Permanent link">&para;</a></h2>
 <p>Migration files are stored in:</p>
-<p><code>text
-alembic/</code></p>
+<pre><code class="language-text">alembic/
+</code></pre>
 <p>Alembic tracks schema revisions and applies them in order.</p>
 <hr />
 <h2 id="apply-migrations">Apply Migrations<a class="headerlink" href="#apply-migrations" title="Permanent link">&para;</a></h2>
 <p>Run:</p>
-<p><code>bash
-alembic upgrade head</code></p>
+<pre><code>alembic upgrade head
+</code></pre>
 <p>This upgrades the database schema to the latest known revision.</p>
 <div class="admonition tip">
 <p class="admonition-title">Before production migrations</p>
@@ -2551,8 +2574,8 @@ alembic upgrade head</code></p>
 <hr />
 <h2 id="create-a-new-migration">Create a New Migration<a class="headerlink" href="#create-a-new-migration" title="Permanent link">&para;</a></h2>
 <p>Generate a migration:</p>
-<p><code>bash
-alembic revision --autogenerate -m "description"</code></p>
+<pre><code>alembic revision --autogenerate -m &quot;description&quot;
+</code></pre>
 <p>Then review the generated migration carefully before applying it.</p>
 <div class="admonition warning">
 <p class="admonition-title">Autogenerate is not infallible</p>
@@ -2560,8 +2583,8 @@ alembic revision --autogenerate -m "description"</code></p>
 </div>
 <hr />
 <h2 id="migration-flow">Migration Flow<a class="headerlink" href="#migration-flow" title="Permanent link">&para;</a></h2>
-<p><code>text
-Model change → alembic revision → review migration → alembic upgrade</code></p>
+<pre><code class="language-text">Model change → alembic revision → review migration → alembic upgrade
+</code></pre>
 <p>Recommended workflow:</p>
 <ol>
 <li>Update ORM models</li>
@@ -2595,14 +2618,14 @@ Model change → alembic revision → review migration → alembic upgrade</code
 <hr />
 <h2 id="operational-checks">Operational Checks<a class="headerlink" href="#operational-checks" title="Permanent link">&para;</a></h2>
 <p>Verify connectivity before migrations:</p>
-<p><code>bash
-psql -U user -d db</code></p>
+<pre><code>psql -U user -d db
+</code></pre>
 <p>Then run:</p>
-<p><code>bash
-alembic upgrade head</code></p>
+<pre><code>alembic upgrade head
+</code></pre>
 <p>After migration, validate expected tables:</p>
-<p><code>bash
-psql -U user -d db -c "\dt"</code></p>
+<pre><code>psql -U user -d db -c &quot;\dt&quot;
+</code></pre>
 <hr />
 <h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">

@@ -622,6 +622,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Download the bundles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-wget" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using wget
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using curl
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1573,6 +1597,8 @@
       
         
       
+        
+      
     
     
       
@@ -1672,6 +1698,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2373,6 +2420,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Download the bundles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-wget" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using wget
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using curl
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2457,42 +2528,36 @@
 <hr />
 <h2 id="recommended-directory-layout">Recommended directory layout<a class="headerlink" href="#recommended-directory-layout" title="Permanent link">&para;</a></h2>
 <p>A clean local layout looks like this:</p>
-<p><code>text
-$HOME/scipionweb/
+<pre><code class="language-text">$HOME/scipionweb/
 ├── ScipionAPI-&lt;version&gt;/
-└── ScipionWeb-&lt;version&gt;-dist.zip</code></p>
+└── ScipionWeb-&lt;version&gt;-dist.zip
+</code></pre>
 <p>The Web ZIP can remain unextracted if you plan to pass it directly to <code>provision</code> using <code>--web-dist</code>.</p>
 <hr />
 <h2 id="download-the-bundles">Download the bundles<a class="headerlink" href="#download-the-bundles" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Using wget</label><label for="__tabbed_1_2">Using curl</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>```bash
-mkdir -p "$HOME/scipionweb"
-cd "$HOME/scipionweb"</p>
-<p>wget "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip"
-wget "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip"
-```</p>
-</div>
-<div class="tabbed-block">
-<p>```bash
-mkdir -p "$HOME/scipionweb"
-cd "$HOME/scipionweb"</p>
-<p>curl -O "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-<version>.zip"
-curl -O "https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-<version>-dist.zip"
-```</p>
-</div>
-</div>
-</div>
+<h3 id="using-wget">Using wget<a class="headerlink" href="#using-wget" title="Permanent link">&para;</a></h3>
+<pre><code>mkdir -p &quot;$HOME/scipionweb&quot;
+cd &quot;$HOME/scipionweb&quot;
+
+wget &quot;https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-&lt;version&gt;.zip&quot;
+wget &quot;https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-&lt;version&gt;-dist.zip&quot;
+</code></pre>
+<h3 id="using-curl">Using curl<a class="headerlink" href="#using-curl" title="Permanent link">&para;</a></h3>
+<pre><code>mkdir -p &quot;$HOME/scipionweb&quot;
+cd &quot;$HOME/scipionweb&quot;
+
+curl -O &quot;https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionAPI-&lt;version&gt;.zip&quot;
+curl -O &quot;https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/ScipionWeb-&lt;version&gt;-dist.zip&quot;
+</code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Optional Web bundle</p>
 <p>If you do <strong>not</strong> need integrated mode, you may skip downloading <code>ScipionWeb-&lt;version&gt;-dist.zip</code>.</p>
 </div>
 <hr />
 <h2 id="extract-the-api-bundle">Extract the API bundle<a class="headerlink" href="#extract-the-api-bundle" title="Permanent link">&para;</a></h2>
-<p><code>bash
-unzip ScipionAPI-&lt;version&gt;.zip
-cd ScipionAPI-&lt;version&gt;</code></p>
+<pre><code>unzip ScipionAPI-&lt;version&gt;.zip
+cd ScipionAPI-&lt;version&gt;
+</code></pre>
 <p>At this point, the main thing to verify is that the API directory contains the wrapper script and the expected project structure.</p>
 <hr />
 <h2 id="what-to-verify-after-extraction">What to verify after extraction<a class="headerlink" href="#what-to-verify-after-extraction" title="Permanent link">&para;</a></h2>
@@ -2514,13 +2579,13 @@ cd ScipionAPI-&lt;version&gt;</code></p>
 </ul>
 <p>Manual extraction of the Web bundle is optional and mostly useful for inspection.</p>
 <p>If you want to inspect it manually, extract it with:</p>
-<p><code>bash
-unzip ScipionWeb-&lt;version&gt;-dist.zip</code></p>
+<pre><code>unzip ScipionWeb-&lt;version&gt;-dist.zip
+</code></pre>
 <p>The extracted contents should include:</p>
-<p><code>text
-dist/
+<pre><code class="language-text">dist/
   index.html
-  assets/</code></p>
+  assets/
+</code></pre>
 <hr />
 <h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">

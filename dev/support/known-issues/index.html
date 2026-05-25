@@ -1865,6 +1865,8 @@
       
         
       
+        
+      
     
     
       
@@ -1964,6 +1966,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -3032,17 +3055,17 @@
 <li>The worker started without the expected <code>SCIPION_HOME</code>.</li>
 </ul>
 <h3 id="checks">Checks<a class="headerlink" href="#checks" title="Permanent link">&para;</a></h3>
-<p><code>bash
-./scripts/scipionapi status
+<pre><code>./scripts/scipionapi status
 ./scripts/scipionapi logs
-redis-cli ping</code></p>
+redis-cli ping
+</code></pre>
 <p>Expected Redis response:</p>
-<p><code>text
-PONG</code></p>
+<pre><code class="language-text">PONG
+</code></pre>
 <h3 id="workaround">Workaround<a class="headerlink" href="#workaround" title="Permanent link">&para;</a></h3>
 <p>Restart the runtime after verifying that <code>SCIPION_HOME</code>, <code>CELERY_BROKER_URL</code>, and <code>CELERY_RESULT_BACKEND</code> are consistent:</p>
-<p><code>bash
-./scripts/scipionapi restart</code></p>
+<pre><code>./scripts/scipionapi restart
+</code></pre>
 <hr />
 <h2 id="redis-reports-no-nodes-replied-within-time-constraint">Redis reports no nodes replied within time constraint<a class="headerlink" href="#redis-reports-no-nodes-replied-within-time-constraint" title="Permanent link">&para;</a></h2>
 <h3 id="symptoms_1">Symptoms<a class="headerlink" href="#symptoms_1" title="Permanent link">&para;</a></h3>
@@ -3058,14 +3081,14 @@ PONG</code></p>
 <li>Firewall or network restrictions block access in a distributed deployment.</li>
 </ul>
 <h3 id="checks_1">Checks<a class="headerlink" href="#checks_1" title="Permanent link">&para;</a></h3>
-<p><code>bash
-sudo systemctl status redis-server
-redis-cli ping</code></p>
+<pre><code>sudo systemctl status redis-server
+redis-cli ping
+</code></pre>
 <h3 id="workaround_1">Workaround<a class="headerlink" href="#workaround_1" title="Permanent link">&para;</a></h3>
 <p>Start or restart Redis, then restart ScipionAPI services:</p>
-<p><code>bash
-sudo systemctl restart redis-server
-./scripts/scipionapi restart</code></p>
+<pre><code>sudo systemctl restart redis-server
+./scripts/scipionapi restart
+</code></pre>
 <hr />
 <h2 id="scipion_home-is-not-available-in-the-worker"><code>SCIPION_HOME</code> is not available in the worker<a class="headerlink" href="#scipion_home-is-not-available-in-the-worker" title="Permanent link">&para;</a></h2>
 <h3 id="symptoms_2">Symptoms<a class="headerlink" href="#symptoms_2" title="Permanent link">&para;</a></h3>
@@ -3081,14 +3104,14 @@ sudo systemctl restart redis-server
 <li>API and worker were started through different mechanisms.</li>
 </ul>
 <h3 id="checks_2">Checks<a class="headerlink" href="#checks_2" title="Permanent link">&para;</a></h3>
-<p><code>bash
-echo "$SCIPION_HOME"
-test -f "$SCIPION_HOME/.env" &amp;&amp; echo ".env found"
-./scripts/scipionapi logs</code></p>
+<pre><code>echo &quot;$SCIPION_HOME&quot;
+test -f &quot;$SCIPION_HOME/.env&quot; &amp;&amp; echo &quot;.env found&quot;
+./scripts/scipionapi logs
+</code></pre>
 <h3 id="workaround_2">Workaround<a class="headerlink" href="#workaround_2" title="Permanent link">&para;</a></h3>
 <p>Start API and worker through the same runtime command so both processes share the same configuration source:</p>
-<p><code>bash
-./scripts/scipionapi restart</code></p>
+<pre><code>./scripts/scipionapi restart
+</code></pre>
 <hr />
 <h2 id="importerror-pyworkflowprojectmanager-not-found"><code>ImportError</code>: <code>pyworkflow.project.manager</code> not found<a class="headerlink" href="#importerror-pyworkflowprojectmanager-not-found" title="Permanent link">&para;</a></h2>
 <h3 id="symptoms_3">Symptoms<a class="headerlink" href="#symptoms_3" title="Permanent link">&para;</a></h3>
@@ -3103,14 +3126,14 @@ test -f "$SCIPION_HOME/.env" &amp;&amp; echo ".env found"
 <li>The worker is started outside the wrapper script or expected environment.</li>
 </ul>
 <h3 id="checks_3">Checks<a class="headerlink" href="#checks_3" title="Permanent link">&para;</a></h3>
-<p><code>bash
-conda activate scipion4Web
-python -c "import pyworkflow; print(pyworkflow.__file__)"</code></p>
+<pre><code>conda activate scipion4Web
+python -c &quot;import pyworkflow; print(pyworkflow.__file__)&quot;
+</code></pre>
 <h3 id="workaround_3">Workaround<a class="headerlink" href="#workaround_3" title="Permanent link">&para;</a></h3>
 <p>Activate the expected environment and restart using the wrapper script from the ScipionAPI bundle directory:</p>
-<p><code>bash
-conda activate scipion4Web
-./scripts/scipionapi restart</code></p>
+<pre><code>conda activate scipion4Web
+./scripts/scipionapi restart
+</code></pre>
 <hr />
 <h2 id="browser-cors-errors-between-frontend-and-backend">Browser CORS errors between frontend and backend<a class="headerlink" href="#browser-cors-errors-between-frontend-and-backend" title="Permanent link">&para;</a></h2>
 <h3 id="symptoms_4">Symptoms<a class="headerlink" href="#symptoms_4" title="Permanent link">&para;</a></h3>
@@ -3147,9 +3170,9 @@ conda activate scipion4Web
 <li>A partially applied migration state was left behind after a failed test or upgrade.</li>
 </ul>
 <h3 id="checks_5">Checks<a class="headerlink" href="#checks_5" title="Permanent link">&para;</a></h3>
-<p><code>bash
-alembic current
-alembic heads</code></p>
+<pre><code>alembic current
+alembic heads
+</code></pre>
 <p>Also confirm that <code>DATABASE_URL</code> points to the intended database.</p>
 <h3 id="workaround_5">Workaround<a class="headerlink" href="#workaround_5" title="Permanent link">&para;</a></h3>
 <p>For test databases, the simplest fix is often to recreate the database and apply migrations from a clean state.</p>
@@ -3162,8 +3185,8 @@ alembic heads</code></p>
 <li><code>provision</code> or <code>start</code> appears to fail immediately.</li>
 </ul>
 <h3 id="checks_6">Checks<a class="headerlink" href="#checks_6" title="Permanent link">&para;</a></h3>
-<p><code>bash
-lsof -i :8080</code></p>
+<pre><code>lsof -i :8080
+</code></pre>
 <h3 id="workaround_6">Workaround<a class="headerlink" href="#workaround_6" title="Permanent link">&para;</a></h3>
 <p>Stop the process using the port, or configure ScipionAPI to use a different API port.</p>
 <p>Use forceful termination only as a last resort after confirming the process is safe to stop.</p>

@@ -1474,6 +1474,8 @@
       
         
       
+        
+      
     
     
       
@@ -1574,6 +1576,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2287,11 +2310,62 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#admin-password-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admin Password Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#typical-workflows" class="md-nav__link">
     <span class="md-ellipsis">
       Typical Workflows
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Typical Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-one-shot-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended one-shot setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automated-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-advanced-or-debugging-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-step advanced or debugging setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#daily-runtime-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Daily runtime operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2414,13 +2488,14 @@
 <li>one-shot provisioning</li>
 <li>service lifecycle management</li>
 <li>logs and runtime status inspection</li>
+<li>read-only diagnostics with <code>doctor</code></li>
 </ul>
 <p>The main entrypoint is the wrapper script:</p>
-<p><code>bash
-./scripts/scipionapi</code></p>
+<pre><code>./scripts/scipionapi
+</code></pre>
 <p>If the package is already available inside the active environment, you may also use:</p>
-<p><code>bash
-scipionapi</code></p>
+<pre><code>scipionapi
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Recommended usage</p>
 <p>For most users, the wrapper script (<code>./scripts/scipionapi</code>) is the safest option because it helps ensure the command runs in the expected Conda environment.</p>
@@ -2432,6 +2507,7 @@ scipionapi</code></p>
 <li><code>bootstrap</code> prepares Python and dependencies</li>
 <li><code>install</code> prepares runtime configuration and database state</li>
 <li><code>provision</code> combines setup into one guided path</li>
+<li><code>doctor</code> checks whether the environment looks healthy</li>
 <li><code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code>, and <code>logs</code> manage the running services</li>
 </ul>
 <p>If you remember that split, the CLI becomes much easier to understand.</p>
@@ -2457,6 +2533,11 @@ scipionapi</code></p>
 <td>Configure runtime workspace, database, admin user, and optional web deployment</td>
 </tr>
 <tr>
+<td>Diagnostics</td>
+<td><code>doctor</code></td>
+<td>Run read-only checks for config, Conda, DB, Redis, imports, and runtime state</td>
+</tr>
+<tr>
 <td>Runtime</td>
 <td><code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code>, <code>logs</code></td>
 <td>Manage API/Celery processes and inspect runtime logs</td>
@@ -2473,6 +2554,7 @@ scipionapi</code></p>
 <li><code>bootstrap</code></li>
 <li><code>install</code></li>
 <li><code>provision</code></li>
+<li><code>doctor</code></li>
 <li><code>start</code></li>
 <li><code>stop</code></li>
 <li><code>restart</code></li>
@@ -2480,30 +2562,45 @@ scipionapi</code></p>
 <li><code>logs</code></li>
 </ul>
 <hr />
+<h2 id="admin-password-handling">Admin Password Handling<a class="headerlink" href="#admin-password-handling" title="Permanent link">&para;</a></h2>
+<p>For interactive installations, omit the password option and let the CLI ask for it using a hidden prompt:</p>
+<pre><code>./scripts/scipionapi install --user &quot;admin&quot; --email &quot;admin@example.com&quot;
+</code></pre>
+<p>For automated installations, provide the password through an environment variable:</p>
+<pre><code>export SCIPIONAPI_ADMIN_PASSWORD=&quot;&lt;admin-password&gt;&quot;
+./scripts/scipionapi install \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot; \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD
+</code></pre>
+<p><code>--pass</code> and <code>--password</code> are still supported for compatibility, but they are not recommended because command-line arguments may be stored in shell history.</p>
+<hr />
 <h2 id="typical-workflows">Typical Workflows<a class="headerlink" href="#typical-workflows" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Recommended (one-shot setup)</label><label for="__tabbed_1_2">Step-by-step (advanced or debugging)</label><label for="__tabbed_1_3">Daily runtime operations</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p><code>bash
+<h3 id="recommended-one-shot-setup">Recommended one-shot setup<a class="headerlink" href="#recommended-one-shot-setup" title="Permanent link">&para;</a></h3>
+<pre><code>./scripts/scipionapi provision \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot;
+</code></pre>
+<h3 id="automated-setup">Automated setup<a class="headerlink" href="#automated-setup" title="Permanent link">&para;</a></h3>
+<pre><code>export SCIPIONAPI_ADMIN_PASSWORD=&quot;&lt;admin-password&gt;&quot;
+
 ./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe"</code></p>
-</div>
-<div class="tabbed-block">
-<p><code>bash
-./scripts/scipionapi bootstrap
-./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"
-./scripts/scipionapi start</code></p>
-</div>
-<div class="tabbed-block">
-<p><code>bash
-./scripts/scipionapi status
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot; \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD
+</code></pre>
+<h3 id="step-by-step-advanced-or-debugging-setup">Step-by-step advanced or debugging setup<a class="headerlink" href="#step-by-step-advanced-or-debugging-setup" title="Permanent link">&para;</a></h3>
+<pre><code>./scripts/scipionapi bootstrap
+./scripts/scipionapi install --user &quot;admin&quot; --email &quot;admin@example.com&quot;
+./scripts/scipionapi doctor
+./scripts/scipionapi start
+</code></pre>
+<h3 id="daily-runtime-operations">Daily runtime operations<a class="headerlink" href="#daily-runtime-operations" title="Permanent link">&para;</a></h3>
+<pre><code>./scripts/scipionapi status
+./scripts/scipionapi doctor --quick
 ./scripts/scipionapi logs
-./scripts/scipionapi restart</code></p>
-</div>
-</div>
-</div>
+./scripts/scipionapi restart
+</code></pre>
 <hr />
 <h2 id="execution-model">Execution Model<a class="headerlink" href="#execution-model" title="Permanent link">&para;</a></h2>
 <p>The wrapper script typically:</p>
@@ -2518,6 +2615,7 @@ scipionapi</code></p>
 <h3 id="first-time-install">First-time install<a class="headerlink" href="#first-time-install" title="Permanent link">&para;</a></h3>
 <ol>
 <li><a href="provision/">provision</a></li>
+<li><a href="doctor/">doctor</a></li>
 <li><a href="runtime/">runtime commands</a></li>
 <li><a href="../operations/logs-and-pids/">logs and PID files</a></li>
 </ol>
@@ -2525,21 +2623,27 @@ scipionapi</code></p>
 <ol>
 <li><a href="bootstrap/">bootstrap</a></li>
 <li><a href="install/">install</a></li>
+<li><a href="doctor/">doctor</a></li>
 <li><a href="runtime/">runtime commands</a></li>
 <li><a href="../backend/troubleshooting/">Backend Troubleshooting</a></li>
 </ol>
 <hr />
 <h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
 <h3 id="general-help">General help<a class="headerlink" href="#general-help" title="Permanent link">&para;</a></h3>
-<p><code>bash
-./scripts/scipionapi --help</code></p>
+<pre><code>./scripts/scipionapi --help
+</code></pre>
 <h3 id="command-specific-help">Command-specific help<a class="headerlink" href="#command-specific-help" title="Permanent link">&para;</a></h3>
-<p><code>bash
-./scripts/scipionapi provision --help
+<pre><code>./scripts/scipionapi provision --help
 ./scripts/scipionapi install --help
-./scripts/scipionapi start --help</code></p>
+./scripts/scipionapi doctor --help
+./scripts/scipionapi start --help
+</code></pre>
 <hr />
 <h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Passing admin passwords directly with <code>--pass</code></p>
+<p><code>--pass</code> is supported for compatibility, but hidden prompts or <code>--password-env</code> are preferred because they avoid storing secrets in shell history.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Mixing <code>provision</code> and partial manual steps without checking state</p>
 <p><code>provision</code> is idempotent in common cases, but always confirm your runtime paths and database target before re-running commands.</p>
@@ -2550,7 +2654,7 @@ scipionapi</code></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Forgetting to inspect logs after startup</p>
-<p>A service can start and still fail shortly after. Use <code>status</code> and <code>logs</code> to verify runtime health.</p>
+<p>A service can start and still fail shortly after. Use <code>status</code>, <code>doctor</code>, and <code>logs</code> to verify runtime health.</p>
 </div>
 <hr />
 <h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>

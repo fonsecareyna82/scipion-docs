@@ -1583,6 +1583,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Integrated vs Separate Deployment (Quick Comparison)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrated-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrated Mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate Deployment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1806,6 +1830,8 @@
       
         
       
+        
+      
     
     
       
@@ -1905,6 +1931,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2867,6 +2914,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Integrated vs Separate Deployment (Quick Comparison)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrated-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrated Mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate Deployment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2901,8 +2972,8 @@
 <hr />
 <h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
 <p>A simplified request flow looks like this:</p>
-<p><code>text
-User Browser → Web Server / CDN → REST API → PostgreSQL / Redis</code></p>
+<pre><code class="language-text">User Browser → Web Server / CDN → REST API → PostgreSQL / Redis
+</code></pre>
 <p>In practice:</p>
 <ul>
 <li>The browser loads the frontend from a web host (or CDN)</li>
@@ -2928,11 +2999,11 @@ User Browser → Web Server / CDN → REST API → PostgreSQL / Redis</code></p>
 <h2 id="frontend-configuration">Frontend Configuration<a class="headerlink" href="#frontend-configuration" title="Permanent link">&para;</a></h2>
 <p>The frontend must know the public base URL of the API.</p>
 <h3 id="frontend-env-example">Frontend <code>.env</code> (example)<a class="headerlink" href="#frontend-env-example" title="Permanent link">&para;</a></h3>
-<p><code>dotenv
-VITE_API_URL="https://api.yourdomain.com"</code></p>
+<pre><code class="language-dotenv">VITE_API_URL=&quot;https://api.yourdomain.com&quot;
+</code></pre>
 <h3 id="frontend-config-usage-example">Frontend config usage example<a class="headerlink" href="#frontend-config-usage-example" title="Permanent link">&para;</a></h3>
-<p><code>ts
-export const BASE_URL = import.meta.env.VITE_API_URL;</code></p>
+<pre><code class="language-ts">export const BASE_URL = import.meta.env.VITE_API_URL;
+</code></pre>
 <p>After changing frontend environment variables, rebuild (or redeploy) the frontend.</p>
 <div class="admonition warning">
 <p class="admonition-title">Rebuild required</p>
@@ -2942,15 +3013,15 @@ export const BASE_URL = import.meta.env.VITE_API_URL;</code></p>
 <h2 id="api-configuration">API Configuration<a class="headerlink" href="#api-configuration" title="Permanent link">&para;</a></h2>
 <p>In separate deployment mode, the API should <strong>not</strong> serve the frontend.</p>
 <h3 id="disable-integrated-mode">Disable integrated mode<a class="headerlink" href="#disable-integrated-mode" title="Permanent link">&para;</a></h3>
-<p><code>dotenv
-SERVE_WEB=0</code></p>
+<pre><code class="language-dotenv">SERVE_WEB=0
+</code></pre>
 <h3 id="cors-configuration">CORS configuration<a class="headerlink" href="#cors-configuration" title="Permanent link">&para;</a></h3>
 <p>The API must allow the frontend origin(s). Example backend configuration:</p>
-<p><code>python
-allow_origins=["http://web-host:5173"]</code></p>
+<pre><code class="language-python">allow_origins=[&quot;http://web-host:5173&quot;]
+</code></pre>
 <p>Production example:</p>
-<p><code>python
-allow_origins=["https://yourdomain.com"]</code></p>
+<pre><code class="language-python">allow_origins=[&quot;https://yourdomain.com&quot;]
+</code></pre>
 <div class="admonition warning">
 <p class="admonition-title">CORS is required</p>
 <p>If CORS is not configured correctly, browser requests may fail even when the API is healthy and reachable.</p>
@@ -2958,14 +3029,14 @@ allow_origins=["https://yourdomain.com"]</code></p>
 <hr />
 <h2 id="production-example">Production Example<a class="headerlink" href="#production-example" title="Permanent link">&para;</a></h2>
 <h3 id="api-server">API server<a class="headerlink" href="#api-server" title="Permanent link">&para;</a></h3>
-<p><code>text
-https://api.yourdomain.com</code></p>
+<pre><code class="language-text">https://api.yourdomain.com
+</code></pre>
 <h3 id="web-server-frontend">Web server (frontend)<a class="headerlink" href="#web-server-frontend" title="Permanent link">&para;</a></h3>
-<p><code>text
-https://yourdomain.com</code></p>
+<pre><code class="language-text">https://yourdomain.com
+</code></pre>
 <h3 id="example-api-request-from-the-frontend">Example API request from the frontend<a class="headerlink" href="#example-api-request-from-the-frontend" title="Permanent link">&para;</a></h3>
-<p><code>text
-https://api.yourdomain.com/api/projects</code></p>
+<pre><code class="language-text">https://api.yourdomain.com/api/projects
+</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Consistent public URLs</p>
 <p>Keep the frontend's configured API URL aligned with the actual public API endpoint exposed through your reverse proxy / load balancer.</p>
@@ -3036,8 +3107,8 @@ https://api.yourdomain.com/api/projects</code></p>
 <hr />
 <h2 id="verification-steps">Verification Steps<a class="headerlink" href="#verification-steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-check-api-health-directly">1. Check API health directly<a class="headerlink" href="#1-check-api-health-directly" title="Permanent link">&para;</a></h3>
-<p><code>bash
-curl https://api.yourdomain.com/health</code></p>
+<pre><code>curl https://api.yourdomain.com/health
+</code></pre>
 <p><em>(adjust the URL/path to your actual public API endpoint)</em></p>
 <h3 id="2-test-a-browser-session">2. Test a browser session<a class="headerlink" href="#2-test-a-browser-session" title="Permanent link">&para;</a></h3>
 <ul>
@@ -3068,26 +3139,20 @@ curl https://api.yourdomain.com/health</code></p>
 </div>
 <hr />
 <h2 id="integrated-vs-separate-deployment-quick-comparison">Integrated vs Separate Deployment (Quick Comparison)<a class="headerlink" href="#integrated-vs-separate-deployment-quick-comparison" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Integrated Mode</label><label for="__tabbed_1_2">Separate Deployment</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h3 id="integrated-mode">Integrated Mode<a class="headerlink" href="#integrated-mode" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Simpler setup</li>
 <li>Single host / single endpoint</li>
 <li>No CORS in common deployments</li>
 <li>Easier for local/internal use</li>
 </ul>
-</div>
-<div class="tabbed-block">
+<h3 id="separate-deployment">Separate Deployment<a class="headerlink" href="#separate-deployment" title="Permanent link">&para;</a></h3>
 <ul>
 <li>More flexible and scalable</li>
 <li>Frontend and API deploy independently</li>
 <li>CORS and proxy configuration required</li>
 <li>Better fit for cloud/production platforms</li>
 </ul>
-</div>
-</div>
-</div>
 <hr />
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
   <a href="../integrated-mode/" style="text-decoration:none; display:inline-block;">

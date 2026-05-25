@@ -1474,6 +1474,8 @@
       
         
       
+        
+      
     
     
       
@@ -1615,6 +1617,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="When to Use bootstrap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-advanced-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual / advanced flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-shot-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      One-shot alternative
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1704,6 +1730,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2432,6 +2479,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="When to Use bootstrap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-advanced-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual / advanced flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-shot-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      One-shot alternative
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2512,8 +2583,8 @@
 </div>
 <hr />
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p><code>bash
-./scripts/scipionapi bootstrap</code></p>
+<pre><code>./scripts/scipionapi bootstrap
+</code></pre>
 <hr />
 <h2 id="what-it-does">What It Does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
 <p>When executed, <code>bootstrap</code> typically:</p>
@@ -2528,8 +2599,8 @@
 <hr />
 <h2 id="default-environment-name">Default Environment Name<a class="headerlink" href="#default-environment-name" title="Permanent link">&para;</a></h2>
 <p>Default Conda environment name:</p>
-<p><code>text
-scipion4Web</code></p>
+<pre><code class="language-text">scipion4Web
+</code></pre>
 <p>This may be overridden in advanced setups (wrapper/env config, depending on version/workflow).</p>
 <hr />
 <h2 id="when-to-use-bootstrap">When to Use <code>bootstrap</code><a class="headerlink" href="#when-to-use-bootstrap" title="Permanent link">&para;</a></h2>
@@ -2540,20 +2611,14 @@ scipion4Web</code></p>
 <li>Rebuild or refresh the Python runtime</li>
 <li>Perform a manual installation flow before <code>install</code></li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Manual / advanced flow</label><label for="__tabbed_1_2">One-shot alternative</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p><code>bash
-./scripts/scipionapi bootstrap
-./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"
-./scripts/scipionapi start</code></p>
-</div>
-<div class="tabbed-block">
-<p><code>bash
-./scripts/scipionapi provision --user "admin" --email "admin@example.com" --pass "changeMe"</code></p>
-</div>
-</div>
-</div>
+<h3 id="manual-advanced-flow">Manual / advanced flow<a class="headerlink" href="#manual-advanced-flow" title="Permanent link">&para;</a></h3>
+<pre><code>./scripts/scipionapi bootstrap
+./scripts/scipionapi install --user &quot;admin&quot; --email &quot;admin@example.com&quot;
+./scripts/scipionapi start
+</code></pre>
+<h3 id="one-shot-alternative">One-shot alternative<a class="headerlink" href="#one-shot-alternative" title="Permanent link">&para;</a></h3>
+<pre><code>./scripts/scipionapi provision --user &quot;admin&quot; --email &quot;admin@example.com&quot;
+</code></pre>
 <hr />
 <h2 id="idempotent-behavior">Idempotent Behavior<a class="headerlink" href="#idempotent-behavior" title="Permanent link">&para;</a></h2>
 <p>Running <code>bootstrap</code> multiple times is generally safe.</p>
@@ -2564,25 +2629,23 @@ scipion4Web</code></p>
 </ul>
 <hr />
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<p><code>bash
-./scripts/scipionapi bootstrap</code></p>
+<pre><code>./scripts/scipionapi bootstrap
+</code></pre>
 <p>After completion:</p>
-<p><code>bash
-conda activate scipion4Web
-scipionapi --help</code></p>
+<pre><code>conda activate scipion4Web
+scipionapi --help
+</code></pre>
 <hr />
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Conda not found</p>
 <p>Confirm Conda is installed and available in <code>PATH</code>:</p>
-<p><code>bash
-conda --version</code></p>
+<p><code>conda --version</code></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Environment created but command still fails</p>
 <p>Activate the environment manually and test:</p>
-<p><code>bash
-conda activate scipion4Web
+<p><code>conda activate scipion4Web
 scipionapi --help</code></p>
 </div>
 <div class="admonition warning">
@@ -2592,11 +2655,11 @@ scipionapi --help</code></p>
 <hr />
 <h2 id="next-step">Next Step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
 <p>After <code>bootstrap</code>, continue with:</p>
-<p><code>bash
-./scripts/scipionapi install --user "admin" --email "admin@example.com" --pass "changeMe"</code></p>
+<pre><code>./scripts/scipionapi install --user &quot;admin&quot; --email &quot;admin@example.com&quot;
+</code></pre>
 <p>Or use the one-shot alternative:</p>
-<p><code>bash
-./scripts/scipionapi provision --user "admin" --email "admin@example.com" --pass "changeMe"</code></p>
+<pre><code>./scripts/scipionapi provision --user &quot;admin&quot; --email &quot;admin@example.com&quot;
+</code></pre>
 <hr />
 <h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">

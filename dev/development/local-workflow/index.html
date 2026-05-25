@@ -1470,6 +1470,8 @@
       
         
       
+        
+      
     
     
       
@@ -1572,6 +1574,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/doctor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doctor
   </span>
   
 
@@ -2285,43 +2308,43 @@
 </ul>
 <hr />
 <h1 id="1-clone-repository">1. Clone Repository<a class="headerlink" href="#1-clone-repository" title="Permanent link">&para;</a></h1>
-<p><code>bash
-git clone &lt;repository-url&gt;
-cd ScipionAPI</code></p>
+<pre><code>git clone &lt;repository-url&gt;
+cd ScipionAPI
+</code></pre>
 <hr />
 <h1 id="2-bootstrap-environment">2. Bootstrap Environment<a class="headerlink" href="#2-bootstrap-environment" title="Permanent link">&para;</a></h1>
-<p><code>bash
-./scripts/scipionapi bootstrap</code></p>
+<pre><code>./scripts/scipionapi bootstrap
+</code></pre>
 <p>Activate environment:</p>
-<p><code>bash
-conda activate scipion4Web</code></p>
+<pre><code>conda activate scipion4Web
+</code></pre>
 <hr />
 <h1 id="3-configure-runtime-workspace">3. Configure Runtime Workspace<a class="headerlink" href="#3-configure-runtime-workspace" title="Permanent link">&para;</a></h1>
 <p>Create a development runtime directory:</p>
-<p><code>bash
-export SCIPION_HOME=$(pwd)/scipion_home
-mkdir -p "$SCIPION_HOME"</code></p>
+<pre><code>export SCIPION_HOME=$(pwd)/scipion_home
+mkdir -p &quot;$SCIPION_HOME&quot;
+</code></pre>
 <p>Run install:</p>
-<p><code>bash
-./scripts/scipionapi install \
+<pre><code>./scripts/scipionapi install \
   --user admin \
-  --email admin@local \
-  --pass changeMe</code></p>
+  --email admin@example.org
+</code></pre>
 <hr />
 <h1 id="4-start-development-server">4. Start Development Server<a class="headerlink" href="#4-start-development-server" title="Permanent link">&para;</a></h1>
 <p>Instead of using <code>start</code>, run uvicorn manually:</p>
-<p><code>bash
-uvicorn app.backend.main:app --reload --host 0.0.0.0 --port 8080</code></p>
+<pre><code>uvicorn app.backend.main:app --reload --host 0.0.0.0 --port 8080
+</code></pre>
 <p>This enables auto-reload on code changes.</p>
 <hr />
 <h1 id="5-start-celery-worker">5. Start Celery Worker<a class="headerlink" href="#5-start-celery-worker" title="Permanent link">&para;</a></h1>
 <p>In another terminal:</p>
-<p><code>bash
-celery -A app.workers.task_queue worker --loglevel=info</code></p>
+<pre><code>celery -A app.workers.task_queue worker --loglevel=info
+</code></pre>
 <hr />
 <h1 id="6-verify">6. Verify<a class="headerlink" href="#6-verify" title="Permanent link">&para;</a></h1>
 <p>Open:</p>
-<p><code>http://localhost:8080/docs</code></p>
+<pre><code>http://localhost:8080/docs
+</code></pre>
 <hr />
 <h1 id="recommended-workflow">Recommended Workflow<a class="headerlink" href="#recommended-workflow" title="Permanent link">&para;</a></h1>
 <p>During development:</p>
@@ -2334,9 +2357,11 @@ celery -A app.workers.task_queue worker --loglevel=info</code></p>
 <hr />
 <h1 id="frontend-local-development">Frontend Local Development<a class="headerlink" href="#frontend-local-development" title="Permanent link">&para;</a></h1>
 <p>If developing frontend:</p>
-<p><code>npm run dev</code></p>
+<pre><code>npm run dev
+</code></pre>
 <p>Ensure:</p>
-<p><code>VITE_API_URL="http://localhost:8080"</code></p>
+<pre><code>VITE_API_URL=&quot;http://localhost:8080&quot;
+</code></pre>
 <hr />
 <h1 id="suggested-branch-strategy">Suggested Branch Strategy<a class="headerlink" href="#suggested-branch-strategy" title="Permanent link">&para;</a></h1>
 <ul>
