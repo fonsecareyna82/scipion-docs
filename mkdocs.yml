@@ -66,6 +66,7 @@ nav:
       - Production Deployment: installation/deployment-systemd.md
   - User Guide:
       - Overview: user-guide/index.md
+      - Sign Up: user-guide/sign-up.md
       - First Login and Session Basics: user-guide/first-login.md
       - Projects: user-guide/projects.md
       - Protocol Execution: user-guide/protocols.md
