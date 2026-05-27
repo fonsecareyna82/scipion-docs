@@ -49,13 +49,9 @@ Use an email address that administrators can recognize, especially on shared fac
 
 ## Submit the form
 
-After submitting the form, one of these outcomes is expected:
+After submitting the form, the account is created immediately. You can then continue to the login page and sign in with the credentials you just registered.
 
-- your account is created and you can continue to the login page
-- your account requires administrator approval
-- registration is rejected because sign-up is disabled or restricted
-
-If approval is required, wait for the administrator to activate or approve the account before trying to sign in.
+If registration is disabled or restricted on a specific deployment, the form will not be available or the request may be rejected. In that case, contact the instance administrator.
 
 ---
 
@@ -87,7 +83,7 @@ Check the password rules shown by the form. Some deployments may enforce minimum
 
 ### The account was created but login fails
 
-The account may still require approval, or the instance may have a configuration issue. Ask the administrator to verify that the account is active.
+Confirm that you are using the same username or email address and password that you registered. If the problem persists, ask the administrator to verify that the account exists and that the backend is reachable.
 
 ---
 
