@@ -15,6 +15,7 @@ It is written for users who already have access to a working instance and need g
 
 Use the User Guide when you want to understand:
 
+- how to create an account when sign-up is enabled
 - how to start a session and verify that the application is working correctly
 - how to work safely with projects
 - how to configure and launch protocols
@@ -26,20 +27,28 @@ Use the User Guide when you want to understand:
 
 ## Recommended reading order
 
-1. [First Login and Session Basics](first-login/)
-2. [Projects](projects/)
-3. [Protocol Execution](protocols/)
-4. [Outputs and Viewers](outputs/)
-5. [Sharing and Collaboration](sharing/)
-6. [Settings](settings/)
-7. [Plugins](plugins/)
-8. [Working Efficiently](working-efficiently/)
+1. [Sign Up](sign-up/)
+2. [First Login and Session Basics](first-login/)
+3. [Projects](projects/)
+4. [Protocol Execution](protocols/)
+5. [Outputs and Viewers](outputs/)
+6. [Sharing and Collaboration](sharing/)
+7. [Settings](settings/)
+8. [Plugins](plugins/)
+9. [Working Efficiently](working-efficiently/)
 
 ---
 
 ## Typical user journeys
 
-### New user
+### New user without an account
+
+1. [Sign Up](sign-up/)
+2. [First Login and Session Basics](first-login/)
+3. [Projects](projects/)
+4. [Protocol Execution](protocols/)
+
+### New user with existing credentials
 
 1. [First Login and Session Basics](first-login/)
 2. [Projects](projects/)
