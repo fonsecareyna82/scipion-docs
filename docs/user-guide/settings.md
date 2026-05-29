@@ -7,7 +7,7 @@ hide:
 
 The Settings area centralizes configuration that affects your account, instance behavior, or shared UI conventions.
 
-<img src="../../assets/images/screenshots/user-guide/settings-page.png" alt="Settings page" style="display:block;width:min(1120px,calc(100vw - 2rem));max-width:none;height:auto;margin:1.2rem 0 1.6rem 50%;transform:translateX(-50%);" />
+<img src="../../assets/images/screenshots/user-guide/settings-page.png" alt="Settings page" style="display:block;width:100%;max-width:980px;height:auto;margin:1.2rem auto 1.6rem;" />
 
 *Settings page with user, instance, and shared configuration areas.*
 
