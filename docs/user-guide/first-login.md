@@ -9,19 +9,19 @@ Use this page for the first actions after opening ScipionWeb in the browser.
 
 Start from the login page and sign in with your user credentials.
 
-![Login page](../assets/images/screenshots/user-guide/login-page.png)
+<img src="../../assets/images/screenshots/user-guide/login-page.png" alt="Login page" style="display:block;width:min(1120px,calc(100vw - 2rem));max-width:none;height:auto;margin:1.2rem 0 1.6rem 50%;transform:translateX(-50%);" />
 
 *ScipionWeb login page used to start a user session.*
 
 After signing in, ScipionWeb opens the dashboard. This is the first place to check that the application loaded correctly and that your session is active.
 
-![Dashboard page after login](../assets/images/screenshots/user-guide/dashboard-page.png)
+<img src="../../assets/images/screenshots/user-guide/dashboard-page.png" alt="Dashboard page after login" style="display:block;width:min(1120px,calc(100vw - 2rem));max-width:none;height:auto;margin:1.2rem 0 1.6rem 50%;transform:translateX(-50%);" />
 
 *Dashboard page shown after a successful login.*
 
 From the dashboard, open the Projects area to confirm that protected API requests and project data load correctly.
 
-![Projects page after login](../assets/images/screenshots/user-guide/projects-page.png)
+<img src="../../assets/images/screenshots/user-guide/projects-page.png" alt="Projects page after login" style="display:block;width:min(1120px,calc(100vw - 2rem));max-width:none;height:auto;margin:1.2rem 0 1.6rem 50%;transform:translateX(-50%);" />
 
 *The Projects page is a useful follow-up check because it confirms that session state and protected API requests are working.*
 
