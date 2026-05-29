@@ -28,6 +28,8 @@ If you already have credentials, go directly to [First Login and Session Basics]
 
 From the login screen, choose the sign-up option to open the registration form.
 
+<img src="../assets/images/screenshots/user-guide/sign_up.png" alt="Sign-up page" />
+
 ---
 
 ## Fill in your account details
