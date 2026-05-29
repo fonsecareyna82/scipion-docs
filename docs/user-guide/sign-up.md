@@ -20,17 +20,13 @@ Use the sign-up form when:
 - an administrator has asked you to create your own user account
 - your institution or team uses self-registration for new users
 
-If you already have credentials, go directly to [First Login and Session Basics](../first-login/).
+If you already have credentials, go directly to [First Login and Session Basics](first-login.md).
 
 ---
 
 ## Open the sign-up page
 
 From the login screen, choose the sign-up option to open the registration form.
-
-![Sign-up page](../assets/images/screenshots/user-guide/sign_up.png)
-
-*ScipionWeb sign-up page used to create a new user account.*
 
 ---
 
@@ -59,9 +55,9 @@ If registration is disabled or restricted on a specific deployment, the form wil
 
 Continue with:
 
-1. [First Login and Session Basics](../first-login/)
-2. [Projects](../projects/)
-3. [Protocol Execution](../protocols/)
+1. [First Login and Session Basics](first-login.md)
+2. [Projects](projects.md)
+3. [Protocol Execution](protocols.md)
 
 The first successful login confirms that the account is valid and that the browser session was created correctly.
 
