@@ -679,6 +679,8 @@
       
         
       
+        
+      
     
     
       
@@ -722,6 +724,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/sign-up/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sign Up
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1465,6 +1488,8 @@
       
         
       
+        
+      
     
     
       
@@ -1564,6 +1589,27 @@
   
   <span class="md-ellipsis">
     Provision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Update
   </span>
   
 
@@ -2454,9 +2500,11 @@
 <li>[ ] Clean working directory</li>
 <li>[ ] Migrations apply cleanly</li>
 <li>[ ] Provision works on a fresh machine</li>
+<li>[ ] <code>update</code> works on an existing test installation</li>
 <li>[ ] No runtime folders included</li>
 <li>[ ] README updated</li>
 <li>[ ] Version bumped</li>
+<li>[ ] Bundle name follows the public convention: <code>ScipionAPI-vX.Y.Z.zip</code></li>
 </ul>
 <hr />
 <h2 id="web-bundle">Web Bundle<a class="headerlink" href="#web-bundle" title="Permanent link">&para;</a></h2>
@@ -2465,7 +2513,8 @@
 <li>[ ] <code>dist</code> contains the expected assets</li>
 <li>[ ] SPA routing works</li>
 <li>[ ] No hardcoded API URLs</li>
-<li>[ ] runtime config injection works as expected</li>
+<li>[ ] Runtime config injection works as expected</li>
+<li>[ ] Bundle name follows the public convention: <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
 </ul>
 <hr />
 <h2 id="integration-validation">Integration Validation<a class="headerlink" href="#integration-validation" title="Permanent link">&para;</a></h2>
@@ -2477,35 +2526,63 @@
 <li>[ ] Access UI in browser</li>
 <li>[ ] Login works</li>
 <li>[ ] Projects load</li>
+<li>[ ] Run <code>./scripts/scipionapi update --dry-run</code></li>
+<li>[ ] Run <code>./scripts/scipionapi update --version vX.Y.Z --force</code> in a disposable test install</li>
+<li>[ ] Confirm <code>/api/system/version</code> reports the expected installed version</li>
+<li>[ ] Confirm <code>/api/system/update-check</code> can read the public manifest</li>
 </ul>
 <hr />
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] Install guide updated</li>
 <li>[ ] Upgrade guide updated</li>
+<li>[ ] CLI <code>update</code> reference updated</li>
 <li>[ ] Known issues documented</li>
 <li>[ ] Support guidance still points to the correct public channels</li>
 </ul>
 <hr />
 <h2 id="release-artifacts">Release Artifacts<a class="headerlink" href="#release-artifacts" title="Permanent link">&para;</a></h2>
 <ul>
-<li>[ ] API zip uploaded</li>
-<li>[ ] Web zip uploaded</li>
-<li>[ ] version announcement prepared</li>
+<li>[ ] API ZIP created: <code>ScipionAPI-vX.Y.Z.zip</code></li>
+<li>[ ] Web ZIP created: <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
+<li>[ ] Existing <code>manifest.json</code> downloaded or copied locally</li>
+<li>[ ] <code>manifest.json</code> regenerated with the new release entry</li>
+<li>[ ] Previous release entries are still present in <code>manifest.json</code></li>
+<li>[ ] <code>latest</code> points to the new version</li>
+<li>[ ] SHA256 values generated for both ZIP files</li>
+<li>[ ] API ZIP uploaded</li>
+<li>[ ] Web ZIP uploaded</li>
+<li>[ ] <code>manifest.json</code> uploaded last</li>
+<li>[ ] Direct URLs for both ZIP files return HTTP 200</li>
+<li>[ ] Direct URL for <code>manifest.json</code> returns HTTP 200</li>
+<li>[ ] Version announcement prepared</li>
 </ul>
+<p>Generate or update the manifest with:</p>
+<pre><code class="language-bash">python scripts/update_release_manifest.py \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/releases
+</code></pre>
+<p>The release directory should include the current manifest before running the script:</p>
+<pre><code class="language-text">manifest.json
+ScipionAPI-vX.Y.Z.zip
+ScipionWeb-vX.Y.Z-dist.zip
+</code></pre>
+<p>Upload <code>manifest.json</code> only after both ZIP files are available on the server.</p>
 <hr />
 <h2 id="final-sanity-questions">Final Sanity Questions<a class="headerlink" href="#final-sanity-questions" title="Permanent link">&para;</a></h2>
 <p>Before tagging, confirm:</p>
 <ul>
-<li>would a new user be able to install this version from the published docs?</li>
-<li>would an existing user understand the upgrade path?</li>
-<li>are the support channels ready for incoming questions or bug reports?</li>
+<li>Would a new user be able to install this version from the published docs?</li>
+<li>Would an existing user understand the update path?</li>
+<li>Does <code>./scripts/scipionapi update --dry-run</code> show the expected target version?</li>
+<li>Does the Home dashboard correctly report update availability?</li>
+<li>Are the support channels ready for incoming questions or bug reports?</li>
 </ul>
 <hr />
 <h2 id="final-step">Final Step<a class="headerlink" href="#final-step" title="Permanent link">&para;</a></h2>
 <p>Tag the release:</p>
-<pre><code>git tag v1.2.0
-git push origin v1.2.0
+<pre><code class="language-bash">git tag vX.Y.Z
+git push origin vX.Y.Z
 </code></pre>
 
 
