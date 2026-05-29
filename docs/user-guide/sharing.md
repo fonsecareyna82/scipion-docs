@@ -7,7 +7,7 @@ hide:
 
 Sharing allows multiple users to work with the same project context.
 
-![Sharing dialog](../assets/images/screenshots/user-guide/sharing-dialog.png)
+<img src="../../assets/images/screenshots/user-guide/sharing-dialog.png" alt="Sharing dialog" style="display:block;width:min(1120px,calc(100vw - 2rem));max-width:none;height:auto;margin:1.2rem 0 1.6rem 50%;transform:translateX(-50%);" />
 
 *Sharing dialog used to grant project access to collaborators.*
 
