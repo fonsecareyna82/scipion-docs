@@ -27,7 +27,7 @@ A standard protocol workflow usually looks like this:
 5. Select inputs deliberately, especially pointer-like parameters that refer to outputs from previous protocols.
 6. Review optional parameters only after the required inputs are correct.
 
-![Protocol form inputs](../assets/images/screenshots/user-guide/protocol-form-inputs.png)
+<img src="../../assets/images/screenshots/user-guide/protocol-form-inputs.png" alt="Protocol form inputs" style="display:block;width:100%;max-width:980px;height:auto;margin:1.2rem auto 1.6rem;" />
 
 *Protocol form showing configurable parameters and input fields.*
 
@@ -71,7 +71,7 @@ A careful pre-launch check is often the difference between a clean workflow and 
 4. Keep an eye on progress indicators and error messages.
 5. Refresh the project view if status appears stale.
 
-![Protocol execution logs](../assets/images/screenshots/user-guide/protocol-execution-logs.png)
+<img src="../../assets/images/screenshots/user-guide/protocol-execution-logs.png" alt="Protocol execution logs" style="display:block;width:100%;max-width:980px;height:auto;margin:1.2rem auto 1.6rem;" />
 
 *Protocol logs help users confirm what happened during execution.*
 
@@ -132,4 +132,4 @@ Useful checks for administrators or developers:
 redis-cli ping
 ```
 
-If tasks remain pending, see [Known Issues and Workarounds](../support/known-issues/).
+If tasks remain pending, see [Known Issues and Workarounds](../support/known-issues.md).
