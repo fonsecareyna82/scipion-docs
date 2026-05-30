@@ -56,7 +56,7 @@ Tags help users organize protocols visually inside a project. They can be used t
 
 Use the dedicated guide when you need to create, edit, delete, or assign tags:
 
-[Open the Tags guide](tags/)
+[Open the Tags guide](../tags/)
 
 ---
 
@@ -68,7 +68,7 @@ A common case is when an external program is already installed on the server, an
 
 Use the dedicated guide when you need to add or modify runtime variables from the web interface:
 
-[Open the Environment Variables guide](environment-variables/)
+[Open the Environment Variables guide](../environment-variables/)
 
 ---
 
@@ -80,7 +80,7 @@ This is where SLURM-related queue execution can be configured from the web inter
 
 Use the dedicated guide when you need to configure protocol execution through SLURM or another queue system:
 
-[Open the Hosts and Queues guide](hosts-and-queues/)
+[Open the Hosts and Queues guide](../hosts-and-queues/)
 
 ---
 
