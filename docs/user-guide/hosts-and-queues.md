@@ -25,6 +25,9 @@ The Host settings area lets ScipionWeb define:
 
 For SLURM, this normally means that ScipionWeb writes a job script and submits it with `sbatch`.
 
+!!! note "Configured from the web interface"
+    In ScipionWeb, host and queue settings are managed from **Settings > Host**. You do not need to manually edit `hosts.conf` for the ScipionWeb workflow described on this page. The examples below show the values that should be entered in the web form.
+
 ---
 
 ## How ScipionWeb manages queued execution
@@ -33,7 +36,7 @@ When a protocol is launched through a configured host, the flow is usually:
 
 1. the user launches a protocol from the project workflow or protocol form
 2. Scipion prepares the protocol command that must be executed
-3. ScipionWeb builds a queue script from the host submit template
+3. ScipionWeb builds a queue script from the host submit template configured in Settings
 4. template placeholders are replaced with protocol and queue values
 5. the submit command sends the script to the scheduler
 6. the scheduler returns a job id
@@ -64,10 +67,10 @@ Typical fields include:
 A common Scipion-style parallel command is:
 
 ```ini
-PARALLEL_COMMAND = mpirun -np %_(JOB_NODES)d %_(COMMAND)s
+mpirun -np %_(JOB_NODES)d %_(COMMAND)s
 ```
 
-The important point is that ScipionWeb does not hardcode the scheduler behavior. Instead, it keeps the scheduler-specific logic in the host configuration.
+The important point is that ScipionWeb does not hardcode the scheduler behavior. Instead, it keeps the scheduler-specific logic in the Host settings.
 
 ---
 
@@ -79,13 +82,14 @@ The submit section defines how ScipionWeb talks to the queue system.
 
 *Submit configuration with scheduler commands and job script template.*
 
-For SLURM, the key commands are usually:
+For SLURM, the key command values are usually:
 
-```ini
-SUBMIT_COMMAND = sbatch --parsable %_(JOB_SCRIPT)s
-CANCEL_COMMAND = scancel %_(JOB_ID)s
-CHECK_COMMAND = squeue -h -j %_(JOB_ID)s
-```
+| Field | Value |
+| --- | --- |
+| Submit command | `sbatch --parsable %_(JOB_SCRIPT)s` |
+| Cancel command | `scancel %_(JOB_ID)s` |
+| Check command | `squeue -h -j %_(JOB_ID)s` |
+| Submit prefix | `scipion` |
 
 The submit template is the script body that ScipionWeb generates for each protocol run. It usually contains scheduler directives, output/error file locations, resource requests, optional environment activation, and finally the protocol command.
 
@@ -129,16 +133,12 @@ A queue definition normally maps a queue name to a list of parameters. Each para
 - the label shown to the user
 - the help text shown in the UI
 
-Example CPU queue:
+Example CPU queue fields:
 
-```python
-QUEUES = {
-    "debug": [
-        ["JOB_MEMORY", "8192", "Memory (MB)", "Select memory in megabytes"],
-        ["JOB_TIME", "2", "Time (hours)", "Select expected time in hours"]
-    ]
-}
-```
+| Queue | Key | Default | Label | Help text |
+| --- | --- | --- | --- | --- |
+| `debug` | `JOB_MEMORY` | `8192` | `Memory (MB)` | `Select memory in megabytes` |
+| `debug` | `JOB_TIME` | `2` | `Time (hours)` | `Select expected time in hours` |
 
 The queue name must match the scheduler partition or queue name used in the submit template. For SLURM, if the submit template uses:
 
@@ -457,25 +457,36 @@ Recommended validation order:
 1. make CPU jobs work
 2. configure GPU/GRES only after CPU submission works
 3. run a manual GPU job
-4. connect ScipionWeb through the Host settings
+4. configure ScipionWeb through **Settings > Host**
 5. run a small Scipion protocol through the queue
 
 ---
 
 ## Configure ScipionWeb for a CPU SLURM queue
 
-A CPU-only Scipion host configuration for SLURM usually maps Scipion operations to SLURM commands.
+Configure this from **Settings > Host** in the ScipionWeb interface. The goal is to enter the SLURM commands, the submit template, and the queue fields in the web form. Manual editing of `hosts.conf` is not required for this workflow.
 
-```ini
-[localhost]
-PARALLEL_COMMAND = mpirun -np %_(JOB_NODES)d %_(COMMAND)s
-NAME = SLURM
-MANDATORY = False
-SUBMIT_COMMAND = sbatch --parsable %_(JOB_SCRIPT)s
-CANCEL_COMMAND = scancel %_(JOB_ID)s
-CHECK_COMMAND = squeue -h -j %_(JOB_ID)s
-SUBMIT_PREFIX = scipion
-SUBMIT_TEMPLATE = #!/bin/bash
+### General section
+
+| Field | Recommended value |
+| --- | --- |
+| Name | `SLURM` |
+| Mandatory | `False`, unless every protocol must use this host |
+| Parallel command | `mpirun -np %_(JOB_NODES)d %_(COMMAND)s` |
+| Submit prefix | `scipion` |
+
+### Submit section
+
+| Field | Recommended value |
+| --- | --- |
+| Submit command | `sbatch --parsable %_(JOB_SCRIPT)s` |
+| Cancel command | `scancel %_(JOB_ID)s` |
+| Check command | `squeue -h -j %_(JOB_ID)s` |
+
+Submit template:
+
+```bash
+#!/bin/bash
 ### Inherit all current environment variables
 #SBATCH --export=ALL
 ### Job name
@@ -491,33 +502,43 @@ SUBMIT_TEMPLATE = #!/bin/bash
 #SBATCH --ntasks=%_(JOB_NODES)d
 #SBATCH --cpus-per-task=%_(JOB_THREADS)d
 #SBATCH --mem=%_(JOB_MEMORY)s
+
 %_(JOB_COMMAND)s
-QUEUES = {
-"debug": [
-["JOB_MEMORY", "8192", "Memory (MB)", "Select memory in megabytes"],
-["JOB_TIME", "2", "Time (hours)", "Select expected time in hours"]
-]
-}
 ```
 
-In ScipionWeb Settings, this same information is split across the Host general, submit, and queue sections.
+### Queue section
+
+Create a queue entry whose name matches the SLURM partition, for example `debug`.
+
+| Key | Default | Label | Help text |
+| --- | --- | --- | --- |
+| `JOB_MEMORY` | `8192` | `Memory (MB)` | `Select memory in megabytes` |
+| `JOB_TIME` | `2` | `Time (hours)` | `Select expected time in hours` |
+
+After saving the Host settings, launch a small Scipion protocol and verify that ScipionWeb submits the job with `sbatch`, receives a job id, and tracks the job with `squeue`.
 
 ---
 
 ## Configure ScipionWeb for a GPU SLURM queue
 
-For GPU execution, the submit template must request GPU resources and the queue definition should expose a GPU parameter to users.
+Configure GPU execution from **Settings > Host** as well. The only difference from the CPU setup is that the submit template must request GPU resources, and the queue section should expose a GPU parameter.
 
-```ini
-[localhost]
-PARALLEL_COMMAND = mpirun -np %_(JOB_NODES)d %_(COMMAND)s
-NAME = SLURM
-MANDATORY = False
-SUBMIT_COMMAND = sbatch --parsable %_(JOB_SCRIPT)s
-CANCEL_COMMAND = scancel %_(JOB_ID)s
-CHECK_COMMAND = squeue -h -j %_(JOB_ID)s
-SUBMIT_PREFIX = scipion
-SUBMIT_TEMPLATE = #!/bin/bash
+Before configuring this in ScipionWeb, confirm that SLURM already detects GPUs correctly with `sudo slurmd -G`, `sinfo -o "%P %N %G %t"`, and a manual GPU `sbatch` test.
+
+### General and submit commands
+
+Use the same general values and SLURM commands as the CPU setup:
+
+| Field | Recommended value |
+| --- | --- |
+| Submit command | `sbatch --parsable %_(JOB_SCRIPT)s` |
+| Cancel command | `scancel %_(JOB_ID)s` |
+| Check command | `squeue -h -j %_(JOB_ID)s` |
+
+GPU submit template:
+
+```bash
+#!/bin/bash
 ### Inherit all current environment variables
 #SBATCH --export=ALL
 ### Job name
@@ -534,15 +555,19 @@ SUBMIT_TEMPLATE = #!/bin/bash
 #SBATCH --cpus-per-task=%_(JOB_THREADS)d
 #SBATCH --mem=%_(JOB_MEMORY)s
 #SBATCH --gres=gpu:%_(GPU_COUNT)s
+
 %_(JOB_COMMAND)s
-QUEUES = {
-"debug": [
-["JOB_MEMORY", "8192", "Memory (MB)", "Select memory in megabytes"],
-["JOB_TIME", "2", "Time (hours)", "Select expected time in hours"],
-["GPU_COUNT", "1", "Number of GPUs", "Select number of GPUs"]
-]
-}
 ```
+
+### Queue section
+
+Create or update the queue entry in the Host queue form. For a `debug` partition with GPU support, use fields like:
+
+| Key | Default | Label | Help text |
+| --- | --- | --- | --- |
+| `JOB_MEMORY` | `8192` | `Memory (MB)` | `Select memory in megabytes` |
+| `JOB_TIME` | `2` | `Time (hours)` | `Select expected time in hours` |
+| `GPU_COUNT` | `1` | `Number of GPUs` | `Select number of GPUs` |
 
 Make sure the queue name matches the real SLURM partition and that the node actually reports the requested GPU resources in `sinfo` and `scontrol show node`.
 
@@ -620,7 +645,8 @@ Before considering the Host configuration ready, verify:
 - keep queue names aligned with real scheduler partitions
 - expose only the resource fields users actually need
 - use sensible defaults for memory, time, and GPU count
-- keep the submit template readable and version-controlled when possible
+- configure Host settings from the web interface instead of manually editing `hosts.conf`
+- keep the submit template readable and documented
 - validate scheduler commands outside ScipionWeb before debugging ScipionWeb itself
 - document site-specific queue policies for shared installations
 
