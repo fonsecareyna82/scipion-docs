@@ -21,9 +21,12 @@ Depending on your role and deployment, the Settings area can include:
 - instance-level configuration views
 - tag management or shared metadata helpers
 - environment variables for runtime and plugin integration
+- host and queue configuration for protocol execution
 - advanced configuration panels intended for administrators
 
 For variables managed from the ScipionWeb interface, see [Environment Variables](environment-variables/).
+
+For queue-backed protocol execution, see [Hosts and Queues](hosts-and-queues/).
 
 ---
 
@@ -35,9 +38,10 @@ Confirm the scope of the change:
 - does it affect the whole instance?
 - does it affect shared project organization?
 - does it affect plugin execution or external software paths?
+- does it affect how protocol jobs are submitted, checked, or cancelled?
 - is the change reversible if the result is not what you expected?
 
-Settings are easier to manage safely when you understand whether they are personal, shared, runtime-related, or administrative.
+Settings are easier to manage safely when you understand whether they are personal, shared, runtime-related, queue-related, or administrative.
 
 ---
 
@@ -48,6 +52,7 @@ Settings are easier to manage safely when you understand whether they are person
 - avoid changing instance-level configuration unless you understand the impact
 - document shared conventions when settings affect multiple users
 - validate affected plugins after changing environment variables
+- validate a small protocol after changing host or queue settings
 - prefer clarity and consistency over ad-hoc changes that only one person understands
 
 ---
@@ -61,6 +66,7 @@ Users often run into trouble when they:
 - forget to refresh affected views after saving
 - test in the wrong environment and misread the result
 - update a runtime variable without validating the affected plugin or workflow
+- modify queue settings while protocols are being launched or debugged
 
 ---
 
