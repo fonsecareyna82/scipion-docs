@@ -21,6 +21,7 @@ Use the User Guide when you want to understand:
 - how to configure and launch protocols
 - how to inspect outputs and viewers
 - how to organize protocols with tags
+- how to manage environment variables for plugin and external software integration
 - how to collaborate with teammates
 - how to approach settings and plugins without guessing
 
@@ -36,8 +37,9 @@ Use the User Guide when you want to understand:
 6. [Tags](tags/)
 7. [Sharing and Collaboration](sharing/)
 8. [Settings](settings/)
-9. [Plugins](plugins/)
-10. [Working Efficiently](working-efficiently/)
+9. [Environment Variables](environment-variables/)
+10. [Plugins](plugins/)
+11. [Working Efficiently](working-efficiently/)
 
 ---
 
@@ -66,6 +68,13 @@ Use the User Guide when you want to understand:
 1. [Projects](projects/)
 2. [Protocol Execution](protocols/)
 3. [Tags](tags/)
+
+### User integrating external software
+
+1. [Settings](settings/)
+2. [Environment Variables](environment-variables/)
+3. [Plugins](plugins/)
+4. [Protocol Execution](protocols/)
 
 ### User collaborating with teammates
 
