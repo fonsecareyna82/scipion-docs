@@ -74,6 +74,7 @@ nav:
       - Tags: user-guide/tags.md
       - Sharing and Collaboration: user-guide/sharing.md
       - Settings: user-guide/settings.md
+      - Environment Variables: user-guide/environment-variables.md
       - Plugins: user-guide/plugins.md
       - Working Efficiently: user-guide/working-efficiently.md
   - Support:
