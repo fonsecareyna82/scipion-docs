@@ -71,8 +71,11 @@ nav:
       - Projects: user-guide/projects.md
       - Protocol Execution: user-guide/protocols.md
       - Outputs and Viewers: user-guide/outputs.md
+      - Tags: user-guide/tags.md
       - Sharing and Collaboration: user-guide/sharing.md
       - Settings: user-guide/settings.md
+      - Environment Variables: user-guide/environment-variables.md
+      - Hosts and Queues: user-guide/hosts-and-queues.md
       - Plugins: user-guide/plugins.md
       - Working Efficiently: user-guide/working-efficiently.md
   - Support:

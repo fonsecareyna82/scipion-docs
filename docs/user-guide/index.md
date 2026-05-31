@@ -20,6 +20,9 @@ Use the User Guide when you want to understand:
 - how to work safely with projects
 - how to configure and launch protocols
 - how to inspect outputs and viewers
+- how to organize protocols with tags
+- how to manage environment variables for plugin and external software integration
+- how to configure hosts and queues for protocol execution
 - how to collaborate with teammates
 - how to approach settings and plugins without guessing
 
@@ -32,10 +35,13 @@ Use the User Guide when you want to understand:
 3. [Projects](projects/)
 4. [Protocol Execution](protocols/)
 5. [Outputs and Viewers](outputs/)
-6. [Sharing and Collaboration](sharing/)
-7. [Settings](settings/)
-8. [Plugins](plugins/)
-9. [Working Efficiently](working-efficiently/)
+6. [Tags](tags/)
+7. [Sharing and Collaboration](sharing/)
+8. [Settings](settings/)
+9. [Environment Variables](environment-variables/)
+10. [Hosts and Queues](hosts-and-queues/)
+11. [Plugins](plugins/)
+12. [Working Efficiently](working-efficiently/)
 
 ---
 
@@ -59,10 +65,30 @@ Use the User Guide when you want to understand:
 1. [Projects](projects/)
 2. [Outputs and Viewers](outputs/)
 
+### User organizing a workflow
+
+1. [Projects](projects/)
+2. [Protocol Execution](protocols/)
+3. [Tags](tags/)
+
+### User integrating external software
+
+1. [Settings](settings/)
+2. [Environment Variables](environment-variables/)
+3. [Plugins](plugins/)
+4. [Protocol Execution](protocols/)
+
+### User configuring queued execution
+
+1. [Settings](settings/)
+2. [Hosts and Queues](hosts-and-queues/)
+3. [Protocol Execution](protocols/)
+
 ### User collaborating with teammates
 
 1. [Projects](projects/)
-2. [Sharing and Collaboration](sharing/)
+2. [Tags](tags/)
+3. [Sharing and Collaboration](sharing/)
 
 ### User configuring the workspace
 
