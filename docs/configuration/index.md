@@ -14,214 +14,186 @@ ScipionWeb configuration is centered around:
 - deployment mode (API-only, integrated, or separate)
 - runtime environment variables and service connectivity
 
-The configuration model is designed to:
-
-- keep runtime data separate from source code
-- allow flexible deployment (single host or distributed)
-- support production environments
-- enable reproducible installations and upgrades
+The configuration model is designed to keep persistent runtime state separate from managed application files, support different deployment topologies, and preserve configuration across normal updates.
 
 !!! note "What this section covers"
-    These pages focus on **runtime configuration after installation**. For installation and upgrade steps, see the **Installation** section.
+    These pages focus on **runtime configuration after installation**. For the recommended new-user path, start with the [Guided Installation](../installation/guided-install.md).
 
 ---
 
-## Configuration Layers
+## Configuration layers
 
 ScipionWeb configuration operates at three levels:
 
-1. **System level** (Conda, PostgreSQL, Redis, OS services)
-2. **Runtime level** (`SCIPION_HOME`)
-3. **Application level** (`.env` variables and deployment mode)
+1. **System** — Conda, PostgreSQL, Redis, OS/network services
+2. **Runtime workspace** — `SCIPION_HOME`
+3. **Application** — `.env` values and deployment mode
 
-!!! tip "Think in layers"
-    When troubleshooting, identify the failing layer first:
-
-    - service availability (system)
-    - paths and workspace permissions (runtime)
-    - environment variables and endpoints (application)
+!!! tip "Troubleshoot by layer"
+    When something fails, first decide whether the problem is service availability, runtime paths/permissions, or application configuration.
 
 ---
 
-## Key Concepts
+## `SCIPION_HOME`
 
-### `SCIPION_HOME`
+`SCIPION_HOME` is the persistent runtime workspace.
 
-`SCIPION_HOME` is the **runtime workspace directory**.
+A standard guided installation uses:
 
-It stores persistent runtime data and configuration, typically including:
+```text
+<installation-root>/scipion_home
+```
 
-- `.env`
-- `logs/`
-- `projects/`
-- `config/`
-- `web/` *(if using integrated mode)*
+It normally contains data/configuration such as:
 
-!!! tip "Why this matters"
-    Keeping `SCIPION_HOME` separate from the API source or bundle directory makes upgrades easier and helps preserve data across version changes.
+```text
+.env
+logs/
+projects/
+config/
+web/
+```
 
----
-
-### `.env`
-
-The `.env` file is the **main runtime configuration file**.
-
-It typically defines:
-
-- database connection settings
-- Redis and broker configuration
-- API host and port
-- paths (logs, projects, web assets)
-- security-related values such as `SECRET_KEY`
-- deployment behavior flags such as integrated mode and mount paths
-
-!!! warning "Protect your `.env`"
-    Do not commit `.env` to version control. It may contain credentials and security-sensitive settings.
+The stable separation between managed application files and `SCIPION_HOME` is what allows normal updates to replace code/Web assets without treating projects and runtime configuration as release artifacts.
 
 ---
 
-### Deployment Mode
+## `.env`
 
-ScipionWeb supports multiple deployment modes:
+`SCIPION_HOME/.env` is the central persistent runtime configuration file.
 
-- **API-only mode**
-- **Integrated mode** (API serves the Web UI)
-- **Separate deployment** (API and Web UI on different hosts or services)
+It commonly defines:
 
-Each mode changes how paths, URLs, and routing should be configured.
+- PostgreSQL connection/bootstrap values
+- Redis/Celery settings
+- API host and selected port
+- logs/projects/Web paths
+- `SECRET_KEY`
+- integrated-mode flags and API mount paths
+- Conda metadata
+- update metadata
 
-!!! note "Choose based on your environment"
-    - **Integrated mode** is convenient for single-host deployments
-    - **Separate deployment** is common for production setups with independent frontend hosting
-
----
-
-## Default Behavior (Typical Local Setup)
-
-If not overridden, a typical local installation uses:
-
-- `SCIPION_HOME=<repoRoot>/scipion_home`
-- API bound to `0.0.0.0:8080`
-- Redis at `localhost:6379`
-- PostgreSQL at `localhost:5432`
-
-!!! tip "Defaults are a starting point"
-    These defaults are convenient for local setups, but production deployments usually override at least paths, host exposure, and reverse-proxy behavior.
+!!! warning "Protect `.env`"
+    It can contain credentials and security-sensitive values. Do not commit it to version control.
 
 ---
 
-## Configuration Pages in This Section
+## Deployment modes
 
-### 1. `SCIPION_HOME` and Runtime Layout
+ScipionWeb supports:
 
-Learn how the runtime workspace is structured and what should live inside `SCIPION_HOME`.
+- **Integrated mode** — ScipionAPI serves both the Web UI and API
+- **Separate deployment** — frontend and backend are hosted separately
+- **API-only mode** — mainly for development, testing, or custom infrastructure
 
-- runtime directories and responsibilities
-- path conventions
-- permissions and persistence recommendations
-
-➡️ [Open SCIPION_HOME and Runtime Layout](scipion-home/)
+The guided installer targets integrated mode because it is the normal user-facing deployment.
 
 ---
 
-### 2. Environment Variables (`.env`)
+## Typical local behavior
 
-Detailed reference for `.env` configuration values.
+A normal local installation commonly uses:
 
-- database settings
-- API host and port
-- Redis and broker settings
-- paths and runtime behavior
-- security-sensitive values
+```text
+SCIPION_HOME=<installation-root>/scipion_home
+PostgreSQL=localhost:5432
+Redis=localhost:6379
+```
 
-➡️ [Open Environment Variables (.env)](env/)
+The API/Web port is intentionally **not documented as a fixed `8080` default**.
 
----
+When installation/provisioning is run without `--api-port`:
 
-### 3. API + Web Integrated Mode
+1. an existing configured `API_PORT` is preserved when appropriate
+2. otherwise a free port is selected automatically
+3. the resolved value is persisted in `.env`
 
-Configuration for serving the compiled Web UI from the API process.
+Inspect it with:
 
-- `SERVE_WEB`
-- `WEB_DIST_PATH`
-- API mount path and base URL alignment
-- routing expectations
+```bash
+grep '^API_PORT=' "$SCIPION_HOME/.env"
+```
 
-➡️ [Open API + Web Integrated Mode](integrated-mode/)
-
----
-
-### 4. Separate Deployment (API and Web on Different Hosts)
-
-Configuration guidance for decoupled frontend and backend deployments.
-
-- cross-origin considerations
-- API base URL setup
-- reverse proxy and public URL alignment
-- production deployment patterns
-
-➡️ [Open Separate Deployment](separate-deployment/)
+A production deployment can still intentionally configure a fixed internal port for systemd, nginx, Apache, containers, or firewall policy.
 
 ---
 
-## Recommended Reading Paths
+## Configuration pages
 
-### First-time deployment (integrated mode)
+### `SCIPION_HOME` and Runtime Layout
 
-1. [SCIPION_HOME and Runtime Layout](scipion-home/)
-2. [Environment Variables (.env)](env/)
-3. [API + Web Integrated Mode](integrated-mode/)
-4. [Logs and PID Files](../operations/logs-and-pids/)
+Understand persistent runtime directories, ownership, and lifecycle.
 
-### Separate frontend/backend deployment
+➡️ [Open SCIPION_HOME and Runtime Layout](scipion-home.md)
 
-1. [SCIPION_HOME and Runtime Layout](scipion-home/)
-2. [Environment Variables (.env)](env/)
-3. [Separate Deployment](separate-deployment/)
-4. [Security Notes](../operations/security/)
+### Environment Variables (`.env`)
 
-### Troubleshooting configuration
+Reference the persistent runtime configuration, including automatic port behavior.
 
-1. [Environment Variables (.env)](env/)
-2. [SCIPION_HOME and Runtime Layout](scipion-home/)
-3. Mode-specific page: [Integrated](integrated-mode/) or [Separate](separate-deployment/)
-4. [Backend Troubleshooting](../backend/troubleshooting/)
+➡️ [Open Environment Variables](env.md)
+
+### API + Web Integrated Mode
+
+Understand Web deployment, `/api`, runtime frontend configuration, and selected ports.
+
+➡️ [Open Integrated Mode](integrated-mode.md)
+
+### Separate Deployment
+
+Configure frontend and backend as separate services/hosts.
+
+➡️ [Open Separate Deployment](separate-deployment.md)
 
 ---
 
-## Best Practices
+## Recommended reading paths
 
-- never commit `.env` to version control
-- keep `SCIPION_HOME` outside tracked source files when possible
-- use a strong `SECRET_KEY`
-- use HTTPS in production
-- use a reverse proxy for public deployments
-- back up runtime configuration before upgrades, especially `.env`
-- keep API and Web versions aligned when possible
+### Normal guided installation
 
-!!! warning "Common source of issues"
-    Many runtime errors come from mismatched paths and URLs, for example `WEB_API_BASE_URL`, API mount path, reverse proxy routes, or stale `SCIPION_HOME` values after upgrades.
+1. [Guided Installation](../installation/guided-install.md)
+2. [SCIPION_HOME](scipion-home.md)
+3. [Environment Variables](env.md)
+4. [Integrated Mode](integrated-mode.md)
+5. [Logs and PID Files](../operations/logs-and-pids.md)
+
+### Separate frontend/backend
+
+1. [SCIPION_HOME](scipion-home.md)
+2. [Environment Variables](env.md)
+3. [Separate Deployment](separate-deployment.md)
+4. [Security Notes](../operations/security.md)
+
+### Troubleshooting
+
+1. [Environment Variables](env.md)
+2. [SCIPION_HOME](scipion-home.md)
+3. deployment-mode page
+4. [Backend Troubleshooting](../backend/troubleshooting.md)
+
+---
+
+## Best practices
+
+- never commit `.env`
+- preserve `SCIPION_HOME` during normal upgrades
+- use strong secrets
+- read the actual persisted `API_PORT` instead of assuming a port
+- keep API/Web releases aligned in normal deployments
+- use HTTPS/reverse proxying for public production exposure
+- back up PostgreSQL and important configuration before risky maintenance
+- prefer managed install/update/uninstall commands over manual filesystem deletion
 
 ---
 
 ## Common configuration smells
 
-Watch for these patterns:
+Watch for:
 
-- `.env` values that still point to an older installation path
-- frontend assets deployed correctly but API base URL still wrong
-- services running, but under a different `SCIPION_HOME` than expected
-- local defaults accidentally reused in production
+- `.env` values pointing to an old installation path
+- a frontend deployed correctly but using the wrong API base path
+- a service started under a different `SCIPION_HOME`
+- operational scripts assuming port `8080` while the installation selected another port
+- stale `WEB_DIST_PATH` after manual file moves
+- inconsistent PostgreSQL values between `DATABASE_URL` and split settings
 
-When behavior feels inconsistent, check paths and URLs before assuming code is broken.
-
----
-
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../installation/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Installation Overview
-  </a>
-  <a href="scipion-home/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: SCIPION_HOME and Runtime Layout →
-  </a>
-</div>
+When behavior looks inconsistent, inspect the resolved runtime paths and `.env` before assuming a code defect.
