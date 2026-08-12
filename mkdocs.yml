@@ -59,8 +59,9 @@ nav:
   - Installation:
       - Overview: installation/index.md
       - Prerequisites: installation/prerequisites.md
-      - Download Bundles: installation/download-bundles.md
-      - Recommended Installation: installation/provision.md
+      - Guided Installation: installation/guided-install.md
+      - Download Bundles (Manual): installation/download-bundles.md
+      - Provision (Advanced): installation/provision.md
       - Manual Installation: installation/manual-install.md
       - Upgrade / Reinstall Notes: installation/upgrade.md
       - Production Deployment: installation/deployment-systemd.md
@@ -102,6 +103,8 @@ nav:
           - Install: cli/install.md
           - Provision: cli/provision.md
           - Update: cli/update.md
+          - Release Publisher: cli/release.md
+          - Uninstall: cli/uninstall.md
           - Doctor: cli/doctor.md
           - start / stop / restart / status / logs: cli/runtime.md
       - Backend:
@@ -125,6 +128,7 @@ nav:
       - Packaging Strategy: release/packaging-strategy.md
       - Build API Bundle: release/build-api-bundle.md
       - Build Web Bundle: release/build-web-bundle.md
+      - Publish Release: release/publishing.md
       - Release Checklist: release/checklist.md
 
 markdown_extensions:
