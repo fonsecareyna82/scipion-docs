@@ -2,111 +2,278 @@
 
 Use this checklist before publishing any ScipionWeb release.
 
+The current supported publication path is the ScipionAPI `release --upload` command. Routine releases should **not** require manual `manifest.json` editing or manual SSH/rsync commands.
+
 ---
 
-## API Bundle
+## Version and source state
 
-- [ ] Clean working directory
+- [ ] Release version is decided (`vX.Y.Z`)
+- [ ] API and Web release versions match
+- [ ] Intended release commits/tags are identified
+- [ ] No accidental local/generated files are being packaged
+- [ ] Release notes / known issues are prepared when needed
+
+---
+
+## API bundle
+
+- [ ] Backend/unit tests are green
 - [ ] Migrations apply cleanly
-- [ ] Provision works on a fresh machine
-- [ ] `update` works on an existing test installation
-- [ ] No runtime folders included
-- [ ] README updated
-- [ ] Version bumped
-- [ ] Bundle name follows the public convention: `ScipionAPI-vX.Y.Z.zip`
+- [ ] CLI starts correctly
+- [ ] Guided installer/provision path has been validated on a disposable machine/install
+- [ ] Update works on an existing disposable installation
+- [ ] Runtime folders and secrets are excluded
+- [ ] `install.sh` is included in the API package
+- [ ] Bundle extracts to the expected ScipionAPI layout
+- [ ] Bundle name is exactly `ScipionAPI-vX.Y.Z.zip`
 
 ---
 
-## Web Bundle
+## Web bundle
 
-- [ ] Build succeeds
+- [ ] Production build succeeds
 - [ ] `dist` contains the expected assets
 - [ ] SPA routing works
-- [ ] No hardcoded API URLs
-- [ ] Runtime config injection works as expected
-- [ ] Bundle name follows the public convention: `ScipionWeb-vX.Y.Z-dist.zip`
+- [ ] No installation-specific API URL is hardcoded
+- [ ] Runtime API configuration works as expected
+- [ ] Integrated API + Web behavior is validated
+- [ ] Bundle name is exactly `ScipionWeb-vX.Y.Z-dist.zip`
 
 ---
 
-## Integration Validation
+## Local release directory
 
-- [ ] Download API bundle
-- [ ] Download Web bundle
-- [ ] Extract both
-- [ ] Run `provision` with `--web-dist`
-- [ ] Access UI in browser
+The publication directory only needs the paired ZIP files:
+
+```text
+/path/to/release/files/
+├── ScipionAPI-vX.Y.Z.zip
+└── ScipionWeb-vX.Y.Z-dist.zip
+```
+
+Checklist:
+
+- [ ] API ZIP exists
+- [ ] Web ZIP exists
+- [ ] filenames match `--version`
+- [ ] archives open/extract cleanly
+- [ ] API and Web are the intended pair
+
+!!! note "No local `manifest.json` required"
+    The release publisher downloads the current remote manifest when one exists, preserves previous releases, adds the new release, and publishes the updated manifest automatically.
+
+!!! note "No release-directory `install.sh` required"
+    The publisher reads `install.sh` from the current ScipionAPI repository root.
+
+---
+
+## Integration validation before publication
+
+- [ ] Extract/inspect the API bundle
+- [ ] Inspect the Web bundle
+- [ ] Run a disposable integrated `provision`
+- [ ] Web UI loads
 - [ ] Login works
 - [ ] Projects load
-- [ ] Run `./scripts/scipionapi update --dry-run`
-- [ ] Run `./scripts/scipionapi update --version vX.Y.Z --force` in a disposable test install
-- [ ] Confirm `/api/system/version` reports the expected installed version
-- [ ] Confirm `/api/system/update-check` can read the public manifest
+- [ ] Basic protocol/output path works
+- [ ] `./scripts/scipionapi status` is healthy
+- [ ] `./scripts/scipionapi doctor --quick` is healthy
+- [ ] `./scripts/scipionapi update --dry-run` behaves correctly on a disposable existing installation
+- [ ] `/api/system/version` reports the intended version after installation/update
+- [ ] `/api/system/update-check` can consume the release manifest format
 
 ---
 
 ## Documentation
 
-- [ ] Install guide updated
-- [ ] Upgrade guide updated
-- [ ] CLI `update` reference updated
-- [ ] Known issues documented
-- [ ] Support guidance still points to the correct public channels
+- [ ] Guided installation documentation is current
+- [ ] Upgrade documentation is current
+- [ ] CLI reference is current
+- [ ] Release/publishing documentation is current
+- [ ] Known issues are documented when applicable
+- [ ] Support guidance points to the intended channels
 
 ---
 
-## Release Artifacts
+## Real remote dry run — required
 
-- [ ] API ZIP created: `ScipionAPI-vX.Y.Z.zip`
-- [ ] Web ZIP created: `ScipionWeb-vX.Y.Z-dist.zip`
-- [ ] Existing `manifest.json` downloaded or copied locally
-- [ ] `manifest.json` regenerated with the new release entry
-- [ ] Previous release entries are still present in `manifest.json`
-- [ ] `latest` points to the new version
-- [ ] SHA256 values generated for both ZIP files
-- [ ] API ZIP uploaded
-- [ ] Web ZIP uploaded
-- [ ] `manifest.json` uploaded last
-- [ ] Direct URLs for both ZIP files return HTTP 200
-- [ ] Direct URL for `manifest.json` returns HTTP 200
-- [ ] Version announcement prepared
-
-Generate or update the manifest with:
+Run the publisher against the actual release target before any mutation:
 
 ```bash
-python scripts/update_release_manifest.py \
+./scripts/scipionapi release \
+  --upload \
   --version vX.Y.Z \
-  --downloads-dir /path/to/releases
+  --downloads-dir /path/to/release/files \
+  --dry-run
 ```
 
-The release directory should include the current manifest before running the script:
+Confirm the plan reports the intended:
+
+- [ ] version
+- [ ] API ZIP
+- [ ] Web ZIP
+- [ ] API SHA256
+- [ ] Web SHA256
+- [ ] `install.sh`
+- [ ] SSH login
+- [ ] remote directory
+- [ ] public URL
+- [ ] `latest` behavior
+- [ ] replacement mode (`no` for a normal new version)
+
+The current official defaults should resolve to:
 
 ```text
-manifest.json
-ScipionAPI-vX.Y.Z.zip
-ScipionWeb-vX.Y.Z-dist.zip
+SSH:    scipion@nolan.cnb.csic.es
+Remote: /home/scipion/scipionfiles/downloads/scipion/scipionWeb
+Public: https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
 ```
 
-Upload `manifest.json` only after both ZIP files are available on the server.
+---
+
+## Existing-version protection
+
+For a normal new release:
+
+- [ ] `--force` is **not** required
+- [ ] manifest does not already contain the target version
+- [ ] target API/Web ZIP filenames do not already exist remotely
+
+If testing the plan for an existing release, use:
+
+```bash
+./scripts/scipionapi release \
+  --upload \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/release/files \
+  --force \
+  --dry-run
+```
+
+!!! danger "Do not normalize release replacement"
+    `--force` without `--dry-run` permits replacing an already-published version. Prefer a new patch release whenever possible.
 
 ---
 
-## Final Sanity Questions
+## Publish
 
-Before tagging, confirm:
+After the dry run is correct:
 
-- Would a new user be able to install this version from the published docs?
-- Would an existing user understand the update path?
-- Does `./scripts/scipionapi update --dry-run` show the expected target version?
-- Does the Home dashboard correctly report update availability?
-- Are the support channels ready for incoming questions or bug reports?
+```bash
+./scripts/scipionapi release \
+  --upload \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/release/files
+```
+
+During the real publication, verify the command completes the intended order:
+
+- [ ] ScipionAPI ZIP uploaded
+- [ ] ScipionWeb ZIP uploaded
+- [ ] `install.sh` published
+- [ ] `manifest.json` published as the final atomic step
+- [ ] public manifest verification completes or any visibility warning is understood
 
 ---
 
-## Final Step
+## Manifest validation after publication
 
-Tag the release:
+The publisher creates/updates `manifest.json`; the maintainer verifies the result rather than assembling it manually.
+
+Confirm:
+
+- [ ] previous release entries are still present
+- [ ] new `vX.Y.Z` entry exists
+- [ ] API filename is correct
+- [ ] Web filename is correct
+- [ ] API SHA256 matches the local artifact
+- [ ] Web SHA256 matches the local artifact
+- [ ] file sizes look correct
+- [ ] `latest` points to `vX.Y.Z` unless `--no-latest` was intentionally used
+
+---
+
+## Public endpoint validation
+
+Confirm these are reachable from:
+
+```text
+https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
+```
+
+- [ ] `install.sh`
+- [ ] `manifest.json`
+- [ ] `ScipionAPI-vX.Y.Z.zip`
+- [ ] `ScipionWeb-vX.Y.Z-dist.zip`
+
+---
+
+## New-user validation against the published release
+
+Use the same public path a real user will use:
+
+```bash
+wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+./install.sh --check-only
+./install.sh --version vX.Y.Z
+```
+
+Confirm:
+
+- [ ] installer resolves the intended version
+- [ ] both ZIPs download
+- [ ] published SHA256 values verify
+- [ ] provisioning completes
+- [ ] guided installation marker is created
+- [ ] selected API/Web port is persisted
+- [ ] `status` / `doctor --quick` are healthy
+- [ ] browser UI loads
+
+---
+
+## Existing-user validation against the published release
+
+On a disposable previous-version installation:
+
+```bash
+./scripts/scipionapi update --version vX.Y.Z --dry-run
+```
+
+Then perform the controlled real update and confirm:
+
+- [ ] update resolves the intended paired release
+- [ ] checksums verify
+- [ ] `SCIPION_HOME` and projects are preserved
+- [ ] database migration succeeds
+- [ ] Web bundle is updated
+- [ ] runtime restarts successfully
+- [ ] login and project loading work
+
+---
+
+## Final sanity questions
+
+Before announcing/tagging the release, confirm:
+
+- Can a new user install it using only the published `install.sh` documentation?
+- Can an existing user update through `scripts/scipionapi update`?
+- Is the API/Web pair reproducible and checksum-identified?
+- Does the manifest still preserve older releases?
+- Is the new release correctly marked as `latest` when intended?
+- Did the release publisher protect against accidental replacement?
+- Are documentation and support guidance ready?
+
+---
+
+## Tag the release
+
+When the release state is validated according to the project's release policy:
 
 ```bash
 git tag vX.Y.Z
 git push origin vX.Y.Z
 ```
+
+Coordinate tag timing with the project's normal release process; the public artifacts, manifest state, and source tag should describe the same release.

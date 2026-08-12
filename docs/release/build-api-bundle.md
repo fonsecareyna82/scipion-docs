@@ -1,97 +1,168 @@
 # Build API Bundle
 
-This document explains how to package the ScipionAPI backend into a distributable release bundle.
+This page describes the maintainer checks for packaging ScipionAPI into the release artifact consumed by the guided installer and updater.
+
+The canonical artifact name is:
+
+```text
+ScipionAPI-vX.Y.Z.zip
+```
+
+For example:
+
+```text
+ScipionAPI-v4.0.1.zip
+```
 
 ---
 
-# Step 1 — Clean Workspace
+## 1. Start from a clean release state
 
-From repo root:
+Use a reviewed release commit/tag and make sure generated runtime state is not included.
 
+Inspect the workspace before packaging:
+
+```bash
+git status --short
 ```
-git clean -xfd
-```
 
-Or manually ensure:
-
-- No logs
-- No .run/
-- No scipion_home/
-- No venvs
+Do not blindly delete local files just to make the tree look clean. Verify what belongs to the release and what is generated state.
 
 ---
 
-# Step 2 — Validate Production State
+## 2. Validate the API before packaging
 
-Ensure:
+At minimum confirm:
 
-- Migrations pass
-- Tests pass (if present)
-- Provision works on clean machine
+- unit/backend tests pass
+- Alembic migrations are valid
+- the CLI starts correctly
+- `install.sh --check-only` behaves as expected on a suitable host
+- `provision` works in a disposable installation
+- `update` works against an existing disposable installation
+- `uninstall --full --dry-run` correctly recognizes a guided test installation
+
+Release validation should happen before upload.
 
 ---
 
-# Step 3 — Exclude Runtime Artifacts
+## 3. Exclude runtime/generated artifacts
 
-Make sure these are NOT included:
+Do not package generated installation state such as:
 
-```
+```text
 scipion_home/
 .run/
 .env
 __pycache__/
+.pytest_cache/
 ```
+
+Also ensure no credentials, local database dumps, logs, temporary archives, or developer-specific configuration are accidentally included.
 
 ---
 
-# Step 4 — Create Release Folder
+## 4. Required packaged layout
 
+The API ZIP must extract to a valid ScipionAPI package root, directly or below one enclosing directory.
+
+Important packaged content includes:
+
+```text
+app/
+scipionapi_cli/
+scripts/
+alembic/
+requirements.txt
+pyproject.toml
+alembic.ini
+install.sh
+README.rst
 ```
-mkdir scipionapi-1.2.0
-rsync -av --exclude scipion_home --exclude .run ./ scipionapi-1.2.0/
-```
+
+The guided installer validates key layout elements before copying the extracted API into the final installation directory.
+
+!!! important "Include `install.sh`"
+    The root installer is a managed ScipionAPI file. Keeping it in the API package allows installed systems to receive updated installer logic through the normal updater.
 
 ---
 
-# Step 5 — Create ZIP
+## 5. Create the release archive
 
+The exact packaging mechanism can be scripted or performed by CI, but the final file must use the canonical name:
+
+```text
+ScipionAPI-vX.Y.Z.zip
 ```
-zip -r scipionapi-1.2.0-linux-x86_64.zip scipionapi-1.2.0/
+
+Example generic ZIP command from a prepared staging directory:
+
+```bash
+zip -r "ScipionAPI-v4.0.1.zip" <prepared-api-root>/
 ```
+
+Do not introduce architecture suffixes such as `-linux-x86_64` unless the release format is intentionally changed everywhere. The current installer/updater/publisher convention is `ScipionAPI-vX.Y.Z.zip`.
 
 ---
 
-# Step 6 — Upload
+## 6. Inspect the archive
 
-Upload bundle to release server:
+Before publication:
 
+```bash
+unzip -l ScipionAPI-v4.0.1.zip | less
 ```
-https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
-```
+
+Confirm:
+
+- required source/config files are present
+- `scripts/scipionapi` is present
+- `install.sh` is present
+- Alembic files are present
+- runtime data is absent
+- secrets are absent
+
+Then extract the ZIP into a temporary directory and run a disposable installation/provision validation.
 
 ---
 
-# Optional: Checksum
+## 7. Do not upload the API ZIP manually
 
+The supported publication flow uploads the API and Web pair together:
+
+```bash
+./scripts/scipionapi release \
+  --upload \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files \
+  --dry-run
 ```
-sha256sum scipionapi-1.2.0-linux-x86_64.zip > scipionapi-1.2.0.sha256
+
+Then, after reviewing the plan:
+
+```bash
+./scripts/scipionapi release \
+  --upload \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files
 ```
+
+The publisher calculates SHA256 metadata and updates `manifest.json` automatically. A separate `.sha256` sidecar file is not required by the current release flow.
 
 ---
 
-# Recommended Automation
+## API bundle checklist
 
-Eventually automate with:
+- [ ] release version is correct
+- [ ] tests are green
+- [ ] migrations are valid
+- [ ] packaged filename is `ScipionAPI-vX.Y.Z.zip`
+- [ ] expected ScipionAPI layout is present
+- [ ] `install.sh` is present
+- [ ] runtime/generated directories are absent
+- [ ] no secrets/logs/local state are included
+- [ ] archive extracts cleanly
+- [ ] disposable provision/install validation succeeds
+- [ ] matching Web artifact exists before publication
 
-- Makefile
-- GitHub Actions
-- CI pipeline
-
----
-
-# Validation Checklist
-
-- Bundle extracts cleanly
-- README included
-- Provision works from extracted folder
-- No secrets present
+Continue with [Build Web Bundle](build-web-bundle.md), then [Publish a ScipionWeb Release](publishing.md).
