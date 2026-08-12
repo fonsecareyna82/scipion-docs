@@ -1,34 +1,44 @@
 # Prerequisites
 
-Before installing **ScipionAPI** and optionally the compiled **ScipionWeb** bundle, prepare the target machine with the required system software, services, and permissions.
+Before installing **ScipionWeb**, prepare the target Linux machine with the system software, services, and permissions required by the guided installer and ScipionAPI runtime.
 
-This guide assumes a **Linux host**. Ubuntu and Debian are the most straightforward environments for the documented commands.
+Ubuntu and Debian are the most straightforward environments for the documented commands.
 
-!!! note "Scope"
-    This page covers **system prerequisites only**. It does not install ScipionAPI itself yet.
+!!! note "Recommended workflow"
+    Install/verify the system dependencies first, then download `install.sh` and run:
+
+    ```bash
+    ./install.sh --check-only
+    ```
+
+    The guided installer checks the important prerequisites together before it downloads or provisions a release.
 
 ---
 
-## What you need before installation
+## What you need
 
-A typical ScipionWeb deployment requires:
+A normal ScipionWeb deployment requires:
 
+- **Linux**
 - **Conda** (Miniconda or Anaconda)
 - **PostgreSQL**
 - **Redis**
-- **sudo privileges** in common local-install scenarios
-- **Internet access** for Python package installation
+- **sudo privileges** for the common local PostgreSQL bootstrap path
+- **curl or wget**
+- **unzip**
+- enough disk space for the downloaded bundles, Conda environment, projects, logs, and updates
 
-The installation flow later uses these pieces to:
+The installation flow uses these pieces to:
 
-- create the Python environment
-- configure the database
+- create or reuse the Python environment
+- configure the PostgreSQL database and role
 - run migrations
-- start API and Celery services
+- deploy the compiled Web UI
+- run FastAPI and Celery services
 
 ---
 
-## Supported Operating Systems
+## Supported operating system
 
 ### Recommended
 
@@ -36,118 +46,101 @@ The installation flow later uses these pieces to:
 - Debian 12+
 
 !!! tip "Other Linux distributions"
-    Other Linux distributions may also work, but package names, service names, and service-management commands may differ.
+    Other Linux distributions may work, but package names and service-management commands can differ.
 
 ---
 
 ## 1. Install Conda
 
-ScipionAPI uses **Conda** to manage its Python environment automatically.
+ScipionAPI uses **Conda** to manage its Python environment.
 
 ### Check whether Conda is already installed
 
-```
+```bash
 conda --version
 ```
 
 If that prints a version number, continue to PostgreSQL.
 
-### Install Miniconda (recommended)
+### Install Miniconda
 
-If `conda` is not available, install Miniconda:
-
-```
+```bash
 mkdir -p ~/Downloads
 cd ~/Downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
-Follow the installer prompts.
+Follow the installer prompts, then restart your terminal or run:
 
-After installation, restart your terminal or run:
-
-```
+```bash
 conda init bash
 exec bash
 ```
 
-Then verify again:
+Verify again:
 
-```
+```bash
 conda --version
 ```
 
-### If `conda` is still not found
+### If `conda` is not on PATH
 
-Add Miniconda to your `PATH` manually:
+For a standard Miniconda location:
 
-```
+```bash
 export PATH="$HOME/miniconda3/bin:$PATH"
 conda --version
 ```
 
-If you installed **Anaconda** instead, adjust the path accordingly:
+For Anaconda, adjust the path accordingly.
 
-```
-export PATH="$HOME/anaconda3/bin:$PATH"
-conda --version
+The guided installer also accepts an explicit Conda executable:
+
+```bash
+export SCIPIONAPI_CONDA_EXE=/absolute/path/to/conda
 ```
 
 !!! warning "Make PATH changes persistent"
-    If `conda` only works after manually editing `PATH`, add that change to your shell profile before continuing.
+    If `conda` only works after a manual `PATH` change, make that shell configuration persistent before continuing.
 
 ---
 
 ## 2. Install PostgreSQL
 
-PostgreSQL stores application data such as:
+PostgreSQL stores the ScipionWeb/ScipionAPI persistent application state.
 
-- users
-- projects
-- protocol metadata
-- sharing information
-- settings
+Install it on Ubuntu/Debian:
 
-In common local setups, the installer can create the database and role automatically, but only if PostgreSQL is installed, running, and reachable.
-
-### Install PostgreSQL on Ubuntu or Debian
-
-```
+```bash
 sudo apt update
 sudo apt install -y postgresql postgresql-contrib
 ```
 
-### Start and enable PostgreSQL
+Enable and start it:
 
-```
-sudo systemctl enable postgresql
-sudo systemctl start postgresql
+```bash
+sudo systemctl enable --now postgresql
 ```
 
-### Verify PostgreSQL
+Verify it:
 
-```
+```bash
 sudo systemctl status postgresql
-sudo -u postgres psql -c "SELECT version();"
+sudo -u postgres psql -d postgres -c "SELECT 1;"
 ```
 
-### Why sudo matters
+### Why sudo access matters
 
-The installer can automatically create the PostgreSQL user and database in common local setups using commands such as:
+The standard local installation can create the PostgreSQL role and database through commands such as:
 
-```
+```bash
 sudo -u postgres psql ...
 ```
 
-This usually requires:
+The guided preflight validates this administrative path before installation.
 
-- a local PostgreSQL server
-- a valid sudo session
-- permission to run commands as the `postgres` system user
-
-!!! note "Manual database bootstrap"
-    If you prefer not to use automatic database bootstrap, create the database and user manually before running the installer.
+If your deployment uses a custom or remote PostgreSQL setup, use the manual installation documentation instead of relying on the default local bootstrap.
 
 ---
 
@@ -155,24 +148,22 @@ This usually requires:
 
 Redis is used as the **Celery broker** and **result backend**.
 
-### Install Redis on Ubuntu or Debian
+Install it:
 
-```
+```bash
 sudo apt update
 sudo apt install -y redis-server
 ```
 
-### Start and enable Redis
+Enable and start it:
 
-```
-sudo systemctl enable redis-server
-sudo systemctl start redis-server
+```bash
+sudo systemctl enable --now redis-server
 ```
 
-### Verify Redis
+Verify it:
 
-```
-sudo systemctl status redis-server
+```bash
 redis-cli ping
 ```
 
@@ -184,83 +175,124 @@ PONG
 
 ---
 
-## 4. Install recommended system utilities
+## 4. Install the basic utilities
 
-Make sure the following utilities are available:
+The guided installer needs a download tool and ZIP extraction support.
 
-```
+A practical Ubuntu/Debian package set is:
+
+```bash
 sudo apt update
 sudo apt install -y \
-  bash \
-  coreutils \
   curl \
   wget \
   unzip \
-  tar \
-  git \
   ca-certificates
 ```
 
-!!! tip "Why these utilities?"
-    They are commonly used during installation, troubleshooting, archive extraction, downloads, and repository operations.
+Only one of `curl` or `wget` is required by the installer, but having both available is useful for administration and troubleshooting.
 
 ---
 
-## 5. Verify ports and permissions
+## 5. Ports
 
-By default, the services use:
+PostgreSQL and Redis normally use:
 
-- **API:** `8080`
-- **PostgreSQL:** `5432`
-- **Redis:** `6379`
-
-Check whether those ports are already in use:
-
-```
-ss -ltnp | grep -E ':(8080|5432|6379)\b'
+```text
+PostgreSQL: 5432
+Redis:      6379
 ```
 
-Also confirm that the installation user will have write access to:
+ScipionWeb's API/Web port should **not** be assumed to be `8080`.
 
-- the extracted ScipionAPI directory
-- the selected `SCIPION_HOME` location
+If no fixed port is requested, provisioning preserves an existing `API_PORT` where appropriate or selects a free port automatically and persists it in `SCIPION_HOME/.env`.
 
-!!! caution "Avoid permission mismatches"
-    Do not mix `root`-owned files with a regular-user installation directory unless you intentionally manage ownership and permissions.
+To inspect the standard service ports:
+
+```bash
+ss -ltnp | grep -E ':(5432|6379)\b'
+```
+
+If you plan to force a particular API/Web port, check that port explicitly before installation:
+
+```bash
+ss -ltnp | grep ':39080\b' || true
+```
+
+Then pass it to the installer:
+
+```bash
+./install.sh --api-port 39080
+```
 
 ---
 
-## 6. Pre-installation checklist
+## 6. Permissions and installation directory
 
-Before continuing, confirm that:
+The installation user needs write access to the selected installation directory.
 
-- `conda --version` works
-- PostgreSQL is installed and running
-- Redis is installed and running
-- required utilities such as `curl`, `wget`, and `unzip` are available
-- you have `sudo` access if you want automatic local DB bootstrap
-- required ports are available
-- disk space is sufficient for bundles, runtime data, and logs
+The guided installer defaults to:
+
+```text
+$HOME/scipionweb
+```
+
+It deliberately rejects unsafe or ambiguous targets, including unrelated non-empty directories and an already-installed ScipionWeb tree.
+
+!!! caution "Avoid mixed ownership"
+    Do not create parts of the ScipionWeb installation as `root` and then run the application as a regular user unless you intentionally manage ownership and permissions.
+
+---
+
+## 7. Run the official preflight
+
+Once the basic packages are installed, download the public installer:
+
+```bash
+wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+```
+
+Then run:
+
+```bash
+./install.sh --check-only
+```
+
+The check reports all detected missing software/configuration problems together. It validates, among other things:
+
+- Linux runtime
+- `curl` or `wget`
+- `unzip`
+- `sudo`
+- Conda
+- Conda base Python
+- PostgreSQL client
+- Redis client
+- Redis server response
+- PostgreSQL administrative access
+
+If everything is ready, the installer exits successfully without installing ScipionWeb.
 
 ---
 
 ## Fast sanity check
 
-Run these together:
+These commands should all work before a normal installation:
 
-```
+```bash
 conda --version
 sudo systemctl is-active postgresql
 sudo systemctl is-active redis-server
 redis-cli ping
+sudo -u postgres psql -d postgres -c "SELECT 1;"
 ```
 
-You want to see:
+Then confirm with the installer itself:
 
-- a Conda version
-- `active` for PostgreSQL
-- `active` for Redis
-- `PONG` from Redis
+```bash
+./install.sh --check-only
+```
 
 ---
 
@@ -268,47 +300,40 @@ You want to see:
 
 ### Conda not found
 
-Usually a PATH or shell-initialization issue.
+Try the actual Conda path or set `SCIPIONAPI_CONDA_EXE`:
 
+```bash
+export SCIPIONAPI_CONDA_EXE="$HOME/miniconda3/bin/conda"
+./install.sh --check-only
 ```
-export PATH="$HOME/miniconda3/bin:$PATH"
-conda init bash
-exec bash
-```
 
-If the command works after exporting `PATH`, add the export line to your shell profile.
+### PostgreSQL is not running
 
-### PostgreSQL not starting
-
-Inspect the service status and recent logs:
-
-```
+```bash
 sudo systemctl status postgresql
 journalctl -u postgresql --no-pager -n 100
 ```
 
-### Redis not responding
+### Redis is not responding
 
-Inspect the service status and recent logs:
-
-```
+```bash
 sudo systemctl status redis-server
 journalctl -u redis-server --no-pager -n 100
 ```
 
-### `sudo -u postgres` fails
+### PostgreSQL administrative access fails
 
-Try refreshing your sudo session:
+Refresh sudo authentication:
 
-```
+```bash
 sudo -v
+sudo -u postgres psql -d postgres -c "SELECT 1;"
 ```
 
-If it still fails, manually create the PostgreSQL user and database before running the installer.
+If your host intentionally does not allow this local administrative path, use the advanced/manual database setup instead.
 
-Common causes include:
+---
 
-- your user is not in the `sudoers` group
-- sudo credentials expired
-- PostgreSQL service is not running
-- local PostgreSQL authentication rules were customized
+## Next step
+
+When `./install.sh --check-only` succeeds, continue with the [Guided Installation](guided-install.md).

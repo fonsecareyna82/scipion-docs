@@ -8,7 +8,7 @@ hide:
 !!! info "What is ScipionWeb?"
     ScipionWeb is a web interface for managing **Scipion projects, protocols, outputs, viewers, plugins, and collaboration workflows** from the browser.
 
-    This documentation helps installers, users, administrators, and developers find the right information without having to understand the whole system first.
+    This documentation helps installers, users, administrators, developers, and release maintainers find the right workflow without needing to understand the entire system first.
 
 ---
 
@@ -16,12 +16,20 @@ hide:
 
 ### Install ScipionWeb
 
-Start here if you want to install ScipionWeb for users. The recommended path is **Integrated Mode**, where the API serves the Web UI from the same installation.
+For a normal new Linux installation, use the guided installer. It checks prerequisites, resolves the matched API + Web release, verifies checksums, and provisions the integrated application.
 
 1. [Installation Overview](installation/index.md)
 2. [Prerequisites](installation/prerequisites.md)
-3. [Download and Extract Bundles](installation/download-bundles.md)
-4. [Recommended Installation](installation/provision.md)
+3. [Guided Installation](installation/guided-install.md)
+
+Fast path:
+
+```bash
+wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+./install.sh --check-only
+./install.sh
+```
 
 ### Use ScipionWeb
 
@@ -33,9 +41,18 @@ Start here if you already have access to a running ScipionWeb instance and want 
 4. [Protocol Execution](user-guide/protocols.md)
 5. [Outputs and Viewers](user-guide/outputs.md)
 
-### Get help or report something
+### Update an installation
 
-Start here if something does not work as expected, you need help, or you want to suggest an improvement.
+Existing installations should use the release-aware updater rather than running a fresh installer over the existing directory.
+
+```bash
+./scripts/scipionapi update --dry-run
+./scripts/scipionapi update
+```
+
+See [Upgrade / Reinstall Notes](installation/upgrade.md).
+
+### Get help or report something
 
 1. [Support Overview](support/index.md)
 2. [Ask a Question](support/ask-a-question.md)
@@ -43,8 +60,6 @@ Start here if something does not work as expected, you need help, or you want to
 4. [Known Issues and Workarounds](support/known-issues.md)
 
 ### Administer or troubleshoot an installation
-
-Start here if you manage a ScipionWeb instance, configure runtime settings, review logs, handle backups, or investigate deployment problems.
 
 1. [Configuration Overview](configuration/index.md)
 2. [Environment Variables](configuration/env.md)
@@ -54,30 +69,52 @@ Start here if you manage a ScipionWeb instance, configure runtime settings, revi
 
 ### Develop or extend ScipionWeb
 
-Start here if you work on ScipionAPI, ScipionWeb, CLI commands, backend internals, frontend builds, or release packaging.
-
 1. [Command Line Reference](cli/index.md)
 2. [Backend Overview](backend/index.md)
 3. [Frontend Overview](frontend/index.md)
 4. [Local Dev Workflow](development/local-workflow.md)
 5. [Release and Packaging](release/packaging-strategy.md)
 
+### Publish a release
+
+Release maintainers should prepare the matching API/Web ZIP files and use the automated publisher:
+
+```bash
+./scripts/scipionapi release \
+  --upload \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/release/files \
+  --dry-run
+```
+
+See [Publish a ScipionWeb Release](release/publishing.md).
+
 ---
 
 ## Recommended deployment mode
 
-### Integrated Mode (recommended)
+### Integrated Mode
 
-The backend serves the compiled frontend and mounts the API under `/api`.
+For normal user-facing installations, ScipionAPI serves the compiled frontend and mounts the API under `/api`.
 
-- Web UI: `http://host:8080/`
-- API docs: `http://host:8080/api/docs`
+The API/Web port is runtime configuration. When no fixed port is requested, provisioning can select an available port automatically and persist it as `API_PORT` in `SCIPION_HOME/.env`.
 
-This is the recommended mode when installing ScipionWeb for users.
+After installation, inspect the actual value rather than assuming a fixed port:
+
+```bash
+grep '^API_PORT=' /path/to/scipionweb/scipion_home/.env
+```
+
+Then the normal URLs are conceptually:
+
+```text
+Web UI:   http://host:<API_PORT>/
+API docs: http://host:<API_PORT>/api/docs
+```
 
 ### Separate frontend/backend
 
-Use this when the frontend is hosted separately from the API, usually in more advanced infrastructure setups.
+Use this for advanced infrastructure where the frontend is hosted separately from ScipionAPI.
 
 ### API-only
 
@@ -85,16 +122,13 @@ Use this mainly for development, testing, or deployments where another service p
 
 ---
 
-## Quick install example
+## Installation architecture in one line
 
-```
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
-```
+The current user-facing installation model is:
 
-The CLI will ask for the admin password using a hidden prompt.
+> **`install.sh` → release manifest → paired API/Web downloads → checksum verification → `provision` → integrated ScipionWeb**
+
+Advanced users can still download bundles and invoke `provision` manually when needed.
 
 ---
 
@@ -108,4 +142,4 @@ The CLI will ask for the admin password using a hidden prompt.
     - PostgreSQL persistence
     - Celery + Redis background task execution
     - Integrated API + Web deployment mode
-    - CLI tools for installation, provisioning, diagnostics, runtime control, and logs
+    - CLI tools for installation, provisioning, updates, diagnostics, runtime control, release publication, and cleanup

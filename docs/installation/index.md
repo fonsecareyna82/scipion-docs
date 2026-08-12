@@ -5,51 +5,89 @@ hide:
 
 # Installation Overview
 
-Use this section when you want to install **ScipionWeb for users** or upgrade an existing installation.
+Use this section to install **ScipionWeb for users**, understand the underlying packaged deployment, or upgrade an existing installation.
 
-For most installations, the recommended path is **Integrated Mode (API + Web)**. In that mode, ScipionAPI serves the compiled ScipionWeb interface and the API from the same runtime, so users can open the web application directly in the browser.
+For a new Linux installation, the recommended path is now the **guided `install.sh` installer**. It resolves a matched API + Web release from the public release manifest, downloads the required ZIP files, verifies checksums, and runs the normal ScipionAPI provisioning workflow for you.
 
-!!! note "Recommended path for most installations"
-    If you are installing for the first time on a local Linux machine, follow this sequence:
+!!! success "Recommended path for most new installations"
+    Follow this sequence:
 
-    1. [Prerequisites](prerequisites/)
-    2. [Download and Extract Bundles](download-bundles/)
-    3. [Recommended Installation](provision/)
+    1. [Prerequisites](prerequisites.md)
+    2. [Guided Installation](guided-install.md)
+
+    The normal user-facing installation no longer requires manually downloading and pairing the API/Web ZIP files.
+
+---
+
+## Fast path
+
+```bash
+wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+./install.sh --check-only
+./install.sh
+```
+
+The installer defaults to the release identified as `latest` in the public `manifest.json`.
 
 ---
 
 ## Which path should I use?
 
-### Recommended installation
+### Guided installation — recommended
 
-Use **Prerequisites → Download Bundles → Recommended Installation** when you want the fastest path to a working ScipionWeb instance with both API and Web UI.
+Use [Guided Installation](guided-install.md) when you want:
 
-This is the normal path for user-facing installations.
+- a normal integrated API + Web installation
+- matched API and Web release versions automatically
+- published SHA256 verification
+- automatic port selection when no fixed port is requested
+- a stable installation directory
+- a guided installation marker that enables protected full uninstall later
+
+This is the standard path for new user-facing installations.
+
+### Manual bundle + provision workflow
+
+Use [Download Bundles](download-bundles.md) and [Recommended Installation / Provision](provision.md) when you intentionally want to control the downloaded artifacts and run `provision` yourself.
+
+This remains useful for:
+
+- deployment debugging
+- custom infrastructure automation
+- API-only scenarios
+- frontend hosted separately
+- advanced testing
 
 ### Manual installation
 
-Use **Manual Installation** only when you need full control over each layer, for example:
+Use [Manual Installation](manual-install.md) only when you need fine-grained control over each layer, for example:
 
 - remote PostgreSQL setup
-- debugging installation problems
-- custom deployment requirements
+- unusual database/bootstrap requirements
 - development environments
+- custom deployment topologies
+- troubleshooting low-level installation problems
 
-### Upgrade or reinstall
+### Upgrade an existing installation
 
-Use **Upgrade / Reinstall Notes** when an existing installation already exists and you need to preserve runtime data, database state, and configuration.
+Use [Upgrade / Reinstall Notes](upgrade.md) when ScipionWeb is already installed.
+
+The normal updater preserves runtime data and configuration while updating managed API code, the deployed Web bundle, and the managed installer file.
 
 ---
 
 ## What this section covers
 
-This installation section includes:
+The installation documentation includes:
 
 - system prerequisites such as Conda, PostgreSQL, Redis, ports, and permissions
-- official bundle download and extraction
-- recommended integrated installation using `provision` and `--web-dist`
-- manual installation step by step for advanced setups
+- guided installation through the public `install.sh`
+- manual download and extraction of release bundles
+- one-shot `provision` for controlled/manual installs
+- low-level manual installation for advanced setups
 - upgrade workflow and rollback guidance
+- production deployment considerations
 
 ---
 
@@ -57,67 +95,78 @@ This installation section includes:
 
 ### 1. Prerequisites
 
-Prepare the machine and verify required services before installation.
+Prepare the machine and validate required services.
 
-➡️ [Open Prerequisites](prerequisites/)
+➡️ [Open Prerequisites](prerequisites.md)
 
-### 2. Download and Extract Bundles
+### 2. Guided Installation
 
-Download the official ScipionAPI and ScipionWeb bundles and prepare the installation directory layout.
+Install the matching API + Web release through the public installer.
 
-➡️ [Open Download and Extract Bundles](download-bundles/)
+➡️ [Open Guided Installation](guided-install.md)
 
-### 3. Recommended Installation
+### 3. Download and Extract Bundles
 
-Run a complete integrated installation using a single command.
+Use this when you intentionally want to manage the release ZIP files yourself.
 
-➡️ [Open Recommended Installation](provision/)
+➡️ [Open Download and Extract Bundles](download-bundles.md)
 
-### 4. Manual Installation
+### 4. Provision
 
-Install ScipionAPI step by step for maximum control.
+Run the complete ScipionAPI provisioning flow directly from an extracted API bundle.
 
-➡️ [Open Manual Installation](manual-install/)
+➡️ [Open Provision](provision.md)
 
-### 5. Upgrade / Reinstall Notes
+### 5. Manual Installation
 
-Upgrade an existing installation safely.
+Install step by step for maximum control.
 
-➡️ [Open Upgrade / Reinstall Notes](upgrade/)
+➡️ [Open Manual Installation](manual-install.md)
+
+### 6. Upgrade / Reinstall Notes
+
+Update an existing installation safely.
+
+➡️ [Open Upgrade / Reinstall Notes](upgrade.md)
+
+### 7. Production Deployment
+
+Review service-management and production deployment guidance.
+
+➡️ [Open Production Deployment](deployment-systemd.md)
 
 ---
 
-## Common installation split
+## Installation mental model
 
 A useful way to think about installation is:
 
 1. **machine readiness** → prerequisites
-2. **artifacts** → bundles
-3. **runtime setup** → recommended installation or manual installation
-4. **service verification** → browser, health endpoint, logs, and project loading
+2. **release resolution** → `manifest.json`
+3. **artifacts** → matched ScipionAPI + ScipionWeb ZIP files
+4. **runtime setup** → `provision`
+5. **verification** → `status`, `doctor`, browser, logs
 
-This mental split makes debugging much easier when something goes wrong.
-
----
-
-## Quick notes
-
-!!! tip "Integrated mode is the normal user-facing mode"
-    If you want users to open ScipionWeb in the browser, download the **ScipionWeb** compiled bundle and use the `--web-dist` option during `provision`.
-
-!!! warning "Backup before upgrade"
-    Always create a PostgreSQL backup before running an upgrade, especially in production or shared environments.
-
-!!! tip "Consistency matters"
-    Keep **ScipionAPI** and **ScipionWeb** versions aligned whenever possible to reduce compatibility issues.
+The guided installer automates steps 2–4 while keeping the same underlying deployment model available to advanced users.
 
 ---
 
-## Navigation
+## Important behavior
 
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <span></span>
-  <a href="../installation/prerequisites/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Prerequisites →
-  </a>
-</div>
+!!! tip "API/Web versions stay paired"
+    The guided installer resolves both artifacts from the same release entry. For manual installs, keep ScipionAPI and ScipionWeb versions aligned unless you are intentionally testing compatibility.
+
+!!! tip "The API port is not assumed to be 8080"
+    When no fixed API/Web port is provided, provisioning preserves an existing configured port or selects a free port automatically and persists it in `.env`.
+
+!!! warning "Existing installation detected"
+    Do not run the new-install path over an existing installation. Use `./scripts/scipionapi update` instead.
+
+!!! warning "Backup before important upgrades"
+    The updater protects application files, but database rollback still requires a database backup when schema migrations matter.
+
+---
+
+## Next step
+
+Start with [Prerequisites](prerequisites.md), then use the [Guided Installation](guided-install.md) unless you specifically need a manual deployment path.
