@@ -1,50 +1,54 @@
 # Manual Installation
 
-This guide describes how to install **ScipionAPI** manually, step by step.
+This guide describes a **controlled, step-by-step ScipionAPI installation** for advanced setups, development, and debugging.
 
-Use this method if:
+For a normal new user-facing installation, use the [Guided Installation](guided-install.md) instead. The guided installer performs host checks, resolves the paired API/Web release, verifies checksums, and delegates runtime setup to `provision`.
 
-- you prefer full control over the installation
-- you are using a remote PostgreSQL server
-- you do not want automatic database bootstrap
-- you are debugging or developing locally
+Use the manual path when you need:
 
-!!! note "Manual vs one-shot provisioning"
-    If you want the fastest setup path, use [`provision`](../provision/). This page is intended for **controlled, step-by-step installation**.
+- remote/custom PostgreSQL setup
+- explicit control over the Conda environment
+- low-level migration/debugging work
+- development environments
+- custom deployment automation
 
 ---
 
 ## Mental model
 
-Manual installation is the right path when you want to separate these stages clearly:
+Manual installation separates the layers that `provision` normally combines:
 
-1. Python environment
-2. database and runtime configuration
-3. migrations and admin creation
-4. service startup and verification
+1. Python/Conda environment
+2. database/runtime configuration
+3. migrations and administrator creation
+4. runtime startup and verification
 
-That separation is slower than `provision`, but much better for debugging and advanced deployments.
-
----
-
-## Overview
-
-Manual installation typically consists of:
-
-1. creating a Conda environment
-2. installing Python dependencies
-3. configuring PostgreSQL manually
-4. running Alembic migrations
-5. creating the admin user
-6. starting API and Celery services
+That makes this path slower, but useful when you need to inspect each layer independently.
 
 ---
 
-## 1. Create Conda Environment
+## 1. Prepare the ScipionAPI source/package
 
-Run the following commands from inside the extracted **ScipionAPI** directory:
+Start from an extracted ScipionAPI release bundle or a development checkout, depending on the task.
 
+For a packaged release, verify that the root contains at least:
+
+```text
+app/
+scipionapi_cli/
+scripts/scipionapi
+alembic/
+pyproject.toml
+alembic.ini
 ```
+
+---
+
+## 2. Create the Conda environment
+
+Example development/manual environment:
+
+```bash
 conda create -n scipion4Web python=3.8 -y
 conda activate scipion4Web
 python -m pip install --upgrade pip
@@ -52,114 +56,190 @@ python -m pip install --upgrade pip
 
 ---
 
-## 2. Install Dependencies
+## 3. Install dependencies
 
-```
+```bash
 pip install -r requirements.txt
 pip install -e .
 scipionapi --help
 ```
 
-!!! tip "Editable install"
-    `pip install -e .` is recommended for local development because code changes are picked up without reinstalling the package.
+For packaged operational installs, prefer the project wrapper/bootstrap path where possible because it keeps Conda/runtime handling aligned with the normal ScipionAPI lifecycle.
 
 ---
 
-## 3. Create PostgreSQL Database Manually
+## 4. Prepare PostgreSQL
 
-If you are not using automatic database bootstrap, create the PostgreSQL role and database manually.
+For a custom/manual database setup, create the PostgreSQL role and database through your normal administrative process.
 
-Typical outline:
+Make sure the values you create match the runtime configuration you will use later, especially:
 
-- create role
-- create database
-- grant privileges
-- verify connectivity
-
-The key point is to be sure the values you create here match what you will later place in `.env`.
-
----
-
-## 4. Configure Environment (`.env`)
-
-Create a runtime workspace such as:
-
+```text
+DATABASE_URL
+DATABASE_NAME
+DATABASE_USER
+DATABASE_PASS
 ```
+
+Verify connectivity before applying migrations.
+
+---
+
+## 5. Prepare `SCIPION_HOME`
+
+Example local workspace:
+
+```bash
 mkdir -p scipion_home
 export SCIPION_HOME="$(pwd)/scipion_home"
 ```
 
-Then create:
+The persistent runtime configuration belongs at:
 
 ```text
-scipion_home/.env
+$SCIPION_HOME/.env
 ```
 
-Populate it with a valid `DATABASE_URL`, `SECRET_KEY`, API host and port, broker URL, and runtime paths.
+Use the CLI's `install` command whenever possible to generate/align runtime state rather than hand-maintaining every key.
 
 ---
 
-## 5. Run Alembic Migrations
+## 6. Configure/install runtime state
 
-Load the environment values and apply migrations:
+Use the hidden password prompt:
 
+```bash
+./scripts/scipionapi install \
+  --user "admin" \
+  --email "admin@example.org"
 ```
+
+Or, for automation:
+
+```bash
+export SCIPIONAPI_ADMIN_PASSWORD='<admin-password>'
+
+./scripts/scipionapi install \
+  --user "admin" \
+  --email "admin@example.org" \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD
+```
+
+This keeps administrator passwords out of ordinary shell arguments.
+
+If you require a fixed API/Web port:
+
+```bash
+./scripts/scipionapi install \
+  --user "admin" \
+  --email "admin@example.org" \
+  --api-port 39080
+```
+
+Otherwise the installation can preserve an existing `API_PORT` or select a free port automatically and persist it in `.env`.
+
+---
+
+## 7. Migrations
+
+The supported `install` flow applies migrations as part of runtime setup.
+
+When debugging Alembic manually, load the intended environment first:
+
+```bash
 set -a
-source scipion_home/.env
+source "$SCIPION_HOME/.env"
 set +a
 alembic upgrade head
 ```
 
-At this point the database schema should be ready.
+Do this only when you intentionally need the lower-level migration step separate from `install`/`provision`.
 
 ---
 
-## 6. Create Admin User
+## 8. Start services
 
-Run:
-
-```
-scipionapi install \
-  --user "admin" \
-  --email "admin@example.com" \
-  --pass "changeMe"
+```bash
+./scripts/scipionapi start
+./scripts/scipionapi status
 ```
 
-This step ensures the admin user exists and aligns runtime configuration with the installation state.
+Resolve the actual configured port:
+
+```bash
+API_PORT="$(grep '^API_PORT=' "$SCIPION_HOME/.env" | tail -n 1 | cut -d= -f2-)"
+echo "$API_PORT"
+```
+
+Then verify health:
+
+```bash
+curl "http://localhost:${API_PORT}/health"
+```
+
+Do not assume port `8080` unless you explicitly configured that value.
 
 ---
 
-## 7. Start Services
+## 9. Diagnostics
 
-Start the API and the Celery worker, then verify:
-
+```bash
+./scripts/scipionapi doctor --quick
+./scripts/scipionapi doctor
+./scripts/scipionapi logs
 ```
-curl http://localhost:8080/health
+
+For development/manual work, keeping API and worker logs visible can make startup and queue problems easier to diagnose.
+
+---
+
+## Adding the Web UI manually
+
+For an integrated deployment from a specific Web release bundle, the direct `provision` path is usually simpler than reproducing Web deployment by hand:
+
+```bash
+./scripts/scipionapi provision \
+  --user admin \
+  --email admin@example.org \
+  --web-dist /path/to/ScipionWeb-vX.Y.Z-dist.zip
 ```
 
-If you are running manually, keep API and worker logs visible in separate terminals while testing.
+See [Provision](provision.md) and [Integrated Mode](../configuration/integrated-mode.md).
 
 ---
 
 ## When this path is best
 
-Manual installation is recommended for:
+Manual installation is appropriate for:
 
 - development environments
-- CI testing
-- remote PostgreSQL servers
-- debugging migration issues
-- custom deployment environments
+- CI/testing
+- remote PostgreSQL deployments
+- migration/debugging investigations
+- custom infrastructure
+- release-package validation
+
+For ordinary installations, the supported path remains:
+
+```text
+Prerequisites → install.sh --check-only → install.sh
+```
 
 ---
 
 ## Common mistakes
 
-!!! warning "Environment prepared, but `.env` still wrong"
-    A healthy Python environment does not guarantee a healthy runtime configuration.
+!!! warning "Using a direct password argument"
+    Prefer the hidden prompt or `--password-env` instead of putting real credentials in shell history.
 
-!!! warning "Database exists, but migration state is unclear"
-    When in doubt, test the migration flow on a fresh empty database.
+!!! warning "Assuming port 8080"
+    Read the persisted `API_PORT` from `.env` unless you explicitly chose a fixed port.
 
-!!! warning "Services start, but worker side is forgotten"
-    Always verify both the API and Celery sides of the runtime.
+!!! warning "Database and `.env` disagree"
+    Keep runtime database values aligned with the role/database you actually created.
+
+!!! warning "Starting only one side of the runtime"
+    Verify both API and Celery/Redis behavior with `status`, `doctor`, and logs.
+
+!!! warning "Using manual installation when a managed update is enough"
+    For an existing packaged installation, use `./scripts/scipionapi update` for normal version changes.

@@ -5,38 +5,35 @@ hide:
 
 # `install` Command
 
-The `install` command configures the **runtime workspace** and the **database** for ScipionAPI.
+The `install` command configures the ScipionAPI **runtime workspace and database state** after Python/environment dependencies are already available.
 
-It prepares the application to run, but it does **not** start runtime services.
-
-!!! note "Scope"
-    `install` handles runtime configuration, database setup, migrations, and admin-user creation. Service startup is a separate step unless you use `provision`.
+It does not start runtime services. For a normal new ScipionWeb installation, prefer the public guided `install.sh`; use this command directly for advanced/manual setup.
 
 ---
 
 ## Usage
 
-Interactive mode asks for the admin password using a hidden prompt:
+Interactive password prompt:
 
-```
+```bash
 ./scripts/scipionapi install \
   --user "admin" \
-  --email "admin@example.com"
+  --email "admin@example.org"
 ```
 
-For automated runs, pass the name of an environment variable containing the password:
+Automated form:
 
-```
-export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+```bash
+export SCIPIONAPI_ADMIN_PASSWORD='<admin-password>'
 
 ./scripts/scipionapi install \
   --user "admin" \
-  --email "admin@example.com" \
+  --email "admin@example.org" \
   --password-env SCIPIONAPI_ADMIN_PASSWORD
 ```
 
-!!! note "Compatibility"
-    `--pass` and `--password` are still supported, but they are not recommended because command-line arguments may be stored in shell history.
+!!! note "Password safety"
+    `--pass` and `--password` remain available for compatibility, but hidden input or `--password-env` is preferred.
 
 ---
 
@@ -44,85 +41,121 @@ export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
 
 Use `install` when:
 
-- Python and dependencies are already prepared
-- you want controlled installation steps
-- you need to inspect database and runtime setup before starting services
+- the Conda/Python environment is already prepared
+- you want to inspect configuration/database setup separately from startup
+- you are debugging the lower-level provisioning sequence
 
-A simple sequence is:
+Typical advanced sequence:
 
-1. `bootstrap`
-2. `install`
-3. `doctor`
-4. `start`
+```text
+bootstrap → install → doctor → start
+```
 
----
-
-## What It Does
-
-`install` typically performs the following actions:
-
-1. creates or updates `SCIPION_HOME`
-2. generates `.env`
-3. creates required folders such as `logs/` and `projects/`
-4. creates the PostgreSQL role and database in common local setups
-5. runs `alembic upgrade head`
-6. creates or updates the admin user
-
-The admin password is used to create or update the user but is not persisted as `ADMIN_PASSWORD` in `.env`.
+`provision` combines those layers for convenience, and the guided `install.sh` adds host/release/download handling above `provision`.
 
 ---
 
-## Database Creation Behavior
+## What it does
 
-### Automatic local database bootstrap
+`install` typically:
 
-If PostgreSQL is local and the user has `sudo` privileges, the role and database can usually be created automatically.
+1. resolves/creates `SCIPION_HOME`
+2. creates or updates `SCIPION_HOME/.env`
+3. creates runtime directories such as logs/projects
+4. resolves the API/Web port
+5. prepares the PostgreSQL role/database in supported local setups
+6. applies Alembic migrations
+7. creates or updates the administrator account
 
-### Remote PostgreSQL
+The administrator password is used for bootstrap/update of the account; it should not be treated as a persistent plaintext runtime setting.
 
-If you use a remote PostgreSQL server:
+---
 
-- create the database and role manually, or provide PostgreSQL admin credentials through the supported environment variables
-- ensure `.env` contains a valid `DATABASE_URL`
-- confirm connectivity before running `install`
+## Port behavior
+
+Use `--api-port` when you need a specific fixed port:
+
+```bash
+./scripts/scipionapi install \
+  --user admin \
+  --email admin@example.org \
+  --api-port 39080
+```
+
+If `--api-port` is omitted:
+
+- an existing `API_PORT` is preserved when appropriate
+- otherwise a free port is selected automatically
+- the resolved port is persisted in `.env`
+
+Inspect it with:
+
+```bash
+grep '^API_PORT=' scipion_home/.env
+```
+
+Do not assume port `8080` for a newly configured installation.
+
+---
+
+## Database creation behavior
+
+### Automatic local bootstrap
+
+For a local PostgreSQL deployment with the supported administrative access, the installer can create/ensure the configured role and database automatically.
+
+### Remote/custom PostgreSQL
+
+For remote or custom PostgreSQL:
+
+- prepare the database/role through the appropriate administrative process
+- provide consistent connection settings
+- verify connectivity before applying installation/migrations
+
+Use the manual installation/configuration guidance for these advanced topologies.
 
 ---
 
 ## What to do next
 
-After `install`, continue with:
-
-```
+```bash
 ./scripts/scipionapi doctor
 ./scripts/scipionapi start
 ./scripts/scipionapi status
-curl http://localhost:8080/health
+```
+
+Then resolve the actual port:
+
+```bash
+API_PORT="$(grep '^API_PORT=' scipion_home/.env | tail -n 1 | cut -d= -f2-)"
+curl "http://localhost:${API_PORT}/health"
 ```
 
 ---
 
-## Idempotent Behavior
+## Re-running `install`
 
-Running `install` again is generally safe.
+Common installation operations are designed to be reusable:
 
-Typical behavior:
+- existing database data is not blindly dropped
+- migrations are applied as needed
+- administrator credentials can be updated
+- existing API port is preserved unless intentionally changed
 
-- does **not** drop the database
-- updates admin credentials if a password is provided
-- ensures migrations are applied and up to date
+For an installed packaged release that needs a newer version, use `update` rather than treating the change as a fresh install.
 
 ---
 
-## Common Issues
+## Common issues
 
 !!! warning "PostgreSQL authentication failed"
-    Verify database credentials in `.env` and confirm the PostgreSQL role exists with the expected password.
+    Verify the configured database endpoint/credentials and the actual PostgreSQL role.
 
 !!! warning "Alembic migration error"
-    Check connectivity and migration history state. A fresh empty database can help isolate migration problems.
+    Inspect database connectivity and migration state before retrying.
 
-!!! warning "Admin user not updated as expected"
-    Re-run `install` with explicit options and inspect output or logs for validation errors.
+!!! warning "Port expectation mismatch"
+    Read `API_PORT` from `.env`; automatic port selection is supported.
 
 !!! warning "Environment looks inconsistent"
-    Run `./scripts/scipionapi doctor` to inspect Conda, `.env`, database, Redis, imports, and runtime state.
+    Run `./scripts/scipionapi doctor` to inspect Conda, `.env`, PostgreSQL, Redis, imports, and runtime state.
