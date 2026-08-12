@@ -5,235 +5,227 @@ hide:
 
 # API + Web Integrated Mode
 
-Integrated mode allows **ScipionAPI** to serve the compiled **ScipionWeb** frontend directly, creating a **single deployment unit**.
+Integrated mode allows **ScipionAPI** to serve the compiled **ScipionWeb** frontend and REST API from one runtime endpoint.
 
-In this model, the API process serves both:
-
-- The Web UI (static frontend assets)
-- The REST API
-- API documentation endpoints
-
-!!! note "Typical use case"
-    Integrated mode is often the easiest option for **single-host deployments**, local installations, and internal lab servers where simplicity is more important than independent frontend scaling.
+This is the normal user-facing mode selected by the guided installer.
 
 ---
 
 ## Overview
 
-In integrated mode:
+In the standard integrated configuration:
 
-- The Web UI is served at `/`
-- The API is mounted under `/api`
+- Web UI is served at `/`
+- API is mounted under `/api`
 - API docs are available under `/api/docs`
 
-Typical local URLs:
+The host port is runtime configuration, not a fixed release property.
 
-```text
-http://localhost:8080/
-http://localhost:8080/api/docs
+Read the actual port from the installed environment:
+
+```bash
+grep '^API_PORT=' "$SCIPION_HOME/.env"
 ```
 
-!!! tip "Single entry point"
-    Users access one server and one base URL, which simplifies routing, networking, and operations.
+Then the normal URLs are:
+
+```text
+http://localhost:<API_PORT>/
+http://localhost:<API_PORT>/api/docs
+```
+
+!!! tip "Automatic port selection"
+    When no fixed `--api-port` is supplied, provisioning can select a free port automatically and persist it in `.env`.
 
 ---
 
-## How It Works
+## Recommended installation path
 
-Integrated mode is typically enabled during provisioning by passing the compiled Web bundle ZIP:
+For a new integrated installation:
 
+```bash
+wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+./install.sh --check-only
+./install.sh
 ```
+
+The installer resolves a paired API + Web release, verifies checksums, and delegates integrated runtime setup to `provision`.
+
+---
+
+## Direct/manual integrated provision
+
+Advanced users can deploy a specific compiled Web artifact directly:
+
+```bash
 ./scripts/scipionapi provision \
   --user "admin" \
-  --email "admin@example.com" \
-  --web-dist /path/to/web-dist.zip
+  --email "admin@example.org" \
+  --web-dist /path/to/ScipionWeb-vX.Y.Z-dist.zip
 ```
 
-During provisioning, the installer typically:
-
-1. Extracts the Web `dist` bundle
-2. Copies/deploys it into `SCIPION_HOME/web/dist`
-3. Enables integrated mode (for example `SERVE_WEB=1`)
-4. Mounts the API under `/api`
-
-!!! note "Deployment path"
-    The exact deployed location can vary by version/workflow, but integrated mode generally uses a runtime path under `SCIPION_HOME` to store the frontend assets.
+During provisioning, ScipionAPI deploys the Web assets under the runtime workspace and configures the frontend/API relationship.
 
 ---
 
-## Runtime Behavior
+## Runtime behavior
 
-Once integrated mode is enabled and the API is running:
-
-- **Web UI** is served at `/`
-- **API** is served at `/api`
-- **API docs** are served at `/api/docs`
-
-### Example endpoints
+With integrated mode enabled:
 
 ```text
-http://localhost:8080/
-http://localhost:8080/api/projects
-http://localhost:8080/api/docs
+/             → compiled ScipionWeb frontend
+/api/...      → REST API
+/api/docs     → OpenAPI/Swagger documentation
 ```
 
-!!! warning "Path consistency matters"
-    The frontend must know the correct API base path. If the frontend expects `/api` but the API is mounted elsewhere, requests will fail.
+Example using the real configured port:
+
+```bash
+API_PORT="$(grep '^API_PORT=' "$SCIPION_HOME/.env" | tail -n 1 | cut -d= -f2-)"
+
+curl "http://localhost:${API_PORT}/health"
+```
+
+Open:
+
+```text
+http://localhost:<API_PORT>/
+http://localhost:<API_PORT>/api/docs
+```
 
 ---
 
-## Required `.env` Variables
+## Important `.env` settings
 
-A typical integrated-mode configuration includes:
+A typical integrated installation includes:
 
 ```dotenv
 SERVE_WEB=1
 API_MOUNT_PATH=/api
-WEB_DIST_PATH=/path/to/dist
+WEB_DIST_PATH=/path/to/scipion_home/web/dist
 WEB_API_BASE_URL=/api
+API_PORT=<selected-port>
 ```
 
-### Variable roles
+Roles:
 
-- `SERVE_WEB=1` enables frontend serving from the API
-- `API_MOUNT_PATH=/api` defines where the API is mounted
-- `WEB_DIST_PATH` points to the compiled frontend `dist/` directory (or deployed assets path)
-- `WEB_API_BASE_URL=/api` tells the frontend where to call the API
+- `SERVE_WEB=1` enables frontend serving
+- `API_MOUNT_PATH` controls where the REST API is mounted
+- `WEB_DIST_PATH` identifies the deployed frontend files
+- `WEB_API_BASE_URL` tells the frontend where to call the API
+- `API_PORT` is the persisted listening port
 
-!!! tip "Keep these aligned"
-    In most setups, `API_MOUNT_PATH` and `WEB_API_BASE_URL` should be the same value (usually `/api`).
+In the normal configuration, `API_MOUNT_PATH` and `WEB_API_BASE_URL` are both `/api`.
 
 ---
 
-## Typical Deployment Flow
+## Runtime frontend configuration
 
-### One-shot provisioning (recommended)
+The compiled Web build is designed to be reusable across installations.
 
-```
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
-```
+ScipionAPI injects/deploys runtime API configuration so the same Web release does not need to be rebuilt for every host or selected port.
 
-This is the easiest path for a fresh local/server deployment.
+This means:
 
-### Manual integrated mode
-
-1. Extract the Web bundle
-2. Set integrated-mode variables in `SCIPION_HOME/.env`
-3. Ensure `WEB_DIST_PATH` points to the deployed `dist/`
-4. Restart the API service
+- release ZIPs remain installation-independent
+- automatic port selection does not require rebuilding ScipionWeb
+- reverse proxies can be introduced without publishing a new frontend artifact
 
 ---
 
-## When to Use Integrated Mode
+## When integrated mode is a good fit
 
-Integrated mode is a good fit for:
+Use it for:
 
-- Simple deployments
-- Single-host setups
-- Local installations
-- Internal research lab servers
-- Environments where minimizing operational complexity is a priority
+- normal guided installations
+- single-host deployments
+- local/on-prem installations
+- internal lab servers
+- deployments where operational simplicity matters
 
-!!! tip "Great default for many labs"
-    If you do not need CDN hosting, independent frontend deployments, or complex edge routing, integrated mode is often the most practical choice.
+Advantages include:
 
----
-
-## Advantages
-
-- **Single service endpoint** for users
-- **No CORS issues** in the common case (same origin)
-- **Simpler networking**
-- **Easier installation and upgrades**
-- **Fewer moving parts** for local/on-prem deployments
+- same-origin API/UI traffic
+- simple networking
+- no separate static Web host requirement
+- one update path for paired API + Web releases
 
 ---
 
-## Limitations
+## When to use a separate deployment
 
-- Cannot scale frontend independently from the API
-- Static frontend assets are served by the API process
-- Less flexible for CDN-based frontend delivery
-- Frontend updates are often tied to API deployment workflow
+A separate frontend/backend topology may be appropriate when:
 
-!!! note "Not a blocker for most small deployments"
-    These limitations are usually acceptable for local, internal, or moderate-scale environments.
+- Web assets are served by a CDN/static host
+- API and frontend scale independently
+- network/security zones require separation
+- an existing infrastructure already provides static frontend hosting
+
+See [Separate Deployment](separate-deployment.md).
 
 ---
 
-## Verification Checklist
+## Verify integrated mode
 
-After enabling integrated mode:
+### 1. Runtime status
 
-### 1. Check API health
-
-```
-curl http://localhost:8080/health
-```
-
-Expected response:
-
-```json
-{"status":"ok"}
+```bash
+./scripts/scipionapi status
+./scripts/scipionapi doctor --quick
 ```
 
-### 2. Open the Web UI
+### 2. Resolve the actual port
+
+```bash
+API_PORT="$(grep '^API_PORT=' "$SCIPION_HOME/.env" | tail -n 1 | cut -d= -f2-)"
+echo "$API_PORT"
+```
+
+### 3. Health endpoint
+
+```bash
+curl "http://localhost:${API_PORT}/health"
+```
+
+### 4. Browser
 
 Open:
 
 ```text
-http://localhost:8080/
+http://localhost:<API_PORT>/
+http://localhost:<API_PORT>/api/docs
 ```
 
-### 3. Open API docs
+### 5. Browser network requests
 
-Open:
-
-```text
-http://localhost:8080/api/docs
-```
-
-### 4. Inspect browser requests (optional)
-
-Confirm frontend API calls go to `/api/...` and not to an incorrect host/path.
+Confirm API requests use the expected `/api/...` base path.
 
 ---
 
-## Common Issues
+## Common issues
 
 !!! warning "Frontend loads but API calls fail"
-    Usually caused by a mismatch between `API_MOUNT_PATH` and `WEB_API_BASE_URL`, or a reverse proxy that rewrites paths incorrectly.
+    Check `API_MOUNT_PATH`, `WEB_API_BASE_URL`, and any reverse-proxy path rewriting.
 
-!!! warning "`WEB_DIST_PATH` points to old assets"
-    After upgrades, verify that `WEB_DIST_PATH` references the current deployed frontend assets.
+!!! warning "Using the wrong port"
+    Read `API_PORT` from `.env`; do not assume `8080` unless you explicitly configured it.
 
-!!! warning "Got `/docs` instead of `/api/docs`"
-    In integrated mode, docs are commonly served under the API mount path (for example `/api/docs`), not at `/docs`.
+!!! warning "Stale Web assets"
+    Use the managed update/deployment workflow so `WEB_DIST_PATH` points to the intended deployed release.
 
-!!! warning "Blank page or missing static assets"
-    Check that the frontend `dist/` contents were deployed correctly and that the API can read the files.
-
----
-
-## Recommended Practices
-
-- Keep API and Web versions aligned when possible
-- Use integrated mode for simpler single-host deployments
-- Re-check `.env` paths after upgrades
-- Put a reverse proxy (nginx) in front for HTTPS/public access in production
-- Back up `SCIPION_HOME/.env` before major changes
+!!! warning "Opening `/docs` instead of `/api/docs`"
+    In the standard integrated configuration, API documentation is under the API mount path.
 
 ---
 
+## Updating integrated mode
 
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../env/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Environment Variables (.env)
-  </a>
-  <a href="../separate-deployment/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Separate Deployment (API and Web on Different Hosts) →
-  </a>
-</div>
+For an installed system:
+
+```bash
+./scripts/scipionapi update --dry-run
+./scripts/scipionapi update
+```
+
+The updater resolves the paired release from `manifest.json`, verifies checksums, updates managed API files, and redeploys the Web bundle while preserving `SCIPION_HOME`.

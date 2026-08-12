@@ -5,206 +5,194 @@ hide:
 
 # `provision` Command
 
-The `provision` command performs a **complete one-shot installation** of ScipionAPI.
+`provision` performs the complete ScipionAPI runtime setup: bootstrap, installation/configuration, optional Web deployment, and service startup.
 
-It combines:
+For a normal new end-user installation, prefer the public [Guided Installation](../installation/guided-install.md). The guided `install.sh` resolves/downloads the release and then delegates runtime setup to this command.
 
-- `bootstrap`
-- `install`
-- optional Web bundle deployment
-- runtime service startup
-
-!!! tip "Recommended for most users"
-    `provision` is the fastest and most convenient way to get a working installation.
+Use `provision` directly for manual bundle workflows, advanced deployments, development, and release validation.
 
 ---
 
-## Usage (API-only mode)
+## API-only usage
 
-Interactive mode asks for the admin password using a hidden prompt:
-
-```
+```bash
 ./scripts/scipionapi provision \
   --user "admin" \
-  --email "admin@example.com"
+  --email "admin@example.org"
 ```
 
-For automated runs, pass the name of an environment variable containing the password:
+The CLI asks for the admin password using hidden input.
 
-```
-export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+For automation:
+
+```bash
+export SCIPIONAPI_ADMIN_PASSWORD='<admin-password>'
 
 ./scripts/scipionapi provision \
   --user "admin" \
-  --email "admin@example.com" \
+  --email "admin@example.org" \
   --password-env SCIPIONAPI_ADMIN_PASSWORD
 ```
 
 ---
 
-## Usage (Integrated mode: API + Web)
+## Integrated API + Web usage
 
-```
+```bash
 ./scripts/scipionapi provision \
   --user "admin" \
-  --email "admin@example.com" \
-  --web-dist /path/to/ScipionWeb-dist.zip
+  --email "admin@example.org" \
+  --web-dist /path/to/ScipionWeb-vX.Y.Z-dist.zip
 ```
 
-Automated integrated-mode example:
+Automated form:
 
-```
-export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
+```bash
+export SCIPIONAPI_ADMIN_PASSWORD='<admin-password>'
 
 ./scripts/scipionapi provision \
   --user "admin" \
-  --email "admin@example.com" \
+  --email "admin@example.org" \
   --password-env SCIPIONAPI_ADMIN_PASSWORD \
-  --web-dist /path/to/ScipionWeb-dist.zip
+  --web-dist /path/to/ScipionWeb-vX.Y.Z-dist.zip
 ```
 
-!!! note "Compatibility"
-    `--pass` and `--password` are still supported, but `--password-env` or the hidden prompt are preferred because command-line arguments may be stored in shell history.
+!!! note "Password safety"
+    `--pass` and `--password` are supported for compatibility, but hidden prompts or `--password-env` are preferred because command-line values can be exposed in shell history/process listings.
 
 ---
 
-## Options
+## Important options
 
 | Option | Description |
 |---|---|
 | `--user` | Admin username |
 | `--email` | Admin email |
 | `--password-env` | Name of an environment variable containing the admin password |
-| `--pass`, `--password` | Admin password passed directly on the command line; supported for compatibility, not recommended |
-| `--web-dist` | Path to compiled Web bundle (`.zip`) or extracted `dist/` folder |
-| `--api-mount-path` | API mount path (default: `/api`) |
-| `--api-base-url` | API base URL used by the frontend |
-| `--bootstrap`, `--no-bootstrap` | Enable or skip the bootstrap phase |
-| `--env-name` | Target Conda environment name |
-| `--python` | Python version used when creating the Conda environment |
+| `--pass`, `--password` | Direct password argument; supported but not recommended |
+| `--web-dist` | Vite `dist` directory or ZIP containing the compiled frontend |
+| `--api-mount-path` | API mount path in integrated mode (default `/api`) |
+| `--api-base-url` | API base URL written for the frontend |
+| `--api-port` | Fixed API/Web port; if omitted, preserve existing `API_PORT` or select a free port |
+| `--bootstrap`, `--no-bootstrap` | Enable/skip bootstrap phase |
+| `--env-name` | Conda environment name |
+| `--python` | Python version for the Conda environment |
+| `--install-scipion-core`, `--no-install-scipion-core` | Control automatic Scipion core installation |
+| `--scipion-core-packages` | Space-separated Scipion core package list |
+
+Use `./scripts/scipionapi provision --help` for the current complete option list.
 
 ---
 
-## What It Does
+## What it does
 
-`provision` typically performs the following steps:
+A normal integrated run performs:
 
-1. Bootstraps the Conda environment (if needed)
-2. Installs Python dependencies
-3. Configures the runtime workspace (`SCIPION_HOME`)
-4. Creates the database/role (local PostgreSQL scenarios)
-5. Runs Alembic migrations
-6. Creates or updates the admin user
-7. Deploys the Web bundle (optional)
-8. Starts the API and Celery worker
+1. Conda bootstrap when enabled
+2. Python dependency setup
+3. Scipion core dependency setup when required
+4. `SCIPION_HOME` creation/update
+5. `.env` generation/update
+6. API/Web port resolution
+7. PostgreSQL role/database bootstrap in supported local setups
+8. Alembic migrations
+9. admin-user creation/update
+10. Web bundle deployment
+11. API and Celery startup
 
 ---
 
-## Resulting Access URLs
+## Port selection
+
+The runtime is not tied to port `8080`.
+
+If `--api-port` is omitted, provisioning:
+
+- preserves an existing configured `API_PORT` when appropriate, or
+- selects a free port automatically
+
+and persists the value in `SCIPION_HOME/.env`.
+
+To choose a fixed port:
+
+```bash
+./scripts/scipionapi provision \
+  --user admin \
+  --email admin@example.org \
+  --web-dist /path/to/ScipionWeb-vX.Y.Z-dist.zip \
+  --api-port 39080
+```
+
+---
+
+## Resulting URLs
+
+Read the actual port after provisioning:
+
+```bash
+API_PORT="$(grep '^API_PORT=' scipion_home/.env | tail -n 1 | cut -d= -f2-)"
+echo "$API_PORT"
+```
 
 ### API-only mode
 
 ```text
-http://localhost:8080/docs
+http://localhost:<API_PORT>/docs
 ```
 
 ### Integrated mode
 
 ```text
-http://localhost:8080/
-http://localhost:8080/api/docs
+http://localhost:<API_PORT>/
+http://localhost:<API_PORT>/api/docs
+```
+
+---
+
+## Verification
+
+```bash
+./scripts/scipionapi status
+./scripts/scipionapi doctor --quick
+
+API_PORT="$(grep '^API_PORT=' scipion_home/.env | tail -n 1 | cut -d= -f2-)"
+curl "http://localhost:${API_PORT}/health"
+```
+
+For deeper diagnostics:
+
+```bash
+./scripts/scipionapi doctor
+./scripts/scipionapi logs
 ```
 
 ---
 
 ## Re-running `provision`
 
-`provision` is generally safe to run multiple times.
+Common provisioning operations are designed to be reusable:
 
-Typical behavior:
+- existing Conda environment can be reused
+- database state is not blindly destroyed
+- migrations are reapplied as needed
+- admin credentials can be updated
+- Web assets can be redeployed
+- existing port configuration is preserved unless changed intentionally
 
-- Does **not** destroy the database
-- Reapplies migrations (as needed)
-- Updates admin credentials
-- Replaces Web assets if `--web-dist` is provided again
-
-!!! warning "Be intentional in production"
-    Even idempotent commands should be run carefully in production. Confirm target paths, database endpoints, and Web bundle version before re-running.
-
----
-
-## Common Usage Patterns
-
-### First-time local setup
-
-```
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com"
-```
-
-### Integrated mode with frontend bundle
-
-```
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
-```
-
-### Automated integrated setup
-
-```
-export SCIPIONAPI_ADMIN_PASSWORD="<admin-password>"
-
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --password-env SCIPIONAPI_ADMIN_PASSWORD \
-  --web-dist "$HOME/scipionweb/ScipionWeb-<version>-dist.zip"
-```
-
-### Custom API mount path
-
-```
-./scripts/scipionapi provision \
-  --user "admin" \
-  --email "admin@example.com" \
-  --web-dist /path/to/ScipionWeb-dist.zip \
-  --api-mount-path /api \
-  --api-base-url /api
-```
+For a normal version upgrade of an existing packaged installation, use `update` instead.
 
 ---
 
-## Verification After Provision
+## When to use `provision` directly
 
-```
-./scripts/scipionapi status
-./scripts/scipionapi doctor --quick
-curl http://localhost:8080/health
-```
+Use it when:
 
-Expected response:
+- validating release ZIPs
+- using a manual download workflow
+- deploying API-only
+- hosting the frontend separately
+- customizing mount/base URLs
+- debugging installation layers
+- writing infrastructure automation
 
-```json
-{"status":"ok"}
-```
-
-Then open:
-
-- API-only mode: `http://localhost:8080/docs`
-- Integrated mode: `http://localhost:8080/` and `http://localhost:8080/api/docs`
-
----
-
-## Navigation
-
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../install/" style="text-decoration:none; display:inline-block;">
-    ← Previous: install
-  </a>
-  <a href="../doctor/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: doctor →
-  </a>
-</div>
+For ordinary new installations, start with `install.sh`.
