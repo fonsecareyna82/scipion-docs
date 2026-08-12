@@ -12,13 +12,13 @@
         <meta name="author" content="Scipion Team">
       
       
-        <link rel="canonical" href="https://fonsecareyna82.github.io/scipion-docs/dev/frontend/runtime-config/">
+        <link rel="canonical" href="https://fonsecareyna82.github.io/scipion-docs/dev/cli/uninstall/">
       
       
-        <link rel="prev" href="../build/">
+        <link rel="prev" href="../release/">
       
       
-        <link rel="next" href="../../development/local-workflow/">
+        <link rel="next" href="../doctor/">
       
       
       <link rel="icon" href="../../assets/images/scipion_icon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Runtime API URL Configuration - ScipionWeb Documentation</title>
+        <title>Uninstall - ScipionWeb Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#runtime-api-url-configuration" class="md-skip">
+        <a href="#uninstall" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Runtime API URL Configuration
+              Uninstall
             
           </span>
         </div>
@@ -345,7 +345,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../cli/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
     
@@ -397,8 +397,6 @@
         <div class="md-main__inner md-grid">
           
             
-              
-                
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
@@ -1570,8 +1568,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -1606,18 +1606,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../cli/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1634,7 +1632,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_1">
             <span class="md-nav__icon md-icon"></span>
             Command Line Reference
@@ -1650,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/bootstrap/" class="md-nav__link">
+      <a href="../bootstrap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1671,7 +1669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/install/" class="md-nav__link">
+      <a href="../install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1692,7 +1690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/provision/" class="md-nav__link">
+      <a href="../provision/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1713,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/update/" class="md-nav__link">
+      <a href="../update/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1734,7 +1732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/release/" class="md-nav__link">
+      <a href="../release/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1752,10 +1750,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../cli/uninstall/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Uninstall
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1764,6 +1782,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preview-the-cleanup-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preview the cleanup plan
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regular-uninstall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regular uninstall
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-uninstall-for-guided-installations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full uninstall for guided installations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-uninstall-safety-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full uninstall safety checks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-full-cannot-keep-selected-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why --full cannot keep selected resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#older-packaged-installations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Older packaged installations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-interactive-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-interactive cleanup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-removal-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended removal workflow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1776,7 +1886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/doctor/" class="md-nav__link">
+      <a href="../doctor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1797,7 +1907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/runtime/" class="md-nav__link">
+      <a href="../runtime/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2030,8 +2140,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2056,16 +2164,18 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_3" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../frontend/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2082,7 +2192,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_3">
             <span class="md-nav__icon md-icon"></span>
             Frontend
@@ -2098,7 +2208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../build/" class="md-nav__link">
+      <a href="../../frontend/build/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2116,30 +2226,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Runtime API URL Configuration
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../frontend/runtime-config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2148,122 +2238,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#build-time-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build-Time Configuration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Build-Time Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    <span class="md-ellipsis">
-      Development
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#production-separate-deployment-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Production (separate deployment example)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integrated-mode-api-web" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integrated Mode (API + Web)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#separate-deployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Separate Deployment
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuration Matrix
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Mistakes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Production Recommendations
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Validation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Navigation
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2605,9 +2579,7 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -2626,96 +2598,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-time-configuration" class="md-nav__link">
+  <a href="#preview-the-cleanup-plan" class="md-nav__link">
     <span class="md-ellipsis">
-      Build-Time Configuration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Build-Time Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    <span class="md-ellipsis">
-      Development
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#production-separate-deployment-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Production (separate deployment example)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integrated-mode-api-web" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integrated Mode (API + Web)
+      Preview the cleanup plan
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#separate-deployment" class="md-nav__link">
+  <a href="#regular-uninstall" class="md-nav__link">
     <span class="md-ellipsis">
-      Separate Deployment
+      Regular uninstall
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration-matrix" class="md-nav__link">
+  <a href="#full-uninstall-for-guided-installations" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration Matrix
+      Full uninstall for guided installations
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
+  <a href="#full-uninstall-safety-checks" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Mistakes
+      Full uninstall safety checks
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-recommendations" class="md-nav__link">
+  <a href="#why-full-cannot-keep-selected-resources" class="md-nav__link">
     <span class="md-ellipsis">
-      Production Recommendations
+      Why --full cannot keep selected resources
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-validation" class="md-nav__link">
+  <a href="#older-packaged-installations" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Validation
+      Older packaged installations
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+  <a href="#non-interactive-cleanup" class="md-nav__link">
     <span class="md-ellipsis">
-      Navigation
+      Non-interactive cleanup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-removal-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended removal workflow
     </span>
   </a>
   
@@ -2739,132 +2687,123 @@
   
 
 
-<h1 id="runtime-api-url-configuration">Runtime API URL Configuration<a class="headerlink" href="#runtime-api-url-configuration" title="Permanent link">&para;</a></h1>
-<p>The frontend communicates with ScipionAPI using a base API URL.</p>
-<p>This is primarily defined by:</p>
-<pre><code class="language-dotenv">VITE_API_URL
+<h1 id="uninstall">Uninstall<a class="headerlink" href="#uninstall" title="Permanent link">&para;</a></h1>
+<p>The wrapper provides a safe ScipionWeb/ScipionAPI uninstall path:</p>
+<pre><code class="language-bash">./scripts/scipionapi uninstall
 </code></pre>
-<hr />
-<h2 id="build-time-configuration">Build-Time Configuration<a class="headerlink" href="#build-time-configuration" title="Permanent link">&para;</a></h2>
-<h3 id="development">Development<a class="headerlink" href="#development" title="Permanent link">&para;</a></h3>
-<pre><code class="language-dotenv">VITE_API_URL=&quot;http://localhost:8080&quot;
-</code></pre>
-<h3 id="production-separate-deployment-example">Production (separate deployment example)<a class="headerlink" href="#production-separate-deployment-example" title="Permanent link">&para;</a></h3>
-<pre><code class="language-dotenv">VITE_API_URL=&quot;https://api.yourdomain.com&quot;
-</code></pre>
-<p>The variable is typically consumed as:</p>
-<pre><code class="language-ts">export const BASE_URL = import.meta.env.VITE_API_URL;
-</code></pre>
-<div class="admonition note">
-<p class="admonition-title">Vite behavior</p>
-<p>Values from <code>VITE_*</code> variables are injected into the frontend build and are not automatically updated after build time.</p>
-</div>
-<hr />
-<h2 id="integrated-mode-api-web">Integrated Mode (API + Web)<a class="headerlink" href="#integrated-mode-api-web" title="Permanent link">&para;</a></h2>
-<p>In integrated mode:</p>
+<p>There are two distinct modes:</p>
 <ul>
-<li>Web is served at <code>/</code></li>
-<li>API is mounted at <code>/api</code></li>
+<li><strong>runtime cleanup</strong>: remove selected runtime resources while keeping the ScipionAPI installation directory</li>
+<li><strong>full uninstall</strong>: completely remove a packaged/guided installation after validated cleanup</li>
 </ul>
-<p>No external API host is required for the frontend.</p>
-<p>The installer can inject runtime configuration through:</p>
-<pre><code class="language-text">window.__SCIPION_WEB_CONFIG__
-</code></pre>
-<p>Example payload:</p>
-<pre><code class="language-json">{
-  &quot;apiBaseUrl&quot;: &quot;/api&quot;
-}
-</code></pre>
-<p>The frontend can prefer this runtime value when present, allowing a single build artifact to adapt to integrated deployments.</p>
-<div class="admonition tip">
-<p class="admonition-title">Why runtime injection helps</p>
-<p>Runtime config avoids rebuilding the frontend just to change the API mount path in integrated scenarios.</p>
-</div>
+<p>Use <code>--dry-run</code> before destructive operations.</p>
 <hr />
-<h2 id="separate-deployment">Separate Deployment<a class="headerlink" href="#separate-deployment" title="Permanent link">&para;</a></h2>
-<p>If frontend and API run on different hosts, define the API URL in the frontend <code>.env</code> before building:</p>
-<pre><code class="language-dotenv">VITE_API_URL=&quot;https://api.yourdomain.com&quot;
+<h2 id="preview-the-cleanup-plan">Preview the cleanup plan<a class="headerlink" href="#preview-the-cleanup-plan" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">./scripts/scipionapi uninstall --dry-run
 </code></pre>
-<p>Then rebuild the frontend:</p>
-<pre><code>npm run build
+<p>A dry run prints what would be stopped or removed without deleting resources.</p>
+<p>For a full guided uninstall, prefer an absolute command path because the installation directory itself will disappear:</p>
+<pre><code class="language-bash">/path/to/scipionweb/scripts/scipionapi uninstall --full --dry-run
 </code></pre>
 <hr />
-<h2 id="configuration-matrix">Configuration Matrix<a class="headerlink" href="#configuration-matrix" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Deployment Mode</th>
-<th>Frontend Host</th>
-<th>API Host</th>
-<th>Typical API Base</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Integrated</td>
-<td>Same as API</td>
-<td>Same as frontend</td>
-<td><code>/api</code></td>
-</tr>
-<tr>
-<td>Separate</td>
-<td><code>https://yourdomain.com</code></td>
-<td><code>https://api.yourdomain.com</code></td>
-<td><code>https://api.yourdomain.com</code></td>
-</tr>
-<tr>
-<td>CDN</td>
-<td>CDN/static host</td>
-<td>Separate API host</td>
-<td><code>https://api.yourdomain.com</code></td>
-</tr>
-</tbody>
-</table>
+<h2 id="regular-uninstall">Regular uninstall<a class="headerlink" href="#regular-uninstall" title="Permanent link">&para;</a></h2>
+<p>Without <code>--full</code>, the repository/installation root is preserved.</p>
+<p>Available cleanup controls include:</p>
+<pre><code class="language-text">--keep-database
+--keep-database-role
+--keep-web-dist
+--remove-scipion-home
+--remove-conda-env
+--keep-conda-env
+</code></pre>
+<p>This mode is useful for development checkouts, troubleshooting, or selective runtime cleanup.</p>
+<p>Example: remove deployed Web assets and PostgreSQL resources while leaving the ScipionAPI checkout itself in place:</p>
+<pre><code class="language-bash">./scripts/scipionapi uninstall
+</code></pre>
+<p>The command asks for confirmation unless <code>--yes</code>/<code>-y</code> or <code>--dry-run</code> is used.</p>
 <hr />
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Changing <code>.env</code> without rebuilding</p>
-<p>In production builds, <code>VITE_API_URL</code> is compiled into the bundle. Rebuild after changes.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">HTTP/HTTPS mismatch</p>
-<p>Mixed protocol usage (frontend on HTTPS, API on HTTP) can break requests in browsers.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">CORS not configured on backend</p>
-<p>Separate deployments require backend CORS configuration for the frontend origin.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Using localhost in production builds</p>
-<p>Double-check build artifacts before release to avoid accidentally shipping <code>localhost</code> API URLs.</p>
-</div>
-<hr />
-<h2 id="production-recommendations">Production Recommendations<a class="headerlink" href="#production-recommendations" title="Permanent link">&para;</a></h2>
+<h2 id="full-uninstall-for-guided-installations">Full uninstall for guided installations<a class="headerlink" href="#full-uninstall-for-guided-installations" title="Permanent link">&para;</a></h2>
+<p>Installations created successfully by the public <code>install.sh</code> carry a marker file:</p>
+<pre><code class="language-text">.scipionweb-installation
+</code></pre>
+<p>That marker records the guided installation root and expected <code>SCIPION_HOME</code>.</p>
+<p>Preview full removal:</p>
+<pre><code class="language-bash">/path/to/scipionweb/scripts/scipionapi uninstall --full --dry-run
+</code></pre>
+<p>Then run the real removal:</p>
+<pre><code class="language-bash">/path/to/scipionweb/scripts/scipionapi uninstall --full
+</code></pre>
+<p>A full uninstall removes the installation resources, including:</p>
 <ul>
-<li>Use HTTPS for frontend and API</li>
-<li>Use stable domain naming (<code>app.</code> / <code>api.</code> pattern, or integrated <code>/api</code>)</li>
-<li>Document your API URL strategy per environment (dev/staging/prod)</li>
-<li>Validate API reachability from the browser before rollout</li>
+<li>running API/Celery runtime state</li>
+<li>configured PostgreSQL database</li>
+<li>configured PostgreSQL role when applicable</li>
+<li>deployed Web assets</li>
+<li><code>SCIPION_HOME</code></li>
+<li>the ScipionWeb Conda environment</li>
+<li>the installation root itself</li>
 </ul>
 <hr />
-<h2 id="quick-validation">Quick Validation<a class="headerlink" href="#quick-validation" title="Permanent link">&para;</a></h2>
-<p>After deployment, confirm in the browser:</p>
+<h2 id="full-uninstall-safety-checks">Full uninstall safety checks<a class="headerlink" href="#full-uninstall-safety-checks" title="Permanent link">&para;</a></h2>
+<p><code>--full</code> is deliberately restrictive.</p>
+<p>Before deleting the installation root, it verifies the installation identity and refuses unsafe layouts. Guided installations are checked for:</p>
 <ul>
-<li>Login requests go to the expected API origin/path</li>
-<li>No CORS errors appear in DevTools</li>
-<li>No mixed-content warnings appear</li>
-<li>Network requests return expected responses</li>
+<li>supported marker format</li>
+<li><code>INSTALL_TYPE=guided</code></li>
+<li>marker <code>INSTALL_ROOT</code> matching the actual installation root</li>
+<li>marker <code>SCIPION_HOME</code> matching <code>&lt;installation-root&gt;/scipion_home</code></li>
+<li>expected ScipionAPI files such as <code>pyproject.toml</code>, <code>alembic.ini</code>, and <code>scripts/scipionapi</code></li>
+<li>unsafe roots such as <code>/</code> or the user's home directory</li>
+<li>symbolic-link or externally resolved <code>SCIPION_HOME</code> scenarios</li>
 </ul>
+<p>The root is validated again before the final directory removal.</p>
+<p>These checks are intentional safeguards against deleting an unrelated directory.</p>
 <hr />
-<h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../build/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Build and Dist Output
-  </a>
-  <a href="../deployment/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Deployment Options →
-  </a>
+<h2 id="why-full-cannot-keep-selected-resources">Why <code>--full</code> cannot keep selected resources<a class="headerlink" href="#why-full-cannot-keep-selected-resources" title="Permanent link">&para;</a></h2>
+<p>A full uninstall represents complete removal, so it cannot be combined with:</p>
+<pre><code class="language-text">--keep-database
+--keep-database-role
+--keep-web-dist
+</code></pre>
+<p>If you need to preserve selected resources, use the regular uninstall mode instead.</p>
+<hr />
+<h2 id="older-packaged-installations">Older packaged installations<a class="headerlink" href="#older-packaged-installations" title="Permanent link">&para;</a></h2>
+<p>Older ZIP-based installations created before the guided installation marker existed can use:</p>
+<pre><code class="language-bash">/path/to/scipionweb/scripts/scipionapi uninstall \
+  --full \
+  --legacy-install \
+  --dry-run
+</code></pre>
+<p>If the dry-run plan is correct:</p>
+<pre><code class="language-bash">/path/to/scipionweb/scripts/scipionapi uninstall \
+  --full \
+  --legacy-install
+</code></pre>
+<p>Legacy full uninstall is accepted only when the expected packaged ScipionAPI layout can be verified.</p>
+<div class="admonition danger">
+<p class="admonition-title">Git checkouts are not legacy packaged installs</p>
+<p><code>--full --legacy-install</code> explicitly refuses Git checkouts. For a development repository, use regular uninstall and remove the repository manually only if that is actually intended.</p>
 </div>
+<hr />
+<h2 id="non-interactive-cleanup">Non-interactive cleanup<a class="headerlink" href="#non-interactive-cleanup" title="Permanent link">&para;</a></h2>
+<p>To skip the confirmation prompt:</p>
+<pre><code class="language-bash">./scripts/scipionapi uninstall --yes
+</code></pre>
+<p>For full removal:</p>
+<pre><code class="language-bash">/path/to/scipionweb/scripts/scipionapi uninstall --full --yes
+</code></pre>
+<p>Use <code>--yes</code> only after the target and cleanup plan have already been reviewed.</p>
+<hr />
+<h2 id="recommended-removal-workflow">Recommended removal workflow<a class="headerlink" href="#recommended-removal-workflow" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># 1. Inspect the exact plan.
+/path/to/scipionweb/scripts/scipionapi uninstall --full --dry-run
+
+# 2. Review database, SCIPION_HOME, Conda env, and installation root carefully.
+
+# 3. Run the real uninstall only when the resolved paths are correct.
+/path/to/scipionweb/scripts/scipionapi uninstall --full
+</code></pre>
+<p>For shared or important deployments, back up anything that must be retained before running full removal.</p>
 
 
 
@@ -2872,13 +2811,8 @@
 
 
 
-  
-  
 
 
-
-
-  
 
 
 

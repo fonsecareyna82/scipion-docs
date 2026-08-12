@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://fonsecareyna82.github.io/scipion-docs/dev/release/checklist/">
       
       
-        <link rel="prev" href="../build-web-bundle/">
+        <link rel="prev" href="../publishing/">
       
       
       
@@ -472,6 +472,8 @@
       
         
       
+        
+      
     
     
       
@@ -545,11 +547,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/guided-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/download-bundles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Bundles
+    Download Bundles (Manual)
   </span>
   
 
@@ -570,7 +593,7 @@
         
   
   <span class="md-ellipsis">
-    Recommended Installation
+    Provision (Advanced)
   </span>
   
 
@@ -1559,6 +1582,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1679,6 +1706,48 @@
   
   <span class="md-ellipsis">
     Update
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Publisher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
   </span>
   
 
@@ -2224,6 +2293,8 @@
       
         
       
+        
+      
     
     
       
@@ -2327,6 +2398,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../publishing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publish Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2376,9 +2468,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-and-source-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version and source state
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#api-bundle" class="md-nav__link">
     <span class="md-ellipsis">
-      API Bundle
+      API bundle
     </span>
   </a>
   
@@ -2387,16 +2488,25 @@
         <li class="md-nav__item">
   <a href="#web-bundle" class="md-nav__link">
     <span class="md-ellipsis">
-      Web Bundle
+      Web bundle
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-validation" class="md-nav__link">
+  <a href="#local-release-directory" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration Validation
+      Local release directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-validation-before-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration validation before publication
     </span>
   </a>
   
@@ -2412,9 +2522,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-artifacts" class="md-nav__link">
+  <a href="#real-remote-dry-run-required" class="md-nav__link">
     <span class="md-ellipsis">
-      Release Artifacts
+      Real remote dry run — required
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#existing-version-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Existing-version protection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publish" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publish
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest-validation-after-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manifest validation after publication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-endpoint-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public endpoint validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-user-validation-against-the-published-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New-user validation against the published release
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#existing-user-validation-against-the-published-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      Existing-user validation against the published release
     </span>
   </a>
   
@@ -2423,16 +2587,16 @@
         <li class="md-nav__item">
   <a href="#final-sanity-questions" class="md-nav__link">
     <span class="md-ellipsis">
-      Final Sanity Questions
+      Final sanity questions
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#final-step" class="md-nav__link">
+  <a href="#tag-the-release" class="md-nav__link">
     <span class="md-ellipsis">
-      Final Step
+      Tag the release
     </span>
   </a>
   
@@ -2481,9 +2645,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-and-source-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version and source state
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#api-bundle" class="md-nav__link">
     <span class="md-ellipsis">
-      API Bundle
+      API bundle
     </span>
   </a>
   
@@ -2492,16 +2665,25 @@
         <li class="md-nav__item">
   <a href="#web-bundle" class="md-nav__link">
     <span class="md-ellipsis">
-      Web Bundle
+      Web bundle
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-validation" class="md-nav__link">
+  <a href="#local-release-directory" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration Validation
+      Local release directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-validation-before-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration validation before publication
     </span>
   </a>
   
@@ -2517,9 +2699,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-artifacts" class="md-nav__link">
+  <a href="#real-remote-dry-run-required" class="md-nav__link">
     <span class="md-ellipsis">
-      Release Artifacts
+      Real remote dry run — required
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#existing-version-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Existing-version protection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publish" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publish
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest-validation-after-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manifest validation after publication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-endpoint-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public endpoint validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-user-validation-against-the-published-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New-user validation against the published release
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#existing-user-validation-against-the-published-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      Existing-user validation against the published release
     </span>
   </a>
   
@@ -2528,16 +2764,16 @@
         <li class="md-nav__item">
   <a href="#final-sanity-questions" class="md-nav__link">
     <span class="md-ellipsis">
-      Final Sanity Questions
+      Final sanity questions
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#final-step" class="md-nav__link">
+  <a href="#tag-the-release" class="md-nav__link">
     <span class="md-ellipsis">
-      Final Step
+      Tag the release
     </span>
   </a>
   
@@ -2563,96 +2799,231 @@
 
 <h1 id="release-checklist">Release Checklist<a class="headerlink" href="#release-checklist" title="Permanent link">&para;</a></h1>
 <p>Use this checklist before publishing any ScipionWeb release.</p>
+<p>The current supported publication path is the ScipionAPI <code>release --upload</code> command. Routine releases should <strong>not</strong> require manual <code>manifest.json</code> editing or manual SSH/rsync commands.</p>
 <hr />
-<h2 id="api-bundle">API Bundle<a class="headerlink" href="#api-bundle" title="Permanent link">&para;</a></h2>
+<h2 id="version-and-source-state">Version and source state<a class="headerlink" href="#version-and-source-state" title="Permanent link">&para;</a></h2>
 <ul>
-<li>[ ] Clean working directory</li>
-<li>[ ] Migrations apply cleanly</li>
-<li>[ ] Provision works on a fresh machine</li>
-<li>[ ] <code>update</code> works on an existing test installation</li>
-<li>[ ] No runtime folders included</li>
-<li>[ ] README updated</li>
-<li>[ ] Version bumped</li>
-<li>[ ] Bundle name follows the public convention: <code>ScipionAPI-vX.Y.Z.zip</code></li>
+<li>[ ] Release version is decided (<code>vX.Y.Z</code>)</li>
+<li>[ ] API and Web release versions match</li>
+<li>[ ] Intended release commits/tags are identified</li>
+<li>[ ] No accidental local/generated files are being packaged</li>
+<li>[ ] Release notes / known issues are prepared when needed</li>
 </ul>
 <hr />
-<h2 id="web-bundle">Web Bundle<a class="headerlink" href="#web-bundle" title="Permanent link">&para;</a></h2>
+<h2 id="api-bundle">API bundle<a class="headerlink" href="#api-bundle" title="Permanent link">&para;</a></h2>
 <ul>
-<li>[ ] Build succeeds</li>
+<li>[ ] Backend/unit tests are green</li>
+<li>[ ] Migrations apply cleanly</li>
+<li>[ ] CLI starts correctly</li>
+<li>[ ] Guided installer/provision path has been validated on a disposable machine/install</li>
+<li>[ ] Update works on an existing disposable installation</li>
+<li>[ ] Runtime folders and secrets are excluded</li>
+<li>[ ] <code>install.sh</code> is included in the API package</li>
+<li>[ ] Bundle extracts to the expected ScipionAPI layout</li>
+<li>[ ] Bundle name is exactly <code>ScipionAPI-vX.Y.Z.zip</code></li>
+</ul>
+<hr />
+<h2 id="web-bundle">Web bundle<a class="headerlink" href="#web-bundle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[ ] Production build succeeds</li>
 <li>[ ] <code>dist</code> contains the expected assets</li>
 <li>[ ] SPA routing works</li>
-<li>[ ] No hardcoded API URLs</li>
-<li>[ ] Runtime config injection works as expected</li>
-<li>[ ] Bundle name follows the public convention: <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
+<li>[ ] No installation-specific API URL is hardcoded</li>
+<li>[ ] Runtime API configuration works as expected</li>
+<li>[ ] Integrated API + Web behavior is validated</li>
+<li>[ ] Bundle name is exactly <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
 </ul>
 <hr />
-<h2 id="integration-validation">Integration Validation<a class="headerlink" href="#integration-validation" title="Permanent link">&para;</a></h2>
+<h2 id="local-release-directory">Local release directory<a class="headerlink" href="#local-release-directory" title="Permanent link">&para;</a></h2>
+<p>The publication directory only needs the paired ZIP files:</p>
+<pre><code class="language-text">/path/to/release/files/
+├── ScipionAPI-vX.Y.Z.zip
+└── ScipionWeb-vX.Y.Z-dist.zip
+</code></pre>
+<p>Checklist:</p>
 <ul>
-<li>[ ] Download API bundle</li>
-<li>[ ] Download Web bundle</li>
-<li>[ ] Extract both</li>
-<li>[ ] Run <code>provision</code> with <code>--web-dist</code></li>
-<li>[ ] Access UI in browser</li>
+<li>[ ] API ZIP exists</li>
+<li>[ ] Web ZIP exists</li>
+<li>[ ] filenames match <code>--version</code></li>
+<li>[ ] archives open/extract cleanly</li>
+<li>[ ] API and Web are the intended pair</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">No local <code>manifest.json</code> required</p>
+<p>The release publisher downloads the current remote manifest when one exists, preserves previous releases, adds the new release, and publishes the updated manifest automatically.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">No release-directory <code>install.sh</code> required</p>
+<p>The publisher reads <code>install.sh</code> from the current ScipionAPI repository root.</p>
+</div>
+<hr />
+<h2 id="integration-validation-before-publication">Integration validation before publication<a class="headerlink" href="#integration-validation-before-publication" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[ ] Extract/inspect the API bundle</li>
+<li>[ ] Inspect the Web bundle</li>
+<li>[ ] Run a disposable integrated <code>provision</code></li>
+<li>[ ] Web UI loads</li>
 <li>[ ] Login works</li>
 <li>[ ] Projects load</li>
-<li>[ ] Run <code>./scripts/scipionapi update --dry-run</code></li>
-<li>[ ] Run <code>./scripts/scipionapi update --version vX.Y.Z --force</code> in a disposable test install</li>
-<li>[ ] Confirm <code>/api/system/version</code> reports the expected installed version</li>
-<li>[ ] Confirm <code>/api/system/update-check</code> can read the public manifest</li>
+<li>[ ] Basic protocol/output path works</li>
+<li>[ ] <code>./scripts/scipionapi status</code> is healthy</li>
+<li>[ ] <code>./scripts/scipionapi doctor --quick</code> is healthy</li>
+<li>[ ] <code>./scripts/scipionapi update --dry-run</code> behaves correctly on a disposable existing installation</li>
+<li>[ ] <code>/api/system/version</code> reports the intended version after installation/update</li>
+<li>[ ] <code>/api/system/update-check</code> can consume the release manifest format</li>
 </ul>
 <hr />
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li>[ ] Install guide updated</li>
-<li>[ ] Upgrade guide updated</li>
-<li>[ ] CLI <code>update</code> reference updated</li>
-<li>[ ] Known issues documented</li>
-<li>[ ] Support guidance still points to the correct public channels</li>
+<li>[ ] Guided installation documentation is current</li>
+<li>[ ] Upgrade documentation is current</li>
+<li>[ ] CLI reference is current</li>
+<li>[ ] Release/publishing documentation is current</li>
+<li>[ ] Known issues are documented when applicable</li>
+<li>[ ] Support guidance points to the intended channels</li>
 </ul>
 <hr />
-<h2 id="release-artifacts">Release Artifacts<a class="headerlink" href="#release-artifacts" title="Permanent link">&para;</a></h2>
-<ul>
-<li>[ ] API ZIP created: <code>ScipionAPI-vX.Y.Z.zip</code></li>
-<li>[ ] Web ZIP created: <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
-<li>[ ] Existing <code>manifest.json</code> downloaded or copied locally</li>
-<li>[ ] <code>manifest.json</code> regenerated with the new release entry</li>
-<li>[ ] Previous release entries are still present in <code>manifest.json</code></li>
-<li>[ ] <code>latest</code> points to the new version</li>
-<li>[ ] SHA256 values generated for both ZIP files</li>
-<li>[ ] API ZIP uploaded</li>
-<li>[ ] Web ZIP uploaded</li>
-<li>[ ] <code>manifest.json</code> uploaded last</li>
-<li>[ ] Direct URLs for both ZIP files return HTTP 200</li>
-<li>[ ] Direct URL for <code>manifest.json</code> returns HTTP 200</li>
-<li>[ ] Version announcement prepared</li>
-</ul>
-<p>Generate or update the manifest with:</p>
-<pre><code class="language-bash">python scripts/update_release_manifest.py \
+<h2 id="real-remote-dry-run-required">Real remote dry run — required<a class="headerlink" href="#real-remote-dry-run-required" title="Permanent link">&para;</a></h2>
+<p>Run the publisher against the actual release target before any mutation:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
   --version vX.Y.Z \
-  --downloads-dir /path/to/releases
+  --downloads-dir /path/to/release/files \
+  --dry-run
 </code></pre>
-<p>The release directory should include the current manifest before running the script:</p>
-<pre><code class="language-text">manifest.json
-ScipionAPI-vX.Y.Z.zip
-ScipionWeb-vX.Y.Z-dist.zip
-</code></pre>
-<p>Upload <code>manifest.json</code> only after both ZIP files are available on the server.</p>
-<hr />
-<h2 id="final-sanity-questions">Final Sanity Questions<a class="headerlink" href="#final-sanity-questions" title="Permanent link">&para;</a></h2>
-<p>Before tagging, confirm:</p>
+<p>Confirm the plan reports the intended:</p>
 <ul>
-<li>Would a new user be able to install this version from the published docs?</li>
-<li>Would an existing user understand the update path?</li>
-<li>Does <code>./scripts/scipionapi update --dry-run</code> show the expected target version?</li>
-<li>Does the Home dashboard correctly report update availability?</li>
-<li>Are the support channels ready for incoming questions or bug reports?</li>
+<li>[ ] version</li>
+<li>[ ] API ZIP</li>
+<li>[ ] Web ZIP</li>
+<li>[ ] API SHA256</li>
+<li>[ ] Web SHA256</li>
+<li>[ ] <code>install.sh</code></li>
+<li>[ ] SSH login</li>
+<li>[ ] remote directory</li>
+<li>[ ] public URL</li>
+<li>[ ] <code>latest</code> behavior</li>
+<li>[ ] replacement mode (<code>no</code> for a normal new version)</li>
+</ul>
+<p>The current official defaults should resolve to:</p>
+<pre><code class="language-text">SSH:    scipion@nolan.cnb.csic.es
+Remote: /home/scipion/scipionfiles/downloads/scipion/scipionWeb
+Public: https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
+</code></pre>
+<hr />
+<h2 id="existing-version-protection">Existing-version protection<a class="headerlink" href="#existing-version-protection" title="Permanent link">&para;</a></h2>
+<p>For a normal new release:</p>
+<ul>
+<li>[ ] <code>--force</code> is <strong>not</strong> required</li>
+<li>[ ] manifest does not already contain the target version</li>
+<li>[ ] target API/Web ZIP filenames do not already exist remotely</li>
+</ul>
+<p>If testing the plan for an existing release, use:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/release/files \
+  --force \
+  --dry-run
+</code></pre>
+<div class="admonition danger">
+<p class="admonition-title">Do not normalize release replacement</p>
+<p><code>--force</code> without <code>--dry-run</code> permits replacing an already-published version. Prefer a new patch release whenever possible.</p>
+</div>
+<hr />
+<h2 id="publish">Publish<a class="headerlink" href="#publish" title="Permanent link">&para;</a></h2>
+<p>After the dry run is correct:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/release/files
+</code></pre>
+<p>During the real publication, verify the command completes the intended order:</p>
+<ul>
+<li>[ ] ScipionAPI ZIP uploaded</li>
+<li>[ ] ScipionWeb ZIP uploaded</li>
+<li>[ ] <code>install.sh</code> published</li>
+<li>[ ] <code>manifest.json</code> published as the final atomic step</li>
+<li>[ ] public manifest verification completes or any visibility warning is understood</li>
 </ul>
 <hr />
-<h2 id="final-step">Final Step<a class="headerlink" href="#final-step" title="Permanent link">&para;</a></h2>
-<p>Tag the release:</p>
+<h2 id="manifest-validation-after-publication">Manifest validation after publication<a class="headerlink" href="#manifest-validation-after-publication" title="Permanent link">&para;</a></h2>
+<p>The publisher creates/updates <code>manifest.json</code>; the maintainer verifies the result rather than assembling it manually.</p>
+<p>Confirm:</p>
+<ul>
+<li>[ ] previous release entries are still present</li>
+<li>[ ] new <code>vX.Y.Z</code> entry exists</li>
+<li>[ ] API filename is correct</li>
+<li>[ ] Web filename is correct</li>
+<li>[ ] API SHA256 matches the local artifact</li>
+<li>[ ] Web SHA256 matches the local artifact</li>
+<li>[ ] file sizes look correct</li>
+<li>[ ] <code>latest</code> points to <code>vX.Y.Z</code> unless <code>--no-latest</code> was intentionally used</li>
+</ul>
+<hr />
+<h2 id="public-endpoint-validation">Public endpoint validation<a class="headerlink" href="#public-endpoint-validation" title="Permanent link">&para;</a></h2>
+<p>Confirm these are reachable from:</p>
+<pre><code class="language-text">https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
+</code></pre>
+<ul>
+<li>[ ] <code>install.sh</code></li>
+<li>[ ] <code>manifest.json</code></li>
+<li>[ ] <code>ScipionAPI-vX.Y.Z.zip</code></li>
+<li>[ ] <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
+</ul>
+<hr />
+<h2 id="new-user-validation-against-the-published-release">New-user validation against the published release<a class="headerlink" href="#new-user-validation-against-the-published-release" title="Permanent link">&para;</a></h2>
+<p>Use the same public path a real user will use:</p>
+<pre><code class="language-bash">wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+./install.sh --check-only
+./install.sh --version vX.Y.Z
+</code></pre>
+<p>Confirm:</p>
+<ul>
+<li>[ ] installer resolves the intended version</li>
+<li>[ ] both ZIPs download</li>
+<li>[ ] published SHA256 values verify</li>
+<li>[ ] provisioning completes</li>
+<li>[ ] guided installation marker is created</li>
+<li>[ ] selected API/Web port is persisted</li>
+<li>[ ] <code>status</code> / <code>doctor --quick</code> are healthy</li>
+<li>[ ] browser UI loads</li>
+</ul>
+<hr />
+<h2 id="existing-user-validation-against-the-published-release">Existing-user validation against the published release<a class="headerlink" href="#existing-user-validation-against-the-published-release" title="Permanent link">&para;</a></h2>
+<p>On a disposable previous-version installation:</p>
+<pre><code class="language-bash">./scripts/scipionapi update --version vX.Y.Z --dry-run
+</code></pre>
+<p>Then perform the controlled real update and confirm:</p>
+<ul>
+<li>[ ] update resolves the intended paired release</li>
+<li>[ ] checksums verify</li>
+<li>[ ] <code>SCIPION_HOME</code> and projects are preserved</li>
+<li>[ ] database migration succeeds</li>
+<li>[ ] Web bundle is updated</li>
+<li>[ ] runtime restarts successfully</li>
+<li>[ ] login and project loading work</li>
+</ul>
+<hr />
+<h2 id="final-sanity-questions">Final sanity questions<a class="headerlink" href="#final-sanity-questions" title="Permanent link">&para;</a></h2>
+<p>Before announcing/tagging the release, confirm:</p>
+<ul>
+<li>Can a new user install it using only the published <code>install.sh</code> documentation?</li>
+<li>Can an existing user update through <code>scripts/scipionapi update</code>?</li>
+<li>Is the API/Web pair reproducible and checksum-identified?</li>
+<li>Does the manifest still preserve older releases?</li>
+<li>Is the new release correctly marked as <code>latest</code> when intended?</li>
+<li>Did the release publisher protect against accidental replacement?</li>
+<li>Are documentation and support guidance ready?</li>
+</ul>
+<hr />
+<h2 id="tag-the-release">Tag the release<a class="headerlink" href="#tag-the-release" title="Permanent link">&para;</a></h2>
+<p>When the release state is validated according to the project's release policy:</p>
 <pre><code class="language-bash">git tag vX.Y.Z
 git push origin vX.Y.Z
 </code></pre>
+<p>Coordinate tag timing with the project's normal release process; the public artifacts, manifest state, and source tag should describe the same release.</p>
 
 
 

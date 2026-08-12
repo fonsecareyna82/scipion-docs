@@ -18,7 +18,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../download-bundles/">
+        <link rel="next" href="../guided-install/">
       
       
       <link rel="icon" href="../../assets/images/scipion_icon.png">
@@ -476,6 +476,8 @@
       
         
       
+        
+      
     
     
       
@@ -575,22 +577,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-need-before-installation" class="md-nav__link">
+  <a href="#what-you-need" class="md-nav__link">
     <span class="md-ellipsis">
-      What you need before installation
+      What you need
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-operating-systems" class="md-nav__link">
+  <a href="#supported-operating-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Supported Operating Systems
+      Supported operating system
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Supported Operating Systems">
+    <nav class="md-nav" aria-label="Supported operating system">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -627,18 +629,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-miniconda-recommended" class="md-nav__link">
+  <a href="#install-miniconda" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Miniconda (recommended)
+      Install Miniconda
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#if-conda-is-still-not-found" class="md-nav__link">
+  <a href="#if-conda-is-not-on-path" class="md-nav__link">
     <span class="md-ellipsis">
-      If conda is still not found
+      If conda is not on PATH
     </span>
   </a>
   
@@ -660,36 +662,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-postgresql-on-ubuntu-or-debian" class="md-nav__link">
+  <a href="#why-sudo-access-matters" class="md-nav__link">
     <span class="md-ellipsis">
-      Install PostgreSQL on Ubuntu or Debian
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#start-and-enable-postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      Start and enable PostgreSQL
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verify PostgreSQL
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-sudo-matters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why sudo matters
+      Why sudo access matters
     </span>
   </a>
   
@@ -707,63 +682,39 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Install Redis">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#install-redis-on-ubuntu-or-debian" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Redis on Ubuntu or Debian
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#start-and-enable-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Start and enable Redis
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verify Redis
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-install-recommended-system-utilities" class="md-nav__link">
+  <a href="#4-install-the-basic-utilities" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Install recommended system utilities
+      4. Install the basic utilities
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-verify-ports-and-permissions" class="md-nav__link">
+  <a href="#5-ports" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Verify ports and permissions
+      5. Ports
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-pre-installation-checklist" class="md-nav__link">
+  <a href="#6-permissions-and-installation-directory" class="md-nav__link">
     <span class="md-ellipsis">
-      6. Pre-installation checklist
+      6. Permissions and installation directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-run-the-official-preflight" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Run the official preflight
     </span>
   </a>
   
@@ -798,27 +749,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#postgresql-not-starting" class="md-nav__link">
+  <a href="#postgresql-is-not-running" class="md-nav__link">
     <span class="md-ellipsis">
-      PostgreSQL not starting
+      PostgreSQL is not running
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#redis-not-responding" class="md-nav__link">
+  <a href="#redis-is-not-responding" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis not responding
+      Redis is not responding
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sudo-u-postgres-fails" class="md-nav__link">
+  <a href="#postgresql-administrative-access-fails" class="md-nav__link">
     <span class="md-ellipsis">
-      sudo -u postgres fails
+      PostgreSQL administrative access fails
     </span>
   </a>
   
@@ -826,6 +777,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next step
+    </span>
+  </a>
   
 </li>
       
@@ -845,11 +805,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../guided-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../download-bundles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Bundles
+    Download Bundles (Manual)
   </span>
   
 
@@ -870,7 +851,7 @@
         
   
   <span class="md-ellipsis">
-    Recommended Installation
+    Provision (Advanced)
   </span>
   
 
@@ -1859,6 +1840,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1979,6 +1964,48 @@
   
   <span class="md-ellipsis">
     Update
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Publisher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
   </span>
   
 
@@ -2522,6 +2549,8 @@
       
         
       
+        
+      
     
     
       
@@ -2627,6 +2656,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../release/publishing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publish Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../release/checklist/" class="md-nav__link">
         
   
@@ -2675,22 +2725,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-need-before-installation" class="md-nav__link">
+  <a href="#what-you-need" class="md-nav__link">
     <span class="md-ellipsis">
-      What you need before installation
+      What you need
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-operating-systems" class="md-nav__link">
+  <a href="#supported-operating-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Supported Operating Systems
+      Supported operating system
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Supported Operating Systems">
+    <nav class="md-nav" aria-label="Supported operating system">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2727,18 +2777,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-miniconda-recommended" class="md-nav__link">
+  <a href="#install-miniconda" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Miniconda (recommended)
+      Install Miniconda
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#if-conda-is-still-not-found" class="md-nav__link">
+  <a href="#if-conda-is-not-on-path" class="md-nav__link">
     <span class="md-ellipsis">
-      If conda is still not found
+      If conda is not on PATH
     </span>
   </a>
   
@@ -2760,36 +2810,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-postgresql-on-ubuntu-or-debian" class="md-nav__link">
+  <a href="#why-sudo-access-matters" class="md-nav__link">
     <span class="md-ellipsis">
-      Install PostgreSQL on Ubuntu or Debian
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#start-and-enable-postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      Start and enable PostgreSQL
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verify PostgreSQL
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-sudo-matters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why sudo matters
+      Why sudo access matters
     </span>
   </a>
   
@@ -2807,63 +2830,39 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Install Redis">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#install-redis-on-ubuntu-or-debian" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Redis on Ubuntu or Debian
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#start-and-enable-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Start and enable Redis
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verify Redis
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-install-recommended-system-utilities" class="md-nav__link">
+  <a href="#4-install-the-basic-utilities" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Install recommended system utilities
+      4. Install the basic utilities
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-verify-ports-and-permissions" class="md-nav__link">
+  <a href="#5-ports" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Verify ports and permissions
+      5. Ports
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-pre-installation-checklist" class="md-nav__link">
+  <a href="#6-permissions-and-installation-directory" class="md-nav__link">
     <span class="md-ellipsis">
-      6. Pre-installation checklist
+      6. Permissions and installation directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-run-the-official-preflight" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Run the official preflight
     </span>
   </a>
   
@@ -2898,27 +2897,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#postgresql-not-starting" class="md-nav__link">
+  <a href="#postgresql-is-not-running" class="md-nav__link">
     <span class="md-ellipsis">
-      PostgreSQL not starting
+      PostgreSQL is not running
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#redis-not-responding" class="md-nav__link">
+  <a href="#redis-is-not-responding" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis not responding
+      Redis is not responding
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sudo-u-postgres-fails" class="md-nav__link">
+  <a href="#postgresql-administrative-access-fails" class="md-nav__link">
     <span class="md-ellipsis">
-      sudo -u postgres fails
+      PostgreSQL administrative access fails
     </span>
   </a>
   
@@ -2926,6 +2925,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next step
+    </span>
+  </a>
   
 </li>
       
@@ -2948,31 +2956,38 @@
 
 
 <h1 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h1>
-<p>Before installing <strong>ScipionAPI</strong> and optionally the compiled <strong>ScipionWeb</strong> bundle, prepare the target machine with the required system software, services, and permissions.</p>
-<p>This guide assumes a <strong>Linux host</strong>. Ubuntu and Debian are the most straightforward environments for the documented commands.</p>
+<p>Before installing <strong>ScipionWeb</strong>, prepare the target Linux machine with the system software, services, and permissions required by the guided installer and ScipionAPI runtime.</p>
+<p>Ubuntu and Debian are the most straightforward environments for the documented commands.</p>
 <div class="admonition note">
-<p class="admonition-title">Scope</p>
-<p>This page covers <strong>system prerequisites only</strong>. It does not install ScipionAPI itself yet.</p>
+<p class="admonition-title">Recommended workflow</p>
+<p>Install/verify the system dependencies first, then download <code>install.sh</code> and run:</p>
+<p><code>bash
+./install.sh --check-only</code></p>
+<p>The guided installer checks the important prerequisites together before it downloads or provisions a release.</p>
 </div>
 <hr />
-<h2 id="what-you-need-before-installation">What you need before installation<a class="headerlink" href="#what-you-need-before-installation" title="Permanent link">&para;</a></h2>
-<p>A typical ScipionWeb deployment requires:</p>
+<h2 id="what-you-need">What you need<a class="headerlink" href="#what-you-need" title="Permanent link">&para;</a></h2>
+<p>A normal ScipionWeb deployment requires:</p>
 <ul>
+<li><strong>Linux</strong></li>
 <li><strong>Conda</strong> (Miniconda or Anaconda)</li>
 <li><strong>PostgreSQL</strong></li>
 <li><strong>Redis</strong></li>
-<li><strong>sudo privileges</strong> in common local-install scenarios</li>
-<li><strong>Internet access</strong> for Python package installation</li>
+<li><strong>sudo privileges</strong> for the common local PostgreSQL bootstrap path</li>
+<li><strong>curl or wget</strong></li>
+<li><strong>unzip</strong></li>
+<li>enough disk space for the downloaded bundles, Conda environment, projects, logs, and updates</li>
 </ul>
-<p>The installation flow later uses these pieces to:</p>
+<p>The installation flow uses these pieces to:</p>
 <ul>
-<li>create the Python environment</li>
-<li>configure the database</li>
+<li>create or reuse the Python environment</li>
+<li>configure the PostgreSQL database and role</li>
 <li>run migrations</li>
-<li>start API and Celery services</li>
+<li>deploy the compiled Web UI</li>
+<li>run FastAPI and Celery services</li>
 </ul>
 <hr />
-<h2 id="supported-operating-systems">Supported Operating Systems<a class="headerlink" href="#supported-operating-systems" title="Permanent link">&para;</a></h2>
+<h2 id="supported-operating-system">Supported operating system<a class="headerlink" href="#supported-operating-system" title="Permanent link">&para;</a></h2>
 <h3 id="recommended">Recommended<a class="headerlink" href="#recommended" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Ubuntu 22.04 / 24.04</li>
@@ -2980,194 +2995,176 @@
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Other Linux distributions</p>
-<p>Other Linux distributions may also work, but package names, service names, and service-management commands may differ.</p>
+<p>Other Linux distributions may work, but package names and service-management commands can differ.</p>
 </div>
 <hr />
 <h2 id="1-install-conda">1. Install Conda<a class="headerlink" href="#1-install-conda" title="Permanent link">&para;</a></h2>
-<p>ScipionAPI uses <strong>Conda</strong> to manage its Python environment automatically.</p>
+<p>ScipionAPI uses <strong>Conda</strong> to manage its Python environment.</p>
 <h3 id="check-whether-conda-is-already-installed">Check whether Conda is already installed<a class="headerlink" href="#check-whether-conda-is-already-installed" title="Permanent link">&para;</a></h3>
-<pre><code>conda --version
+<pre><code class="language-bash">conda --version
 </code></pre>
 <p>If that prints a version number, continue to PostgreSQL.</p>
-<h3 id="install-miniconda-recommended">Install Miniconda (recommended)<a class="headerlink" href="#install-miniconda-recommended" title="Permanent link">&para;</a></h3>
-<p>If <code>conda</code> is not available, install Miniconda:</p>
-<pre><code>mkdir -p ~/Downloads
+<h3 id="install-miniconda">Install Miniconda<a class="headerlink" href="#install-miniconda" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">mkdir -p ~/Downloads
 cd ~/Downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 </code></pre>
-<p>Follow the installer prompts.</p>
-<p>After installation, restart your terminal or run:</p>
-<pre><code>conda init bash
+<p>Follow the installer prompts, then restart your terminal or run:</p>
+<pre><code class="language-bash">conda init bash
 exec bash
 </code></pre>
-<p>Then verify again:</p>
-<pre><code>conda --version
+<p>Verify again:</p>
+<pre><code class="language-bash">conda --version
 </code></pre>
-<h3 id="if-conda-is-still-not-found">If <code>conda</code> is still not found<a class="headerlink" href="#if-conda-is-still-not-found" title="Permanent link">&para;</a></h3>
-<p>Add Miniconda to your <code>PATH</code> manually:</p>
-<pre><code>export PATH=&quot;$HOME/miniconda3/bin:$PATH&quot;
+<h3 id="if-conda-is-not-on-path">If <code>conda</code> is not on PATH<a class="headerlink" href="#if-conda-is-not-on-path" title="Permanent link">&para;</a></h3>
+<p>For a standard Miniconda location:</p>
+<pre><code class="language-bash">export PATH=&quot;$HOME/miniconda3/bin:$PATH&quot;
 conda --version
 </code></pre>
-<p>If you installed <strong>Anaconda</strong> instead, adjust the path accordingly:</p>
-<pre><code>export PATH=&quot;$HOME/anaconda3/bin:$PATH&quot;
-conda --version
+<p>For Anaconda, adjust the path accordingly.</p>
+<p>The guided installer also accepts an explicit Conda executable:</p>
+<pre><code class="language-bash">export SCIPIONAPI_CONDA_EXE=/absolute/path/to/conda
 </code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Make PATH changes persistent</p>
-<p>If <code>conda</code> only works after manually editing <code>PATH</code>, add that change to your shell profile before continuing.</p>
+<p>If <code>conda</code> only works after a manual <code>PATH</code> change, make that shell configuration persistent before continuing.</p>
 </div>
 <hr />
 <h2 id="2-install-postgresql">2. Install PostgreSQL<a class="headerlink" href="#2-install-postgresql" title="Permanent link">&para;</a></h2>
-<p>PostgreSQL stores application data such as:</p>
-<ul>
-<li>users</li>
-<li>projects</li>
-<li>protocol metadata</li>
-<li>sharing information</li>
-<li>settings</li>
-</ul>
-<p>In common local setups, the installer can create the database and role automatically, but only if PostgreSQL is installed, running, and reachable.</p>
-<h3 id="install-postgresql-on-ubuntu-or-debian">Install PostgreSQL on Ubuntu or Debian<a class="headerlink" href="#install-postgresql-on-ubuntu-or-debian" title="Permanent link">&para;</a></h3>
-<pre><code>sudo apt update
+<p>PostgreSQL stores the ScipionWeb/ScipionAPI persistent application state.</p>
+<p>Install it on Ubuntu/Debian:</p>
+<pre><code class="language-bash">sudo apt update
 sudo apt install -y postgresql postgresql-contrib
 </code></pre>
-<h3 id="start-and-enable-postgresql">Start and enable PostgreSQL<a class="headerlink" href="#start-and-enable-postgresql" title="Permanent link">&para;</a></h3>
-<pre><code>sudo systemctl enable postgresql
-sudo systemctl start postgresql
+<p>Enable and start it:</p>
+<pre><code class="language-bash">sudo systemctl enable --now postgresql
 </code></pre>
-<h3 id="verify-postgresql">Verify PostgreSQL<a class="headerlink" href="#verify-postgresql" title="Permanent link">&para;</a></h3>
-<pre><code>sudo systemctl status postgresql
-sudo -u postgres psql -c &quot;SELECT version();&quot;
+<p>Verify it:</p>
+<pre><code class="language-bash">sudo systemctl status postgresql
+sudo -u postgres psql -d postgres -c &quot;SELECT 1;&quot;
 </code></pre>
-<h3 id="why-sudo-matters">Why sudo matters<a class="headerlink" href="#why-sudo-matters" title="Permanent link">&para;</a></h3>
-<p>The installer can automatically create the PostgreSQL user and database in common local setups using commands such as:</p>
-<pre><code>sudo -u postgres psql ...
+<h3 id="why-sudo-access-matters">Why sudo access matters<a class="headerlink" href="#why-sudo-access-matters" title="Permanent link">&para;</a></h3>
+<p>The standard local installation can create the PostgreSQL role and database through commands such as:</p>
+<pre><code class="language-bash">sudo -u postgres psql ...
 </code></pre>
-<p>This usually requires:</p>
-<ul>
-<li>a local PostgreSQL server</li>
-<li>a valid sudo session</li>
-<li>permission to run commands as the <code>postgres</code> system user</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Manual database bootstrap</p>
-<p>If you prefer not to use automatic database bootstrap, create the database and user manually before running the installer.</p>
-</div>
+<p>The guided preflight validates this administrative path before installation.</p>
+<p>If your deployment uses a custom or remote PostgreSQL setup, use the manual installation documentation instead of relying on the default local bootstrap.</p>
 <hr />
 <h2 id="3-install-redis">3. Install Redis<a class="headerlink" href="#3-install-redis" title="Permanent link">&para;</a></h2>
 <p>Redis is used as the <strong>Celery broker</strong> and <strong>result backend</strong>.</p>
-<h3 id="install-redis-on-ubuntu-or-debian">Install Redis on Ubuntu or Debian<a class="headerlink" href="#install-redis-on-ubuntu-or-debian" title="Permanent link">&para;</a></h3>
-<pre><code>sudo apt update
+<p>Install it:</p>
+<pre><code class="language-bash">sudo apt update
 sudo apt install -y redis-server
 </code></pre>
-<h3 id="start-and-enable-redis">Start and enable Redis<a class="headerlink" href="#start-and-enable-redis" title="Permanent link">&para;</a></h3>
-<pre><code>sudo systemctl enable redis-server
-sudo systemctl start redis-server
+<p>Enable and start it:</p>
+<pre><code class="language-bash">sudo systemctl enable --now redis-server
 </code></pre>
-<h3 id="verify-redis">Verify Redis<a class="headerlink" href="#verify-redis" title="Permanent link">&para;</a></h3>
-<pre><code>sudo systemctl status redis-server
-redis-cli ping
+<p>Verify it:</p>
+<pre><code class="language-bash">redis-cli ping
 </code></pre>
 <p>Expected output:</p>
 <pre><code class="language-text">PONG
 </code></pre>
 <hr />
-<h2 id="4-install-recommended-system-utilities">4. Install recommended system utilities<a class="headerlink" href="#4-install-recommended-system-utilities" title="Permanent link">&para;</a></h2>
-<p>Make sure the following utilities are available:</p>
-<pre><code>sudo apt update
+<h2 id="4-install-the-basic-utilities">4. Install the basic utilities<a class="headerlink" href="#4-install-the-basic-utilities" title="Permanent link">&para;</a></h2>
+<p>The guided installer needs a download tool and ZIP extraction support.</p>
+<p>A practical Ubuntu/Debian package set is:</p>
+<pre><code class="language-bash">sudo apt update
 sudo apt install -y \
-  bash \
-  coreutils \
   curl \
   wget \
   unzip \
-  tar \
-  git \
   ca-certificates
 </code></pre>
-<div class="admonition tip">
-<p class="admonition-title">Why these utilities?</p>
-<p>They are commonly used during installation, troubleshooting, archive extraction, downloads, and repository operations.</p>
-</div>
+<p>Only one of <code>curl</code> or <code>wget</code> is required by the installer, but having both available is useful for administration and troubleshooting.</p>
 <hr />
-<h2 id="5-verify-ports-and-permissions">5. Verify ports and permissions<a class="headerlink" href="#5-verify-ports-and-permissions" title="Permanent link">&para;</a></h2>
-<p>By default, the services use:</p>
-<ul>
-<li><strong>API:</strong> <code>8080</code></li>
-<li><strong>PostgreSQL:</strong> <code>5432</code></li>
-<li><strong>Redis:</strong> <code>6379</code></li>
-</ul>
-<p>Check whether those ports are already in use:</p>
-<pre><code>ss -ltnp | grep -E ':(8080|5432|6379)\b'
+<h2 id="5-ports">5. Ports<a class="headerlink" href="#5-ports" title="Permanent link">&para;</a></h2>
+<p>PostgreSQL and Redis normally use:</p>
+<pre><code class="language-text">PostgreSQL: 5432
+Redis:      6379
 </code></pre>
-<p>Also confirm that the installation user will have write access to:</p>
-<ul>
-<li>the extracted ScipionAPI directory</li>
-<li>the selected <code>SCIPION_HOME</code> location</li>
-</ul>
+<p>ScipionWeb's API/Web port should <strong>not</strong> be assumed to be <code>8080</code>.</p>
+<p>If no fixed port is requested, provisioning preserves an existing <code>API_PORT</code> where appropriate or selects a free port automatically and persists it in <code>SCIPION_HOME/.env</code>.</p>
+<p>To inspect the standard service ports:</p>
+<pre><code class="language-bash">ss -ltnp | grep -E ':(5432|6379)\b'
+</code></pre>
+<p>If you plan to force a particular API/Web port, check that port explicitly before installation:</p>
+<pre><code class="language-bash">ss -ltnp | grep ':39080\b' || true
+</code></pre>
+<p>Then pass it to the installer:</p>
+<pre><code class="language-bash">./install.sh --api-port 39080
+</code></pre>
+<hr />
+<h2 id="6-permissions-and-installation-directory">6. Permissions and installation directory<a class="headerlink" href="#6-permissions-and-installation-directory" title="Permanent link">&para;</a></h2>
+<p>The installation user needs write access to the selected installation directory.</p>
+<p>The guided installer defaults to:</p>
+<pre><code class="language-text">$HOME/scipionweb
+</code></pre>
+<p>It deliberately rejects unsafe or ambiguous targets, including unrelated non-empty directories and an already-installed ScipionWeb tree.</p>
 <div class="admonition caution">
-<p class="admonition-title">Avoid permission mismatches</p>
-<p>Do not mix <code>root</code>-owned files with a regular-user installation directory unless you intentionally manage ownership and permissions.</p>
+<p class="admonition-title">Avoid mixed ownership</p>
+<p>Do not create parts of the ScipionWeb installation as <code>root</code> and then run the application as a regular user unless you intentionally manage ownership and permissions.</p>
 </div>
 <hr />
-<h2 id="6-pre-installation-checklist">6. Pre-installation checklist<a class="headerlink" href="#6-pre-installation-checklist" title="Permanent link">&para;</a></h2>
-<p>Before continuing, confirm that:</p>
+<h2 id="7-run-the-official-preflight">7. Run the official preflight<a class="headerlink" href="#7-run-the-official-preflight" title="Permanent link">&para;</a></h2>
+<p>Once the basic packages are installed, download the public installer:</p>
+<pre><code class="language-bash">wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+</code></pre>
+<p>Then run:</p>
+<pre><code class="language-bash">./install.sh --check-only
+</code></pre>
+<p>The check reports all detected missing software/configuration problems together. It validates, among other things:</p>
 <ul>
-<li><code>conda --version</code> works</li>
-<li>PostgreSQL is installed and running</li>
-<li>Redis is installed and running</li>
-<li>required utilities such as <code>curl</code>, <code>wget</code>, and <code>unzip</code> are available</li>
-<li>you have <code>sudo</code> access if you want automatic local DB bootstrap</li>
-<li>required ports are available</li>
-<li>disk space is sufficient for bundles, runtime data, and logs</li>
+<li>Linux runtime</li>
+<li><code>curl</code> or <code>wget</code></li>
+<li><code>unzip</code></li>
+<li><code>sudo</code></li>
+<li>Conda</li>
+<li>Conda base Python</li>
+<li>PostgreSQL client</li>
+<li>Redis client</li>
+<li>Redis server response</li>
+<li>PostgreSQL administrative access</li>
 </ul>
+<p>If everything is ready, the installer exits successfully without installing ScipionWeb.</p>
 <hr />
 <h2 id="fast-sanity-check">Fast sanity check<a class="headerlink" href="#fast-sanity-check" title="Permanent link">&para;</a></h2>
-<p>Run these together:</p>
-<pre><code>conda --version
+<p>These commands should all work before a normal installation:</p>
+<pre><code class="language-bash">conda --version
 sudo systemctl is-active postgresql
 sudo systemctl is-active redis-server
 redis-cli ping
+sudo -u postgres psql -d postgres -c &quot;SELECT 1;&quot;
 </code></pre>
-<p>You want to see:</p>
-<ul>
-<li>a Conda version</li>
-<li><code>active</code> for PostgreSQL</li>
-<li><code>active</code> for Redis</li>
-<li><code>PONG</code> from Redis</li>
-</ul>
+<p>Then confirm with the installer itself:</p>
+<pre><code class="language-bash">./install.sh --check-only
+</code></pre>
 <hr />
 <h2 id="common-prerequisite-failures">Common prerequisite failures<a class="headerlink" href="#common-prerequisite-failures" title="Permanent link">&para;</a></h2>
 <h3 id="conda-not-found">Conda not found<a class="headerlink" href="#conda-not-found" title="Permanent link">&para;</a></h3>
-<p>Usually a PATH or shell-initialization issue.</p>
-<pre><code>export PATH=&quot;$HOME/miniconda3/bin:$PATH&quot;
-conda init bash
-exec bash
+<p>Try the actual Conda path or set <code>SCIPIONAPI_CONDA_EXE</code>:</p>
+<pre><code class="language-bash">export SCIPIONAPI_CONDA_EXE=&quot;$HOME/miniconda3/bin/conda&quot;
+./install.sh --check-only
 </code></pre>
-<p>If the command works after exporting <code>PATH</code>, add the export line to your shell profile.</p>
-<h3 id="postgresql-not-starting">PostgreSQL not starting<a class="headerlink" href="#postgresql-not-starting" title="Permanent link">&para;</a></h3>
-<p>Inspect the service status and recent logs:</p>
-<pre><code>sudo systemctl status postgresql
+<h3 id="postgresql-is-not-running">PostgreSQL is not running<a class="headerlink" href="#postgresql-is-not-running" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">sudo systemctl status postgresql
 journalctl -u postgresql --no-pager -n 100
 </code></pre>
-<h3 id="redis-not-responding">Redis not responding<a class="headerlink" href="#redis-not-responding" title="Permanent link">&para;</a></h3>
-<p>Inspect the service status and recent logs:</p>
-<pre><code>sudo systemctl status redis-server
+<h3 id="redis-is-not-responding">Redis is not responding<a class="headerlink" href="#redis-is-not-responding" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">sudo systemctl status redis-server
 journalctl -u redis-server --no-pager -n 100
 </code></pre>
-<h3 id="sudo-u-postgres-fails"><code>sudo -u postgres</code> fails<a class="headerlink" href="#sudo-u-postgres-fails" title="Permanent link">&para;</a></h3>
-<p>Try refreshing your sudo session:</p>
-<pre><code>sudo -v
+<h3 id="postgresql-administrative-access-fails">PostgreSQL administrative access fails<a class="headerlink" href="#postgresql-administrative-access-fails" title="Permanent link">&para;</a></h3>
+<p>Refresh sudo authentication:</p>
+<pre><code class="language-bash">sudo -v
+sudo -u postgres psql -d postgres -c &quot;SELECT 1;&quot;
 </code></pre>
-<p>If it still fails, manually create the PostgreSQL user and database before running the installer.</p>
-<p>Common causes include:</p>
-<ul>
-<li>your user is not in the <code>sudoers</code> group</li>
-<li>sudo credentials expired</li>
-<li>PostgreSQL service is not running</li>
-<li>local PostgreSQL authentication rules were customized</li>
-</ul>
+<p>If your host intentionally does not allow this local administrative path, use the advanced/manual database setup instead.</p>
+<hr />
+<h2 id="next-step">Next step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
+<p>When <code>./install.sh --check-only</code> succeeds, continue with the <a href="../guided-install/">Guided Installation</a>.</p>
 
 
 

@@ -478,6 +478,8 @@
       
         
       
+        
+      
     
     
       
@@ -551,11 +553,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../installation/guided-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../installation/download-bundles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Bundles
+    Download Bundles (Manual)
   </span>
   
 
@@ -576,7 +599,7 @@
         
   
   <span class="md-ellipsis">
-    Recommended Installation
+    Provision (Advanced)
   </span>
   
 
@@ -1570,6 +1593,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1691,6 +1718,48 @@
   
   <span class="md-ellipsis">
     Update
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Publisher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
   </span>
   
 
@@ -2243,6 +2312,8 @@
       
         
       
+        
+      
     
     
       
@@ -2348,6 +2419,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../release/publishing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publish Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../release/checklist/" class="md-nav__link">
         
   
@@ -2398,9 +2490,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-think-about-the-cli" class="md-nav__link">
+  <a href="#new-installations-start-with-installsh" class="md-nav__link">
     <span class="md-ellipsis">
-      How to think about the CLI
+      New installations start with install.sh
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command mental model
     </span>
   </a>
   
@@ -2409,7 +2510,7 @@
         <li class="md-nav__item">
   <a href="#command-groups" class="md-nav__link">
     <span class="md-ellipsis">
-      Command Groups
+      Command groups
     </span>
   </a>
   
@@ -2418,16 +2519,7 @@
         <li class="md-nav__item">
   <a href="#available-commands" class="md-nav__link">
     <span class="md-ellipsis">
-      Available Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#admin-password-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Admin Password Handling
+      Available commands
     </span>
   </a>
   
@@ -2436,35 +2528,35 @@
         <li class="md-nav__item">
   <a href="#typical-workflows" class="md-nav__link">
     <span class="md-ellipsis">
-      Typical Workflows
+      Typical workflows
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Typical Workflows">
+    <nav class="md-nav" aria-label="Typical workflows">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#recommended-one-shot-setup" class="md-nav__link">
+  <a href="#new-end-user-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended one-shot setup
+      New end-user installation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#automated-setup" class="md-nav__link">
+  <a href="#existing-installation-update" class="md-nav__link">
     <span class="md-ellipsis">
-      Automated setup
+      Existing installation update
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-by-step-advanced-or-debugging-setup" class="md-nav__link">
+  <a href="#manualadvanced-provision" class="md-nav__link">
     <span class="md-ellipsis">
-      Step-by-step advanced or debugging setup
+      Manual/advanced provision
     </span>
   </a>
   
@@ -2479,15 +2571,42 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#full-guided-uninstall-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full guided uninstall preview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintainer-release-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintainer release publication
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution-model" class="md-nav__link">
+  <a href="#admin-password-handling" class="md-nav__link">
     <span class="md-ellipsis">
-      Execution Model
+      Admin password handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrapper-execution-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wrapper execution model
     </span>
   </a>
   
@@ -2496,26 +2615,35 @@
         <li class="md-nav__item">
   <a href="#recommended-reading-order" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended Reading Order
+      Recommended reading order
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Recommended Reading Order">
+    <nav class="md-nav" aria-label="Recommended reading order">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#first-time-install" class="md-nav__link">
+  <a href="#new-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      First-time install
+      New installation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#manual-or-debugging-oriented-setup" class="md-nav__link">
+  <a href="#manualadvanced-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Manual or debugging-oriented setup
+      Manual/advanced setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintainers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintainers
     </span>
   </a>
   
@@ -2529,49 +2657,16 @@
         <li class="md-nav__item">
   <a href="#getting-help" class="md-nav__link">
     <span class="md-ellipsis">
-      Getting Help
+      Getting help
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Getting Help">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#general-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      General help
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#command-specific-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Command-specific help
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#common-mistakes" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Mistakes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Navigation
+      Common mistakes
     </span>
   </a>
   
@@ -2596,38 +2691,46 @@
 
 
 <h1 id="cli-reference-overview">CLI Reference Overview<a class="headerlink" href="#cli-reference-overview" title="Permanent link">&para;</a></h1>
-<p>ScipionAPI provides a command-line interface (CLI) to manage the full lifecycle of a deployment:</p>
+<p>ScipionAPI provides a command-line interface to manage the lifecycle of a ScipionWeb deployment:</p>
 <ul>
 <li>environment bootstrapping</li>
-<li>runtime and database installation</li>
+<li>runtime/database installation</li>
 <li>one-shot provisioning</li>
-<li>service lifecycle management</li>
-<li>logs and runtime status inspection</li>
-<li>read-only diagnostics with <code>doctor</code></li>
+<li>release-aware updates</li>
+<li>runtime service management</li>
+<li>diagnostics</li>
+<li>selective or full uninstall</li>
+<li>maintainer release publication</li>
 </ul>
-<p>The main entrypoint is the wrapper script:</p>
-<pre><code>./scripts/scipionapi
+<p>The main entrypoint for installed/package workflows is:</p>
+<pre><code class="language-bash">./scripts/scipionapi
 </code></pre>
-<p>If the package is already available inside the active environment, you may also use:</p>
-<pre><code>scipionapi
-</code></pre>
-<div class="admonition note">
-<p class="admonition-title">Recommended usage</p>
-<p>For most users, the wrapper script (<code>./scripts/scipionapi</code>) is the safest option because it helps ensure the command runs in the expected Conda environment.</p>
-</div>
+<p>If the package is already available inside the active environment, some commands can also be invoked through <code>scipionapi</code>, but the wrapper is the preferred operational entrypoint because it resolves the expected Conda/runtime context.</p>
 <hr />
-<h2 id="how-to-think-about-the-cli">How to think about the CLI<a class="headerlink" href="#how-to-think-about-the-cli" title="Permanent link">&para;</a></h2>
-<p>A simple mental model is:</p>
+<h2 id="new-installations-start-with-installsh">New installations start with <code>install.sh</code><a class="headerlink" href="#new-installations-start-with-installsh" title="Permanent link">&para;</a></h2>
+<p>The CLI is the engine behind installation, but most new users should not begin by manually invoking <code>bootstrap</code> or <code>provision</code>.</p>
+<p>Use the public guided installer:</p>
+<pre><code class="language-bash">wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+./install.sh --check-only
+./install.sh
+</code></pre>
+<p>The guided installer resolves/downloads the paired release and then delegates runtime setup to the CLI.</p>
+<hr />
+<h2 id="command-mental-model">Command mental model<a class="headerlink" href="#command-mental-model" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>bootstrap</code> prepares Python and dependencies</li>
-<li><code>install</code> prepares runtime configuration and database state</li>
-<li><code>provision</code> combines setup into one guided path</li>
-<li><code>doctor</code> checks whether the environment looks healthy</li>
-<li><code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code>, and <code>logs</code> manage the running services</li>
+<li><code>bootstrap</code> → prepare Conda/Python/Scipion dependencies</li>
+<li><code>install</code> → prepare <code>SCIPION_HOME</code>, <code>.env</code>, database, migrations, admin user</li>
+<li><code>provision</code> → combine setup + optional Web deployment + startup</li>
+<li><code>update</code> → move an existing installation to a published release</li>
+<li><code>release</code> → publish a paired API/Web release as a maintainer</li>
+<li><code>doctor</code> → inspect installation/runtime health without changing it</li>
+<li><code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code>, <code>logs</code> → runtime operations</li>
+<li><code>uninstall</code> → remove selected resources or a validated packaged installation</li>
+<li><code>version</code> → show the installed CLI/release version</li>
 </ul>
-<p>If you remember that split, the CLI becomes much easier to understand.</p>
 <hr />
-<h2 id="command-groups">Command Groups<a class="headerlink" href="#command-groups" title="Permanent link">&para;</a></h2>
+<h2 id="command-groups">Command groups<a class="headerlink" href="#command-groups" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -2638,148 +2741,175 @@
 </thead>
 <tbody>
 <tr>
-<td>Environment</td>
-<td><code>bootstrap</code></td>
-<td>Create or refresh the Conda runtime and install Python dependencies</td>
+<td>Setup</td>
+<td><code>bootstrap</code>, <code>install</code>, <code>provision</code></td>
+<td>Prepare environment, runtime configuration, database, admin user, and optional Web deployment</td>
 </tr>
 <tr>
-<td>Installation</td>
-<td><code>install</code>, <code>provision</code></td>
-<td>Configure runtime workspace, database, admin user, and optional web deployment</td>
+<td>Update</td>
+<td><code>update</code></td>
+<td>Update an existing installation from published release artifacts</td>
 </tr>
 <tr>
-<td>Diagnostics</td>
-<td><code>doctor</code></td>
-<td>Run read-only checks for config, Conda, DB, Redis, imports, and runtime state</td>
+<td>Release</td>
+<td><code>release</code></td>
+<td>Maintainer-only publication of API/Web ZIPs, <code>install.sh</code>, and <code>manifest.json</code></td>
 </tr>
 <tr>
 <td>Runtime</td>
 <td><code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code>, <code>logs</code></td>
 <td>Manage API/Celery processes and inspect runtime logs</td>
 </tr>
+<tr>
+<td>Diagnostics</td>
+<td><code>doctor</code></td>
+<td>Read-only checks for config, Conda, DB, Redis, imports, and runtime state</td>
+</tr>
+<tr>
+<td>Removal</td>
+<td><code>uninstall</code></td>
+<td>Selective runtime cleanup or protected full packaged-install removal</td>
+</tr>
+<tr>
+<td>Info</td>
+<td><code>version</code></td>
+<td>Show installed ScipionAPI CLI version</td>
+</tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Fastest path</p>
-<p>If you want a complete setup in one command, use <strong><code>provision</code></strong>.</p>
-</div>
 <hr />
-<h2 id="available-commands">Available Commands<a class="headerlink" href="#available-commands" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>bootstrap</code></li>
-<li><code>install</code></li>
-<li><code>provision</code></li>
-<li><code>doctor</code></li>
-<li><code>start</code></li>
-<li><code>stop</code></li>
-<li><code>restart</code></li>
-<li><code>status</code></li>
-<li><code>logs</code></li>
-</ul>
+<h2 id="available-commands">Available commands<a class="headerlink" href="#available-commands" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">bootstrap
+install
+provision
+update
+release
+start
+stop
+restart
+status
+logs
+doctor
+version
+</code></pre>
+<p>The wrapper also handles:</p>
+<pre><code class="language-text">uninstall
+uninstall-web
+</code></pre>
+<p>for runtime/full installation cleanup.</p>
 <hr />
-<h2 id="admin-password-handling">Admin Password Handling<a class="headerlink" href="#admin-password-handling" title="Permanent link">&para;</a></h2>
-<p>For interactive installations, omit the password option and let the CLI ask for it using a hidden prompt:</p>
-<pre><code>./scripts/scipionapi install --user &quot;admin&quot; --email &quot;admin@example.com&quot;
+<h2 id="typical-workflows">Typical workflows<a class="headerlink" href="#typical-workflows" title="Permanent link">&para;</a></h2>
+<h3 id="new-end-user-installation">New end-user installation<a class="headerlink" href="#new-end-user-installation" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+./install.sh --check-only
+./install.sh
 </code></pre>
-<p>For automated installations, provide the password through an environment variable:</p>
-<pre><code>export SCIPIONAPI_ADMIN_PASSWORD=&quot;&lt;admin-password&gt;&quot;
-./scripts/scipionapi install \
+<h3 id="existing-installation-update">Existing installation update<a class="headerlink" href="#existing-installation-update" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">./scripts/scipionapi update --dry-run
+./scripts/scipionapi update
+</code></pre>
+<h3 id="manualadvanced-provision">Manual/advanced provision<a class="headerlink" href="#manualadvanced-provision" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">./scripts/scipionapi provision \
   --user &quot;admin&quot; \
-  --email &quot;admin@example.com&quot; \
-  --password-env SCIPIONAPI_ADMIN_PASSWORD
-</code></pre>
-<p><code>--pass</code> and <code>--password</code> are still supported for compatibility, but they are not recommended because command-line arguments may be stored in shell history.</p>
-<hr />
-<h2 id="typical-workflows">Typical Workflows<a class="headerlink" href="#typical-workflows" title="Permanent link">&para;</a></h2>
-<h3 id="recommended-one-shot-setup">Recommended one-shot setup<a class="headerlink" href="#recommended-one-shot-setup" title="Permanent link">&para;</a></h3>
-<pre><code>./scripts/scipionapi provision \
-  --user &quot;admin&quot; \
-  --email &quot;admin@example.com&quot;
-</code></pre>
-<h3 id="automated-setup">Automated setup<a class="headerlink" href="#automated-setup" title="Permanent link">&para;</a></h3>
-<pre><code>export SCIPIONAPI_ADMIN_PASSWORD=&quot;&lt;admin-password&gt;&quot;
-
-./scripts/scipionapi provision \
-  --user &quot;admin&quot; \
-  --email &quot;admin@example.com&quot; \
-  --password-env SCIPIONAPI_ADMIN_PASSWORD
-</code></pre>
-<h3 id="step-by-step-advanced-or-debugging-setup">Step-by-step advanced or debugging setup<a class="headerlink" href="#step-by-step-advanced-or-debugging-setup" title="Permanent link">&para;</a></h3>
-<pre><code>./scripts/scipionapi bootstrap
-./scripts/scipionapi install --user &quot;admin&quot; --email &quot;admin@example.com&quot;
-./scripts/scipionapi doctor
-./scripts/scipionapi start
+  --email &quot;admin@example.org&quot; \
+  --web-dist /path/to/ScipionWeb-vX.Y.Z-dist.zip
 </code></pre>
 <h3 id="daily-runtime-operations">Daily runtime operations<a class="headerlink" href="#daily-runtime-operations" title="Permanent link">&para;</a></h3>
-<pre><code>./scripts/scipionapi status
+<pre><code class="language-bash">./scripts/scipionapi status
 ./scripts/scipionapi doctor --quick
 ./scripts/scipionapi logs
 ./scripts/scipionapi restart
 </code></pre>
+<h3 id="full-guided-uninstall-preview">Full guided uninstall preview<a class="headerlink" href="#full-guided-uninstall-preview" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">/path/to/scipionweb/scripts/scipionapi uninstall --full --dry-run
+</code></pre>
+<h3 id="maintainer-release-publication">Maintainer release publication<a class="headerlink" href="#maintainer-release-publication" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/release/files \
+  --dry-run
+</code></pre>
 <hr />
-<h2 id="execution-model">Execution Model<a class="headerlink" href="#execution-model" title="Permanent link">&para;</a></h2>
-<p>The wrapper script typically:</p>
-<ol>
-<li>detects or prepares the Conda environment</li>
-<li>runs the CLI inside that environment</li>
-<li>ensures Python dependencies are available for execution</li>
-</ol>
-<p>That is why using the wrapper is often more reliable than invoking scattered commands manually.</p>
+<h2 id="admin-password-handling">Admin password handling<a class="headerlink" href="#admin-password-handling" title="Permanent link">&para;</a></h2>
+<p>For interactive setup commands, omit the password and let the CLI prompt using hidden input:</p>
+<pre><code class="language-bash">./scripts/scipionapi install \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.org&quot;
+</code></pre>
+<p>For automation, provide the password through an environment variable:</p>
+<pre><code class="language-bash">export SCIPIONAPI_ADMIN_PASSWORD='&lt;admin-password&gt;'
+
+./scripts/scipionapi install \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.org&quot; \
+  --password-env SCIPIONAPI_ADMIN_PASSWORD
+</code></pre>
+<p><code>--pass</code> / <code>--password</code> remain available for compatibility but are not preferred because shell arguments may be retained in history or process inspection.</p>
 <hr />
-<h2 id="recommended-reading-order">Recommended Reading Order<a class="headerlink" href="#recommended-reading-order" title="Permanent link">&para;</a></h2>
-<h3 id="first-time-install">First-time install<a class="headerlink" href="#first-time-install" title="Permanent link">&para;</a></h3>
+<h2 id="wrapper-execution-model">Wrapper execution model<a class="headerlink" href="#wrapper-execution-model" title="Permanent link">&para;</a></h2>
+<p>The <code>scripts/scipionapi</code> wrapper is more than a shortcut. Depending on the command, it helps:</p>
+<ul>
+<li>resolve the configured Conda executable/environment</li>
+<li>propagate <code>SCIPION_HOME</code></li>
+<li>run the Python CLI in the expected environment</li>
+<li>protect full uninstall operations</li>
+<li>remove the Conda environment and installation root only at the appropriate final stage</li>
+</ul>
+<p>For operational commands, use the wrapper unless the documentation explicitly says otherwise.</p>
+<hr />
+<h2 id="recommended-reading-order">Recommended reading order<a class="headerlink" href="#recommended-reading-order" title="Permanent link">&para;</a></h2>
+<h3 id="new-installation">New installation<a class="headerlink" href="#new-installation" title="Permanent link">&para;</a></h3>
 <ol>
-<li><a href="provision/">provision</a></li>
+<li><a href="../installation/guided-install/">Guided Installation</a></li>
 <li><a href="doctor/">doctor</a></li>
-<li><a href="runtime/">runtime commands</a></li>
-<li><a href="../operations/logs-and-pids/">logs and PID files</a></li>
+<li><a href="runtime/">Runtime Commands</a></li>
+<li><a href="update/">Upgrade</a></li>
 </ol>
-<h3 id="manual-or-debugging-oriented-setup">Manual or debugging-oriented setup<a class="headerlink" href="#manual-or-debugging-oriented-setup" title="Permanent link">&para;</a></h3>
+<h3 id="manualadvanced-setup">Manual/advanced setup<a class="headerlink" href="#manualadvanced-setup" title="Permanent link">&para;</a></h3>
 <ol>
 <li><a href="bootstrap/">bootstrap</a></li>
 <li><a href="install/">install</a></li>
+<li><a href="provision/">provision</a></li>
 <li><a href="doctor/">doctor</a></li>
-<li><a href="runtime/">runtime commands</a></li>
-<li><a href="../backend/troubleshooting/">Backend Troubleshooting</a></li>
+<li><a href="runtime/">Runtime Commands</a></li>
+</ol>
+<h3 id="maintainers">Maintainers<a class="headerlink" href="#maintainers" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="release/">Release Publisher</a></li>
+<li><a href="../release/publishing/">Publish a ScipionWeb Release</a></li>
+<li><a href="../release/checklist/">Release Checklist</a></li>
 </ol>
 <hr />
-<h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
-<h3 id="general-help">General help<a class="headerlink" href="#general-help" title="Permanent link">&para;</a></h3>
-<pre><code>./scripts/scipionapi --help
+<h2 id="getting-help">Getting help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
+<p>General help:</p>
+<pre><code class="language-bash">./scripts/scipionapi --help
 </code></pre>
-<h3 id="command-specific-help">Command-specific help<a class="headerlink" href="#command-specific-help" title="Permanent link">&para;</a></h3>
-<pre><code>./scripts/scipionapi provision --help
-./scripts/scipionapi install --help
+<p>Command help:</p>
+<pre><code class="language-bash">./scripts/scipionapi provision --help
+./scripts/scipionapi update --help
+./scripts/scipionapi release --help
 ./scripts/scipionapi doctor --help
-./scripts/scipionapi start --help
+./scripts/scipionapi uninstall --help
 </code></pre>
 <hr />
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">Passing admin passwords directly with <code>--pass</code></p>
-<p><code>--pass</code> is supported for compatibility, but hidden prompts or <code>--password-env</code> are preferred because they avoid storing secrets in shell history.</p>
+<p class="admonition-title">Starting a new user install with low-level CLI commands</p>
+<p><code>bootstrap</code>/<code>install</code>/<code>provision</code> remain supported, but the public <code>install.sh</code> is now the preferred end-user entrypoint.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Mixing <code>provision</code> and partial manual steps without checking state</p>
-<p><code>provision</code> is idempotent in common cases, but always confirm your runtime paths and database target before re-running commands.</p>
+<p class="admonition-title">Assuming a fixed API port</p>
+<p>Provisioning can select a free port automatically. Read the persisted <code>API_PORT</code> instead of assuming <code>8080</code>.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Running commands outside the expected project directory</p>
-<p>Use the wrapper from the API bundle directory so relative paths resolve correctly.</p>
+<p class="admonition-title">Using <code>release</code> as an end-user command</p>
+<p><code>release</code> publishes to the Scipion download infrastructure and is for release maintainers.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Forgetting to inspect logs after startup</p>
-<p>A service can start and still fail shortly after. Use <code>status</code>, <code>doctor</code>, and <code>logs</code> to verify runtime health.</p>
-</div>
-<hr />
-<h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../configuration/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Configuration Overview
-  </a>
-  <a href="bootstrap/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: bootstrap →
-  </a>
+<p class="admonition-title">Running <code>--full</code> from a Git checkout</p>
+<p>Full uninstall is designed for verified packaged/guided installations. Use regular cleanup for development checkouts.</p>
 </div>
 
 

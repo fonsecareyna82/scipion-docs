@@ -18,7 +18,7 @@
         <link rel="prev" href="../build-api-bundle/">
       
       
-        <link rel="next" href="../checklist/">
+        <link rel="next" href="../publishing/">
       
       
       <link rel="icon" href="../../assets/images/scipion_icon.png">
@@ -474,6 +474,8 @@
       
         
       
+        
+      
     
     
       
@@ -547,11 +549,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/guided-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/download-bundles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Bundles
+    Download Bundles (Manual)
   </span>
   
 
@@ -572,7 +595,7 @@
         
   
   <span class="md-ellipsis">
-    Recommended Installation
+    Provision (Advanced)
   </span>
   
 
@@ -1561,6 +1584,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1681,6 +1708,48 @@
   
   <span class="md-ellipsis">
     Update
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Publisher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
   </span>
   
 
@@ -2226,6 +2295,8 @@
       
         
       
+        
+      
     
     
       
@@ -2320,6 +2391,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Build Web Bundle
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2330,6 +2412,118 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-frontend-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install frontend dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-the-production-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Build the production frontend
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-validate-the-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Validate the build
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-runtime-configuration-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Runtime configuration principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-package-the-web-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Package the Web release
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-inspect-the-archive" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Inspect the archive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-do-not-upload-the-web-zip-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Do not upload the Web ZIP manually
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-bundle-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web bundle checklist
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publishing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publish Release
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2383,6 +2577,86 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-frontend-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install frontend dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-the-production-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Build the production frontend
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-validate-the-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Validate the build
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-runtime-configuration-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Runtime configuration principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-package-the-web-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Package the Web release
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-inspect-the-archive" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Inspect the archive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-do-not-upload-the-web-zip-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Do not upload the Web ZIP manually
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-bundle-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web bundle checklist
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2400,66 +2674,110 @@
 
 
 <h1 id="build-web-bundle">Build Web Bundle<a class="headerlink" href="#build-web-bundle" title="Permanent link">&para;</a></h1>
-<p>This document explains how to build and package the ScipionWeb frontend.</p>
-<hr />
-<h1 id="step-1-install-dependencies">Step 1 — Install Dependencies<a class="headerlink" href="#step-1-install-dependencies" title="Permanent link">&para;</a></h1>
-<pre><code>npm install
+<p>This page describes how to build and package the ScipionWeb frontend for a paired release.</p>
+<p>The canonical Web artifact name is:</p>
+<pre><code class="language-text">ScipionWeb-vX.Y.Z-dist.zip
+</code></pre>
+<p>For example:</p>
+<pre><code class="language-text">ScipionWeb-v4.0.1-dist.zip
 </code></pre>
 <hr />
-<h1 id="step-2-production-build">Step 2 — Production Build<a class="headerlink" href="#step-2-production-build" title="Permanent link">&para;</a></h1>
-<pre><code>npm run build
+<h2 id="1-install-frontend-dependencies">1. Install frontend dependencies<a class="headerlink" href="#1-install-frontend-dependencies" title="Permanent link">&para;</a></h2>
+<p>From the ScipionWeb source tree:</p>
+<pre><code class="language-bash">npm install
 </code></pre>
-<p>This produces:</p>
-<pre><code>dist/
+<p>Use the repository's normal lockfile/package-manager policy when preparing a production release.</p>
+<hr />
+<h2 id="2-build-the-production-frontend">2. Build the production frontend<a class="headerlink" href="#2-build-the-production-frontend" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<p>The build produces the Vite distribution, normally:</p>
+<pre><code class="language-text">dist/
 </code></pre>
 <hr />
-<h1 id="step-3-validate-dist">Step 3 — Validate Dist<a class="headerlink" href="#step-3-validate-dist" title="Permanent link">&para;</a></h1>
-<p>Ensure:</p>
-<pre><code>dist/index.html
+<h2 id="3-validate-the-build">3. Validate the build<a class="headerlink" href="#3-validate-the-build" title="Permanent link">&para;</a></h2>
+<p>Confirm the expected production files exist, including:</p>
+<pre><code class="language-text">dist/index.html
 dist/assets/
 </code></pre>
-<p>Open locally:</p>
-<pre><code>npx serve dist
-</code></pre>
-<hr />
-<h1 id="step-4-create-bundle">Step 4 — Create Bundle<a class="headerlink" href="#step-4-create-bundle" title="Permanent link">&para;</a></h1>
-<p>Option A — Zip dist directly:</p>
-<pre><code>zip -r scipionweb-1.2.0-dist.zip dist/
-</code></pre>
-<p>Option B — Versioned folder:</p>
-<pre><code>mkdir scipionweb-1.2.0
-cp -r dist scipionweb-1.2.0/
-zip -r scipionweb-1.2.0-dist.zip scipionweb-1.2.0/
-</code></pre>
-<hr />
-<h1 id="step-5-upload">Step 5 — Upload<a class="headerlink" href="#step-5-upload" title="Permanent link">&para;</a></h1>
-<p>Upload to:</p>
-<pre><code>https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
-</code></pre>
-<hr />
-<h1 id="runtime-configuration">Runtime Configuration<a class="headerlink" href="#runtime-configuration" title="Permanent link">&para;</a></h1>
-<p>The API installer injects:</p>
-<pre><code>dist/config.js
-</code></pre>
-<p>Which defines:</p>
-<pre><code class="language-js">window.__SCIPION_WEB_CONFIG__ = {
-  apiBaseUrl: &quot;/api&quot;
-}
-</code></pre>
-<p>No rebuild required for different deployments.</p>
-<hr />
-<h1 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h1>
-<p>✔ Same web build everywhere<br />
-✔ Runtime-configurable API URL<br />
-✔ CDN friendly<br />
-✔ Cacheable  </p>
-<hr />
-<h1 id="validation-checklist">Validation Checklist<a class="headerlink" href="#validation-checklist" title="Permanent link">&para;</a></h1>
+<p>Also validate the behavior relevant to ScipionWeb:</p>
 <ul>
-<li>Web loads without API</li>
-<li>API base URL injected correctly</li>
-<li>SPA routing works</li>
+<li>SPA routes load correctly</li>
+<li>static assets resolve correctly</li>
+<li>no installation-specific API URL is hardcoded into the build</li>
+<li>runtime API configuration can be injected/deployed by ScipionAPI</li>
+<li>the build works with the matching ScipionAPI release</li>
 </ul>
+<p>A simple static server can help inspect the standalone build:</p>
+<pre><code class="language-bash">npx serve dist
+</code></pre>
+<p>This does not replace integrated API/Web validation.</p>
+<hr />
+<h2 id="4-runtime-configuration-principle">4. Runtime configuration principle<a class="headerlink" href="#4-runtime-configuration-principle" title="Permanent link">&para;</a></h2>
+<p>The same compiled Web bundle should be reusable across installations.</p>
+<p>ScipionAPI deploys runtime configuration for the frontend rather than requiring a rebuild for every host/port.</p>
+<p>Conceptually, the deployed configuration tells the frontend which API base path/URL to use, commonly <code>/api</code> in integrated mode.</p>
+<p>This provides:</p>
+<ul>
+<li>one Web artifact per release</li>
+<li>no host-specific rebuild</li>
+<li>easier caching/distribution</li>
+<li>clean integrated and separate deployment models</li>
+</ul>
+<hr />
+<h2 id="5-package-the-web-release">5. Package the Web release<a class="headerlink" href="#5-package-the-web-release" title="Permanent link">&para;</a></h2>
+<p>Create an archive that resolves to the built <code>dist</code> content when deployed.</p>
+<p>A straightforward form is:</p>
+<pre><code class="language-bash">zip -r ScipionWeb-v4.0.1-dist.zip dist/
+</code></pre>
+<p>The final filename must follow:</p>
+<pre><code class="language-text">ScipionWeb-vX.Y.Z-dist.zip
+</code></pre>
+<p>Do not use the old lowercase convention (<code>scipionweb-...</code>) in new releases; the installer/updater/publisher use the canonical <code>ScipionWeb-...</code> naming.</p>
+<hr />
+<h2 id="6-inspect-the-archive">6. Inspect the archive<a class="headerlink" href="#6-inspect-the-archive" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">unzip -l ScipionWeb-v4.0.1-dist.zip | less
+</code></pre>
+<p>Confirm that deployment can resolve a valid frontend distribution containing at least:</p>
+<pre><code class="language-text">index.html
+assets/
+</code></pre>
+<p>Then validate the archive with the matching ScipionAPI bundle in a disposable integrated installation.</p>
+<hr />
+<h2 id="7-do-not-upload-the-web-zip-manually">7. Do not upload the Web ZIP manually<a class="headerlink" href="#7-do-not-upload-the-web-zip-manually" title="Permanent link">&para;</a></h2>
+<p>Once both artifacts are ready in the same release directory:</p>
+<pre><code class="language-text">ScipionAPI-v4.0.1.zip
+ScipionWeb-v4.0.1-dist.zip
+</code></pre>
+<p>run the release publisher:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files \
+  --dry-run
+</code></pre>
+<p>After reviewing the plan:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files
+</code></pre>
+<p>The publisher handles checksums, remote validation, <code>install.sh</code>, and <code>manifest.json</code>.</p>
+<hr />
+<h2 id="web-bundle-checklist">Web bundle checklist<a class="headerlink" href="#web-bundle-checklist" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[ ] production build succeeds</li>
+<li>[ ] <code>dist/index.html</code> exists</li>
+<li>[ ] static assets are present</li>
+<li>[ ] SPA routing works</li>
+<li>[ ] no installation-specific API URL is hardcoded</li>
+<li>[ ] runtime API configuration works</li>
+<li>[ ] filename is <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
+<li>[ ] archive extracts/resolves to a valid <code>dist</code></li>
+<li>[ ] matching API artifact exists</li>
+<li>[ ] integrated disposable-install validation succeeds</li>
+</ul>
+<p>Continue with <a href="../publishing/">Publish a ScipionWeb Release</a>.</p>
 
 
 

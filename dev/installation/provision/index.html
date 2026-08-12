@@ -26,7 +26,7 @@
     
     
       
-        <title>Recommended Installation - ScipionWeb Documentation</title>
+        <title>Provision (Advanced) - ScipionWeb Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#provision-one-shot-installation" class="md-skip">
+        <a href="#provision-one-shot-runtime-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Recommended Installation
+              Provision (Advanced)
             
           </span>
         </div>
@@ -476,6 +476,8 @@
       
         
       
+        
+      
     
     
       
@@ -550,11 +552,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../guided-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../download-bundles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Bundles
+    Download Bundles (Manual)
   </span>
   
 
@@ -584,7 +607,7 @@
           
   
   <span class="md-ellipsis">
-    Recommended Installation
+    Provision (Advanced)
   </span>
   
 
@@ -595,7 +618,7 @@
         
   
   <span class="md-ellipsis">
-    Recommended Installation
+    Provision (Advanced)
   </span>
   
 
@@ -617,9 +640,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#recommended-mode-integrated-mode-api-web" class="md-nav__link">
+  <a href="#what-provision-can-do" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended mode: Integrated Mode (API + Web)
+      What provision can do
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrated-mode-api-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrated mode: API + Web
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrated-mode-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrated-mode result
     </span>
   </a>
   
@@ -635,27 +676,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-choose-provision" class="md-nav__link">
+  <a href="#port-behavior" class="md-nav__link">
     <span class="md-ellipsis">
-      When to choose provision
+      Port behavior
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-provision-does" class="md-nav__link">
+  <a href="#useful-advanced-options" class="md-nav__link">
     <span class="md-ellipsis">
-      What provision does
+      Useful advanced options
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-verify-after-it-finishes" class="md-nav__link">
+  <a href="#when-to-call-provision-directly" class="md-nav__link">
     <span class="md-ellipsis">
-      What to verify after it finishes
+      When to call provision directly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-during-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      What happens during provisioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-after-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify after provisioning
     </span>
   </a>
   
@@ -674,6 +733,15 @@
   <a href="#common-issues" class="md-nav__link">
     <span class="md-ellipsis">
       Common issues
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-the-guided-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relationship to the guided installer
     </span>
   </a>
   
@@ -1667,6 +1735,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1787,6 +1859,48 @@
   
   <span class="md-ellipsis">
     Update
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Publisher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
   </span>
   
 
@@ -2330,6 +2444,8 @@
       
         
       
+        
+      
     
     
       
@@ -2435,6 +2551,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../release/publishing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publish Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../release/checklist/" class="md-nav__link">
         
   
@@ -2483,9 +2620,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#recommended-mode-integrated-mode-api-web" class="md-nav__link">
+  <a href="#what-provision-can-do" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended mode: Integrated Mode (API + Web)
+      What provision can do
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrated-mode-api-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrated mode: API + Web
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrated-mode-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrated-mode result
     </span>
   </a>
   
@@ -2501,27 +2656,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-choose-provision" class="md-nav__link">
+  <a href="#port-behavior" class="md-nav__link">
     <span class="md-ellipsis">
-      When to choose provision
+      Port behavior
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-provision-does" class="md-nav__link">
+  <a href="#useful-advanced-options" class="md-nav__link">
     <span class="md-ellipsis">
-      What provision does
+      Useful advanced options
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-verify-after-it-finishes" class="md-nav__link">
+  <a href="#when-to-call-provision-directly" class="md-nav__link">
     <span class="md-ellipsis">
-      What to verify after it finishes
+      When to call provision directly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-during-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      What happens during provisioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-after-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify after provisioning
     </span>
   </a>
   
@@ -2545,6 +2718,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#relationship-to-the-guided-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relationship to the guided installer
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2563,139 +2745,189 @@
   
 
 
-<h1 id="provision-one-shot-installation">Provision (One-Shot Installation)<a class="headerlink" href="#provision-one-shot-installation" title="Permanent link">&para;</a></h1>
-<p>The <code>provision</code> command performs a complete installation in a single step.</p>
-<p>For most user-facing installations, the recommended setup is <strong>Integrated Mode (API + Web)</strong>. In this mode, ScipionAPI serves both the REST API and the compiled ScipionWeb interface from the same runtime.</p>
+<h1 id="provision-one-shot-runtime-setup">Provision (One-Shot Runtime Setup)<a class="headerlink" href="#provision-one-shot-runtime-setup" title="Permanent link">&para;</a></h1>
+<p>The <code>provision</code> command performs the complete ScipionAPI runtime setup in one step.</p>
+<p>It remains the core installation engine, but for a normal new ScipionWeb installation you should usually use the public <a href="../guided-install/">Guided Installation</a>. The guided <code>install.sh</code> downloads the matching API/Web release and then delegates the actual environment, database, Web deployment, and startup work to <code>provision</code>.</p>
+<p>Use <code>provision</code> directly when you intentionally manage the release bundles yourself or need more control over deployment options.</p>
+<hr />
+<h2 id="what-provision-can-do">What <code>provision</code> can do<a class="headerlink" href="#what-provision-can-do" title="Permanent link">&para;</a></h2>
 <p>It can:</p>
 <ul>
 <li>bootstrap the Conda environment</li>
 <li>install Python dependencies</li>
+<li>install Scipion core packages when needed</li>
 <li>create or update <code>SCIPION_HOME</code></li>
+<li>create or update <code>.env</code></li>
+<li>select or preserve the API/Web port</li>
 <li>create PostgreSQL role and database in common local setups</li>
 <li>run Alembic migrations</li>
 <li>create or update the admin user</li>
 <li>deploy and serve the Web bundle</li>
 <li>start the API and Celery worker</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">What this page covers</p>
-<p>This page documents the <strong>one-shot installation path</strong> using <code>provision</code>. If you need fine-grained control over each step, use the <strong>manual installation</strong> workflow instead.</p>
-</div>
 <hr />
-<h2 id="recommended-mode-integrated-mode-api-web">Recommended mode: Integrated Mode (API + Web)<a class="headerlink" href="#recommended-mode-integrated-mode-api-web" title="Permanent link">&para;</a></h2>
-<p>Integrated mode is the recommended path for normal ScipionWeb users because it provides a complete working application:</p>
-<ul>
-<li>Web UI served at <code>/</code></li>
-<li>API mounted at <code>/api</code></li>
-<li>API docs at <code>/api/docs</code></li>
-<li>API and Web assets deployed together</li>
-</ul>
-<p>This avoids asking users to install the backend without the web interface they actually need to use the platform.</p>
-<p>Run the command from inside the extracted <strong>ScipionAPI</strong> directory and pass the compiled Web bundle ZIP with <code>--web-dist</code>:</p>
-<pre><code>./scripts/scipionapi provision \
+<h2 id="integrated-mode-api-web">Integrated mode: API + Web<a class="headerlink" href="#integrated-mode-api-web" title="Permanent link">&para;</a></h2>
+<p>For a manually downloaded release pair, run from the extracted <strong>ScipionAPI</strong> directory and pass the compiled Web ZIP:</p>
+<pre><code class="language-bash">./scripts/scipionapi provision \
   --user &quot;admin&quot; \
   --email &quot;admin@example.com&quot; \
-  --web-dist &quot;$HOME/scipionweb/ScipionWeb-&lt;version&gt;-dist.zip&quot;
+  --web-dist &quot;/path/to/ScipionWeb-v4.0.1-dist.zip&quot;
 </code></pre>
-<p>The CLI will ask for the admin password using a hidden prompt.</p>
-<p>For automated installations, store the admin password in an environment variable and pass its name with <code>--password-env</code>:</p>
-<pre><code>./scripts/scipionapi provision \
+<p>The CLI asks for the administrator password using a hidden prompt.</p>
+<p>For automation, use an environment variable:</p>
+<pre><code class="language-bash">export SCIPIONAPI_ADMIN_PASSWORD='&lt;admin-password&gt;'
+
+./scripts/scipionapi provision \
   --user &quot;admin&quot; \
   --email &quot;admin@example.com&quot; \
   --password-env SCIPIONAPI_ADMIN_PASSWORD \
-  --web-dist &quot;$HOME/scipionweb/ScipionWeb-&lt;version&gt;-dist.zip&quot;
+  --web-dist &quot;/path/to/ScipionWeb-v4.0.1-dist.zip&quot;
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Password options</p>
-<p><code>--pass</code> and <code>--password</code> are still supported for compatibility, but <code>--password-env</code> or the hidden prompt are preferred because command-line arguments may be stored in shell history.</p>
+<p><code>--pass</code> and <code>--password</code> remain available for compatibility, but a hidden prompt or <code>--password-env</code> is preferred because shell arguments can be stored in history or exposed through process inspection.</p>
 </div>
 <hr />
+<h2 id="integrated-mode-result">Integrated-mode result<a class="headerlink" href="#integrated-mode-result" title="Permanent link">&para;</a></h2>
+<p>With a valid Web bundle, ScipionAPI configures an integrated deployment where:</p>
+<ul>
+<li>the Web UI is served from <code>/</code></li>
+<li>the API is mounted under <code>/api</code> by default</li>
+<li>API documentation is exposed under the API mount path, typically <code>/api/docs</code></li>
+<li>the Web build receives runtime API configuration rather than requiring a rebuild for each host</li>
+</ul>
+<p>The deployed Web content is stored under the configured <code>SCIPION_HOME</code> runtime tree.</p>
+<hr />
 <h2 id="api-only-mode">API-only mode<a class="headerlink" href="#api-only-mode" title="Permanent link">&para;</a></h2>
-<p>API-only mode is available, but it is mainly useful for developers, infrastructure testing, or deployments where the frontend is hosted separately.</p>
-<p>Use it only if you intentionally do <strong>not</strong> want ScipionAPI to serve the compiled Web UI:</p>
-<pre><code>./scripts/scipionapi provision \
+<p>API-only mode is useful for developers or deployments where the frontend is hosted elsewhere:</p>
+<pre><code class="language-bash">./scripts/scipionapi provision \
   --user &quot;admin&quot; \
   --email &quot;admin@example.com&quot;
 </code></pre>
-<p>In API-only mode:</p>
-<ul>
-<li>the API is served directly by the backend</li>
-<li>the compiled Web UI is not deployed by this command</li>
-<li>users will need another frontend deployment to use ScipionWeb as an application</li>
-</ul>
+<p>In API-only mode, no compiled Web distribution is deployed by this command.</p>
 <hr />
-<h2 id="when-to-choose-provision">When to choose <code>provision</code><a class="headerlink" href="#when-to-choose-provision" title="Permanent link">&para;</a></h2>
-<p><code>provision</code> is the right default when:</p>
-<ul>
-<li>you want the fastest supported setup path</li>
-<li>you are installing on a local Linux machine</li>
-<li>PostgreSQL and Redis are already available or easy to prepare</li>
-<li>you want API and worker services started for you</li>
-<li>you want the Web UI deployed together with the API</li>
-</ul>
-<p>If you want to inspect every installation layer manually, use <code>bootstrap</code> + <code>install</code> instead.</p>
-<hr />
-<h2 id="what-provision-does">What <code>provision</code> does<a class="headerlink" href="#what-provision-does" title="Permanent link">&para;</a></h2>
-<p>A typical integrated-mode run performs these steps in sequence:</p>
+<h2 id="port-behavior">Port behavior<a class="headerlink" href="#port-behavior" title="Permanent link">&para;</a></h2>
+<p>The API/Web port is not assumed to be a fixed <code>8080</code>.</p>
+<p>When <code>--api-port</code> is omitted:</p>
 <ol>
-<li>prepares the Conda environment</li>
-<li>installs Python dependencies</li>
-<li>creates <code>SCIPION_HOME</code></li>
-<li>generates <code>.env</code></li>
-<li>prepares database state and migrations</li>
-<li>creates or updates the admin user</li>
-<li>deploys the Web bundle passed with <code>--web-dist</code></li>
-<li>starts API and Celery as detached services</li>
+<li>an existing configured <code>API_PORT</code> is preserved when appropriate</li>
+<li>otherwise a free port is selected automatically</li>
+<li>the resolved value is persisted in <code>SCIPION_HOME/.env</code></li>
+</ol>
+<p>To force a specific port:</p>
+<pre><code class="language-bash">./scripts/scipionapi provision \
+  --user &quot;admin&quot; \
+  --email &quot;admin@example.com&quot; \
+  --web-dist &quot;/path/to/ScipionWeb-v4.0.1-dist.zip&quot; \
+  --api-port 39080
+</code></pre>
+<p>After provisioning, inspect the selected value:</p>
+<pre><code class="language-bash">grep '^API_PORT=' scipion_home/.env
+</code></pre>
+<hr />
+<h2 id="useful-advanced-options">Useful advanced options<a class="headerlink" href="#useful-advanced-options" title="Permanent link">&para;</a></h2>
+<p>Examples of supported controls include:</p>
+<pre><code class="language-text">--web-dist PATH
+--api-mount-path /api
+--api-base-url URL
+--api-port PORT
+--bootstrap / --no-bootstrap
+--env-name NAME
+--python VERSION
+--install-scipion-core / --no-install-scipion-core
+--scipion-core-packages &quot;...&quot;
+</code></pre>
+<p>Use these options only when you have a deployment reason to override the defaults used by the guided installer.</p>
+<hr />
+<h2 id="when-to-call-provision-directly">When to call <code>provision</code> directly<a class="headerlink" href="#when-to-call-provision-directly" title="Permanent link">&para;</a></h2>
+<p>Direct <code>provision</code> is appropriate when:</p>
+<ul>
+<li>you downloaded or built the API/Web ZIPs yourself</li>
+<li>you are validating release artifacts</li>
+<li>you need API-only mode</li>
+<li>the frontend is hosted separately</li>
+<li>you are building custom deployment automation</li>
+<li>you need to customize the API mount path or runtime environment</li>
+<li>you are debugging a specific installation layer</li>
+</ul>
+<p>For normal first-time installation, use <a href="../guided-install/">Guided Installation</a>.</p>
+<hr />
+<h2 id="what-happens-during-provisioning">What happens during provisioning<a class="headerlink" href="#what-happens-during-provisioning" title="Permanent link">&para;</a></h2>
+<p>A typical integrated-mode run performs:</p>
+<ol>
+<li>Conda environment bootstrap when enabled</li>
+<li>Python dependency installation</li>
+<li>Scipion core installation when required</li>
+<li><code>SCIPION_HOME</code> and runtime-directory creation</li>
+<li><code>.env</code> generation/update</li>
+<li>API/Web port resolution</li>
+<li>PostgreSQL database/role preparation</li>
+<li>Alembic migrations</li>
+<li>admin-user creation/update</li>
+<li>Web bundle deployment</li>
+<li>API and Celery startup</li>
 </ol>
 <hr />
-<h2 id="what-to-verify-after-it-finishes">What to verify after it finishes<a class="headerlink" href="#what-to-verify-after-it-finishes" title="Permanent link">&para;</a></h2>
-<p>Run these checks immediately:</p>
-<pre><code>./scripts/scipionapi status
+<h2 id="verify-after-provisioning">Verify after provisioning<a class="headerlink" href="#verify-after-provisioning" title="Permanent link">&para;</a></h2>
+<p>Start with:</p>
+<pre><code class="language-bash">./scripts/scipionapi status
 ./scripts/scipionapi doctor --quick
-./scripts/scipionapi logs
-curl http://localhost:8080/health
 </code></pre>
-<p>For the recommended integrated mode, also verify that:</p>
-<ul>
-<li><code>http://localhost:8080/</code> loads the Web UI</li>
-<li><code>http://localhost:8080/api/docs</code> opens correctly</li>
-</ul>
+<p>Read the persisted port:</p>
+<pre><code class="language-bash">API_PORT=&quot;$(grep '^API_PORT=' scipion_home/.env | tail -n 1 | cut -d= -f2-)&quot;
+echo &quot;$API_PORT&quot;
+</code></pre>
+<p>Then test the API using that actual value:</p>
+<pre><code class="language-bash">curl &quot;http://localhost:${API_PORT}/health&quot;
+</code></pre>
+<p>For integrated mode, open:</p>
+<pre><code class="language-text">http://localhost:&lt;API_PORT&gt;/
+http://localhost:&lt;API_PORT&gt;/api/docs
+</code></pre>
+<p>For deeper diagnostics:</p>
+<pre><code class="language-bash">./scripts/scipionapi doctor
+./scripts/scipionapi logs
+</code></pre>
 <hr />
 <h2 id="re-running-provision">Re-running <code>provision</code><a class="headerlink" href="#re-running-provision" title="Permanent link">&para;</a></h2>
-<p>You may safely re-run <code>provision</code> in most common cases:</p>
+<p><code>provision</code> is designed to be reusable in common installation and recovery scenarios:</p>
 <ul>
-<li>it does <strong>not</strong> recreate the Conda environment if it already exists</li>
-<li>it does <strong>not</strong> drop existing databases</li>
-<li>it updates admin credentials when a password is provided</li>
-<li>it redeploys the Web bundle if <code>--web-dist</code> is provided again</li>
+<li>the Conda environment is reused when already present</li>
+<li>existing database state is not blindly dropped</li>
+<li>admin credentials can be updated</li>
+<li>the Web bundle can be redeployed</li>
+<li>the configured API port is preserved unless intentionally changed</li>
 </ul>
-<p>That makes it useful after a failed first attempt once prerequisites are fixed.</p>
+<p>For an already-installed packaged release that simply needs a newer version, prefer <code>./scripts/scipionapi update</code> rather than treating the upgrade as a new provision.</p>
 <hr />
 <h2 id="common-issues">Common issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Conda not found</p>
-<p>Ensure <code>conda --version</code> works before running <code>provision</code>, or set <code>SCIPIONAPI_CONDA_EXE</code> to the Conda executable path.</p>
+<p>Confirm the Conda executable or set <code>SCIPIONAPI_CONDA_EXE</code> before provisioning.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">PostgreSQL authentication failed</p>
-<p>Verify the configured database credentials match the actual PostgreSQL role and password.</p>
+<p class="admonition-title">PostgreSQL administrative access failed</p>
+<p>The standard local bootstrap expects working PostgreSQL plus sufficient privileges. Use the manual database path for custom/remote setups.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Redis not running</p>
-<p>Start Redis and retry.</p>
+<p class="admonition-title">Redis not responding</p>
+<p>Verify <code>redis-cli ping</code> returns <code>PONG</code>.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Web UI does not load after provisioning</p>
-<p>Confirm that <code>--web-dist</code> pointed to the correct <code>ScipionWeb-&lt;version&gt;-dist.zip</code> file and that the API was restarted after deployment.</p>
+<p class="admonition-title">Web UI does not load</p>
+<p>Confirm <code>--web-dist</code> points to the intended ScipionWeb release ZIP and inspect <code>status</code>, <code>doctor</code>, and <code>logs</code>.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Port already in use</p>
-<p>If port <code>8080</code> is already in use, stop the conflicting service or update your configuration before provisioning.</p>
+<p class="admonition-title">Assuming port 8080</p>
+<p>Read <code>API_PORT</code> from <code>.env</code> or the provisioning output. Automatic port selection is supported and should be expected.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Use doctor for diagnostics</p>
-<p>Run <code>./scripts/scipionapi doctor</code> to inspect Conda, <code>.env</code>, PostgreSQL, Redis, imports, runtime PID files, and Web deployment state.</p>
-</div>
+<hr />
+<h2 id="relationship-to-the-guided-installer">Relationship to the guided installer<a class="headerlink" href="#relationship-to-the-guided-installer" title="Permanent link">&para;</a></h2>
+<p>The public installation path is intentionally layered:</p>
+<blockquote>
+<p><code>install.sh</code> handles host checks + release resolution + downloads + checksum verification → <code>provision</code> handles runtime setup</p>
+</blockquote>
+<p>That separation keeps the end-user experience simple while preserving a powerful direct CLI for advanced deployments.</p>
 
 
 

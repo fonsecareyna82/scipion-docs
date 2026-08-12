@@ -478,6 +478,8 @@
       
         
       
+        
+      
     
     
       
@@ -551,11 +553,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/guided-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/download-bundles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Bundles
+    Download Bundles (Manual)
   </span>
   
 
@@ -576,7 +599,7 @@
         
   
   <span class="md-ellipsis">
-    Recommended Installation
+    Provision (Advanced)
   </span>
   
 
@@ -1378,9 +1401,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#recommended-installation-path" class="md-nav__link">
     <span class="md-ellipsis">
-      How It Works
+      Recommended installation path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directmanual-integrated-provision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct/manual integrated provision
     </span>
   </a>
   
@@ -1389,152 +1421,98 @@
         <li class="md-nav__item">
   <a href="#runtime-behavior" class="md-nav__link">
     <span class="md-ellipsis">
-      Runtime Behavior
+      Runtime behavior
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Runtime Behavior">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-env-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important .env settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-frontend-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runtime frontend configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-integrated-mode-is-a-good-fit" class="md-nav__link">
+    <span class="md-ellipsis">
+      When integrated mode is a good fit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-a-separate-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to use a separate deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-integrated-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify integrated mode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verify integrated mode">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-endpoints" class="md-nav__link">
+  <a href="#1-runtime-status" class="md-nav__link">
     <span class="md-ellipsis">
-      Example endpoints
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#required-env-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Required .env Variables
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Required .env Variables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#variable-roles" class="md-nav__link">
-    <span class="md-ellipsis">
-      Variable roles
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#typical-deployment-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Typical Deployment Flow
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Typical Deployment Flow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#one-shot-provisioning-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      One-shot provisioning (recommended)
+      1. Runtime status
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#manual-integrated-mode" class="md-nav__link">
+  <a href="#2-resolve-the-actual-port" class="md-nav__link">
     <span class="md-ellipsis">
-      Manual integrated mode
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-use-integrated-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      When to Use Integrated Mode
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#advantages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Advantages
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#limitations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Limitations
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verification-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verification Checklist
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Verification Checklist">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-check-api-health" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Check API health
+      2. Resolve the actual port
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-open-the-web-ui" class="md-nav__link">
+  <a href="#3-health-endpoint" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Open the Web UI
+      3. Health endpoint
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-open-api-docs" class="md-nav__link">
+  <a href="#4-browser" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Open API docs
+      4. Browser
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-inspect-browser-requests-optional" class="md-nav__link">
+  <a href="#5-browser-network-requests" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Inspect browser requests (optional)
+      5. Browser network requests
     </span>
   </a>
   
@@ -1548,16 +1526,16 @@
         <li class="md-nav__item">
   <a href="#common-issues" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Issues
+      Common issues
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-practices" class="md-nav__link">
+  <a href="#updating-integrated-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended Practices
+      Updating integrated mode
     </span>
   </a>
   
@@ -1809,6 +1787,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1929,6 +1911,48 @@
   
   <span class="md-ellipsis">
     Update
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Publisher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
   </span>
   
 
@@ -2472,6 +2496,8 @@
       
         
       
+        
+      
     
     
       
@@ -2577,6 +2603,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../release/publishing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publish Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../release/checklist/" class="md-nav__link">
         
   
@@ -2636,9 +2683,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#recommended-installation-path" class="md-nav__link">
     <span class="md-ellipsis">
-      How It Works
+      Recommended installation path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directmanual-integrated-provision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct/manual integrated provision
     </span>
   </a>
   
@@ -2647,152 +2703,98 @@
         <li class="md-nav__item">
   <a href="#runtime-behavior" class="md-nav__link">
     <span class="md-ellipsis">
-      Runtime Behavior
+      Runtime behavior
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Runtime Behavior">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-env-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important .env settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-frontend-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runtime frontend configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-integrated-mode-is-a-good-fit" class="md-nav__link">
+    <span class="md-ellipsis">
+      When integrated mode is a good fit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-a-separate-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to use a separate deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-integrated-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify integrated mode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verify integrated mode">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-endpoints" class="md-nav__link">
+  <a href="#1-runtime-status" class="md-nav__link">
     <span class="md-ellipsis">
-      Example endpoints
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#required-env-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Required .env Variables
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Required .env Variables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#variable-roles" class="md-nav__link">
-    <span class="md-ellipsis">
-      Variable roles
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#typical-deployment-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Typical Deployment Flow
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Typical Deployment Flow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#one-shot-provisioning-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      One-shot provisioning (recommended)
+      1. Runtime status
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#manual-integrated-mode" class="md-nav__link">
+  <a href="#2-resolve-the-actual-port" class="md-nav__link">
     <span class="md-ellipsis">
-      Manual integrated mode
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-use-integrated-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      When to Use Integrated Mode
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#advantages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Advantages
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#limitations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Limitations
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verification-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verification Checklist
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Verification Checklist">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-check-api-health" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Check API health
+      2. Resolve the actual port
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-open-the-web-ui" class="md-nav__link">
+  <a href="#3-health-endpoint" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Open the Web UI
+      3. Health endpoint
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-open-api-docs" class="md-nav__link">
+  <a href="#4-browser" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Open API docs
+      4. Browser
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-inspect-browser-requests-optional" class="md-nav__link">
+  <a href="#5-browser-network-requests" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Inspect browser requests (optional)
+      5. Browser network requests
     </span>
   </a>
   
@@ -2806,16 +2808,16 @@
         <li class="md-nav__item">
   <a href="#common-issues" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Issues
+      Common issues
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-practices" class="md-nav__link">
+  <a href="#updating-integrated-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended Practices
+      Updating integrated mode
     </span>
   </a>
   
@@ -2840,194 +2842,162 @@
 
 
 <h1 id="api-web-integrated-mode">API + Web Integrated Mode<a class="headerlink" href="#api-web-integrated-mode" title="Permanent link">&para;</a></h1>
-<p>Integrated mode allows <strong>ScipionAPI</strong> to serve the compiled <strong>ScipionWeb</strong> frontend directly, creating a <strong>single deployment unit</strong>.</p>
-<p>In this model, the API process serves both:</p>
-<ul>
-<li>The Web UI (static frontend assets)</li>
-<li>The REST API</li>
-<li>API documentation endpoints</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Typical use case</p>
-<p>Integrated mode is often the easiest option for <strong>single-host deployments</strong>, local installations, and internal lab servers where simplicity is more important than independent frontend scaling.</p>
-</div>
+<p>Integrated mode allows <strong>ScipionAPI</strong> to serve the compiled <strong>ScipionWeb</strong> frontend and REST API from one runtime endpoint.</p>
+<p>This is the normal user-facing mode selected by the guided installer.</p>
 <hr />
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>In integrated mode:</p>
+<p>In the standard integrated configuration:</p>
 <ul>
-<li>The Web UI is served at <code>/</code></li>
-<li>The API is mounted under <code>/api</code></li>
+<li>Web UI is served at <code>/</code></li>
+<li>API is mounted under <code>/api</code></li>
 <li>API docs are available under <code>/api/docs</code></li>
 </ul>
-<p>Typical local URLs:</p>
-<pre><code class="language-text">http://localhost:8080/
-http://localhost:8080/api/docs
+<p>The host port is runtime configuration, not a fixed release property.</p>
+<p>Read the actual port from the installed environment:</p>
+<pre><code class="language-bash">grep '^API_PORT=' &quot;$SCIPION_HOME/.env&quot;
+</code></pre>
+<p>Then the normal URLs are:</p>
+<pre><code class="language-text">http://localhost:&lt;API_PORT&gt;/
+http://localhost:&lt;API_PORT&gt;/api/docs
 </code></pre>
 <div class="admonition tip">
-<p class="admonition-title">Single entry point</p>
-<p>Users access one server and one base URL, which simplifies routing, networking, and operations.</p>
+<p class="admonition-title">Automatic port selection</p>
+<p>When no fixed <code>--api-port</code> is supplied, provisioning can select a free port automatically and persist it in <code>.env</code>.</p>
 </div>
 <hr />
-<h2 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<p>Integrated mode is typically enabled during provisioning by passing the compiled Web bundle ZIP:</p>
-<pre><code>./scripts/scipionapi provision \
+<h2 id="recommended-installation-path">Recommended installation path<a class="headerlink" href="#recommended-installation-path" title="Permanent link">&para;</a></h2>
+<p>For a new integrated installation:</p>
+<pre><code class="language-bash">wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+./install.sh --check-only
+./install.sh
+</code></pre>
+<p>The installer resolves a paired API + Web release, verifies checksums, and delegates integrated runtime setup to <code>provision</code>.</p>
+<hr />
+<h2 id="directmanual-integrated-provision">Direct/manual integrated provision<a class="headerlink" href="#directmanual-integrated-provision" title="Permanent link">&para;</a></h2>
+<p>Advanced users can deploy a specific compiled Web artifact directly:</p>
+<pre><code class="language-bash">./scripts/scipionapi provision \
   --user &quot;admin&quot; \
-  --email &quot;admin@example.com&quot; \
-  --web-dist /path/to/web-dist.zip
+  --email &quot;admin@example.org&quot; \
+  --web-dist /path/to/ScipionWeb-vX.Y.Z-dist.zip
 </code></pre>
-<p>During provisioning, the installer typically:</p>
-<ol>
-<li>Extracts the Web <code>dist</code> bundle</li>
-<li>Copies/deploys it into <code>SCIPION_HOME/web/dist</code></li>
-<li>Enables integrated mode (for example <code>SERVE_WEB=1</code>)</li>
-<li>Mounts the API under <code>/api</code></li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Deployment path</p>
-<p>The exact deployed location can vary by version/workflow, but integrated mode generally uses a runtime path under <code>SCIPION_HOME</code> to store the frontend assets.</p>
-</div>
+<p>During provisioning, ScipionAPI deploys the Web assets under the runtime workspace and configures the frontend/API relationship.</p>
 <hr />
-<h2 id="runtime-behavior">Runtime Behavior<a class="headerlink" href="#runtime-behavior" title="Permanent link">&para;</a></h2>
-<p>Once integrated mode is enabled and the API is running:</p>
-<ul>
-<li><strong>Web UI</strong> is served at <code>/</code></li>
-<li><strong>API</strong> is served at <code>/api</code></li>
-<li><strong>API docs</strong> are served at <code>/api/docs</code></li>
-</ul>
-<h3 id="example-endpoints">Example endpoints<a class="headerlink" href="#example-endpoints" title="Permanent link">&para;</a></h3>
-<pre><code class="language-text">http://localhost:8080/
-http://localhost:8080/api/projects
-http://localhost:8080/api/docs
+<h2 id="runtime-behavior">Runtime behavior<a class="headerlink" href="#runtime-behavior" title="Permanent link">&para;</a></h2>
+<p>With integrated mode enabled:</p>
+<pre><code class="language-text">/             → compiled ScipionWeb frontend
+/api/...      → REST API
+/api/docs     → OpenAPI/Swagger documentation
 </code></pre>
-<div class="admonition warning">
-<p class="admonition-title">Path consistency matters</p>
-<p>The frontend must know the correct API base path. If the frontend expects <code>/api</code> but the API is mounted elsewhere, requests will fail.</p>
-</div>
+<p>Example using the real configured port:</p>
+<pre><code class="language-bash">API_PORT=&quot;$(grep '^API_PORT=' &quot;$SCIPION_HOME/.env&quot; | tail -n 1 | cut -d= -f2-)&quot;
+
+curl &quot;http://localhost:${API_PORT}/health&quot;
+</code></pre>
+<p>Open:</p>
+<pre><code class="language-text">http://localhost:&lt;API_PORT&gt;/
+http://localhost:&lt;API_PORT&gt;/api/docs
+</code></pre>
 <hr />
-<h2 id="required-env-variables">Required <code>.env</code> Variables<a class="headerlink" href="#required-env-variables" title="Permanent link">&para;</a></h2>
-<p>A typical integrated-mode configuration includes:</p>
+<h2 id="important-env-settings">Important <code>.env</code> settings<a class="headerlink" href="#important-env-settings" title="Permanent link">&para;</a></h2>
+<p>A typical integrated installation includes:</p>
 <pre><code class="language-dotenv">SERVE_WEB=1
 API_MOUNT_PATH=/api
-WEB_DIST_PATH=/path/to/dist
+WEB_DIST_PATH=/path/to/scipion_home/web/dist
 WEB_API_BASE_URL=/api
+API_PORT=&lt;selected-port&gt;
 </code></pre>
-<h3 id="variable-roles">Variable roles<a class="headerlink" href="#variable-roles" title="Permanent link">&para;</a></h3>
+<p>Roles:</p>
 <ul>
-<li><code>SERVE_WEB=1</code> enables frontend serving from the API</li>
-<li><code>API_MOUNT_PATH=/api</code> defines where the API is mounted</li>
-<li><code>WEB_DIST_PATH</code> points to the compiled frontend <code>dist/</code> directory (or deployed assets path)</li>
-<li><code>WEB_API_BASE_URL=/api</code> tells the frontend where to call the API</li>
+<li><code>SERVE_WEB=1</code> enables frontend serving</li>
+<li><code>API_MOUNT_PATH</code> controls where the REST API is mounted</li>
+<li><code>WEB_DIST_PATH</code> identifies the deployed frontend files</li>
+<li><code>WEB_API_BASE_URL</code> tells the frontend where to call the API</li>
+<li><code>API_PORT</code> is the persisted listening port</li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Keep these aligned</p>
-<p>In most setups, <code>API_MOUNT_PATH</code> and <code>WEB_API_BASE_URL</code> should be the same value (usually <code>/api</code>).</p>
-</div>
+<p>In the normal configuration, <code>API_MOUNT_PATH</code> and <code>WEB_API_BASE_URL</code> are both <code>/api</code>.</p>
 <hr />
-<h2 id="typical-deployment-flow">Typical Deployment Flow<a class="headerlink" href="#typical-deployment-flow" title="Permanent link">&para;</a></h2>
-<h3 id="one-shot-provisioning-recommended">One-shot provisioning (recommended)<a class="headerlink" href="#one-shot-provisioning-recommended" title="Permanent link">&para;</a></h3>
-<pre><code>./scripts/scipionapi provision \
-  --user &quot;admin&quot; \
-  --email &quot;admin@example.com&quot; \
-  --web-dist &quot;$HOME/scipionweb/ScipionWeb-&lt;version&gt;-dist.zip&quot;
-</code></pre>
-<p>This is the easiest path for a fresh local/server deployment.</p>
-<h3 id="manual-integrated-mode">Manual integrated mode<a class="headerlink" href="#manual-integrated-mode" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Extract the Web bundle</li>
-<li>Set integrated-mode variables in <code>SCIPION_HOME/.env</code></li>
-<li>Ensure <code>WEB_DIST_PATH</code> points to the deployed <code>dist/</code></li>
-<li>Restart the API service</li>
-</ol>
-<hr />
-<h2 id="when-to-use-integrated-mode">When to Use Integrated Mode<a class="headerlink" href="#when-to-use-integrated-mode" title="Permanent link">&para;</a></h2>
-<p>Integrated mode is a good fit for:</p>
+<h2 id="runtime-frontend-configuration">Runtime frontend configuration<a class="headerlink" href="#runtime-frontend-configuration" title="Permanent link">&para;</a></h2>
+<p>The compiled Web build is designed to be reusable across installations.</p>
+<p>ScipionAPI injects/deploys runtime API configuration so the same Web release does not need to be rebuilt for every host or selected port.</p>
+<p>This means:</p>
 <ul>
-<li>Simple deployments</li>
-<li>Single-host setups</li>
-<li>Local installations</li>
-<li>Internal research lab servers</li>
-<li>Environments where minimizing operational complexity is a priority</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Great default for many labs</p>
-<p>If you do not need CDN hosting, independent frontend deployments, or complex edge routing, integrated mode is often the most practical choice.</p>
-</div>
-<hr />
-<h2 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Single service endpoint</strong> for users</li>
-<li><strong>No CORS issues</strong> in the common case (same origin)</li>
-<li><strong>Simpler networking</strong></li>
-<li><strong>Easier installation and upgrades</strong></li>
-<li><strong>Fewer moving parts</strong> for local/on-prem deployments</li>
+<li>release ZIPs remain installation-independent</li>
+<li>automatic port selection does not require rebuilding ScipionWeb</li>
+<li>reverse proxies can be introduced without publishing a new frontend artifact</li>
 </ul>
 <hr />
-<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
+<h2 id="when-integrated-mode-is-a-good-fit">When integrated mode is a good fit<a class="headerlink" href="#when-integrated-mode-is-a-good-fit" title="Permanent link">&para;</a></h2>
+<p>Use it for:</p>
 <ul>
-<li>Cannot scale frontend independently from the API</li>
-<li>Static frontend assets are served by the API process</li>
-<li>Less flexible for CDN-based frontend delivery</li>
-<li>Frontend updates are often tied to API deployment workflow</li>
+<li>normal guided installations</li>
+<li>single-host deployments</li>
+<li>local/on-prem installations</li>
+<li>internal lab servers</li>
+<li>deployments where operational simplicity matters</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Not a blocker for most small deployments</p>
-<p>These limitations are usually acceptable for local, internal, or moderate-scale environments.</p>
-</div>
+<p>Advantages include:</p>
+<ul>
+<li>same-origin API/UI traffic</li>
+<li>simple networking</li>
+<li>no separate static Web host requirement</li>
+<li>one update path for paired API + Web releases</li>
+</ul>
 <hr />
-<h2 id="verification-checklist">Verification Checklist<a class="headerlink" href="#verification-checklist" title="Permanent link">&para;</a></h2>
-<p>After enabling integrated mode:</p>
-<h3 id="1-check-api-health">1. Check API health<a class="headerlink" href="#1-check-api-health" title="Permanent link">&para;</a></h3>
-<pre><code>curl http://localhost:8080/health
+<h2 id="when-to-use-a-separate-deployment">When to use a separate deployment<a class="headerlink" href="#when-to-use-a-separate-deployment" title="Permanent link">&para;</a></h2>
+<p>A separate frontend/backend topology may be appropriate when:</p>
+<ul>
+<li>Web assets are served by a CDN/static host</li>
+<li>API and frontend scale independently</li>
+<li>network/security zones require separation</li>
+<li>an existing infrastructure already provides static frontend hosting</li>
+</ul>
+<p>See <a href="../separate-deployment/">Separate Deployment</a>.</p>
+<hr />
+<h2 id="verify-integrated-mode">Verify integrated mode<a class="headerlink" href="#verify-integrated-mode" title="Permanent link">&para;</a></h2>
+<h3 id="1-runtime-status">1. Runtime status<a class="headerlink" href="#1-runtime-status" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">./scripts/scipionapi status
+./scripts/scipionapi doctor --quick
 </code></pre>
-<p>Expected response:</p>
-<pre><code class="language-json">{&quot;status&quot;:&quot;ok&quot;}
+<h3 id="2-resolve-the-actual-port">2. Resolve the actual port<a class="headerlink" href="#2-resolve-the-actual-port" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">API_PORT=&quot;$(grep '^API_PORT=' &quot;$SCIPION_HOME/.env&quot; | tail -n 1 | cut -d= -f2-)&quot;
+echo &quot;$API_PORT&quot;
 </code></pre>
-<h3 id="2-open-the-web-ui">2. Open the Web UI<a class="headerlink" href="#2-open-the-web-ui" title="Permanent link">&para;</a></h3>
+<h3 id="3-health-endpoint">3. Health endpoint<a class="headerlink" href="#3-health-endpoint" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">curl &quot;http://localhost:${API_PORT}/health&quot;
+</code></pre>
+<h3 id="4-browser">4. Browser<a class="headerlink" href="#4-browser" title="Permanent link">&para;</a></h3>
 <p>Open:</p>
-<pre><code class="language-text">http://localhost:8080/
+<pre><code class="language-text">http://localhost:&lt;API_PORT&gt;/
+http://localhost:&lt;API_PORT&gt;/api/docs
 </code></pre>
-<h3 id="3-open-api-docs">3. Open API docs<a class="headerlink" href="#3-open-api-docs" title="Permanent link">&para;</a></h3>
-<p>Open:</p>
-<pre><code class="language-text">http://localhost:8080/api/docs
-</code></pre>
-<h3 id="4-inspect-browser-requests-optional">4. Inspect browser requests (optional)<a class="headerlink" href="#4-inspect-browser-requests-optional" title="Permanent link">&para;</a></h3>
-<p>Confirm frontend API calls go to <code>/api/...</code> and not to an incorrect host/path.</p>
+<h3 id="5-browser-network-requests">5. Browser network requests<a class="headerlink" href="#5-browser-network-requests" title="Permanent link">&para;</a></h3>
+<p>Confirm API requests use the expected <code>/api/...</code> base path.</p>
 <hr />
-<h2 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
+<h2 id="common-issues">Common issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Frontend loads but API calls fail</p>
-<p>Usually caused by a mismatch between <code>API_MOUNT_PATH</code> and <code>WEB_API_BASE_URL</code>, or a reverse proxy that rewrites paths incorrectly.</p>
+<p>Check <code>API_MOUNT_PATH</code>, <code>WEB_API_BASE_URL</code>, and any reverse-proxy path rewriting.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title"><code>WEB_DIST_PATH</code> points to old assets</p>
-<p>After upgrades, verify that <code>WEB_DIST_PATH</code> references the current deployed frontend assets.</p>
+<p class="admonition-title">Using the wrong port</p>
+<p>Read <code>API_PORT</code> from <code>.env</code>; do not assume <code>8080</code> unless you explicitly configured it.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Got <code>/docs</code> instead of <code>/api/docs</code></p>
-<p>In integrated mode, docs are commonly served under the API mount path (for example <code>/api/docs</code>), not at <code>/docs</code>.</p>
+<p class="admonition-title">Stale Web assets</p>
+<p>Use the managed update/deployment workflow so <code>WEB_DIST_PATH</code> points to the intended deployed release.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Blank page or missing static assets</p>
-<p>Check that the frontend <code>dist/</code> contents were deployed correctly and that the API can read the files.</p>
+<p class="admonition-title">Opening <code>/docs</code> instead of <code>/api/docs</code></p>
+<p>In the standard integrated configuration, API documentation is under the API mount path.</p>
 </div>
 <hr />
-<h2 id="recommended-practices">Recommended Practices<a class="headerlink" href="#recommended-practices" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Keep API and Web versions aligned when possible</li>
-<li>Use integrated mode for simpler single-host deployments</li>
-<li>Re-check <code>.env</code> paths after upgrades</li>
-<li>Put a reverse proxy (nginx) in front for HTTPS/public access in production</li>
-<li>Back up <code>SCIPION_HOME/.env</code> before major changes</li>
-</ul>
-<hr />
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../env/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Environment Variables (.env)
-  </a>
-  <a href="../separate-deployment/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Separate Deployment (API and Web on Different Hosts) →
-  </a>
-</div>
+<h2 id="updating-integrated-mode">Updating integrated mode<a class="headerlink" href="#updating-integrated-mode" title="Permanent link">&para;</a></h2>
+<p>For an installed system:</p>
+<pre><code class="language-bash">./scripts/scipionapi update --dry-run
+./scripts/scipionapi update
+</code></pre>
+<p>The updater resolves the paired release from <code>manifest.json</code>, verifies checksums, updates managed API files, and redeploys the Web bundle while preserving <code>SCIPION_HOME</code>.</p>
 
 
 

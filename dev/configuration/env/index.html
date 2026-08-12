@@ -478,6 +478,8 @@
       
         
       
+        
+      
     
     
       
@@ -551,11 +553,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/guided-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/download-bundles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Bundles
+    Download Bundles (Manual)
   </span>
   
 
@@ -576,7 +599,7 @@
         
   
   <span class="md-ellipsis">
-    Recommended Installation
+    Provision (Advanced)
   </span>
   
 
@@ -1348,44 +1371,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#what-is-configured-here" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      What is configured here
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#file-location" class="md-nav__link">
+  <a href="#database-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      File Location
+      Database settings
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-database-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Core Database Variables
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Core Database Variables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1396,37 +1395,22 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Security">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#secret_key" class="md-nav__link">
-    <span class="md-ellipsis">
-      SECRET_KEY
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
   <a href="#api-runtime" class="md-nav__link">
     <span class="md-ellipsis">
-      API Runtime
+      API runtime
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="API Runtime">
+    <nav class="md-nav" aria-label="API runtime">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#notes_1" class="md-nav__link">
+  <a href="#automatic-port-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      Notes
+      Automatic port selection
     </span>
   </a>
   
@@ -1438,147 +1422,90 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#celery-redis" class="md-nav__link">
+  <a href="#redis-celery" class="md-nav__link">
     <span class="md-ellipsis">
-      Celery / Redis
+      Redis / Celery
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Celery / Redis">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#filesystem-paths" class="md-nav__link">
+  <a href="#runtime-filesystem-paths" class="md-nav__link">
     <span class="md-ellipsis">
-      Filesystem Paths
+      Runtime filesystem paths
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Filesystem Paths">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#integrated-mode-flags" class="md-nav__link">
+  <a href="#integrated-web-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Integrated Mode Flags
+      Integrated Web mode
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Integrated Mode Flags">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#behavior" class="md-nav__link">
-    <span class="md-ellipsis">
-      Behavior
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#conda-integration" class="md-nav__link">
     <span class="md-ellipsis">
-      Conda Integration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Conda Integration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#admin-bootstrap" class="md-nav__link">
-    <span class="md-ellipsis">
-      Admin Bootstrap
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Admin Bootstrap">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-env-local-integrated-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example .env (Local / Integrated Mode)
+      Conda integration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#loading-env-in-shell-sessions-optional" class="md-nav__link">
+  <a href="#administrator-bootstrap-metadata" class="md-nav__link">
     <span class="md-ellipsis">
-      Loading .env in Shell Sessions (Optional)
+      Administrator bootstrap metadata
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-recommendations" class="md-nav__link">
+  <a href="#update-metadata" class="md-nav__link">
     <span class="md-ellipsis">
-      Production Recommendations
+      Update metadata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-integrated-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example integrated .env
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-env-in-a-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading .env in a shell
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#back-up-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Back up configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permissions
     </span>
   </a>
   
@@ -1587,7 +1514,7 @@
         <li class="md-nav__item">
   <a href="#common-mistakes" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Mistakes
+      Common mistakes
     </span>
   </a>
   
@@ -1596,7 +1523,7 @@
         <li class="md-nav__item">
   <a href="#quick-verification" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Verification
+      Quick verification
     </span>
   </a>
   
@@ -1869,6 +1796,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1989,6 +1920,48 @@
   
   <span class="md-ellipsis">
     Update
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Publisher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
   </span>
   
 
@@ -2532,6 +2505,8 @@
       
         
       
+        
+      
     
     
       
@@ -2637,6 +2612,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../release/publishing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publish Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../release/checklist/" class="md-nav__link">
         
   
@@ -2687,44 +2683,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#what-is-configured-here" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      What is configured here
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#file-location" class="md-nav__link">
+  <a href="#database-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      File Location
+      Database settings
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-database-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Core Database Variables
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Core Database Variables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2735,37 +2707,22 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Security">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#secret_key" class="md-nav__link">
-    <span class="md-ellipsis">
-      SECRET_KEY
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
   <a href="#api-runtime" class="md-nav__link">
     <span class="md-ellipsis">
-      API Runtime
+      API runtime
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="API Runtime">
+    <nav class="md-nav" aria-label="API runtime">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#notes_1" class="md-nav__link">
+  <a href="#automatic-port-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      Notes
+      Automatic port selection
     </span>
   </a>
   
@@ -2777,147 +2734,90 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#celery-redis" class="md-nav__link">
+  <a href="#redis-celery" class="md-nav__link">
     <span class="md-ellipsis">
-      Celery / Redis
+      Redis / Celery
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Celery / Redis">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#filesystem-paths" class="md-nav__link">
+  <a href="#runtime-filesystem-paths" class="md-nav__link">
     <span class="md-ellipsis">
-      Filesystem Paths
+      Runtime filesystem paths
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Filesystem Paths">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#integrated-mode-flags" class="md-nav__link">
+  <a href="#integrated-web-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Integrated Mode Flags
+      Integrated Web mode
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Integrated Mode Flags">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#behavior" class="md-nav__link">
-    <span class="md-ellipsis">
-      Behavior
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#conda-integration" class="md-nav__link">
     <span class="md-ellipsis">
-      Conda Integration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Conda Integration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#admin-bootstrap" class="md-nav__link">
-    <span class="md-ellipsis">
-      Admin Bootstrap
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Admin Bootstrap">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-env-local-integrated-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example .env (Local / Integrated Mode)
+      Conda integration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#loading-env-in-shell-sessions-optional" class="md-nav__link">
+  <a href="#administrator-bootstrap-metadata" class="md-nav__link">
     <span class="md-ellipsis">
-      Loading .env in Shell Sessions (Optional)
+      Administrator bootstrap metadata
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-recommendations" class="md-nav__link">
+  <a href="#update-metadata" class="md-nav__link">
     <span class="md-ellipsis">
-      Production Recommendations
+      Update metadata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-integrated-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example integrated .env
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-env-in-a-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading .env in a shell
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#back-up-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Back up configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permissions
     </span>
   </a>
   
@@ -2926,7 +2826,7 @@
         <li class="md-nav__item">
   <a href="#common-mistakes" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Mistakes
+      Common mistakes
     </span>
   </a>
   
@@ -2935,7 +2835,7 @@
         <li class="md-nav__item">
   <a href="#quick-verification" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Verification
+      Quick verification
     </span>
   </a>
   
@@ -2960,271 +2860,203 @@
 
 
 <h1 id="environment-variables-env">Environment Variables (<code>.env</code>)<a class="headerlink" href="#environment-variables-env" title="Permanent link">&para;</a></h1>
-<p>The <code>.env</code> file is the <strong>central runtime configuration file</strong> for <strong>ScipionAPI</strong>.</p>
-<p>It is typically stored at:</p>
-<pre><code class="language-text">SCIPION_HOME/.env
+<p><code>SCIPION_HOME/.env</code> is the central persistent runtime configuration for ScipionAPI.</p>
+<p>Typical location:</p>
+<pre><code class="language-text">&lt;SCIPION_HOME&gt;/.env
 </code></pre>
-<p>This file defines how the API connects to PostgreSQL and Redis, where runtime data is stored, how the API is exposed, and whether the Web UI is served in integrated mode.</p>
+<p>For a standard guided installation:</p>
+<pre><code class="language-text">&lt;installation-root&gt;/scipion_home/.env
+</code></pre>
+<p>The file stores runtime/service/database configuration that must survive managed application-code updates.</p>
 <div class="admonition warning">
 <p class="admonition-title">Sensitive configuration</p>
-<p>The <code>.env</code> file may contain credentials, secrets, and service endpoints. Do <strong>not</strong> commit it to version control, and protect file permissions in production.</p>
+<p><code>.env</code> can contain database credentials, secret keys, and service endpoints. Do not commit it to source control and protect its filesystem permissions.</p>
 </div>
 <hr />
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The <code>.env</code> file commonly contains configuration for:</p>
+<h2 id="what-is-configured-here">What is configured here<a class="headerlink" href="#what-is-configured-here" title="Permanent link">&para;</a></h2>
+<p>Common configuration groups include:</p>
 <ul>
-<li>PostgreSQL database connection</li>
-<li>Security settings (<code>SECRET_KEY</code>)</li>
-<li>API runtime host and port</li>
-<li>Redis / Celery broker settings</li>
-<li>Filesystem paths (<code>logs</code>, <code>projects</code>)</li>
-<li>Integrated mode (API serving the Web UI)</li>
-<li>Conda integration (auto-detected during provisioning)</li>
-<li>Admin bootstrap values (used during install/provision workflows)</li>
+<li>PostgreSQL connection/bootstrap values</li>
+<li>application secret key</li>
+<li>API host and selected port</li>
+<li>Redis/Celery settings</li>
+<li>logs/projects/runtime paths</li>
+<li>integrated Web deployment settings</li>
+<li>Conda executable/activation metadata</li>
+<li>update metadata</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Version-dependent variables</p>
-<p>Some variables may be optional or version-specific. The exact set of supported keys can evolve across releases.</p>
-</div>
+<p>The exact set evolves with ScipionAPI versions. Treat the installed CLI/code as authoritative for supported keys.</p>
 <hr />
-<h2 id="file-location">File Location<a class="headerlink" href="#file-location" title="Permanent link">&para;</a></h2>
-<p>Expected location:</p>
-<pre><code class="language-text">SCIPION_HOME/.env
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-text">/opt/scipionweb/runtime/.env
-</code></pre>
-<div class="admonition tip">
-<p class="admonition-title">Runtime separation</p>
-<p>Keeping <code>.env</code> inside <code>SCIPION_HOME</code> (instead of the API bundle directory) makes upgrades safer and helps preserve configuration across bundle replacements.</p>
-</div>
-<hr />
-<h2 id="core-database-variables">Core Database Variables<a class="headerlink" href="#core-database-variables" title="Permanent link">&para;</a></h2>
-<p>These variables configure the PostgreSQL connection.</p>
+<h2 id="database-settings">Database settings<a class="headerlink" href="#database-settings" title="Permanent link">&para;</a></h2>
+<p>Typical values include:</p>
 <pre><code class="language-dotenv">DATABASE_URL=postgresql://user:password@host:5432/database
 DATABASE_NAME=scipion_db
 DATABASE_USER=scipion_user
-DATABASE_PASS=securePassword
+DATABASE_PASS=&lt;database-password&gt;
 </code></pre>
-<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>DATABASE_URL</code> is typically the <strong>authoritative connection string</strong></li>
-<li><code>DATABASE_NAME</code>, <code>DATABASE_USER</code>, and <code>DATABASE_PASS</code> are useful for tooling, bootstrap logic, and operational scripts (depending on workflow)</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Recommended practice</p>
-<p>Keep the values consistent. A mismatch between <code>DATABASE_URL</code> and the split variables can cause confusing connection or bootstrap errors.</p>
-</div>
+<p>Keep the split database values consistent with <code>DATABASE_URL</code> when both are present. Inconsistent values can make bootstrap, administration, and runtime connectivity behave differently.</p>
 <hr />
 <h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
-<h3 id="secret_key"><code>SECRET_KEY</code><a class="headerlink" href="#secret_key" title="Permanent link">&para;</a></h3>
-<pre><code class="language-dotenv">SECRET_KEY=generate_a_long_random_string
+<p>A strong application secret is required:</p>
+<pre><code class="language-dotenv">SECRET_KEY=&lt;strong-random-secret&gt;
 </code></pre>
-<p>Used for:</p>
-<ul>
-<li>JWT token signing</li>
-<li>Authentication integrity</li>
-</ul>
-<p>Requirements:</p>
-<ul>
-<li><strong>Strong</strong></li>
-<li><strong>Private</strong></li>
-<li><strong>Rotated when needed</strong> (especially in production environments with security requirements)</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Do not reuse weak secrets</p>
-<p>Avoid short or guessable values (for example <code>secret</code>, <code>123456</code>, or repository placeholders).</p>
-</div>
+<p>Use a long private value and protect the <code>.env</code> file from unauthorized reading.</p>
 <hr />
-<h2 id="api-runtime">API Runtime<a class="headerlink" href="#api-runtime" title="Permanent link">&para;</a></h2>
-<p>These variables define where the API listens.</p>
+<h2 id="api-runtime">API runtime<a class="headerlink" href="#api-runtime" title="Permanent link">&para;</a></h2>
+<p>Typical runtime keys include:</p>
 <pre><code class="language-dotenv">API_HOST=0.0.0.0
-API_PORT=8080
+API_PORT=&lt;selected-port&gt;
 </code></pre>
-<h3 id="notes_1">Notes<a class="headerlink" href="#notes_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>0.0.0.0</code> binds the API to all network interfaces</li>
-<li>Change <code>API_PORT</code> if <code>8080</code> is already in use</li>
-<li>If using a reverse proxy (nginx), you may still keep the API on an internal port such as <code>8080</code></li>
-</ul>
+<h3 id="automatic-port-selection">Automatic port selection<a class="headerlink" href="#automatic-port-selection" title="Permanent link">&para;</a></h3>
+<p>Do not assume that new installations always use port <code>8080</code>.</p>
+<p>When <code>install</code>/<code>provision</code> is called without <code>--api-port</code>:</p>
+<ol>
+<li>an existing configured <code>API_PORT</code> is preserved when appropriate</li>
+<li>otherwise a free port is selected automatically</li>
+<li>that value is persisted in <code>.env</code></li>
+</ol>
+<p>Read the actual value:</p>
+<pre><code class="language-bash">grep '^API_PORT=' &quot;$SCIPION_HOME/.env&quot;
+</code></pre>
+<p>If a fixed port is operationally required, pass <code>--api-port PORT</code> during installation/provisioning.</p>
 <div class="admonition tip">
-<p class="admonition-title">Production exposure</p>
-<p>For public deployments, prefer exposing the service through a reverse proxy with HTTPS instead of exposing the API directly on the internet.</p>
+<p class="admonition-title">Reverse proxy deployments</p>
+<p>The selected API port can remain an internal service port behind nginx/Apache or another reverse proxy. Public HTTPS exposure does not require hardcoding a particular backend port in the release bundle.</p>
 </div>
 <hr />
-<h2 id="celery-redis">Celery / Redis<a class="headerlink" href="#celery-redis" title="Permanent link">&para;</a></h2>
-<p>These variables configure the Celery broker/runtime behavior.</p>
+<h2 id="redis-celery">Redis / Celery<a class="headerlink" href="#redis-celery" title="Permanent link">&para;</a></h2>
+<p>Typical broker configuration:</p>
 <pre><code class="language-dotenv">BROKER_URL=redis://localhost:6379/0
 CELERY_LOGLEVEL=info
 </code></pre>
-<h3 id="notes_2">Notes<a class="headerlink" href="#notes_2" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>BROKER_URL</code> points to the Redis instance used by Celery</li>
-<li><code>CELERY_LOGLEVEL</code> controls worker log verbosity (for example <code>info</code>, <code>warning</code>, <code>debug</code>)</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Redis availability</p>
-<p>If Redis is down or unreachable, background task processing will fail even if the API starts successfully.</p>
-</div>
+<p>Redis must remain reachable for Celery background processing.</p>
 <hr />
-<h2 id="filesystem-paths">Filesystem Paths<a class="headerlink" href="#filesystem-paths" title="Permanent link">&para;</a></h2>
-<p>These variables define runtime storage locations used by ScipionAPI.</p>
-<pre><code class="language-dotenv">LOGS_PATH=scipion_home/logs
-PROJECTS_PATH=scipion_home/projects
+<h2 id="runtime-filesystem-paths">Runtime filesystem paths<a class="headerlink" href="#runtime-filesystem-paths" title="Permanent link">&para;</a></h2>
+<p>Examples:</p>
+<pre><code class="language-dotenv">LOGS_PATH=/path/to/scipion_home/logs
+PROJECTS_PATH=/path/to/scipion_home/projects
 </code></pre>
-<h3 id="notes_3">Notes<a class="headerlink" href="#notes_3" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Paths may be relative (depending on how your runtime is structured) or absolute</li>
-<li>Ensure the service user has write permissions to these locations</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Production recommendation</p>
-<p>Use predictable, persistent paths and monitor disk usage—especially for <code>PROJECTS_PATH</code>, which can grow significantly over time.</p>
-</div>
+<p>Depending on the installation version, paths may be absolute or resolved from the runtime workspace. Ensure the service user owns/has write access to the required runtime directories.</p>
 <hr />
-<h2 id="integrated-mode-flags">Integrated Mode Flags<a class="headerlink" href="#integrated-mode-flags" title="Permanent link">&para;</a></h2>
-<p>These variables are used when the API also serves the compiled Web UI (<strong>integrated mode</strong>).</p>
+<h2 id="integrated-web-mode">Integrated Web mode<a class="headerlink" href="#integrated-web-mode" title="Permanent link">&para;</a></h2>
+<p>Integrated deployments commonly include:</p>
 <pre><code class="language-dotenv">SERVE_WEB=1
 API_MOUNT_PATH=/api
-WEB_DIST_PATH=/absolute/path/to/dist
+WEB_DIST_PATH=/path/to/scipion_home/web/dist
 WEB_API_BASE_URL=/api
 </code></pre>
-<h3 id="behavior">Behavior<a class="headerlink" href="#behavior" title="Permanent link">&para;</a></h3>
+<p>Roles:</p>
 <ul>
-<li><code>SERVE_WEB=1</code> enables integrated mode</li>
-<li><code>SERVE_WEB=0</code> (or unset, depending on defaults) keeps the deployment in API-only mode</li>
-<li><code>WEB_DIST_PATH</code> points to the extracted frontend <code>dist/</code> directory (or deployed web assets location)</li>
-<li><code>API_MOUNT_PATH</code> and <code>WEB_API_BASE_URL</code> should usually match (for example both <code>/api</code>)</li>
+<li><code>SERVE_WEB=1</code> enables frontend serving from ScipionAPI</li>
+<li><code>API_MOUNT_PATH</code> controls where the REST API is mounted</li>
+<li><code>WEB_DIST_PATH</code> identifies the deployed compiled frontend</li>
+<li><code>WEB_API_BASE_URL</code> tells the Web UI which API base path/URL to use</li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Routing mismatches</p>
-<p>If <code>API_MOUNT_PATH</code> and <code>WEB_API_BASE_URL</code> do not align, the frontend may load but API calls can fail due to incorrect routes.</p>
-</div>
+<p>For the normal integrated configuration, <code>API_MOUNT_PATH</code> and <code>WEB_API_BASE_URL</code> are usually both <code>/api</code>.</p>
 <hr />
-<h2 id="conda-integration">Conda Integration<a class="headerlink" href="#conda-integration" title="Permanent link">&para;</a></h2>
-<p>Provisioning and install workflows may auto-detect Conda and store related variables.</p>
+<h2 id="conda-integration">Conda integration<a class="headerlink" href="#conda-integration" title="Permanent link">&para;</a></h2>
+<p>Provisioning can persist Conda information such as:</p>
 <pre><code class="language-dotenv">CONDA_EXE=/home/user/miniconda3/bin/conda
 CONDA_ACTIVATION_CMD=...
 </code></pre>
-<h3 id="notes_4">Notes<a class="headerlink" href="#notes_4" title="Permanent link">&para;</a></h3>
-<ul>
-<li>These values may be auto-generated during provisioning</li>
-<li>Exact values can differ depending on shell, Conda installation path, and execution environment</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Do not guess activation commands</p>
-<p>If you modify Conda-related variables manually, test the CLI workflow afterwards (<code>status</code>, <code>logs</code>, <code>restart</code>, etc.).</p>
-</div>
+<p>These values depend on the real Conda installation and should generally be managed by the provisioning/bootstrap flow rather than guessed manually.</p>
 <hr />
-<h2 id="admin-bootstrap">Admin Bootstrap<a class="headerlink" href="#admin-bootstrap" title="Permanent link">&para;</a></h2>
-<p>Some workflows use admin bootstrap values during installation/provisioning.</p>
-<pre><code class="language-dotenv">ADMIN_USERNAME=admin
-ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD=...
-</code></pre>
-<h3 id="notes_5">Notes<a class="headerlink" href="#notes_5" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Used during install/provision bootstrap workflows</li>
-<li>May be read to create or update the initial admin user (depending on command and version)</li>
-</ul>
+<h2 id="administrator-bootstrap-metadata">Administrator bootstrap metadata<a class="headerlink" href="#administrator-bootstrap-metadata" title="Permanent link">&para;</a></h2>
+<p>The installation flow can persist non-secret administrator identity metadata when useful, for example username/email depending on release behavior.</p>
+<p>Administrator passwords should be supplied through hidden prompts or temporary environment variables such as those used by the installer/CLI.</p>
 <div class="admonition warning">
-<p class="admonition-title">Credentials handling</p>
-<p>Do not keep placeholder passwords in production. If these values are used, protect <code>.env</code> permissions and rotate credentials after initial setup when appropriate.</p>
+<p class="admonition-title">Do not rely on plaintext admin passwords in <code>.env</code></p>
+<p>The normal password flow uses the password to create/update the account. Do not add <code>ADMIN_PASSWORD=&lt;real-password&gt;</code> to <code>.env</code> as an operational shortcut.</p>
 </div>
 <hr />
-<h2 id="example-env-local-integrated-mode">Example <code>.env</code> (Local / Integrated Mode)<a class="headerlink" href="#example-env-local-integrated-mode" title="Permanent link">&para;</a></h2>
-<p>This is an example composition using common values:</p>
-<pre><code class="language-dotenv">DATABASE_URL=postgresql://scipion_user:securePassword@localhost:5432/scipion_db
+<h2 id="update-metadata">Update metadata<a class="headerlink" href="#update-metadata" title="Permanent link">&para;</a></h2>
+<p>Successful updates can record metadata such as:</p>
+<pre><code class="language-dotenv">SCIPIONAPI_LAST_UPDATE_VERSION=v4.0.1
+SCIPIONAPI_LAST_UPDATE_AT=20260812T143000Z
+SCIPIONAPI_UPDATE_BASE_URL=https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
+</code></pre>
+<p>This helps the backend/UI describe installed release state and update availability.</p>
+<hr />
+<h2 id="example-integrated-env">Example integrated <code>.env</code><a class="headerlink" href="#example-integrated-env" title="Permanent link">&para;</a></h2>
+<p>The exact generated values depend on the installation, but conceptually:</p>
+<pre><code class="language-dotenv">DATABASE_URL=postgresql://scipion_user:&lt;database-password&gt;@localhost:5432/scipion_db
 DATABASE_NAME=scipion_db
 DATABASE_USER=scipion_user
-DATABASE_PASS=securePassword
+DATABASE_PASS=&lt;database-password&gt;
 
-SECRET_KEY=replace_with_a_strong_random_secret
+SECRET_KEY=&lt;strong-random-secret&gt;
 
 API_HOST=0.0.0.0
-API_PORT=8080
+API_PORT=39080
 
 BROKER_URL=redis://localhost:6379/0
 CELERY_LOGLEVEL=info
 
-LOGS_PATH=scipion_home/logs
-PROJECTS_PATH=scipion_home/projects
+LOGS_PATH=/home/user/scipionweb/scipion_home/logs
+PROJECTS_PATH=/home/user/scipionweb/scipion_home/projects
 
 SERVE_WEB=1
 API_MOUNT_PATH=/api
-WEB_DIST_PATH=/opt/scipionweb/runtime/web/dist
+WEB_DIST_PATH=/home/user/scipionweb/scipion_home/web/dist
 WEB_API_BASE_URL=/api
 </code></pre>
-<div class="admonition tip">
-<p class="admonition-title">Keep examples separate from real secrets</p>
-<p>Use documentation examples or template files for onboarding, but never store real production credentials in shared examples.</p>
-</div>
+<p><code>39080</code> is only an example. Read the real <code>API_PORT</code> generated for your installation.</p>
 <hr />
-<h2 id="loading-env-in-shell-sessions-optional">Loading <code>.env</code> in Shell Sessions (Optional)<a class="headerlink" href="#loading-env-in-shell-sessions-optional" title="Permanent link">&para;</a></h2>
-<p>If you need to export <code>.env</code> variables into your current shell session for CLI tools:</p>
-<pre><code>set -a
+<h2 id="loading-env-in-a-shell">Loading <code>.env</code> in a shell<a class="headerlink" href="#loading-env-in-a-shell" title="Permanent link">&para;</a></h2>
+<p>When an administrative workflow genuinely needs the variables exported into the current shell:</p>
+<pre><code class="language-bash">set -a
 source &quot;$SCIPION_HOME/.env&quot;
 set +a
 </code></pre>
-<div class="admonition note">
-<p class="admonition-title">Why <code>set -a</code>?</p>
-<p>Many <code>.env</code> files use <code>KEY=value</code> format without <code>export</code>. <code>set -a</code> automatically exports variables loaded via <code>source</code>.</p>
-</div>
+<p>Be careful when doing this in shared shells because secrets become environment variables for child processes.</p>
 <hr />
-<h2 id="production-recommendations">Production Recommendations<a class="headerlink" href="#production-recommendations" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Do not expose <code>.env</code></li>
-<li>Restrict file permissions (<code>chmod 600</code> or similarly restrictive, depending on deployment)</li>
-<li>Prefer HTTPS and a reverse proxy for public deployments</li>
-<li>Back up <code>.env</code> before upgrades</li>
-<li>Keep database values consistent across <code>DATABASE_URL</code> and split fields</li>
-<li>Review integrated mode paths after Web/API upgrades</li>
-</ul>
+<h2 id="back-up-configuration">Back up configuration<a class="headerlink" href="#back-up-configuration" title="Permanent link">&para;</a></h2>
+<p>Before significant manual configuration or database changes:</p>
+<pre><code class="language-bash">cp &quot;$SCIPION_HOME/.env&quot; &quot;$SCIPION_HOME/.env.backup&quot;
+</code></pre>
+<p>For normal managed upgrades, the updater is designed to preserve the runtime workspace/configuration, but keeping an administrative backup remains sensible for important systems.</p>
+<hr />
+<h2 id="permissions">Permissions<a class="headerlink" href="#permissions" title="Permanent link">&para;</a></h2>
+<p>A common restrictive configuration is:</p>
+<pre><code class="language-bash">chmod 600 &quot;$SCIPION_HOME/.env&quot;
+</code></pre>
+<p>Ensure ownership matches the account that operates ScipionWeb.</p>
+<hr />
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">Permission example</p>
-<p>A common production setup is:</p>
-<p><code>chmod 600 "$SCIPION_HOME/.env"
-chown &lt;service-user&gt;:&lt;service-user&gt; "$SCIPION_HOME/.env"</code></p>
+<p class="admonition-title">Assuming port 8080</p>
+<p>Resolve <code>API_PORT</code> from <code>.env</code> or runtime output. Automatic port selection is intentional.</p>
 </div>
-<hr />
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Stale <code>WEB_DIST_PATH</code></p>
-<p>After upgrading or moving the installation, <code>WEB_DIST_PATH</code> may still point to an old location.</p>
+<p>If Web assets are moved manually, integrated mode can point to old content. Normal update/deployment commands should manage the Web distribution path for you.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Wrong database host/port</p>
-<p>If PostgreSQL runs on another host or non-default port, <code>DATABASE_URL</code> must be updated accordingly.</p>
+<p class="admonition-title">Mismatched API paths</p>
+<p>In integrated mode, keep <code>API_MOUNT_PATH</code> and <code>WEB_API_BASE_URL</code> aligned unless a custom topology requires otherwise.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Relative paths in unexpected working directories</p>
-<p>Relative path values may behave differently depending on how the service is started (CLI, systemd, container, etc.).</p>
+<p class="admonition-title">Database values disagree</p>
+<p>Avoid inconsistent <code>DATABASE_URL</code>, database name, user, or password settings.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Mismatched API base path</p>
-<p>If you proxy the API under <code>/api</code>, confirm <code>API_MOUNT_PATH</code> and <code>WEB_API_BASE_URL</code> are set consistently.</p>
+<p class="admonition-title">Editing generated Conda settings casually</p>
+<p>Test <code>status</code>, <code>doctor</code>, and <code>restart</code> after any manual change to Conda/runtime configuration.</p>
 </div>
 <hr />
-<h2 id="quick-verification">Quick Verification<a class="headerlink" href="#quick-verification" title="Permanent link">&para;</a></h2>
-<p>Run a quick sanity check after editing <code>.env</code>:</p>
-<pre><code>test -f &quot;$SCIPION_HOME/.env&quot; &amp;&amp; echo &quot;.env found&quot;
-grep -E '^(DATABASE_URL|API_HOST|API_PORT|BROKER_URL|SERVE_WEB)=' &quot;$SCIPION_HOME/.env&quot; || true
+<h2 id="quick-verification">Quick verification<a class="headerlink" href="#quick-verification" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">test -f &quot;$SCIPION_HOME/.env&quot; &amp;&amp; echo &quot;.env found&quot;
+grep -E '^(DATABASE_URL|API_HOST|API_PORT|BROKER_URL|SERVE_WEB|API_MOUNT_PATH|WEB_DIST_PATH)=' \
+  &quot;$SCIPION_HOME/.env&quot; || true
 </code></pre>
-<p>Then verify the runtime:</p>
-<pre><code>curl http://localhost:8080/health
+<p>Then verify the runtime using the persisted port:</p>
+<pre><code class="language-bash">API_PORT=&quot;$(grep '^API_PORT=' &quot;$SCIPION_HOME/.env&quot; | tail -n 1 | cut -d= -f2-)&quot;
+curl &quot;http://localhost:${API_PORT}/health&quot;
 </code></pre>
-<p>Expected response:</p>
-<pre><code class="language-json">{&quot;status&quot;:&quot;ok&quot;}
+<p>Finally:</p>
+<pre><code class="language-bash">./scripts/scipionapi status
+./scripts/scipionapi doctor --quick
 </code></pre>
-<hr />
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../scipion-home/" style="text-decoration:none; display:inline-block;">
-    ← Previous: SCIPION_HOME and Runtime Layout
-  </a>
-  <a href="../integrated-mode/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: API + Web Integrated Mode →
-  </a>
-</div>
 
 
 

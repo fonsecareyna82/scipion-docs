@@ -478,6 +478,8 @@
       
         
       
+        
+      
     
     
       
@@ -552,11 +554,32 @@
   
   
     <li class="md-nav__item">
+      <a href="guided-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="download-bundles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Bundles
+    Download Bundles (Manual)
   </span>
   
 
@@ -577,7 +600,7 @@
         
   
   <span class="md-ellipsis">
-    Recommended Installation
+    Provision (Advanced)
   </span>
   
 
@@ -1566,6 +1589,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1686,6 +1713,48 @@
   
   <span class="md-ellipsis">
     Update
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Publisher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
   </span>
   
 
@@ -2229,6 +2298,8 @@
       
         
       
+        
+      
     
     
       
@@ -2334,6 +2405,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../release/publishing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publish Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../release/checklist/" class="md-nav__link">
         
   
@@ -2384,6 +2476,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#fast-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fast path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#which-path-should-i-use" class="md-nav__link">
     <span class="md-ellipsis">
       Which path should I use?
@@ -2394,9 +2495,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#recommended-installation" class="md-nav__link">
+  <a href="#guided-installation-recommended" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended installation
+      Guided installation — recommended
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-bundle-provision-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual bundle + provision workflow
     </span>
   </a>
   
@@ -2412,9 +2522,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#upgrade-or-reinstall" class="md-nav__link">
+  <a href="#upgrade-an-existing-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade or reinstall
+      Upgrade an existing installation
     </span>
   </a>
   
@@ -2454,36 +2564,54 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-download-and-extract-bundles" class="md-nav__link">
+  <a href="#2-guided-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Download and Extract Bundles
+      2. Guided Installation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-recommended-installation" class="md-nav__link">
+  <a href="#3-download-and-extract-bundles" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Recommended Installation
+      3. Download and Extract Bundles
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-manual-installation" class="md-nav__link">
+  <a href="#4-provision" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Manual Installation
+      4. Provision
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-upgrade-reinstall-notes" class="md-nav__link">
+  <a href="#5-manual-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Upgrade / Reinstall Notes
+      5. Manual Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-upgrade-reinstall-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Upgrade / Reinstall Notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-production-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Production Deployment
     </span>
   </a>
   
@@ -2495,27 +2623,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-installation-split" class="md-nav__link">
+  <a href="#installation-mental-model" class="md-nav__link">
     <span class="md-ellipsis">
-      Common installation split
+      Installation mental model
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-notes" class="md-nav__link">
+  <a href="#important-behavior" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick notes
+      Important behavior
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+  <a href="#next-step" class="md-nav__link">
     <span class="md-ellipsis">
-      Navigation
+      Next step
     </span>
   </a>
   
@@ -2540,91 +2668,127 @@
 
 
 <h1 id="installation-overview">Installation Overview<a class="headerlink" href="#installation-overview" title="Permanent link">&para;</a></h1>
-<p>Use this section when you want to install <strong>ScipionWeb for users</strong> or upgrade an existing installation.</p>
-<p>For most installations, the recommended path is <strong>Integrated Mode (API + Web)</strong>. In that mode, ScipionAPI serves the compiled ScipionWeb interface and the API from the same runtime, so users can open the web application directly in the browser.</p>
-<div class="admonition note">
-<p class="admonition-title">Recommended path for most installations</p>
-<p>If you are installing for the first time on a local Linux machine, follow this sequence:</p>
+<p>Use this section to install <strong>ScipionWeb for users</strong>, understand the underlying packaged deployment, or upgrade an existing installation.</p>
+<p>For a new Linux installation, the recommended path is now the <strong>guided <code>install.sh</code> installer</strong>. It resolves a matched API + Web release from the public release manifest, downloads the required ZIP files, verifies checksums, and runs the normal ScipionAPI provisioning workflow for you.</p>
+<div class="admonition success">
+<p class="admonition-title">Recommended path for most new installations</p>
+<p>Follow this sequence:</p>
 <ol>
 <li><a href="prerequisites/">Prerequisites</a></li>
-<li><a href="download-bundles/">Download and Extract Bundles</a></li>
-<li><a href="provision/">Recommended Installation</a></li>
+<li><a href="guided-install/">Guided Installation</a></li>
 </ol>
+<p>The normal user-facing installation no longer requires manually downloading and pairing the API/Web ZIP files.</p>
 </div>
 <hr />
+<h2 id="fast-path">Fast path<a class="headerlink" href="#fast-path" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+chmod +x install.sh
+./install.sh --check-only
+./install.sh
+</code></pre>
+<p>The installer defaults to the release identified as <code>latest</code> in the public <code>manifest.json</code>.</p>
+<hr />
 <h2 id="which-path-should-i-use">Which path should I use?<a class="headerlink" href="#which-path-should-i-use" title="Permanent link">&para;</a></h2>
-<h3 id="recommended-installation">Recommended installation<a class="headerlink" href="#recommended-installation" title="Permanent link">&para;</a></h3>
-<p>Use <strong>Prerequisites → Download Bundles → Recommended Installation</strong> when you want the fastest path to a working ScipionWeb instance with both API and Web UI.</p>
-<p>This is the normal path for user-facing installations.</p>
+<h3 id="guided-installation-recommended">Guided installation — recommended<a class="headerlink" href="#guided-installation-recommended" title="Permanent link">&para;</a></h3>
+<p>Use <a href="guided-install/">Guided Installation</a> when you want:</p>
+<ul>
+<li>a normal integrated API + Web installation</li>
+<li>matched API and Web release versions automatically</li>
+<li>published SHA256 verification</li>
+<li>automatic port selection when no fixed port is requested</li>
+<li>a stable installation directory</li>
+<li>a guided installation marker that enables protected full uninstall later</li>
+</ul>
+<p>This is the standard path for new user-facing installations.</p>
+<h3 id="manual-bundle-provision-workflow">Manual bundle + provision workflow<a class="headerlink" href="#manual-bundle-provision-workflow" title="Permanent link">&para;</a></h3>
+<p>Use <a href="download-bundles/">Download Bundles</a> and <a href="provision/">Recommended Installation / Provision</a> when you intentionally want to control the downloaded artifacts and run <code>provision</code> yourself.</p>
+<p>This remains useful for:</p>
+<ul>
+<li>deployment debugging</li>
+<li>custom infrastructure automation</li>
+<li>API-only scenarios</li>
+<li>frontend hosted separately</li>
+<li>advanced testing</li>
+</ul>
 <h3 id="manual-installation">Manual installation<a class="headerlink" href="#manual-installation" title="Permanent link">&para;</a></h3>
-<p>Use <strong>Manual Installation</strong> only when you need full control over each layer, for example:</p>
+<p>Use <a href="manual-install/">Manual Installation</a> only when you need fine-grained control over each layer, for example:</p>
 <ul>
 <li>remote PostgreSQL setup</li>
-<li>debugging installation problems</li>
-<li>custom deployment requirements</li>
+<li>unusual database/bootstrap requirements</li>
 <li>development environments</li>
+<li>custom deployment topologies</li>
+<li>troubleshooting low-level installation problems</li>
 </ul>
-<h3 id="upgrade-or-reinstall">Upgrade or reinstall<a class="headerlink" href="#upgrade-or-reinstall" title="Permanent link">&para;</a></h3>
-<p>Use <strong>Upgrade / Reinstall Notes</strong> when an existing installation already exists and you need to preserve runtime data, database state, and configuration.</p>
+<h3 id="upgrade-an-existing-installation">Upgrade an existing installation<a class="headerlink" href="#upgrade-an-existing-installation" title="Permanent link">&para;</a></h3>
+<p>Use <a href="upgrade/">Upgrade / Reinstall Notes</a> when ScipionWeb is already installed.</p>
+<p>The normal updater preserves runtime data and configuration while updating managed API code, the deployed Web bundle, and the managed installer file.</p>
 <hr />
 <h2 id="what-this-section-covers">What this section covers<a class="headerlink" href="#what-this-section-covers" title="Permanent link">&para;</a></h2>
-<p>This installation section includes:</p>
+<p>The installation documentation includes:</p>
 <ul>
 <li>system prerequisites such as Conda, PostgreSQL, Redis, ports, and permissions</li>
-<li>official bundle download and extraction</li>
-<li>recommended integrated installation using <code>provision</code> and <code>--web-dist</code></li>
-<li>manual installation step by step for advanced setups</li>
+<li>guided installation through the public <code>install.sh</code></li>
+<li>manual download and extraction of release bundles</li>
+<li>one-shot <code>provision</code> for controlled/manual installs</li>
+<li>low-level manual installation for advanced setups</li>
 <li>upgrade workflow and rollback guidance</li>
+<li>production deployment considerations</li>
 </ul>
 <hr />
 <h2 id="installation-pages">Installation pages<a class="headerlink" href="#installation-pages" title="Permanent link">&para;</a></h2>
 <h3 id="1-prerequisites">1. Prerequisites<a class="headerlink" href="#1-prerequisites" title="Permanent link">&para;</a></h3>
-<p>Prepare the machine and verify required services before installation.</p>
+<p>Prepare the machine and validate required services.</p>
 <p>➡️ <a href="prerequisites/">Open Prerequisites</a></p>
-<h3 id="2-download-and-extract-bundles">2. Download and Extract Bundles<a class="headerlink" href="#2-download-and-extract-bundles" title="Permanent link">&para;</a></h3>
-<p>Download the official ScipionAPI and ScipionWeb bundles and prepare the installation directory layout.</p>
+<h3 id="2-guided-installation">2. Guided Installation<a class="headerlink" href="#2-guided-installation" title="Permanent link">&para;</a></h3>
+<p>Install the matching API + Web release through the public installer.</p>
+<p>➡️ <a href="guided-install/">Open Guided Installation</a></p>
+<h3 id="3-download-and-extract-bundles">3. Download and Extract Bundles<a class="headerlink" href="#3-download-and-extract-bundles" title="Permanent link">&para;</a></h3>
+<p>Use this when you intentionally want to manage the release ZIP files yourself.</p>
 <p>➡️ <a href="download-bundles/">Open Download and Extract Bundles</a></p>
-<h3 id="3-recommended-installation">3. Recommended Installation<a class="headerlink" href="#3-recommended-installation" title="Permanent link">&para;</a></h3>
-<p>Run a complete integrated installation using a single command.</p>
-<p>➡️ <a href="provision/">Open Recommended Installation</a></p>
-<h3 id="4-manual-installation">4. Manual Installation<a class="headerlink" href="#4-manual-installation" title="Permanent link">&para;</a></h3>
-<p>Install ScipionAPI step by step for maximum control.</p>
+<h3 id="4-provision">4. Provision<a class="headerlink" href="#4-provision" title="Permanent link">&para;</a></h3>
+<p>Run the complete ScipionAPI provisioning flow directly from an extracted API bundle.</p>
+<p>➡️ <a href="provision/">Open Provision</a></p>
+<h3 id="5-manual-installation">5. Manual Installation<a class="headerlink" href="#5-manual-installation" title="Permanent link">&para;</a></h3>
+<p>Install step by step for maximum control.</p>
 <p>➡️ <a href="manual-install/">Open Manual Installation</a></p>
-<h3 id="5-upgrade-reinstall-notes">5. Upgrade / Reinstall Notes<a class="headerlink" href="#5-upgrade-reinstall-notes" title="Permanent link">&para;</a></h3>
-<p>Upgrade an existing installation safely.</p>
+<h3 id="6-upgrade-reinstall-notes">6. Upgrade / Reinstall Notes<a class="headerlink" href="#6-upgrade-reinstall-notes" title="Permanent link">&para;</a></h3>
+<p>Update an existing installation safely.</p>
 <p>➡️ <a href="upgrade/">Open Upgrade / Reinstall Notes</a></p>
+<h3 id="7-production-deployment">7. Production Deployment<a class="headerlink" href="#7-production-deployment" title="Permanent link">&para;</a></h3>
+<p>Review service-management and production deployment guidance.</p>
+<p>➡️ <a href="deployment-systemd/">Open Production Deployment</a></p>
 <hr />
-<h2 id="common-installation-split">Common installation split<a class="headerlink" href="#common-installation-split" title="Permanent link">&para;</a></h2>
+<h2 id="installation-mental-model">Installation mental model<a class="headerlink" href="#installation-mental-model" title="Permanent link">&para;</a></h2>
 <p>A useful way to think about installation is:</p>
 <ol>
 <li><strong>machine readiness</strong> → prerequisites</li>
-<li><strong>artifacts</strong> → bundles</li>
-<li><strong>runtime setup</strong> → recommended installation or manual installation</li>
-<li><strong>service verification</strong> → browser, health endpoint, logs, and project loading</li>
+<li><strong>release resolution</strong> → <code>manifest.json</code></li>
+<li><strong>artifacts</strong> → matched ScipionAPI + ScipionWeb ZIP files</li>
+<li><strong>runtime setup</strong> → <code>provision</code></li>
+<li><strong>verification</strong> → <code>status</code>, <code>doctor</code>, browser, logs</li>
 </ol>
-<p>This mental split makes debugging much easier when something goes wrong.</p>
+<p>The guided installer automates steps 2–4 while keeping the same underlying deployment model available to advanced users.</p>
 <hr />
-<h2 id="quick-notes">Quick notes<a class="headerlink" href="#quick-notes" title="Permanent link">&para;</a></h2>
+<h2 id="important-behavior">Important behavior<a class="headerlink" href="#important-behavior" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
-<p class="admonition-title">Integrated mode is the normal user-facing mode</p>
-<p>If you want users to open ScipionWeb in the browser, download the <strong>ScipionWeb</strong> compiled bundle and use the <code>--web-dist</code> option during <code>provision</code>.</p>
+<p class="admonition-title">API/Web versions stay paired</p>
+<p>The guided installer resolves both artifacts from the same release entry. For manual installs, keep ScipionAPI and ScipionWeb versions aligned unless you are intentionally testing compatibility.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">The API port is not assumed to be 8080</p>
+<p>When no fixed API/Web port is provided, provisioning preserves an existing configured port or selects a free port automatically and persists it in <code>.env</code>.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Backup before upgrade</p>
-<p>Always create a PostgreSQL backup before running an upgrade, especially in production or shared environments.</p>
+<p class="admonition-title">Existing installation detected</p>
+<p>Do not run the new-install path over an existing installation. Use <code>./scripts/scipionapi update</code> instead.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Consistency matters</p>
-<p>Keep <strong>ScipionAPI</strong> and <strong>ScipionWeb</strong> versions aligned whenever possible to reduce compatibility issues.</p>
+<div class="admonition warning">
+<p class="admonition-title">Backup before important upgrades</p>
+<p>The updater protects application files, but database rollback still requires a database backup when schema migrations matter.</p>
 </div>
 <hr />
-<h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <span></span>
-  <a href="../installation/prerequisites/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Prerequisites →
-  </a>
-</div>
+<h2 id="next-step">Next step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
+<p>Start with <a href="prerequisites/">Prerequisites</a>, then use the <a href="guided-install/">Guided Installation</a> unless you specifically need a manual deployment path.</p>
 
 
 

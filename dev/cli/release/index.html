@@ -12,13 +12,13 @@
         <meta name="author" content="Scipion Team">
       
       
-        <link rel="canonical" href="https://fonsecareyna82.github.io/scipion-docs/dev/frontend/runtime-config/">
+        <link rel="canonical" href="https://fonsecareyna82.github.io/scipion-docs/dev/cli/release/">
       
       
-        <link rel="prev" href="../build/">
+        <link rel="prev" href="../update/">
       
       
-        <link rel="next" href="../../development/local-workflow/">
+        <link rel="next" href="../uninstall/">
       
       
       <link rel="icon" href="../../assets/images/scipion_icon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Runtime API URL Configuration - ScipionWeb Documentation</title>
+        <title>Release Publisher - ScipionWeb Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#runtime-api-url-configuration" class="md-skip">
+        <a href="#release-publisher" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Runtime API URL Configuration
+              Release Publisher
             
           </span>
         </div>
@@ -345,7 +345,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../cli/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
     
@@ -397,8 +397,6 @@
         <div class="md-main__inner md-grid">
           
             
-              
-                
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
@@ -1570,8 +1568,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -1606,18 +1606,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../cli/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1634,7 +1632,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_1">
             <span class="md-nav__icon md-icon"></span>
             Command Line Reference
@@ -1650,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/bootstrap/" class="md-nav__link">
+      <a href="../bootstrap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1671,7 +1669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/install/" class="md-nav__link">
+      <a href="../install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1692,7 +1690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/provision/" class="md-nav__link">
+      <a href="../provision/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1713,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/update/" class="md-nav__link">
+      <a href="../update/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1731,10 +1729,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../cli/release/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Release Publisher
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1743,6 +1761,134 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-release-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal release command
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#always-run-a-dry-run-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      Always run a dry run first
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#official-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      Official defaults
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifestjson-is-automatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      manifest.json is automatic
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safe-publication-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Safe publication order
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#existing-versions-are-protected" class="md-nav__link">
+    <span class="md-ellipsis">
+      Existing versions are protected
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#previewing-an-already-published-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Previewing an already-published version
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-without-changing-latest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishing without changing latest
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-interactive-confirmation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-interactive confirmation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-artifact-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom artifact paths
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-publication-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-publication verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-maintainer-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended maintainer workflow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1755,7 +1901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/uninstall/" class="md-nav__link">
+      <a href="../uninstall/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1776,7 +1922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/doctor/" class="md-nav__link">
+      <a href="../doctor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1797,7 +1943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/runtime/" class="md-nav__link">
+      <a href="../runtime/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2030,8 +2176,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2056,16 +2200,18 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_3" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../frontend/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2082,7 +2228,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_3">
             <span class="md-nav__icon md-icon"></span>
             Frontend
@@ -2098,7 +2244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../build/" class="md-nav__link">
+      <a href="../../frontend/build/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2116,30 +2262,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Runtime API URL Configuration
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../frontend/runtime-config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2148,122 +2274,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#build-time-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build-Time Configuration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Build-Time Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    <span class="md-ellipsis">
-      Development
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#production-separate-deployment-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Production (separate deployment example)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integrated-mode-api-web" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integrated Mode (API + Web)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#separate-deployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Separate Deployment
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuration Matrix
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Mistakes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Production Recommendations
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Validation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Navigation
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2605,9 +2615,7 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -2626,96 +2634,108 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-time-configuration" class="md-nav__link">
+  <a href="#minimal-release-command" class="md-nav__link">
     <span class="md-ellipsis">
-      Build-Time Configuration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Build-Time Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    <span class="md-ellipsis">
-      Development
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#production-separate-deployment-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Production (separate deployment example)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integrated-mode-api-web" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integrated Mode (API + Web)
+      Minimal release command
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#separate-deployment" class="md-nav__link">
+  <a href="#always-run-a-dry-run-first" class="md-nav__link">
     <span class="md-ellipsis">
-      Separate Deployment
+      Always run a dry run first
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration-matrix" class="md-nav__link">
+  <a href="#official-defaults" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration Matrix
+      Official defaults
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
+  <a href="#manifestjson-is-automatic" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Mistakes
+      manifest.json is automatic
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-recommendations" class="md-nav__link">
+  <a href="#safe-publication-order" class="md-nav__link">
     <span class="md-ellipsis">
-      Production Recommendations
+      Safe publication order
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-validation" class="md-nav__link">
+  <a href="#existing-versions-are-protected" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Validation
+      Existing versions are protected
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
+  <a href="#previewing-an-already-published-version" class="md-nav__link">
     <span class="md-ellipsis">
-      Navigation
+      Previewing an already-published version
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-without-changing-latest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishing without changing latest
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-interactive-confirmation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-interactive confirmation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-artifact-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom artifact paths
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-publication-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-publication verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-maintainer-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended maintainer workflow
     </span>
   </a>
   
@@ -2739,132 +2759,174 @@
   
 
 
-<h1 id="runtime-api-url-configuration">Runtime API URL Configuration<a class="headerlink" href="#runtime-api-url-configuration" title="Permanent link">&para;</a></h1>
-<p>The frontend communicates with ScipionAPI using a base API URL.</p>
-<p>This is primarily defined by:</p>
-<pre><code class="language-dotenv">VITE_API_URL
-</code></pre>
+<h1 id="release-publisher">Release Publisher<a class="headerlink" href="#release-publisher" title="Permanent link">&para;</a></h1>
+<p>The <code>release</code> command publishes a paired <strong>ScipionAPI + ScipionWeb</strong> release to the official download server.</p>
+<p>It is intended for release maintainers and replaces the old manual workflow of copying ZIP files, calculating checksums, editing <code>manifest.json</code>, and uploading the manifest by hand.</p>
 <hr />
-<h2 id="build-time-configuration">Build-Time Configuration<a class="headerlink" href="#build-time-configuration" title="Permanent link">&para;</a></h2>
-<h3 id="development">Development<a class="headerlink" href="#development" title="Permanent link">&para;</a></h3>
-<pre><code class="language-dotenv">VITE_API_URL=&quot;http://localhost:8080&quot;
+<h2 id="minimal-release-command">Minimal release command<a class="headerlink" href="#minimal-release-command" title="Permanent link">&para;</a></h2>
+<p>If the release directory contains the correctly named API and Web ZIP files:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files
 </code></pre>
-<h3 id="production-separate-deployment-example">Production (separate deployment example)<a class="headerlink" href="#production-separate-deployment-example" title="Permanent link">&para;</a></h3>
-<pre><code class="language-dotenv">VITE_API_URL=&quot;https://api.yourdomain.com&quot;
+<p>The expected default filenames are:</p>
+<pre><code class="language-text">ScipionAPI-v4.0.1.zip
+ScipionWeb-v4.0.1-dist.zip
 </code></pre>
-<p>The variable is typically consumed as:</p>
-<pre><code class="language-ts">export const BASE_URL = import.meta.env.VITE_API_URL;
-</code></pre>
-<div class="admonition note">
-<p class="admonition-title">Vite behavior</p>
-<p>Values from <code>VITE_*</code> variables are injected into the frontend build and are not automatically updated after build time.</p>
-</div>
+<p>Only those two ZIP files need to be present in <code>--downloads-dir</code>.</p>
+<p><code>install.sh</code> is taken automatically from the current <strong>ScipionAPI repository root</strong>. You do not need to copy it into the release directory.</p>
 <hr />
-<h2 id="integrated-mode-api-web">Integrated Mode (API + Web)<a class="headerlink" href="#integrated-mode-api-web" title="Permanent link">&para;</a></h2>
-<p>In integrated mode:</p>
+<h2 id="always-run-a-dry-run-first">Always run a dry run first<a class="headerlink" href="#always-run-a-dry-run-first" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files \
+  --dry-run
+</code></pre>
+<p>A release dry run is read-only with respect to the remote server, but it is not purely local. It deliberately:</p>
 <ul>
-<li>Web is served at <code>/</code></li>
-<li>API is mounted at <code>/api</code></li>
+<li>validates the local release files</li>
+<li>connects to the configured release server over SSH</li>
+<li>validates the remote release directory</li>
+<li>downloads the current remote <code>manifest.json</code> when present</li>
+<li>checks whether the version or target ZIP filenames already exist remotely</li>
+<li>calculates the release metadata and SHA256 values</li>
+<li>prints the resolved publication plan</li>
 </ul>
-<p>No external API host is required for the frontend.</p>
-<p>The installer can inject runtime configuration through:</p>
-<pre><code class="language-text">window.__SCIPION_WEB_CONFIG__
-</code></pre>
-<p>Example payload:</p>
-<pre><code class="language-json">{
-  &quot;apiBaseUrl&quot;: &quot;/api&quot;
-}
-</code></pre>
-<p>The frontend can prefer this runtime value when present, allowing a single build artifact to adapt to integrated deployments.</p>
-<div class="admonition tip">
-<p class="admonition-title">Why runtime injection helps</p>
-<p>Runtime config avoids rebuilding the frontend just to change the API mount path in integrated scenarios.</p>
-</div>
+<p>It does <strong>not</strong> upload or replace remote files.</p>
 <hr />
-<h2 id="separate-deployment">Separate Deployment<a class="headerlink" href="#separate-deployment" title="Permanent link">&para;</a></h2>
-<p>If frontend and API run on different hosts, define the API URL in the frontend <code>.env</code> before building:</p>
-<pre><code class="language-dotenv">VITE_API_URL=&quot;https://api.yourdomain.com&quot;
+<h2 id="official-defaults">Official defaults<a class="headerlink" href="#official-defaults" title="Permanent link">&para;</a></h2>
+<p>The current ScipionWeb release publisher defaults to:</p>
+<pre><code class="language-text">SSH login:
+scipion@nolan.cnb.csic.es
+
+Remote directory:
+/home/scipion/scipionfiles/downloads/scipion/scipionWeb
+
+Public URL:
+https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
 </code></pre>
-<p>Then rebuild the frontend:</p>
-<pre><code>npm run build
+<p>These values can be overridden with:</p>
+<pre><code class="language-text">--login
+--remote-dir
+--base-url
+</code></pre>
+<p>or the corresponding environment variables:</p>
+<pre><code class="language-text">SCIPIONWEB_RELEASE_LOGIN
+SCIPIONWEB_RELEASE_REMOTE_DIR
+SCIPIONWEB_RELEASE_BASE_URL
 </code></pre>
 <hr />
-<h2 id="configuration-matrix">Configuration Matrix<a class="headerlink" href="#configuration-matrix" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Deployment Mode</th>
-<th>Frontend Host</th>
-<th>API Host</th>
-<th>Typical API Base</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Integrated</td>
-<td>Same as API</td>
-<td>Same as frontend</td>
-<td><code>/api</code></td>
-</tr>
-<tr>
-<td>Separate</td>
-<td><code>https://yourdomain.com</code></td>
-<td><code>https://api.yourdomain.com</code></td>
-<td><code>https://api.yourdomain.com</code></td>
-</tr>
-<tr>
-<td>CDN</td>
-<td>CDN/static host</td>
-<td>Separate API host</td>
-<td><code>https://api.yourdomain.com</code></td>
-</tr>
-</tbody>
-</table>
+<h2 id="manifestjson-is-automatic"><code>manifest.json</code> is automatic<a class="headerlink" href="#manifestjson-is-automatic" title="Permanent link">&para;</a></h2>
+<p>You do <strong>not</strong> prepare <code>manifest.json</code> manually before publishing.</p>
+<p>The publisher follows this logic:</p>
+<ol>
+<li>try to download the current remote <code>manifest.json</code></li>
+<li>if it exists, preserve its existing <code>releases</code> entries</li>
+<li>add or update the requested release entry locally</li>
+<li>calculate the API/Web SHA256 values and file sizes</li>
+<li>update <code>latest</code> unless <code>--no-latest</code> was requested</li>
+<li>publish the resulting manifest only after the release files are in place</li>
+</ol>
+<p>If no remote <code>manifest.json</code> exists, the command creates a new one containing the release being published.</p>
+<p>This means a normal release directory only needs:</p>
+<pre><code class="language-text">ScipionAPI-vX.Y.Z.zip
+ScipionWeb-vX.Y.Z-dist.zip
+</code></pre>
 <hr />
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Changing <code>.env</code> without rebuilding</p>
-<p>In production builds, <code>VITE_API_URL</code> is compiled into the bundle. Rebuild after changes.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">HTTP/HTTPS mismatch</p>
-<p>Mixed protocol usage (frontend on HTTPS, API on HTTP) can break requests in browsers.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">CORS not configured on backend</p>
-<p>Separate deployments require backend CORS configuration for the frontend origin.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Using localhost in production builds</p>
-<p>Double-check build artifacts before release to avoid accidentally shipping <code>localhost</code> API URLs.</p>
-</div>
+<h2 id="safe-publication-order">Safe publication order<a class="headerlink" href="#safe-publication-order" title="Permanent link">&para;</a></h2>
+<p>The remote publication order is intentionally:</p>
+<pre><code class="language-text">1. ScipionAPI ZIP
+2. ScipionWeb ZIP
+3. install.sh
+4. manifest.json
+</code></pre>
+<p>Each upload is staged through a temporary remote filename and moved into place atomically.</p>
+<p>Publishing <code>manifest.json</code> last is important: users should never see a newly advertised release until its downloadable artifacts are already available.</p>
 <hr />
-<h2 id="production-recommendations">Production Recommendations<a class="headerlink" href="#production-recommendations" title="Permanent link">&para;</a></h2>
+<h2 id="existing-versions-are-protected">Existing versions are protected<a class="headerlink" href="#existing-versions-are-protected" title="Permanent link">&para;</a></h2>
+<p>Without <code>--force</code>, the publisher refuses to replace a version when either:</p>
 <ul>
-<li>Use HTTPS for frontend and API</li>
-<li>Use stable domain naming (<code>app.</code> / <code>api.</code> pattern, or integrated <code>/api</code>)</li>
-<li>Document your API URL strategy per environment (dev/staging/prod)</li>
-<li>Validate API reachability from the browser before rollout</li>
+<li>the remote manifest already contains that version, or</li>
+<li>the target release ZIP filenames already exist remotely</li>
 </ul>
+<p>Example refusal:</p>
+<pre><code class="language-text">Release already appears to be published (...). Use --force only when intentionally replacing it.
+</code></pre>
+<p>This is a safety feature, not a publication failure.</p>
 <hr />
-<h2 id="quick-validation">Quick Validation<a class="headerlink" href="#quick-validation" title="Permanent link">&para;</a></h2>
-<p>After deployment, confirm in the browser:</p>
-<ul>
-<li>Login requests go to the expected API origin/path</li>
-<li>No CORS errors appear in DevTools</li>
-<li>No mixed-content warnings appear</li>
-<li>Network requests return expected responses</li>
-</ul>
-<hr />
-<h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
-<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
-  <a href="../build/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Build and Dist Output
-  </a>
-  <a href="../deployment/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Deployment Options →
-  </a>
+<h2 id="previewing-an-already-published-version">Previewing an already-published version<a class="headerlink" href="#previewing-an-already-published-version" title="Permanent link">&para;</a></h2>
+<p>If you intentionally want to inspect the complete plan for an existing version without changing anything, combine <code>--force</code> with <code>--dry-run</code>:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version v4.0.0 \
+  --downloads-dir /path/to/release/files \
+  --force \
+  --dry-run
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Do not remove <code>--dry-run</code> casually</p>
+<p><code>--force</code> without <code>--dry-run</code> allows intentional replacement of an already-published version. Use it only when replacement is genuinely required.</p>
 </div>
+<hr />
+<h2 id="publishing-without-changing-latest">Publishing without changing <code>latest</code><a class="headerlink" href="#publishing-without-changing-latest" title="Permanent link">&para;</a></h2>
+<p>By default, the new release becomes the manifest's <code>latest</code> version.</p>
+<p>To publish a release entry without moving <code>latest</code>:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files \
+  --no-latest
+</code></pre>
+<p>This is useful for controlled publication or pre-release scenarios where the release should exist but should not yet become the default update target.</p>
+<hr />
+<h2 id="non-interactive-confirmation">Non-interactive confirmation<a class="headerlink" href="#non-interactive-confirmation" title="Permanent link">&para;</a></h2>
+<p>The command asks for confirmation before a real upload.</p>
+<p>For controlled automation:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files \
+  --yes
+</code></pre>
+<p>Use <code>--yes</code> only in release automation where the preceding validations are already trusted.</p>
+<hr />
+<h2 id="custom-artifact-paths">Custom artifact paths<a class="headerlink" href="#custom-artifact-paths" title="Permanent link">&para;</a></h2>
+<p>If the filenames do not follow the normal convention, use:</p>
+<pre><code class="language-text">--api-file
+--web-file
+</code></pre>
+<p>The standard naming convention is strongly preferred because the installer, updater, server directory, and documentation all become easier to reason about.</p>
+<hr />
+<h2 id="post-publication-verification">Post-publication verification<a class="headerlink" href="#post-publication-verification" title="Permanent link">&para;</a></h2>
+<p>After uploading the artifacts and publishing <code>manifest.json</code>, the command checks the public manifest URL and verifies that the published release can be observed through HTTP.</p>
+<p>A temporary visibility problem at the public endpoint is reported as a warning rather than pretending verification succeeded.</p>
+<p>For an important release, also verify manually that:</p>
+<pre><code class="language-text">manifest.json
+ScipionAPI-vX.Y.Z.zip
+ScipionWeb-vX.Y.Z-dist.zip
+install.sh
+</code></pre>
+<p>are reachable from the public release endpoint.</p>
+<hr />
+<h2 id="recommended-maintainer-workflow">Recommended maintainer workflow<a class="headerlink" href="#recommended-maintainer-workflow" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># 1. Build the matching ZIP files.
+
+# 2. Validate the real remote state and release plan.
+./scripts/scipionapi release \
+  --upload \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/release/files \
+  --dry-run
+
+# 3. Publish after reviewing the plan.
+./scripts/scipionapi release \
+  --upload \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/release/files
+</code></pre>
+<p>That is the normal release path. Manual editing of the remote manifest should not be part of routine publication.</p>
 
 
 
@@ -2872,13 +2934,8 @@
 
 
 
-  
-  
 
 
-
-
-  
 
 
 
