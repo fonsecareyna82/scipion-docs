@@ -125,3 +125,27 @@ This typically shows the API log and the worker log together.
 
 !!! warning "No logs shown"
     Confirm the configured logs path exists and the runtime user has write permissions.
+
+---
+
+## Current Runtime Worker Topology
+
+The current `start`, `stop`, `restart`, and `status` implementation manages three runtime processes:
+
+```text
+ScipionAPI runtime
+├── FastAPI / uvicorn
+├── Plugin Celery worker
+└── Protocol Celery worker
+```
+
+The two Celery workers consume different queues:
+
+| Runtime process | Queue | Concurrency |
+|---|---|---:|
+| Plugin worker | `plugins` | `1` |
+| Protocol worker | `protocols` | `PROTOCOL_WORKER_CONCURRENCY` (default `4`) |
+
+When started by the CLI, the workers use the hostnames `plugins@%h` and `protocols@%h` and set `--prefetch-multiplier 1`.
+
+The runtime also tracks the workers independently, so `status` can distinguish a healthy API from a missing plugin worker or protocol worker.

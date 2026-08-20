@@ -116,3 +116,37 @@ VITE_API_URL="http://localhost:8080"
 - main → stable
 - devel → active development
 - feature/* → feature branches
+
+---
+
+# Current Celery Development Topology
+
+The current ScipionAPI runtime routes background work through two dedicated queues. When developing or debugging routed tasks manually, use **two Celery terminals** rather than relying on a single generic worker.
+
+## Terminal 1: FastAPI
+
+```bash
+uvicorn app.backend.main:app --reload --host 0.0.0.0 --port 8080
+```
+
+## Terminal 2: Plugin worker
+
+```bash
+python -m celery -A app.workers.task_queue worker --loglevel info --hostname plugins@%h -Q plugins --concurrency 1 --prefetch-multiplier 1
+```
+
+## Terminal 3: Protocol worker
+
+```bash
+python -m celery -A app.workers.task_queue worker --loglevel info --hostname protocols@%h -Q protocols --concurrency 4 --prefetch-multiplier 1
+```
+
+The plugin worker deliberately runs with concurrency `1`. Protocol-worker concurrency defaults to `4` and can be adjusted through `PROTOCOL_WORKER_CONCURRENCY` when the runtime is started through the ScipionAPI CLI.
+
+Verify worker connectivity with:
+
+```bash
+python -m celery -A app.workers.task_queue inspect ping
+```
+
+This split setup mirrors the current `./scripts/scipionapi start` worker topology while keeping all processes visible in separate development terminals.

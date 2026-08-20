@@ -105,3 +105,47 @@ This usually helps you decide whether the failure belongs to request handling, b
 - [ ] `celery.log` updates during task execution
 - [ ] `.run/` PID files match live processes
 - [ ] logs are reviewed regularly in production
+
+---
+
+## Current Split-Worker Logs and PIDs
+
+The current ScipionAPI runtime manages plugin and protocol workers independently. In addition to the files described above, the protocol worker has its own log and PID file.
+
+Current runtime log layout:
+
+```text
+SCIPION_HOME/logs/
+├── app.log
+├── celery.log
+└── celery-protocols.log
+```
+
+- `app.log` contains FastAPI/uvicorn output.
+- `celery.log` contains the plugin worker output.
+- `celery-protocols.log` contains the protocol worker output.
+
+Current CLI-managed PID layout:
+
+```text
+.run/
+├── api.pid
+├── worker.pid
+└── protocol-worker.pid
+```
+
+The files map to runtime processes as follows:
+
+| PID file | Process |
+|---|---|
+| `api.pid` | FastAPI / uvicorn |
+| `worker.pid` | Plugin Celery worker |
+| `protocol-worker.pid` | Protocol Celery worker |
+
+For manual log inspection, the protocol worker can be followed independently:
+
+```bash
+tail -f scipion_home/logs/celery-protocols.log
+```
+
+This separation is useful when API requests work correctly but only plugin tasks or protocol executions are failing.
