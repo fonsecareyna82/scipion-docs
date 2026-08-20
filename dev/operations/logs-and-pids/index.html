@@ -1603,6 +1603,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#current-split-worker-logs-and-pids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Split-Worker Logs and PIDs
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2741,6 +2750,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#current-split-worker-logs-and-pids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Split-Worker Logs and PIDs
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2828,6 +2846,53 @@ tail -f scipion_home/logs/celery.log
 <li>[ ] <code>.run/</code> PID files match live processes</li>
 <li>[ ] logs are reviewed regularly in production</li>
 </ul>
+<hr />
+<h2 id="current-split-worker-logs-and-pids">Current Split-Worker Logs and PIDs<a class="headerlink" href="#current-split-worker-logs-and-pids" title="Permanent link">&para;</a></h2>
+<p>The current ScipionAPI runtime manages plugin and protocol workers independently. In addition to the files described above, the protocol worker has its own log and PID file.</p>
+<p>Current runtime log layout:</p>
+<pre><code class="language-text">SCIPION_HOME/logs/
+├── app.log
+├── celery.log
+└── celery-protocols.log
+</code></pre>
+<ul>
+<li><code>app.log</code> contains FastAPI/uvicorn output.</li>
+<li><code>celery.log</code> contains the plugin worker output.</li>
+<li><code>celery-protocols.log</code> contains the protocol worker output.</li>
+</ul>
+<p>Current CLI-managed PID layout:</p>
+<pre><code class="language-text">.run/
+├── api.pid
+├── worker.pid
+└── protocol-worker.pid
+</code></pre>
+<p>The files map to runtime processes as follows:</p>
+<table>
+<thead>
+<tr>
+<th>PID file</th>
+<th>Process</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api.pid</code></td>
+<td>FastAPI / uvicorn</td>
+</tr>
+<tr>
+<td><code>worker.pid</code></td>
+<td>Plugin Celery worker</td>
+</tr>
+<tr>
+<td><code>protocol-worker.pid</code></td>
+<td>Protocol Celery worker</td>
+</tr>
+</tbody>
+</table>
+<p>For manual log inspection, the protocol worker can be followed independently:</p>
+<pre><code class="language-bash">tail -f scipion_home/logs/celery-protocols.log
+</code></pre>
+<p>This separation is useful when API requests work correctly but only plugin tasks or protocol executions are failing.</p>
 
 
 

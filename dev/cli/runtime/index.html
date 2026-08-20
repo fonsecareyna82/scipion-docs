@@ -1912,6 +1912,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#current-runtime-worker-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Runtime Worker Topology
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2669,6 +2678,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#current-runtime-worker-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Runtime Worker Topology
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2807,6 +2825,38 @@
 <p class="admonition-title">No logs shown</p>
 <p>Confirm the configured logs path exists and the runtime user has write permissions.</p>
 </div>
+<hr />
+<h2 id="current-runtime-worker-topology">Current Runtime Worker Topology<a class="headerlink" href="#current-runtime-worker-topology" title="Permanent link">&para;</a></h2>
+<p>The current <code>start</code>, <code>stop</code>, <code>restart</code>, and <code>status</code> implementation manages three runtime processes:</p>
+<pre><code class="language-text">ScipionAPI runtime
+├── FastAPI / uvicorn
+├── Plugin Celery worker
+└── Protocol Celery worker
+</code></pre>
+<p>The two Celery workers consume different queues:</p>
+<table>
+<thead>
+<tr>
+<th>Runtime process</th>
+<th>Queue</th>
+<th style="text-align: right;">Concurrency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plugin worker</td>
+<td><code>plugins</code></td>
+<td style="text-align: right;"><code>1</code></td>
+</tr>
+<tr>
+<td>Protocol worker</td>
+<td><code>protocols</code></td>
+<td style="text-align: right;"><code>PROTOCOL_WORKER_CONCURRENCY</code> (default <code>4</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>When started by the CLI, the workers use the hostnames <code>plugins@%h</code> and <code>protocols@%h</code> and set <code>--prefetch-multiplier 1</code>.</p>
+<p>The runtime also tracks the workers independently, so <code>status</code> can distinguish a healthy API from a missing plugin worker or protocol worker.</p>
 
 
 

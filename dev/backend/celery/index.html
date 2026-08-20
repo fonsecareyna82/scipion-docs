@@ -2134,6 +2134,66 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#current-worker-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Worker Topology
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Worker Topology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-plugin-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual plugin worker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-protocol-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual protocol worker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task routing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment loading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-both-workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify both workers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#navigation" class="md-nav__link">
     <span class="md-ellipsis">
       Navigation
@@ -2749,6 +2809,66 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#current-worker-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Worker Topology
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Worker Topology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-plugin-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual plugin worker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-protocol-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual protocol worker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task routing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment loading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-both-workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify both workers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#navigation" class="md-nav__link">
     <span class="md-ellipsis">
       Navigation
@@ -2888,6 +3008,67 @@ sudo systemctl status redis-server
 <li>Redis healthy</li>
 <li>task exceptions in <code>celery.log</code></li>
 </ul>
+<hr />
+<h2 id="current-worker-topology">Current Worker Topology<a class="headerlink" href="#current-worker-topology" title="Permanent link">&para;</a></h2>
+<p>The current ScipionAPI runtime uses <strong>two dedicated Celery workers</strong> rather than a single generic worker. Tasks are routed to separate queues so plugin-management work and protocol execution can be controlled independently.</p>
+<table>
+<thead>
+<tr>
+<th>Worker</th>
+<th>Queue</th>
+<th style="text-align: right;">Default concurrency</th>
+<th>Hostname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plugin worker</td>
+<td><code>plugins</code></td>
+<td style="text-align: right;"><code>1</code></td>
+<td><code>plugins@%h</code></td>
+</tr>
+<tr>
+<td>Protocol worker</td>
+<td><code>protocols</code></td>
+<td style="text-align: right;"><code>4</code></td>
+<td><code>protocols@%h</code></td>
+</tr>
+</tbody>
+</table>
+<p>The protocol-worker concurrency is configurable through <code>PROTOCOL_WORKER_CONCURRENCY</code>; the runtime default is <code>4</code>.</p>
+<h3 id="manual-plugin-worker">Manual plugin worker<a class="headerlink" href="#manual-plugin-worker" title="Permanent link">&para;</a></h3>
+<p>Run from the ScipionAPI repository root with the correct Python environment activated:</p>
+<pre><code class="language-bash">python -m celery -A app.workers.task_queue worker --loglevel info --hostname plugins@%h -Q plugins --concurrency 1 --prefetch-multiplier 1
+</code></pre>
+<h3 id="manual-protocol-worker">Manual protocol worker<a class="headerlink" href="#manual-protocol-worker" title="Permanent link">&para;</a></h3>
+<p>In a separate terminal:</p>
+<pre><code class="language-bash">python -m celery -A app.workers.task_queue worker --loglevel info --hostname protocols@%h -Q protocols --concurrency 4 --prefetch-multiplier 1
+</code></pre>
+<p>For local development, keeping both workers in the foreground makes worker logs and task failures immediately visible.</p>
+<h3 id="task-routing">Task routing<a class="headerlink" href="#task-routing" title="Permanent link">&para;</a></h3>
+<p>Current routing separates plugin operations from protocol execution:</p>
+<pre><code class="language-text">plugins queue
+├── app.tasks.installPluginTask
+├── app.tasks.installPluginsBatchTask
+├── app.tasks.installDevelPluginTask
+└── app.tasks.uninstallPluginTask
+
+protocols queue
+└── app.tasks.executeProtocolTask
+</code></pre>
+<h3 id="environment-loading">Environment loading<a class="headerlink" href="#environment-loading" title="Permanent link">&para;</a></h3>
+<p>Importing <code>app.workers.task_queue</code> loads the repository runtime environment from:</p>
+<pre><code class="language-text">scipion_home/.env
+</code></pre>
+<p>This allows manual worker commands to use the same Scipion runtime configuration as the backend without requiring a separate shell <code>source</code> of that file.</p>
+<div class="admonition note">
+<p class="admonition-title">Current Redis configuration</p>
+<p>In the current implementation, the Celery broker and result backend are defined in <code>app/workers/celeryconfig.py</code> as <code>redis://localhost:6379/0</code>. Treat that file as the runtime source of truth when diagnosing broker connectivity.</p>
+</div>
+<h3 id="verify-both-workers">Verify both workers<a class="headerlink" href="#verify-both-workers" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">python -m celery -A app.workers.task_queue inspect ping
+</code></pre>
+<p>A healthy local runtime should report both <code>plugins@...</code> and <code>protocols@...</code> workers.</p>
 <hr />
 <h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">

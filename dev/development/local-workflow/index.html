@@ -2576,6 +2576,23 @@ mkdir -p &quot;$SCIPION_HOME&quot;
 <li>devel → active development</li>
 <li>feature/* → feature branches</li>
 </ul>
+<hr />
+<h1 id="current-celery-development-topology">Current Celery Development Topology<a class="headerlink" href="#current-celery-development-topology" title="Permanent link">&para;</a></h1>
+<p>The current ScipionAPI runtime routes background work through two dedicated queues. When developing or debugging routed tasks manually, use <strong>two Celery terminals</strong> rather than relying on a single generic worker.</p>
+<h2 id="terminal-1-fastapi">Terminal 1: FastAPI<a class="headerlink" href="#terminal-1-fastapi" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">uvicorn app.backend.main:app --reload --host 0.0.0.0 --port 8080
+</code></pre>
+<h2 id="terminal-2-plugin-worker">Terminal 2: Plugin worker<a class="headerlink" href="#terminal-2-plugin-worker" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">python -m celery -A app.workers.task_queue worker --loglevel info --hostname plugins@%h -Q plugins --concurrency 1 --prefetch-multiplier 1
+</code></pre>
+<h2 id="terminal-3-protocol-worker">Terminal 3: Protocol worker<a class="headerlink" href="#terminal-3-protocol-worker" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">python -m celery -A app.workers.task_queue worker --loglevel info --hostname protocols@%h -Q protocols --concurrency 4 --prefetch-multiplier 1
+</code></pre>
+<p>The plugin worker deliberately runs with concurrency <code>1</code>. Protocol-worker concurrency defaults to <code>4</code> and can be adjusted through <code>PROTOCOL_WORKER_CONCURRENCY</code> when the runtime is started through the ScipionAPI CLI.</p>
+<p>Verify worker connectivity with:</p>
+<pre><code class="language-bash">python -m celery -A app.workers.task_queue inspect ping
+</code></pre>
+<p>This split setup mirrors the current <code>./scripts/scipionapi start</code> worker topology while keeping all processes visible in separate development terminals.</p>
 
 
 
