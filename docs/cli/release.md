@@ -1,32 +1,69 @@
-# Release Publisher
+# Release Builder and Publisher
 
-The `release` command publishes a paired **ScipionAPI + ScipionWeb** release to the official download server.
+The `release` command builds a paired **ScipionAPI + ScipionWeb** release locally and can optionally publish it to the official download server.
 
-It is intended for release maintainers and replaces the old manual workflow of copying ZIP files, calculating checksums, editing `manifest.json`, and uploading the manifest by hand.
+It is intended for release maintainers and replaces the old manual workflow of separately building ZIP files, calculating checksums, editing `manifest.json`, and uploading release files by hand.
 
 ---
 
-## Minimal release command
+## Default release build
 
-If the release directory contains the correctly named API and Web ZIP files:
+From the ScipionAPI repository, with ScipionWeb available as a sibling repository, run:
 
 ```bash
 ./scripts/scipionapi release \
-  --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files
 ```
 
-The expected default filenames are:
+By default the command:
+
+1. reads the ScipionAPI version from the CLI package
+2. reads the ScipionWeb version from `package.json`
+3. refuses to continue unless both versions match
+4. runs `npm run build:web` in ScipionWeb
+5. builds the API archive from the managed ScipionAPI release paths
+6. packages the compiled Web distribution
+7. creates the paired release ZIP files in `--downloads-dir`
+
+For version `4.0.1`, the default artifacts are:
 
 ```text
 ScipionAPI-v4.0.1.zip
 ScipionWeb-v4.0.1-dist.zip
 ```
 
-Only those two ZIP files need to be present in `--downloads-dir`.
+ScipionWeb is resolved by default as a sibling directory named `ScipionWeb`. Use `--web-root /path/to/ScipionWeb` or `SCIPIONWEB_RELEASE_WEB_ROOT` when it lives elsewhere.
+
+!!! note "`--version` is an assertion"
+    The release version normally comes from ScipionAPI and ScipionWeb themselves. Passing `--version vX.Y.Z` asks the command to verify that both packages already declare that version; it does not override them.
+
+---
+
+## Build and publish in one command
+
+To build fresh artifacts and then publish them:
+
+```bash
+./scripts/scipionapi release \
+  --upload \
+  --downloads-dir /path/to/release/files
+```
 
 `install.sh` is taken automatically from the current **ScipionAPI repository root**. You do not need to copy it into the release directory.
+
+### Upload existing archives without rebuilding
+
+The previous publication workflow is still available explicitly:
+
+```bash
+./scripts/scipionapi release \
+  --upload \
+  --no-build \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files
+```
+
+With `--no-build`, the paired ZIP files must already exist. `--no-build` is only valid together with `--upload`.
 
 ---
 
@@ -40,9 +77,10 @@ Only those two ZIP files need to be present in `--downloads-dir`.
   --dry-run
 ```
 
-A release dry run is read-only with respect to the remote server, but it is not purely local. It deliberately:
+A release dry run is read-only with respect to the remote server, but it is not purely local. With the default build behavior it **does create fresh local release ZIPs first**, then deliberately:
 
-- validates the local release files
+- validates the paired ScipionAPI/ScipionWeb versions
+- builds the Web distribution and local release files
 - connects to the configured release server over SSH
 - validates the remote release directory
 - downloads the current remote `manifest.json` when present
@@ -234,20 +272,22 @@ are reachable from the public release endpoint.
 ## Recommended maintainer workflow
 
 ```bash
-# 1. Build the matching ZIP files.
+# 1. Optionally build locally first and inspect the generated pair.
+./scripts/scipionapi release \
+  --downloads-dir /path/to/release/files
 
-# 2. Validate the real remote state and release plan.
+# 2. Rebuild and validate the real remote state and release plan.
 ./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files \
   --dry-run
 
-# 3. Publish after reviewing the plan.
+# 3. Rebuild and publish after reviewing the plan.
 ./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files
 ```
 
-That is the normal release path. Manual editing of the remote manifest should not be part of routine publication.
+For routine releases, the source versions in ScipionAPI and ScipionWeb are the source of truth. Add `--version vX.Y.Z` when you want an explicit version assertion.
+
+That is the normal release path. Manual ZIP assembly and manual editing of the remote manifest should not be part of routine publication.

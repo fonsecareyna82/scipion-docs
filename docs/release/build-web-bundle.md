@@ -30,15 +30,19 @@ Use the repository's normal lockfile/package-manager policy when preparing a pro
 
 ## 2. Build the production frontend
 
+The release builder invokes the production Web build as:
+
 ```bash
-npm run build
+npm run build:web
 ```
 
-The build produces the Vite distribution, normally:
+The release flow expects the compiled application at:
 
 ```text
-dist/
+dist/app/
 ```
+
+Running `./scripts/scipionapi release` from ScipionAPI performs this Web build automatically.
 
 ---
 
@@ -47,8 +51,8 @@ dist/
 Confirm the expected production files exist, including:
 
 ```text
-dist/index.html
-dist/assets/
+dist/app/index.html
+dist/app/assets/
 ```
 
 Also validate the behavior relevant to ScipionWeb:
@@ -62,7 +66,7 @@ Also validate the behavior relevant to ScipionWeb:
 A simple static server can help inspect the standalone build:
 
 ```bash
-npx serve dist
+npx serve dist/app
 ```
 
 This does not replace integrated API/Web validation.
@@ -88,19 +92,28 @@ This provides:
 
 ## 5. Package the Web release
 
-Create an archive that resolves to the built `dist` content when deployed.
-
-A straightforward form is:
+The supported release path packages the Web archive automatically:
 
 ```bash
-zip -r ScipionWeb-v4.0.1-dist.zip dist/
+./scripts/scipionapi release \
+  --downloads-dir /path/to/release/files
 ```
 
-The final filename must follow:
+The builder reads `dist/app/` and stores its contents under an `app/` root in the ZIP. For example:
+
+```text
+app/
+├── index.html
+└── assets/
+```
+
+The final filename follows:
 
 ```text
 ScipionWeb-vX.Y.Z-dist.zip
 ```
+
+Manual ZIP creation can still be useful for debugging packaging itself, but the normal release should use `scipionapi release` so its layout matches the installer/updater expectations.
 
 Do not use the old lowercase convention (`scipionweb-...`) in new releases; the installer/updater/publisher use the canonical `ScipionWeb-...` naming.
 
@@ -112,11 +125,11 @@ Do not use the old lowercase convention (`scipionweb-...`) in new releases; the 
 unzip -l ScipionWeb-v4.0.1-dist.zip | less
 ```
 
-Confirm that deployment can resolve a valid frontend distribution containing at least:
+Confirm that the release archive contains the expected packaged application root:
 
 ```text
-index.html
-assets/
+app/index.html
+app/assets/
 ```
 
 Then validate the archive with the matching ScipionAPI bundle in a disposable integrated installation.
@@ -125,19 +138,11 @@ Then validate the archive with the matching ScipionAPI bundle in a disposable in
 
 ## 7. Do not upload the Web ZIP manually
 
-Once both artifacts are ready in the same release directory:
-
-```text
-ScipionAPI-v4.0.1.zip
-ScipionWeb-v4.0.1-dist.zip
-```
-
-run the release publisher:
+The normal publisher rebuilds both artifacts before publication. Run:
 
 ```bash
 ./scripts/scipionapi release \
   --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files \
   --dry-run
 ```
@@ -147,7 +152,6 @@ After reviewing the plan:
 ```bash
 ./scripts/scipionapi release \
   --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files
 ```
 
@@ -158,13 +162,13 @@ The publisher handles checksums, remote validation, `install.sh`, and `manifest.
 ## Web bundle checklist
 
 - [ ] production build succeeds
-- [ ] `dist/index.html` exists
+- [ ] `dist/app/index.html` exists
 - [ ] static assets are present
 - [ ] SPA routing works
 - [ ] no installation-specific API URL is hardcoded
 - [ ] runtime API configuration works
 - [ ] filename is `ScipionWeb-vX.Y.Z-dist.zip`
-- [ ] archive extracts/resolves to a valid `dist`
+- [ ] archive contains a valid `app/` root
 - [ ] matching API artifact exists
 - [ ] integrated disposable-install validation succeeds
 

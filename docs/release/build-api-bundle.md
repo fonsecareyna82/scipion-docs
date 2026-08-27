@@ -89,17 +89,22 @@ The guided installer validates key layout elements before copying the extracted 
 
 ## 5. Create the release archive
 
-The exact packaging mechanism can be scripted or performed by CI, but the final file must use the canonical name:
+The supported maintainer path is to let the ScipionAPI release command build the archive:
+
+```bash
+./scripts/scipionapi release \
+  --downloads-dir /path/to/release/files
+```
+
+The release builder packages the managed ScipionAPI paths used by the updater and skips Python cache artifacts such as `__pycache__`, `.pyc`, and `.pyo`.
+
+The final file uses the canonical name:
 
 ```text
 ScipionAPI-vX.Y.Z.zip
 ```
 
-Example generic ZIP command from a prepared staging directory:
-
-```bash
-zip -r "ScipionAPI-v4.0.1.zip" <prepared-api-root>/
-```
+Manual ZIP creation is still useful for low-level packaging experiments, but it is not the normal release path because it can drift from the managed-path list used by `scipionapi update`.
 
 Do not introduce architecture suffixes such as `-linux-x86_64` unless the release format is intentionally changed everywhere. The current installer/updater/publisher convention is `ScipionAPI-vX.Y.Z.zip`.
 
@@ -133,7 +138,6 @@ The supported publication flow uploads the API and Web pair together:
 ```bash
 ./scripts/scipionapi release \
   --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files \
   --dry-run
 ```
@@ -143,7 +147,6 @@ Then, after reviewing the plan:
 ```bash
 ./scripts/scipionapi release \
   --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files
 ```
 
