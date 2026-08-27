@@ -1,14 +1,24 @@
 # Publish a ScipionWeb Release
 
-This page describes the **maintainer release workflow** after the API and Web bundles have been built and validated.
+This page describes the **maintainer release workflow** for building and publishing the paired API and Web artifacts.
 
-The publication command is intentionally responsible for the release-server bookkeeping. Maintainers should not normally edit the remote `manifest.json` by hand.
+The current release command builds fresh artifacts by default and is also responsible for the release-server bookkeeping. Maintainers should not normally build the paired ZIPs manually or edit the remote `manifest.json` by hand.
 
 ---
 
-## Required local artifacts
+## Required local source state
 
-Prepare a directory containing the matching release ZIP files:
+For the default release path you need:
+
+- the ScipionAPI repository containing the release command
+- the matching ScipionWeb repository
+- matching versions declared by both packages
+- a writable `--downloads-dir` for generated artifacts
+- `npm` available for the Web build
+
+ScipionWeb is resolved as a sibling of ScipionAPI by default. Use `--web-root` when needed.
+
+The command creates:
 
 ```text
 /path/to/release/files/
@@ -16,9 +26,10 @@ Prepare a directory containing the matching release ZIP files:
 └── ScipionWeb-vX.Y.Z-dist.zip
 ```
 
-The version passed to the publisher must match the filenames.
-
 `install.sh` does **not** need to be copied into this directory. The publisher takes the installer from the current ScipionAPI repository root.
+
+!!! note "Existing ZIP workflow"
+    If you intentionally want to publish already-built archives, use `--upload --no-build`. In that mode the paired ZIP files must already exist.
 
 ---
 
@@ -28,9 +39,10 @@ Before publication, make sure:
 
 - API tests are green
 - Web build succeeds
-- API and Web versions match
-- the API ZIP extracts with the expected packaged layout
-- the Web ZIP contains the expected `dist` content
+- API and Web versions match before running `release`
+- `npm run build:web` succeeds
+- the generated API ZIP extracts with the expected packaged layout
+- the generated Web ZIP contains the expected `app/` content
 - a clean or disposable installation can be provisioned
 - an existing disposable installation can resolve/update to the release
 
@@ -43,12 +55,13 @@ Do not publish first and validate later.
 ```bash
 ./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files \
   --dry-run
 ```
 
-This validates the actual publication target, not just local files. It connects to the configured release server, reads the current remote state, and prints the release plan without modifying remote files.
+This first builds fresh local API/Web artifacts, then validates the actual publication target. It connects to the configured release server, reads the current remote state, and prints the release plan without modifying remote files.
+
+The dry run therefore has **no remote mutation**, but it can create or replace files in the local `--downloads-dir`.
 
 The default publication target is:
 
@@ -91,7 +104,6 @@ After a successful dry run:
 ```bash
 ./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files
 ```
 
@@ -215,6 +227,6 @@ Then validate the real update in a disposable installation before considering th
 
 The complete publishing model is:
 
-> **Build two ZIPs → dry-run against Nolan → publish once → manifest updated automatically → validate install/update paths**
+> **Match API/Web versions → release builds the paired ZIPs → dry-run against Nolan → publish once → manifest updated automatically → validate install/update paths**
 
 That is the supported maintainer workflow.

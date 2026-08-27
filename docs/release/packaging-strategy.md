@@ -123,12 +123,12 @@ __pycache__/
 
 ## ScipionWeb bundle layout
 
-The Web release contains the compiled Vite distribution in a layout that the deployment logic can resolve to a valid `dist` directory.
+The release command builds ScipionWeb with `npm run build:web`, reads the compiled `dist/app/` directory, and packages that content under an `app/` root in the Web ZIP.
 
 Conceptually:
 
 ```text
-dist/
+app/
 ├── index.html
 └── assets/
 ```
@@ -194,28 +194,39 @@ The physical SSH target and the public HTTP URL are separate concerns.
 
 ---
 
-## Release publication model
+## Release build and publication model
 
-A maintainer prepares the two release ZIP files locally and runs:
+A maintainer normally lets the release command build the paired archives directly from the ScipionAPI and ScipionWeb source trees.
+
+The command first verifies that both packages declare the same version. An optional `--version vX.Y.Z` acts as an assertion against those package versions rather than overriding them.
+
+Build locally:
+
+```bash
+./scripts/scipionapi release \
+  --downloads-dir /path/to/release/files
+```
+
+Build fresh artifacts and validate the real remote publication plan:
 
 ```bash
 ./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files \
   --dry-run
 ```
 
-After reviewing the plan:
+After reviewing the plan, build and publish:
 
 ```bash
 ./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files
 ```
 
 The publisher handles `install.sh`, `manifest.json`, checksums, remote-state validation, and safe upload ordering.
+
+For intentionally pre-built artifacts, `--upload --no-build` preserves the older upload-only workflow.
 
 ---
 
@@ -302,6 +313,6 @@ The guided installer targets the integrated model because it is the normal user-
 
 The current ScipionWeb release philosophy is:
 
-> **Build paired ZIPs → publish through the release CLI → install through `install.sh` → update through `scripts/scipionapi update`**
+> **Match API/Web versions → build and publish through the release CLI → install through `install.sh` → update through `scripts/scipionapi update`**
 
 This keeps both the maintainer workflow and the end-user workflow deterministic and easy to audit.
