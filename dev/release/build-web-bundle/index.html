@@ -2689,16 +2689,18 @@
 <p>Use the repository's normal lockfile/package-manager policy when preparing a production release.</p>
 <hr />
 <h2 id="2-build-the-production-frontend">2. Build the production frontend<a class="headerlink" href="#2-build-the-production-frontend" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">npm run build
+<p>The release builder invokes the production Web build as:</p>
+<pre><code class="language-bash">npm run build:web
 </code></pre>
-<p>The build produces the Vite distribution, normally:</p>
-<pre><code class="language-text">dist/
+<p>The release flow expects the compiled application at:</p>
+<pre><code class="language-text">dist/app/
 </code></pre>
+<p>Running <code>./scripts/scipionapi release</code> from ScipionAPI performs this Web build automatically.</p>
 <hr />
 <h2 id="3-validate-the-build">3. Validate the build<a class="headerlink" href="#3-validate-the-build" title="Permanent link">&para;</a></h2>
 <p>Confirm the expected production files exist, including:</p>
-<pre><code class="language-text">dist/index.html
-dist/assets/
+<pre><code class="language-text">dist/app/index.html
+dist/app/assets/
 </code></pre>
 <p>Also validate the behavior relevant to ScipionWeb:</p>
 <ul>
@@ -2709,7 +2711,7 @@ dist/assets/
 <li>the build works with the matching ScipionAPI release</li>
 </ul>
 <p>A simple static server can help inspect the standalone build:</p>
-<pre><code class="language-bash">npx serve dist
+<pre><code class="language-bash">npx serve dist/app
 </code></pre>
 <p>This does not replace integrated API/Web validation.</p>
 <hr />
@@ -2726,40 +2728,40 @@ dist/assets/
 </ul>
 <hr />
 <h2 id="5-package-the-web-release">5. Package the Web release<a class="headerlink" href="#5-package-the-web-release" title="Permanent link">&para;</a></h2>
-<p>Create an archive that resolves to the built <code>dist</code> content when deployed.</p>
-<p>A straightforward form is:</p>
-<pre><code class="language-bash">zip -r ScipionWeb-v4.0.1-dist.zip dist/
+<p>The supported release path packages the Web archive automatically:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --downloads-dir /path/to/release/files
 </code></pre>
-<p>The final filename must follow:</p>
+<p>The builder reads <code>dist/app/</code> and stores its contents under an <code>app/</code> root in the ZIP. For example:</p>
+<pre><code class="language-text">app/
+├── index.html
+└── assets/
+</code></pre>
+<p>The final filename follows:</p>
 <pre><code class="language-text">ScipionWeb-vX.Y.Z-dist.zip
 </code></pre>
+<p>Manual ZIP creation can still be useful for debugging packaging itself, but the normal release should use <code>scipionapi release</code> so its layout matches the installer/updater expectations.</p>
 <p>Do not use the old lowercase convention (<code>scipionweb-...</code>) in new releases; the installer/updater/publisher use the canonical <code>ScipionWeb-...</code> naming.</p>
 <hr />
 <h2 id="6-inspect-the-archive">6. Inspect the archive<a class="headerlink" href="#6-inspect-the-archive" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash">unzip -l ScipionWeb-v4.0.1-dist.zip | less
 </code></pre>
-<p>Confirm that deployment can resolve a valid frontend distribution containing at least:</p>
-<pre><code class="language-text">index.html
-assets/
+<p>Confirm that the release archive contains the expected packaged application root:</p>
+<pre><code class="language-text">app/index.html
+app/assets/
 </code></pre>
 <p>Then validate the archive with the matching ScipionAPI bundle in a disposable integrated installation.</p>
 <hr />
 <h2 id="7-do-not-upload-the-web-zip-manually">7. Do not upload the Web ZIP manually<a class="headerlink" href="#7-do-not-upload-the-web-zip-manually" title="Permanent link">&para;</a></h2>
-<p>Once both artifacts are ready in the same release directory:</p>
-<pre><code class="language-text">ScipionAPI-v4.0.1.zip
-ScipionWeb-v4.0.1-dist.zip
-</code></pre>
-<p>run the release publisher:</p>
+<p>The normal publisher rebuilds both artifacts before publication. Run:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files \
   --dry-run
 </code></pre>
 <p>After reviewing the plan:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files
 </code></pre>
 <p>The publisher handles checksums, remote validation, <code>install.sh</code>, and <code>manifest.json</code>.</p>
@@ -2767,13 +2769,13 @@ ScipionWeb-v4.0.1-dist.zip
 <h2 id="web-bundle-checklist">Web bundle checklist<a class="headerlink" href="#web-bundle-checklist" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] production build succeeds</li>
-<li>[ ] <code>dist/index.html</code> exists</li>
+<li>[ ] <code>dist/app/index.html</code> exists</li>
 <li>[ ] static assets are present</li>
 <li>[ ] SPA routing works</li>
 <li>[ ] no installation-specific API URL is hardcoded</li>
 <li>[ ] runtime API configuration works</li>
 <li>[ ] filename is <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
-<li>[ ] archive extracts/resolves to a valid <code>dist</code></li>
+<li>[ ] archive contains a valid <code>app/</code> root</li>
 <li>[ ] matching API artifact exists</li>
 <li>[ ] integrated disposable-install validation succeeds</li>
 </ul>

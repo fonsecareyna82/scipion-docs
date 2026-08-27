@@ -2449,9 +2449,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#required-local-artifacts" class="md-nav__link">
+  <a href="#required-local-source-state" class="md-nav__link">
     <span class="md-ellipsis">
-      Required local artifacts
+      Required local source state
     </span>
   </a>
   
@@ -2644,9 +2644,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#required-local-artifacts" class="md-nav__link">
+  <a href="#required-local-source-state" class="md-nav__link">
     <span class="md-ellipsis">
-      Required local artifacts
+      Required local source state
     </span>
   </a>
   
@@ -2794,26 +2794,39 @@
 
 
 <h1 id="publish-a-scipionweb-release">Publish a ScipionWeb Release<a class="headerlink" href="#publish-a-scipionweb-release" title="Permanent link">&para;</a></h1>
-<p>This page describes the <strong>maintainer release workflow</strong> after the API and Web bundles have been built and validated.</p>
-<p>The publication command is intentionally responsible for the release-server bookkeeping. Maintainers should not normally edit the remote <code>manifest.json</code> by hand.</p>
+<p>This page describes the <strong>maintainer release workflow</strong> for building and publishing the paired API and Web artifacts.</p>
+<p>The current release command builds fresh artifacts by default and is also responsible for the release-server bookkeeping. Maintainers should not normally build the paired ZIPs manually or edit the remote <code>manifest.json</code> by hand.</p>
 <hr />
-<h2 id="required-local-artifacts">Required local artifacts<a class="headerlink" href="#required-local-artifacts" title="Permanent link">&para;</a></h2>
-<p>Prepare a directory containing the matching release ZIP files:</p>
+<h2 id="required-local-source-state">Required local source state<a class="headerlink" href="#required-local-source-state" title="Permanent link">&para;</a></h2>
+<p>For the default release path you need:</p>
+<ul>
+<li>the ScipionAPI repository containing the release command</li>
+<li>the matching ScipionWeb repository</li>
+<li>matching versions declared by both packages</li>
+<li>a writable <code>--downloads-dir</code> for generated artifacts</li>
+<li><code>npm</code> available for the Web build</li>
+</ul>
+<p>ScipionWeb is resolved as a sibling of ScipionAPI by default. Use <code>--web-root</code> when needed.</p>
+<p>The command creates:</p>
 <pre><code class="language-text">/path/to/release/files/
 ├── ScipionAPI-vX.Y.Z.zip
 └── ScipionWeb-vX.Y.Z-dist.zip
 </code></pre>
-<p>The version passed to the publisher must match the filenames.</p>
 <p><code>install.sh</code> does <strong>not</strong> need to be copied into this directory. The publisher takes the installer from the current ScipionAPI repository root.</p>
+<div class="admonition note">
+<p class="admonition-title">Existing ZIP workflow</p>
+<p>If you intentionally want to publish already-built archives, use <code>--upload --no-build</code>. In that mode the paired ZIP files must already exist.</p>
+</div>
 <hr />
 <h2 id="1-validate-the-release-locally">1. Validate the release locally<a class="headerlink" href="#1-validate-the-release-locally" title="Permanent link">&para;</a></h2>
 <p>Before publication, make sure:</p>
 <ul>
 <li>API tests are green</li>
 <li>Web build succeeds</li>
-<li>API and Web versions match</li>
-<li>the API ZIP extracts with the expected packaged layout</li>
-<li>the Web ZIP contains the expected <code>dist</code> content</li>
+<li>API and Web versions match before running <code>release</code></li>
+<li><code>npm run build:web</code> succeeds</li>
+<li>the generated API ZIP extracts with the expected packaged layout</li>
+<li>the generated Web ZIP contains the expected <code>app/</code> content</li>
 <li>a clean or disposable installation can be provisioned</li>
 <li>an existing disposable installation can resolve/update to the release</li>
 </ul>
@@ -2822,11 +2835,11 @@
 <h2 id="2-run-the-real-remote-dry-run">2. Run the real remote dry run<a class="headerlink" href="#2-run-the-real-remote-dry-run" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files \
   --dry-run
 </code></pre>
-<p>This validates the actual publication target, not just local files. It connects to the configured release server, reads the current remote state, and prints the release plan without modifying remote files.</p>
+<p>This first builds fresh local API/Web artifacts, then validates the actual publication target. It connects to the configured release server, reads the current remote state, and prints the release plan without modifying remote files.</p>
+<p>The dry run therefore has <strong>no remote mutation</strong>, but it can create or replace files in the local <code>--downloads-dir</code>.</p>
 <p>The default publication target is:</p>
 <pre><code class="language-text">scipion@nolan.cnb.csic.es:/home/scipion/scipionfiles/downloads/scipion/scipionWeb/
 </code></pre>
@@ -2855,7 +2868,6 @@
 <p>After a successful dry run:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files
 </code></pre>
 <p>The command asks for confirmation before the real upload.</p>
@@ -2938,7 +2950,7 @@ chmod +x install.sh
 <h2 id="release-principle">Release principle<a class="headerlink" href="#release-principle" title="Permanent link">&para;</a></h2>
 <p>The complete publishing model is:</p>
 <blockquote>
-<p><strong>Build two ZIPs → dry-run against Nolan → publish once → manifest updated automatically → validate install/update paths</strong></p>
+<p><strong>Match API/Web versions → release builds the paired ZIPs → dry-run against Nolan → publish once → manifest updated automatically → validate install/update paths</strong></p>
 </blockquote>
 <p>That is the supported maintainer workflow.</p>
 

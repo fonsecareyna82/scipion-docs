@@ -2732,12 +2732,15 @@ README.rst
 </div>
 <hr />
 <h2 id="5-create-the-release-archive">5. Create the release archive<a class="headerlink" href="#5-create-the-release-archive" title="Permanent link">&para;</a></h2>
-<p>The exact packaging mechanism can be scripted or performed by CI, but the final file must use the canonical name:</p>
+<p>The supported maintainer path is to let the ScipionAPI release command build the archive:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --downloads-dir /path/to/release/files
+</code></pre>
+<p>The release builder packages the managed ScipionAPI paths used by the updater and skips Python cache artifacts such as <code>__pycache__</code>, <code>.pyc</code>, and <code>.pyo</code>.</p>
+<p>The final file uses the canonical name:</p>
 <pre><code class="language-text">ScipionAPI-vX.Y.Z.zip
 </code></pre>
-<p>Example generic ZIP command from a prepared staging directory:</p>
-<pre><code class="language-bash">zip -r &quot;ScipionAPI-v4.0.1.zip&quot; &lt;prepared-api-root&gt;/
-</code></pre>
+<p>Manual ZIP creation is still useful for low-level packaging experiments, but it is not the normal release path because it can drift from the managed-path list used by <code>scipionapi update</code>.</p>
 <p>Do not introduce architecture suffixes such as <code>-linux-x86_64</code> unless the release format is intentionally changed everywhere. The current installer/updater/publisher convention is <code>ScipionAPI-vX.Y.Z.zip</code>.</p>
 <hr />
 <h2 id="6-inspect-the-archive">6. Inspect the archive<a class="headerlink" href="#6-inspect-the-archive" title="Permanent link">&para;</a></h2>
@@ -2759,14 +2762,12 @@ README.rst
 <p>The supported publication flow uploads the API and Web pair together:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files \
   --dry-run
 </code></pre>
 <p>Then, after reviewing the plan:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files
 </code></pre>
 <p>The publisher calculates SHA256 metadata and updates <code>manifest.json</code> automatically. A separate <code>.sha256</code> sidecar file is not required by the current release flow.</p>

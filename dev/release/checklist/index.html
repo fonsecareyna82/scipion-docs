@@ -2495,9 +2495,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#local-release-directory" class="md-nav__link">
+  <a href="#local-release-build" class="md-nav__link">
     <span class="md-ellipsis">
-      Local release directory
+      Local release build
     </span>
   </a>
   
@@ -2525,6 +2525,15 @@
   <a href="#real-remote-dry-run-required" class="md-nav__link">
     <span class="md-ellipsis">
       Real remote dry run — required
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#existing-archive-compatibility-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Existing-archive compatibility path
     </span>
   </a>
   
@@ -2672,9 +2681,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#local-release-directory" class="md-nav__link">
+  <a href="#local-release-build" class="md-nav__link">
     <span class="md-ellipsis">
-      Local release directory
+      Local release build
     </span>
   </a>
   
@@ -2702,6 +2711,15 @@
   <a href="#real-remote-dry-run-required" class="md-nav__link">
     <span class="md-ellipsis">
       Real remote dry run — required
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#existing-archive-compatibility-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Existing-archive compatibility path
     </span>
   </a>
   
@@ -2799,7 +2817,7 @@
 
 <h1 id="release-checklist">Release Checklist<a class="headerlink" href="#release-checklist" title="Permanent link">&para;</a></h1>
 <p>Use this checklist before publishing any ScipionWeb release.</p>
-<p>The current supported publication path is the ScipionAPI <code>release --upload</code> command. Routine releases should <strong>not</strong> require manual <code>manifest.json</code> editing or manual SSH/rsync commands.</p>
+<p>The current supported publication path is the ScipionAPI <code>release</code> command. It builds the paired API/Web artifacts by default, and <code>release --upload</code> publishes them. Routine releases should <strong>not</strong> require manual ZIP assembly, manual <code>manifest.json</code> editing, or manual SSH/rsync commands.</p>
 <hr />
 <h2 id="version-and-source-state">Version and source state<a class="headerlink" href="#version-and-source-state" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2826,7 +2844,7 @@
 <h2 id="web-bundle">Web bundle<a class="headerlink" href="#web-bundle" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] Production build succeeds</li>
-<li>[ ] <code>dist</code> contains the expected assets</li>
+<li>[ ] <code>dist/app</code> contains the expected assets</li>
 <li>[ ] SPA routing works</li>
 <li>[ ] No installation-specific API URL is hardcoded</li>
 <li>[ ] Runtime API configuration works as expected</li>
@@ -2834,20 +2852,37 @@
 <li>[ ] Bundle name is exactly <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
 </ul>
 <hr />
-<h2 id="local-release-directory">Local release directory<a class="headerlink" href="#local-release-directory" title="Permanent link">&para;</a></h2>
-<p>The publication directory only needs the paired ZIP files:</p>
+<h2 id="local-release-build">Local release build<a class="headerlink" href="#local-release-build" title="Permanent link">&para;</a></h2>
+<p>The default <code>release</code> flow creates the paired ZIP files in <code>--downloads-dir</code>; they do not need to exist beforehand.</p>
+<p>Before building:</p>
+<ul>
+<li>[ ] ScipionAPI declares the intended version</li>
+<li>[ ] ScipionWeb <code>package.json</code> declares the same version</li>
+<li>[ ] ScipionWeb is available as the sibling repository or through <code>--web-root</code></li>
+<li>[ ] <code>npm</code> and frontend dependencies are available</li>
+</ul>
+<p>Build-only command:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --downloads-dir /path/to/release/files
+</code></pre>
+<p>After building:</p>
 <pre><code class="language-text">/path/to/release/files/
 ├── ScipionAPI-vX.Y.Z.zip
 └── ScipionWeb-vX.Y.Z-dist.zip
 </code></pre>
 <p>Checklist:</p>
 <ul>
+<li>[ ] <code>npm run build:web</code> completed successfully</li>
 <li>[ ] API ZIP exists</li>
 <li>[ ] Web ZIP exists</li>
-<li>[ ] filenames match <code>--version</code></li>
+<li>[ ] filenames reflect the package version</li>
 <li>[ ] archives open/extract cleanly</li>
 <li>[ ] API and Web are the intended pair</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title"><code>--version</code> does not set package versions</p>
+<p>Use <code>--version vX.Y.Z</code> only when you want the release command to assert that ScipionAPI and ScipionWeb already declare that version.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">No local <code>manifest.json</code> required</p>
 <p>The release publisher downloads the current remote manifest when one exists, preserves previous releases, adds the new release, and publishes the updated manifest automatically.</p>
@@ -2884,10 +2919,9 @@
 </ul>
 <hr />
 <h2 id="real-remote-dry-run-required">Real remote dry run — required<a class="headerlink" href="#real-remote-dry-run-required" title="Permanent link">&para;</a></h2>
-<p>Run the publisher against the actual release target before any mutation:</p>
+<p>Run the publisher against the actual release target before any remote mutation. The default command rebuilds the local artifacts before evaluating the remote plan:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files \
   --dry-run
 </code></pre>
@@ -2910,6 +2944,16 @@
 Remote: /home/scipion/scipionfiles/downloads/scipion/scipionWeb
 Public: https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
 </code></pre>
+<hr />
+<h2 id="existing-archive-compatibility-path">Existing-archive compatibility path<a class="headerlink" href="#existing-archive-compatibility-path" title="Permanent link">&para;</a></h2>
+<p>To publish previously generated ZIP files without rebuilding them:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --no-build \
+  --version vX.Y.Z \
+  --downloads-dir /path/to/release/files
+</code></pre>
+<p>Use this path only when reusing intentionally prepared artifacts. The normal release path builds fresh archives.</p>
 <hr />
 <h2 id="existing-version-protection">Existing-version protection<a class="headerlink" href="#existing-version-protection" title="Permanent link">&para;</a></h2>
 <p>For a normal new release:</p>
@@ -2935,7 +2979,6 @@ Public: https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
 <p>After the dry run is correct:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files
 </code></pre>
 <p>During the real publication, verify the command completes the intended order:</p>

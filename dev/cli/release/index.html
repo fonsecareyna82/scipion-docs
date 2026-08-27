@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#release-publisher" class="md-skip">
+        <a href="#release-builder-and-publisher" class="md-skip">
           Skip to content
         </a>
       
@@ -1778,11 +1778,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#minimal-release-command" class="md-nav__link">
+  <a href="#default-release-build" class="md-nav__link">
     <span class="md-ellipsis">
-      Minimal release command
+      Default release build
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-and-publish-in-one-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build and publish in one command
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build and publish in one command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload-existing-archives-without-rebuilding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upload existing archives without rebuilding
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2634,11 +2658,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#minimal-release-command" class="md-nav__link">
+  <a href="#default-release-build" class="md-nav__link">
     <span class="md-ellipsis">
-      Minimal release command
+      Default release build
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-and-publish-in-one-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build and publish in one command
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build and publish in one command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload-existing-archives-without-rebuilding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upload existing archives without rebuilding
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2759,23 +2807,51 @@
   
 
 
-<h1 id="release-publisher">Release Publisher<a class="headerlink" href="#release-publisher" title="Permanent link">&para;</a></h1>
-<p>The <code>release</code> command publishes a paired <strong>ScipionAPI + ScipionWeb</strong> release to the official download server.</p>
-<p>It is intended for release maintainers and replaces the old manual workflow of copying ZIP files, calculating checksums, editing <code>manifest.json</code>, and uploading the manifest by hand.</p>
+<h1 id="release-builder-and-publisher">Release Builder and Publisher<a class="headerlink" href="#release-builder-and-publisher" title="Permanent link">&para;</a></h1>
+<p>The <code>release</code> command builds a paired <strong>ScipionAPI + ScipionWeb</strong> release locally and can optionally publish it to the official download server.</p>
+<p>It is intended for release maintainers and replaces the old manual workflow of separately building ZIP files, calculating checksums, editing <code>manifest.json</code>, and uploading release files by hand.</p>
 <hr />
-<h2 id="minimal-release-command">Minimal release command<a class="headerlink" href="#minimal-release-command" title="Permanent link">&para;</a></h2>
-<p>If the release directory contains the correctly named API and Web ZIP files:</p>
+<h2 id="default-release-build">Default release build<a class="headerlink" href="#default-release-build" title="Permanent link">&para;</a></h2>
+<p>From the ScipionAPI repository, with ScipionWeb available as a sibling repository, run:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
-  --upload \
-  --version v4.0.1 \
   --downloads-dir /path/to/release/files
 </code></pre>
-<p>The expected default filenames are:</p>
+<p>By default the command:</p>
+<ol>
+<li>reads the ScipionAPI version from the CLI package</li>
+<li>reads the ScipionWeb version from <code>package.json</code></li>
+<li>refuses to continue unless both versions match</li>
+<li>runs <code>npm run build:web</code> in ScipionWeb</li>
+<li>builds the API archive from the managed ScipionAPI release paths</li>
+<li>packages the compiled Web distribution</li>
+<li>creates the paired release ZIP files in <code>--downloads-dir</code></li>
+</ol>
+<p>For version <code>4.0.1</code>, the default artifacts are:</p>
 <pre><code class="language-text">ScipionAPI-v4.0.1.zip
 ScipionWeb-v4.0.1-dist.zip
 </code></pre>
-<p>Only those two ZIP files need to be present in <code>--downloads-dir</code>.</p>
+<p>ScipionWeb is resolved by default as a sibling directory named <code>ScipionWeb</code>. Use <code>--web-root /path/to/ScipionWeb</code> or <code>SCIPIONWEB_RELEASE_WEB_ROOT</code> when it lives elsewhere.</p>
+<div class="admonition note">
+<p class="admonition-title"><code>--version</code> is an assertion</p>
+<p>The release version normally comes from ScipionAPI and ScipionWeb themselves. Passing <code>--version vX.Y.Z</code> asks the command to verify that both packages already declare that version; it does not override them.</p>
+</div>
+<hr />
+<h2 id="build-and-publish-in-one-command">Build and publish in one command<a class="headerlink" href="#build-and-publish-in-one-command" title="Permanent link">&para;</a></h2>
+<p>To build fresh artifacts and then publish them:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --downloads-dir /path/to/release/files
+</code></pre>
 <p><code>install.sh</code> is taken automatically from the current <strong>ScipionAPI repository root</strong>. You do not need to copy it into the release directory.</p>
+<h3 id="upload-existing-archives-without-rebuilding">Upload existing archives without rebuilding<a class="headerlink" href="#upload-existing-archives-without-rebuilding" title="Permanent link">&para;</a></h3>
+<p>The previous publication workflow is still available explicitly:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --upload \
+  --no-build \
+  --version v4.0.1 \
+  --downloads-dir /path/to/release/files
+</code></pre>
+<p>With <code>--no-build</code>, the paired ZIP files must already exist. <code>--no-build</code> is only valid together with <code>--upload</code>.</p>
 <hr />
 <h2 id="always-run-a-dry-run-first">Always run a dry run first<a class="headerlink" href="#always-run-a-dry-run-first" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash">./scripts/scipionapi release \
@@ -2784,9 +2860,10 @@ ScipionWeb-v4.0.1-dist.zip
   --downloads-dir /path/to/release/files \
   --dry-run
 </code></pre>
-<p>A release dry run is read-only with respect to the remote server, but it is not purely local. It deliberately:</p>
+<p>A release dry run is read-only with respect to the remote server, but it is not purely local. With the default build behavior it <strong>does create fresh local release ZIPs first</strong>, then deliberately:</p>
 <ul>
-<li>validates the local release files</li>
+<li>validates the paired ScipionAPI/ScipionWeb versions</li>
+<li>builds the Web distribution and local release files</li>
 <li>connects to the configured release server over SSH</li>
 <li>validates the remote release directory</li>
 <li>downloads the current remote <code>manifest.json</code> when present</li>
@@ -2911,22 +2988,23 @@ install.sh
 <p>are reachable from the public release endpoint.</p>
 <hr />
 <h2 id="recommended-maintainer-workflow">Recommended maintainer workflow<a class="headerlink" href="#recommended-maintainer-workflow" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash"># 1. Build the matching ZIP files.
+<pre><code class="language-bash"># 1. Optionally build locally first and inspect the generated pair.
+./scripts/scipionapi release \
+  --downloads-dir /path/to/release/files
 
-# 2. Validate the real remote state and release plan.
+# 2. Rebuild and validate the real remote state and release plan.
 ./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files \
   --dry-run
 
-# 3. Publish after reviewing the plan.
+# 3. Rebuild and publish after reviewing the plan.
 ./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files
 </code></pre>
-<p>That is the normal release path. Manual editing of the remote manifest should not be part of routine publication.</p>
+<p>For routine releases, the source versions in ScipionAPI and ScipionWeb are the source of truth. Add <code>--version vX.Y.Z</code> when you want an explicit version assertion.</p>
+<p>That is the normal release path. Manual ZIP assembly and manual editing of the remote manifest should not be part of routine publication.</p>
 
 
 

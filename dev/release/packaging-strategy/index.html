@@ -2458,9 +2458,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-publication-model" class="md-nav__link">
+  <a href="#release-build-and-publication-model" class="md-nav__link">
     <span class="md-ellipsis">
-      Release publication model
+      Release build and publication model
     </span>
   </a>
   
@@ -2719,9 +2719,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-publication-model" class="md-nav__link">
+  <a href="#release-build-and-publication-model" class="md-nav__link">
     <span class="md-ellipsis">
-      Release publication model
+      Release build and publication model
     </span>
   </a>
   
@@ -2907,9 +2907,9 @@ __pycache__/
 </code></pre>
 <hr />
 <h2 id="scipionweb-bundle-layout">ScipionWeb bundle layout<a class="headerlink" href="#scipionweb-bundle-layout" title="Permanent link">&para;</a></h2>
-<p>The Web release contains the compiled Vite distribution in a layout that the deployment logic can resolve to a valid <code>dist</code> directory.</p>
+<p>The release command builds ScipionWeb with <code>npm run build:web</code>, reads the compiled <code>dist/app/</code> directory, and packages that content under an <code>app/</code> root in the Web ZIP.</p>
 <p>Conceptually:</p>
-<pre><code class="language-text">dist/
+<pre><code class="language-text">app/
 ├── index.html
 └── assets/
 </code></pre>
@@ -2956,21 +2956,26 @@ __pycache__/
 </code></pre>
 <p>The physical SSH target and the public HTTP URL are separate concerns.</p>
 <hr />
-<h2 id="release-publication-model">Release publication model<a class="headerlink" href="#release-publication-model" title="Permanent link">&para;</a></h2>
-<p>A maintainer prepares the two release ZIP files locally and runs:</p>
+<h2 id="release-build-and-publication-model">Release build and publication model<a class="headerlink" href="#release-build-and-publication-model" title="Permanent link">&para;</a></h2>
+<p>A maintainer normally lets the release command build the paired archives directly from the ScipionAPI and ScipionWeb source trees.</p>
+<p>The command first verifies that both packages declare the same version. An optional <code>--version vX.Y.Z</code> acts as an assertion against those package versions rather than overriding them.</p>
+<p>Build locally:</p>
+<pre><code class="language-bash">./scripts/scipionapi release \
+  --downloads-dir /path/to/release/files
+</code></pre>
+<p>Build fresh artifacts and validate the real remote publication plan:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files \
   --dry-run
 </code></pre>
-<p>After reviewing the plan:</p>
+<p>After reviewing the plan, build and publish:</p>
 <pre><code class="language-bash">./scripts/scipionapi release \
   --upload \
-  --version vX.Y.Z \
   --downloads-dir /path/to/release/files
 </code></pre>
 <p>The publisher handles <code>install.sh</code>, <code>manifest.json</code>, checksums, remote-state validation, and safe upload ordering.</p>
+<p>For intentionally pre-built artifacts, <code>--upload --no-build</code> preserves the older upload-only workflow.</p>
 <hr />
 <h2 id="safe-publication-ordering">Safe publication ordering<a class="headerlink" href="#safe-publication-ordering" title="Permanent link">&para;</a></h2>
 <p>Remote artifacts are published in this order:</p>
@@ -3047,7 +3052,7 @@ __pycache__/
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The current ScipionWeb release philosophy is:</p>
 <blockquote>
-<p><strong>Build paired ZIPs → publish through the release CLI → install through <code>install.sh</code> → update through <code>scripts/scipionapi update</code></strong></p>
+<p><strong>Match API/Web versions → build and publish through the release CLI → install through <code>install.sh</code> → update through <code>scripts/scipionapi update</code></strong></p>
 </blockquote>
 <p>This keeps both the maintainer workflow and the end-user workflow deterministic and easy to audit.</p>
 
