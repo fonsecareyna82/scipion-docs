@@ -2089,7 +2089,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2771,14 +2771,14 @@
 <ul>
 <li>browser network errors</li>
 <li>backend and worker logs</li>
-<li>Redis and Celery health</li>
+<li>Valkey and Celery health</li>
 <li>whether the protocol parameters were saved correctly before launch</li>
 <li>whether you are looking at the correct protocol run and project state</li>
 </ul>
 <p>Useful checks for administrators or developers:</p>
 <pre><code>./scripts/scipionapi status
 ./scripts/scipionapi logs
-redis-cli ping
+valkey-cli ping
 </code></pre>
 <p>If tasks remain pending, see <a href="../../support/known-issues/">Known Issues and Workarounds</a>.</p>
 

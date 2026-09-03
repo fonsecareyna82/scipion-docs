@@ -1987,7 +1987,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2675,7 +2675,7 @@
 <h2 id="configuration-layers">Configuration layers<a class="headerlink" href="#configuration-layers" title="Permanent link">&para;</a></h2>
 <p>ScipionWeb configuration operates at three levels:</p>
 <ol>
-<li><strong>System</strong> — Conda, PostgreSQL, Redis, OS/network services</li>
+<li><strong>System</strong> — Conda, PostgreSQL, Valkey, OS/network services</li>
 <li><strong>Runtime workspace</strong> — <code>SCIPION_HOME</code></li>
 <li><strong>Application</strong> — <code>.env</code> values and deployment mode</li>
 </ol>
@@ -2703,7 +2703,7 @@ web/
 <p>It commonly defines:</p>
 <ul>
 <li>PostgreSQL connection/bootstrap values</li>
-<li>Redis/Celery settings</li>
+<li>Valkey/Celery settings</li>
 <li>API host and selected port</li>
 <li>logs/projects/Web paths</li>
 <li><code>SECRET_KEY</code></li>
@@ -2729,7 +2729,7 @@ web/
 <p>A normal local installation commonly uses:</p>
 <pre><code class="language-text">SCIPION_HOME=&lt;installation-root&gt;/scipion_home
 PostgreSQL=localhost:5432
-Redis=localhost:6379
+Valkey=localhost:6379
 </code></pre>
 <p>The API/Web port is intentionally <strong>not documented as a fixed <code>8080</code> default</strong>.</p>
 <p>When installation/provisioning is run without <code>--api-port</code>:</p>

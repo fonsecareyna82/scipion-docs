@@ -2081,7 +2081,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2657,7 +2657,7 @@
 
 <h1 id="doctor-command"><code>doctor</code> Command<a class="headerlink" href="#doctor-command" title="Permanent link">&para;</a></h1>
 <p>The <code>doctor</code> command runs <strong>read-only diagnostics</strong> for a ScipionAPI installation.</p>
-<p>Use it to verify the repository layout, Python environment, Conda setup, <code>.env</code> configuration, database connectivity, Redis broker connectivity, imports, runtime PID files, and optional Web deployment state.</p>
+<p>Use it to verify the repository layout, Python environment, Conda setup, <code>.env</code> configuration, database connectivity, Valkey broker connectivity, imports, runtime PID files, and optional Web deployment state.</p>
 <div class="admonition tip">
 <p class="admonition-title">Safe to run anytime</p>
 <p><code>doctor</code> does not modify files, databases, Conda environments, or running services. It is designed for troubleshooting and validation.</p>
@@ -2687,10 +2687,10 @@
 <li>active Conda environment</li>
 <li><code>.env</code> presence and required variables</li>
 <li><code>SCIPION_HOME</code>, logs, projects, and Scipion config files</li>
-<li>availability of commands such as <code>alembic</code>, <code>psql</code>, and <code>redis-server</code></li>
+<li>availability of commands such as <code>alembic</code>, <code>psql</code>, and <code>valkey-server</code></li>
 <li>imports for key Python dependencies</li>
 <li>PostgreSQL connectivity using <code>DATABASE_URL</code></li>
-<li>Redis broker TCP connectivity using <code>BROKER_URL</code></li>
+<li>Valkey broker TCP connectivity using <code>BROKER_URL</code></li>
 <li>API TCP reachability</li>
 <li>API and worker PID files</li>
 <li>integrated Web bundle layout when <code>SERVE_WEB=1</code></li>
@@ -2748,8 +2748,8 @@
 <p>Check <code>DATABASE_URL</code>, local PostgreSQL service status, role permissions, and whether the target database exists.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Redis is unreachable</p>
-<p>Start Redis or update <code>BROKER_URL</code> to point to the correct broker.</p>
+<p class="admonition-title">Valkey is unreachable</p>
+<p>Start Valkey or update <code>BROKER_URL</code> to point to the correct broker.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">API TCP check failed</p>

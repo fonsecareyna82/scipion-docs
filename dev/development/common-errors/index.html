@@ -1985,7 +1985,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2418,13 +2418,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-redis-connection-refused" class="md-nav__link">
+  <a href="#4-valkey-connection-refused" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Redis connection refused
+      4. Valkey connection refused
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Redis connection refused">
+    <nav class="md-nav" aria-label="4. Valkey connection refused">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2940,13 +2940,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-redis-connection-refused" class="md-nav__link">
+  <a href="#4-valkey-connection-refused" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Redis connection refused
+      4. Valkey connection refused
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Redis connection refused">
+    <nav class="md-nav" aria-label="4. Valkey connection refused">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3167,14 +3167,14 @@
 <pre><code>conda activate scipion4Web
 ./scripts/scipionapi status
 curl http://localhost:8080/health
-redis-cli ping
+valkey-cli ping
 </code></pre>
 <p>Then confirm:</p>
 <ul>
 <li>you are using the expected Conda environment</li>
 <li><code>SCIPION_HOME</code> points to the right runtime workspace</li>
 <li><code>.env</code> exists and contains the expected values</li>
-<li>PostgreSQL and Redis are reachable</li>
+<li>PostgreSQL and Valkey are reachable</li>
 <li>API and Celery are reading the same runtime configuration</li>
 </ul>
 <hr />
@@ -3221,11 +3221,11 @@ test -f &quot;$SCIPION_HOME/.env&quot; &amp;&amp; echo &quot;.env found&quot;
 </ul>
 <p>For real deployments, create a database backup before stamping or repairing migration state.</p>
 <hr />
-<h2 id="4-redis-connection-refused">4. Redis connection refused<a class="headerlink" href="#4-redis-connection-refused" title="Permanent link">&para;</a></h2>
+<h2 id="4-valkey-connection-refused">4. Valkey connection refused<a class="headerlink" href="#4-valkey-connection-refused" title="Permanent link">&para;</a></h2>
 <h3 id="fix_3">Fix<a class="headerlink" href="#fix_3" title="Permanent link">&para;</a></h3>
-<pre><code>sudo systemctl start redis-server
-sudo systemctl status redis-server
-redis-cli ping
+<pre><code>sudo systemctl start valkey-server
+sudo systemctl status valkey-server
+valkey-cli ping
 </code></pre>
 <p>Expected output:</p>
 <pre><code class="language-text">PONG
@@ -3235,7 +3235,7 @@ redis-cli ping
 <h3 id="check">Check<a class="headerlink" href="#check" title="Permanent link">&para;</a></h3>
 <ul>
 <li>the worker is running</li>
-<li>Redis is reachable</li>
+<li>Valkey is reachable</li>
 <li>the broker URL matches between API and worker</li>
 <li>worker logs show task receipt/execution</li>
 <li><code>SCIPION_HOME</code> is available to the worker process</li>
@@ -3243,7 +3243,7 @@ redis-cli ping
 <h3 id="useful-commands">Useful commands<a class="headerlink" href="#useful-commands" title="Permanent link">&para;</a></h3>
 <pre><code>./scripts/scipionapi status
 ./scripts/scipionapi logs
-redis-cli ping
+valkey-cli ping
 </code></pre>
 <p>If tasks stay in <code>PENDING</code>, confirm both the API and the worker are using the same runtime configuration.</p>
 <hr />
@@ -3312,7 +3312,7 @@ ls -ld &quot;$SCIPION_HOME/logs&quot;
 <ul>
 <li>deployed services that do not start correctly</li>
 <li>database connectivity in shared or production environments</li>
-<li>Redis or Celery runtime mismatches</li>
+<li>Valkey or Celery runtime mismatches</li>
 <li>authentication problems that reproduce outside local development</li>
 </ul>
 <p>For recurring operational problems, also check <a href="../support/known-issues/">Known Issues and Workarounds</a>.</p>
@@ -3321,7 +3321,7 @@ ls -ld &quot;$SCIPION_HOME/logs&quot;
 <ol>
 <li>Check the active Conda environment</li>
 <li>Validate <code>SCIPION_HOME</code> and <code>.env</code></li>
-<li>Test PostgreSQL and Redis reachability</li>
+<li>Test PostgreSQL and Valkey reachability</li>
 <li>Review API and Celery logs</li>
 <li>Restart services and retry the failing workflow</li>
 </ol>

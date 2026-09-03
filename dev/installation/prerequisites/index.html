@@ -676,9 +676,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-install-redis" class="md-nav__link">
+  <a href="#3-install-valkey" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Install Redis
+      3. Install Valkey
     </span>
   </a>
   
@@ -758,9 +758,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#redis-is-not-responding" class="md-nav__link">
+  <a href="#valkey-is-not-responding" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis is not responding
+      Valkey is not responding
     </span>
   </a>
   
@@ -2230,7 +2230,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2824,9 +2824,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-install-redis" class="md-nav__link">
+  <a href="#3-install-valkey" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Install Redis
+      3. Install Valkey
     </span>
   </a>
   
@@ -2906,9 +2906,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#redis-is-not-responding" class="md-nav__link">
+  <a href="#valkey-is-not-responding" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis is not responding
+      Valkey is not responding
     </span>
   </a>
   
@@ -2972,7 +2972,7 @@
 <li><strong>Linux</strong></li>
 <li><strong>Conda</strong> (Miniconda or Anaconda)</li>
 <li><strong>PostgreSQL</strong></li>
-<li><strong>Redis</strong></li>
+<li><strong>Valkey</strong></li>
 <li><strong>sudo privileges</strong> for the common local PostgreSQL bootstrap path</li>
 <li><strong>curl or wget</strong></li>
 <li><strong>unzip</strong></li>
@@ -3051,17 +3051,17 @@ sudo -u postgres psql -d postgres -c &quot;SELECT 1;&quot;
 <p>The guided preflight validates this administrative path before installation.</p>
 <p>If your deployment uses a custom or remote PostgreSQL setup, use the manual installation documentation instead of relying on the default local bootstrap.</p>
 <hr />
-<h2 id="3-install-redis">3. Install Redis<a class="headerlink" href="#3-install-redis" title="Permanent link">&para;</a></h2>
-<p>Redis is used as the <strong>Celery broker</strong> and <strong>result backend</strong>.</p>
+<h2 id="3-install-valkey">3. Install Valkey<a class="headerlink" href="#3-install-valkey" title="Permanent link">&para;</a></h2>
+<p>Valkey is used as the <strong>Celery broker</strong> and <strong>result backend</strong>.</p>
 <p>Install it:</p>
 <pre><code class="language-bash">sudo apt update
-sudo apt install -y redis-server
+sudo apt install -y valkey-server valkey-tools
 </code></pre>
 <p>Enable and start it:</p>
-<pre><code class="language-bash">sudo systemctl enable --now redis-server
+<pre><code class="language-bash">sudo systemctl enable --now valkey-server
 </code></pre>
 <p>Verify it:</p>
-<pre><code class="language-bash">redis-cli ping
+<pre><code class="language-bash">valkey-cli ping
 </code></pre>
 <p>Expected output:</p>
 <pre><code class="language-text">PONG
@@ -3080,9 +3080,9 @@ sudo apt install -y \
 <p>Only one of <code>curl</code> or <code>wget</code> is required by the installer, but having both available is useful for administration and troubleshooting.</p>
 <hr />
 <h2 id="5-ports">5. Ports<a class="headerlink" href="#5-ports" title="Permanent link">&para;</a></h2>
-<p>PostgreSQL and Redis normally use:</p>
+<p>PostgreSQL and Valkey normally use:</p>
 <pre><code class="language-text">PostgreSQL: 5432
-Redis:      6379
+Valkey:     6379
 </code></pre>
 <p>ScipionWeb's API/Web port should <strong>not</strong> be assumed to be <code>8080</code>.</p>
 <p>If no fixed port is requested, provisioning preserves an existing <code>API_PORT</code> where appropriate or selects a free port automatically and persists it in <code>SCIPION_HOME/.env</code>.</p>
@@ -3124,8 +3124,8 @@ chmod +x install.sh
 <li>Conda</li>
 <li>Conda base Python</li>
 <li>PostgreSQL client</li>
-<li>Redis client</li>
-<li>Redis server response</li>
+<li>Valkey client</li>
+<li>Valkey server response</li>
 <li>PostgreSQL administrative access</li>
 </ul>
 <p>If everything is ready, the installer exits successfully without installing ScipionWeb.</p>
@@ -3134,8 +3134,8 @@ chmod +x install.sh
 <p>These commands should all work before a normal installation:</p>
 <pre><code class="language-bash">conda --version
 sudo systemctl is-active postgresql
-sudo systemctl is-active redis-server
-redis-cli ping
+sudo systemctl is-active valkey-server
+valkey-cli ping
 sudo -u postgres psql -d postgres -c &quot;SELECT 1;&quot;
 </code></pre>
 <p>Then confirm with the installer itself:</p>
@@ -3152,9 +3152,9 @@ sudo -u postgres psql -d postgres -c &quot;SELECT 1;&quot;
 <pre><code class="language-bash">sudo systemctl status postgresql
 journalctl -u postgresql --no-pager -n 100
 </code></pre>
-<h3 id="redis-is-not-responding">Redis is not responding<a class="headerlink" href="#redis-is-not-responding" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bash">sudo systemctl status redis-server
-journalctl -u redis-server --no-pager -n 100
+<h3 id="valkey-is-not-responding">Valkey is not responding<a class="headerlink" href="#valkey-is-not-responding" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">sudo systemctl status valkey-server
+journalctl -u valkey-server --no-pager -n 100
 </code></pre>
 <h3 id="postgresql-administrative-access-fails">PostgreSQL administrative access fails<a class="headerlink" href="#postgresql-administrative-access-fails" title="Permanent link">&para;</a></h3>
 <p>Refresh sudo authentication:</p>

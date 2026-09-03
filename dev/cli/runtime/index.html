@@ -2106,7 +2106,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2811,11 +2811,11 @@
 <h2 id="common-issues">Common issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">API starts but exits quickly</p>
-<p>Check <code>logs</code> and confirm <code>.env</code> settings such as database, Redis, and paths are valid.</p>
+<p>Check <code>logs</code> and confirm <code>.env</code> settings such as database, Valkey, and paths are valid.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Celery not running</p>
-<p>Verify Redis availability and broker configuration.</p>
+<p>Verify Valkey availability and broker configuration.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title"><code>status</code> says running but requests fail</p>

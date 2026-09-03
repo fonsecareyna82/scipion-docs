@@ -1987,7 +1987,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2598,7 +2598,7 @@
 <ul>
 <li>run inside a Scipion-capable Python environment</li>
 <li>use PostgreSQL for persistence</li>
-<li>use Redis for background task brokering</li>
+<li>use Valkey for background task brokering</li>
 <li>support both integrated and distributed deployments</li>
 </ul>
 <div class="admonition note">
@@ -2647,7 +2647,7 @@
 <li>applies middleware and error handlers</li>
 <li>starts serving API requests</li>
 </ol>
-<p>If background execution is expected, a healthy Celery worker and Redis broker are also part of the effective runtime, even though they are not the same process as the API server.</p>
+<p>If background execution is expected, a healthy Celery worker and Valkey broker are also part of the effective runtime, even though they are not the same process as the API server.</p>
 <hr />
 <h2 id="recommended-reading-paths">Recommended Reading Paths<a class="headerlink" href="#recommended-reading-paths" title="Permanent link">&para;</a></h2>
 <h3 id="backend-developer-onboarding">Backend developer onboarding<a class="headerlink" href="#backend-developer-onboarding" title="Permanent link">&para;</a></h3>
@@ -2656,14 +2656,14 @@
 <li><a href="fastapi/">FastAPI App and Routers</a></li>
 <li><a href="database/">Database and Alembic Migrations</a></li>
 <li><a href="auth/">Authentication and JWT</a></li>
-<li><a href="celery/">Celery and Redis</a></li>
+<li><a href="celery/">Celery and Valkey</a></li>
 <li><a href="troubleshooting/">Backend Troubleshooting</a></li>
 </ol>
 <h3 id="ops-deployment-debugging">Ops / deployment debugging<a class="headerlink" href="#ops-deployment-debugging" title="Permanent link">&para;</a></h3>
 <ol>
 <li><a href="fastapi/">FastAPI App and Routers</a></li>
 <li><a href="database/">Database and Alembic Migrations</a></li>
-<li><a href="celery/">Celery and Redis</a></li>
+<li><a href="celery/">Celery and Valkey</a></li>
 <li><a href="troubleshooting/">Backend Troubleshooting</a></li>
 <li><a href="../operations/logs-and-pids/">Logs and PID Files</a></li>
 </ol>

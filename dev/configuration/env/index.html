@@ -1422,9 +1422,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#redis-celery" class="md-nav__link">
+  <a href="#valkey-celery" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis / Celery
+      Valkey / Celery
     </span>
   </a>
   
@@ -2186,7 +2186,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2734,9 +2734,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#redis-celery" class="md-nav__link">
+  <a href="#valkey-celery" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis / Celery
+      Valkey / Celery
     </span>
   </a>
   
@@ -2879,7 +2879,7 @@
 <li>PostgreSQL connection/bootstrap values</li>
 <li>application secret key</li>
 <li>API host and selected port</li>
-<li>Redis/Celery settings</li>
+<li>Valkey/Celery settings</li>
 <li>logs/projects/runtime paths</li>
 <li>integrated Web deployment settings</li>
 <li>Conda executable/activation metadata</li>
@@ -2924,12 +2924,12 @@ API_PORT=&lt;selected-port&gt;
 <p>The selected API port can remain an internal service port behind nginx/Apache or another reverse proxy. Public HTTPS exposure does not require hardcoding a particular backend port in the release bundle.</p>
 </div>
 <hr />
-<h2 id="redis-celery">Redis / Celery<a class="headerlink" href="#redis-celery" title="Permanent link">&para;</a></h2>
+<h2 id="valkey-celery">Valkey / Celery<a class="headerlink" href="#valkey-celery" title="Permanent link">&para;</a></h2>
 <p>Typical broker configuration:</p>
 <pre><code class="language-dotenv">BROKER_URL=redis://localhost:6379/0
 CELERY_LOGLEVEL=info
 </code></pre>
-<p>Redis must remain reachable for Celery background processing.</p>
+<p>Valkey must remain reachable for Celery background processing.</p>
 <hr />
 <h2 id="runtime-filesystem-paths">Runtime filesystem paths<a class="headerlink" href="#runtime-filesystem-paths" title="Permanent link">&para;</a></h2>
 <p>Examples:</p>

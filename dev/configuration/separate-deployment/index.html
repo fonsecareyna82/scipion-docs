@@ -2339,7 +2339,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -3179,13 +3179,13 @@
 <hr />
 <h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
 <p>A simplified request flow looks like this:</p>
-<pre><code class="language-text">User Browser → Web Server / CDN → REST API → PostgreSQL / Redis
+<pre><code class="language-text">User Browser → Web Server / CDN → REST API → PostgreSQL / Valkey
 </code></pre>
 <p>In practice:</p>
 <ul>
 <li>The browser loads the frontend from a web host (or CDN)</li>
 <li>The frontend sends API requests to the ScipionAPI host</li>
-<li>The API talks to PostgreSQL and Redis</li>
+<li>The API talks to PostgreSQL and Valkey</li>
 </ul>
 <hr />
 <h2 id="when-to-use-separate-deployment">When to Use Separate Deployment<a class="headerlink" href="#when-to-use-separate-deployment" title="Permanent link">&para;</a></h2>
@@ -3261,7 +3261,7 @@
 <ul>
 <li>Public web ports (<code>80</code> / <code>443</code>) on frontend host</li>
 <li>Public or controlled access to API host (usually <code>443</code> behind a reverse proxy)</li>
-<li>Internal database/Redis access restricted to trusted hosts/services</li>
+<li>Internal database/Valkey access restricted to trusted hosts/services</li>
 </ul>
 <h3 id="reverse-proxy-alignment">Reverse proxy alignment<a class="headerlink" href="#reverse-proxy-alignment" title="Permanent link">&para;</a></h3>
 <p>If the API is mounted under <code>/api</code>, ensure your reverse proxy configuration preserves the expected path.</p>

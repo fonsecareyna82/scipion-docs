@@ -1252,13 +1252,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#redis-reports-no-nodes-replied-within-time-constraint" class="md-nav__link">
+  <a href="#valkey-broker-reports-no-nodes-replied-within-time-constraint" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis reports no nodes replied within time constraint
+      Valkey broker reports no nodes replied within time constraint
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Redis reports no nodes replied within time constraint">
+    <nav class="md-nav" aria-label="Valkey broker reports no nodes replied within time constraint">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2374,7 +2374,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2920,13 +2920,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#redis-reports-no-nodes-replied-within-time-constraint" class="md-nav__link">
+  <a href="#valkey-broker-reports-no-nodes-replied-within-time-constraint" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis reports no nodes replied within time constraint
+      Valkey broker reports no nodes replied within time constraint
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Redis reports no nodes replied within time constraint">
+    <nav class="md-nav" aria-label="Valkey broker reports no nodes replied within time constraint">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3257,16 +3257,16 @@
 <h3 id="common-causes">Common causes<a class="headerlink" href="#common-causes" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The Celery worker is not running.</li>
-<li>Redis is not reachable from the API or worker.</li>
+<li>Valkey is not reachable from the API or worker.</li>
 <li>The API and worker are using different <code>.env</code> files or different broker URLs.</li>
 <li>The worker started without the expected <code>SCIPION_HOME</code>.</li>
 </ul>
 <h3 id="checks">Checks<a class="headerlink" href="#checks" title="Permanent link">&para;</a></h3>
 <pre><code>./scripts/scipionapi status
 ./scripts/scipionapi logs
-redis-cli ping
+valkey-cli ping
 </code></pre>
-<p>Expected Redis response:</p>
+<p>Expected Valkey response:</p>
 <pre><code class="language-text">PONG
 </code></pre>
 <h3 id="workaround">Workaround<a class="headerlink" href="#workaround" title="Permanent link">&para;</a></h3>
@@ -3274,26 +3274,26 @@ redis-cli ping
 <pre><code>./scripts/scipionapi restart
 </code></pre>
 <hr />
-<h2 id="redis-reports-no-nodes-replied-within-time-constraint">Redis reports no nodes replied within time constraint<a class="headerlink" href="#redis-reports-no-nodes-replied-within-time-constraint" title="Permanent link">&para;</a></h2>
+<h2 id="valkey-broker-reports-no-nodes-replied-within-time-constraint">Valkey broker reports no nodes replied within time constraint<a class="headerlink" href="#valkey-broker-reports-no-nodes-replied-within-time-constraint" title="Permanent link">&para;</a></h2>
 <h3 id="symptoms_1">Symptoms<a class="headerlink" href="#symptoms_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Celery status commands fail or time out.</li>
 <li>Background tasks do not progress.</li>
-<li>Logs mention that no Redis nodes replied within the expected time.</li>
+<li>Logs mention that no Valkey nodes replied within the expected time.</li>
 </ul>
 <h3 id="common-causes_1">Common causes<a class="headerlink" href="#common-causes_1" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Redis is stopped or overloaded.</li>
-<li>The configured Redis URL points to the wrong host, port, or database.</li>
+<li>Valkey is stopped or overloaded.</li>
+<li>The configured broker URL points to the wrong Valkey host, port, or database.</li>
 <li>Firewall or network restrictions block access in a distributed deployment.</li>
 </ul>
 <h3 id="checks_1">Checks<a class="headerlink" href="#checks_1" title="Permanent link">&para;</a></h3>
-<pre><code>sudo systemctl status redis-server
-redis-cli ping
+<pre><code>sudo systemctl status valkey-server
+valkey-cli ping
 </code></pre>
 <h3 id="workaround_1">Workaround<a class="headerlink" href="#workaround_1" title="Permanent link">&para;</a></h3>
-<p>Start or restart Redis, then restart ScipionAPI services:</p>
-<pre><code>sudo systemctl restart redis-server
+<p>Start or restart Valkey, then restart ScipionAPI services:</p>
+<pre><code>sudo systemctl restart valkey-server
 ./scripts/scipionapi restart
 </code></pre>
 <hr />

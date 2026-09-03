@@ -1582,9 +1582,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-redis-security" class="md-nav__link">
+  <a href="#5-valkey-security" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Redis Security
+      5. Valkey Security
     </span>
   </a>
   
@@ -2135,7 +2135,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2677,9 +2677,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-redis-security" class="md-nav__link">
+  <a href="#5-valkey-security" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Redis Security
+      5. Valkey Security
     </span>
   </a>
   
@@ -2769,7 +2769,7 @@
 <li>Use <strong>HTTPS</strong></li>
 <li>Protect <code>SECRET_KEY</code></li>
 <li>Restrict <strong>CORS</strong></li>
-<li>Keep PostgreSQL and Redis <strong>non-public</strong></li>
+<li>Keep PostgreSQL and Valkey <strong>non-public</strong></li>
 <li>Enforce proper file permissions</li>
 <li>Monitor logs and automate backups</li>
 </ul>
@@ -2832,17 +2832,17 @@ https://api.yourdomain.com
 <p>Even if PostgreSQL requires credentials, network exposure should still be minimized.</p>
 </div>
 <hr />
-<h2 id="5-redis-security">5. Redis Security<a class="headerlink" href="#5-redis-security" title="Permanent link">&para;</a></h2>
+<h2 id="5-valkey-security">5. Valkey Security<a class="headerlink" href="#5-valkey-security" title="Permanent link">&para;</a></h2>
 <p>Recommended controls:</p>
 <ul>
-<li>Bind Redis to <code>localhost</code></li>
-<li>Do <strong>not</strong> expose Redis publicly</li>
-<li>Consider authentication if Redis must be remote</li>
+<li>Bind Valkey to <code>localhost</code></li>
+<li>Do <strong>not</strong> expose Valkey publicly</li>
+<li>Consider authentication if Valkey must be remote</li>
 <li>Restrict network access with firewall rules</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">High-risk exposure</p>
-<p>Public Redis exposure is a common operational mistake and can lead to severe compromise.</p>
+<p>Public Valkey exposure is a common operational mistake and can lead to severe compromise.</p>
 </div>
 <hr />
 <h2 id="6-firewall-configuration">6. Firewall Configuration<a class="headerlink" href="#6-firewall-configuration" title="Permanent link">&para;</a></h2>
@@ -2851,7 +2851,7 @@ https://api.yourdomain.com
 <li><strong>80 / 443</strong> → public (if internet-facing)</li>
 <li><strong>8080</strong> → internal only (when reverse proxy is used)</li>
 <li><strong>5432</strong> (PostgreSQL) → <strong>not public</strong></li>
-<li><strong>6379</strong> (Redis) → <strong>not public</strong></li>
+<li><strong>6379</strong> (Valkey) → <strong>not public</strong></li>
 </ul>
 <p>Use host firewall rules and/or cloud security groups to enforce this.</p>
 <hr />
@@ -2887,7 +2887,7 @@ chmod -R 750 scipion_home
 <li>[ ] <code>SECRET_KEY</code> secured</li>
 <li>[ ] CORS restricted to trusted origins</li>
 <li>[ ] PostgreSQL not publicly exposed</li>
-<li>[ ] Redis not publicly exposed</li>
+<li>[ ] Valkey not publicly exposed</li>
 <li>[ ] Runtime permissions hardened (<code>.env</code>, <code>SCIPION_HOME</code>)</li>
 <li>[ ] Logs monitored</li>
 <li>[ ] Backups automated and tested</li>

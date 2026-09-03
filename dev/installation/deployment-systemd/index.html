@@ -2265,7 +2265,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -3089,8 +3089,8 @@
 <h3 id="example-scipionapiservice">Example <code>scipionapi.service</code><a class="headerlink" href="#example-scipionapiservice" title="Permanent link">&para;</a></h3>
 <pre><code class="language-ini">[Unit]
 Description=ScipionAPI Service
-After=network.target postgresql.service redis-server.service
-Wants=postgresql.service redis-server.service
+After=network.target postgresql.service valkey-server.service
+Wants=postgresql.service valkey-server.service
 
 [Service]
 Type=simple
@@ -3106,7 +3106,7 @@ WantedBy=multi-user.target
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Service dependencies</p>
-<p><code>After=</code> controls startup order. <code>Wants=</code> asks <code>systemd</code> to also start PostgreSQL and Redis when starting the API service.</p>
+<p><code>After=</code> controls startup order. <code>Wants=</code> asks <code>systemd</code> to also start PostgreSQL and Valkey when starting the API service.</p>
 </div>
 <hr />
 <h2 id="4-create-the-systemd-service-for-the-celery-worker">4. Create the systemd Service for the Celery Worker<a class="headerlink" href="#4-create-the-systemd-service-for-the-celery-worker" title="Permanent link">&para;</a></h2>
@@ -3116,8 +3116,8 @@ WantedBy=multi-user.target
 <h3 id="example-scipion-celeryservice">Example <code>scipion-celery.service</code><a class="headerlink" href="#example-scipion-celeryservice" title="Permanent link">&para;</a></h3>
 <pre><code class="language-ini">[Unit]
 Description=ScipionAPI Celery Worker
-After=network.target redis-server.service
-Wants=redis-server.service
+After=network.target valkey-server.service
+Wants=valkey-server.service
 
 [Service]
 Type=simple
@@ -3154,7 +3154,7 @@ sudo systemctl start scipion-celery
 </code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Start order</p>
-<p>Start order between API and Celery is usually flexible, but <strong>Redis</strong> must be available before the worker can process tasks.</p>
+<p>Start order between API and Celery is usually flexible, but <strong>Valkey</strong> must be available before the worker can process tasks.</p>
 </div>
 <hr />
 <h2 id="8-check-status">8. Check Status<a class="headerlink" href="#8-check-status" title="Permanent link">&para;</a></h2>
@@ -3239,7 +3239,7 @@ sudo systemctl status scipionapi scipion-celery
 <li><code>WorkingDirectory</code> exists</li>
 <li><code>ExecStart</code> points to the correct Conda environment binaries</li>
 <li><code>SCIPION_HOME</code> is correct</li>
-<li>PostgreSQL and Redis are running</li>
+<li>PostgreSQL and Valkey are running</li>
 <li>The installation works when started manually</li>
 </ul>
 </div>
@@ -3253,7 +3253,7 @@ sudo systemctl status scipionapi scipion-celery
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Celery starts but tasks do not run</p>
-<p>Verify Redis connectivity, broker URL configuration, and check worker logs for import/configuration errors.</p>
+<p>Verify Valkey connectivity, broker URL configuration, and check worker logs for import/configuration errors.</p>
 </div>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
@@ -3269,7 +3269,7 @@ sudo systemctl status scipionapi scipion-celery
 <li><code>scipionapi.service</code></li>
 <li><code>scipion-celery.service</code></li>
 <li>PostgreSQL</li>
-<li>Redis</li>
+<li>Valkey</li>
 <li>nginx (recommended for HTTPS/public exposure)</li>
 </ul>
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">

@@ -1987,7 +1987,7 @@
         
   
   <span class="md-ellipsis">
-    Celery and Redis
+    Celery and Valkey
   </span>
   
 
@@ -2158,9 +2158,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-redis-connection-error" class="md-nav__link">
+  <a href="#4-valkey-connection-error" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Redis Connection Error
+      4. Valkey Connection Error
     </span>
   </a>
   
@@ -2872,9 +2872,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-redis-connection-error" class="md-nav__link">
+  <a href="#4-valkey-connection-error" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Redis Connection Error
+      4. Valkey Connection Error
     </span>
   </a>
   
@@ -3024,7 +3024,7 @@
 <li>wrong Conda environment</li>
 <li>invalid <code>.env</code> values</li>
 <li>database connectivity problems</li>
-<li>Redis / Celery runtime issues</li>
+<li>Valkey / Celery runtime issues</li>
 <li>CORS or auth misconfiguration</li>
 </ul>
 </div>
@@ -3039,7 +3039,7 @@ curl http://localhost:8080/health
 <ul>
 <li><code>SCIPION_HOME</code> points to the expected runtime workspace</li>
 <li><code>.env</code> exists and has the expected values</li>
-<li>PostgreSQL and Redis are reachable</li>
+<li>PostgreSQL and Valkey are reachable</li>
 </ul>
 <hr />
 <h2 id="1-importerror-scipion-pyworkflow-not-found">1. <code>ImportError</code>: <code>scipion</code> / <code>pyworkflow</code> not found<a class="headerlink" href="#1-importerror-scipion-pyworkflow-not-found" title="Permanent link">&para;</a></h2>
@@ -3085,9 +3085,9 @@ curl http://localhost:8080/health
 <li>Confirm migration files exist and match the deployed version</li>
 </ul>
 <hr />
-<h2 id="4-redis-connection-error">4. Redis Connection Error<a class="headerlink" href="#4-redis-connection-error" title="Permanent link">&para;</a></h2>
-<p>Check Redis service status:</p>
-<pre><code>sudo systemctl status redis-server
+<h2 id="4-valkey-connection-error">4. Valkey Connection Error<a class="headerlink" href="#4-valkey-connection-error" title="Permanent link">&para;</a></h2>
+<p>Check Valkey service status:</p>
+<pre><code>sudo systemctl status valkey-server
 </code></pre>
 <p>Also verify the broker URL in <code>.env</code>:</p>
 <pre><code class="language-dotenv">BROKER_URL=redis://localhost:6379/0
@@ -3097,7 +3097,7 @@ curl http://localhost:8080/health
 <h3 id="check_1">Check<a class="headerlink" href="#check_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Worker is running</li>
-<li>Redis is reachable</li>
+<li>Valkey is reachable</li>
 <li>Worker logs (<code>celery.log</code>) show task receipt/execution</li>
 <li><code>BROKER_URL</code> matches between API and worker runtime</li>
 </ul>
@@ -3139,7 +3139,7 @@ curl http://localhost:8080/health
 <li>Check logs</li>
 <li>Validate <code>.env</code></li>
 <li>Validate DB connectivity</li>
-<li>Validate Redis connectivity</li>
+<li>Validate Valkey connectivity</li>
 <li>Restart services</li>
 <li>Re-test <code>/health</code> and failing endpoint</li>
 </ol>
@@ -3155,7 +3155,7 @@ curl http://localhost:8080/health
 <ul>
 <li>API startup only</li>
 <li>DB connectivity only</li>
-<li>Redis/Celery only</li>
+<li>Valkey/Celery only</li>
 <li>Auth/CORS path only</li>
 </ul>
 <hr />
@@ -3177,7 +3177,7 @@ curl http://localhost:8080/health
 <h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
   <a href="../celery/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Celery and Redis
+    ← Previous: Celery and Valkey
   </a>
   <span></span>
 </div>
