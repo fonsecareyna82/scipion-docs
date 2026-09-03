@@ -115,10 +115,10 @@ This typically shows the API log and the worker log together.
 ## Common issues
 
 !!! warning "API starts but exits quickly"
-    Check `logs` and confirm `.env` settings such as database, Redis, and paths are valid.
+    Check `logs` and confirm `.env` settings such as database, Valkey, and paths are valid.
 
 !!! warning "Celery not running"
-    Verify Redis availability and broker configuration.
+    Verify Valkey availability and broker configuration.
 
 !!! warning "`status` says running but requests fail"
     Test runtime health explicitly with `/health` and inspect logs.

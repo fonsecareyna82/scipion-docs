@@ -22,7 +22,7 @@ A normal ScipionWeb deployment requires:
 - **Linux**
 - **Conda** (Miniconda or Anaconda)
 - **PostgreSQL**
-- **Redis**
+- **Valkey**
 - **sudo privileges** for the common local PostgreSQL bootstrap path
 - **curl or wget**
 - **unzip**
@@ -144,27 +144,27 @@ If your deployment uses a custom or remote PostgreSQL setup, use the manual inst
 
 ---
 
-## 3. Install Redis
+## 3. Install Valkey
 
-Redis is used as the **Celery broker** and **result backend**.
+Valkey is used as the **Celery broker** and **result backend**.
 
 Install it:
 
 ```bash
 sudo apt update
-sudo apt install -y redis-server
+sudo apt install -y valkey-server valkey-tools
 ```
 
 Enable and start it:
 
 ```bash
-sudo systemctl enable --now redis-server
+sudo systemctl enable --now valkey-server
 ```
 
 Verify it:
 
 ```bash
-redis-cli ping
+valkey-cli ping
 ```
 
 Expected output:
@@ -196,11 +196,11 @@ Only one of `curl` or `wget` is required by the installer, but having both avail
 
 ## 5. Ports
 
-PostgreSQL and Redis normally use:
+PostgreSQL and Valkey normally use:
 
 ```text
 PostgreSQL: 5432
-Redis:      6379
+Valkey:     6379
 ```
 
 ScipionWeb's API/Web port should **not** be assumed to be `8080`.
@@ -268,8 +268,8 @@ The check reports all detected missing software/configuration problems together.
 - Conda
 - Conda base Python
 - PostgreSQL client
-- Redis client
-- Redis server response
+- Valkey client
+- Valkey server response
 - PostgreSQL administrative access
 
 If everything is ready, the installer exits successfully without installing ScipionWeb.
@@ -283,8 +283,8 @@ These commands should all work before a normal installation:
 ```bash
 conda --version
 sudo systemctl is-active postgresql
-sudo systemctl is-active redis-server
-redis-cli ping
+sudo systemctl is-active valkey-server
+valkey-cli ping
 sudo -u postgres psql -d postgres -c "SELECT 1;"
 ```
 
@@ -314,11 +314,11 @@ sudo systemctl status postgresql
 journalctl -u postgresql --no-pager -n 100
 ```
 
-### Redis is not responding
+### Valkey is not responding
 
 ```bash
-sudo systemctl status redis-server
-journalctl -u redis-server --no-pager -n 100
+sudo systemctl status valkey-server
+journalctl -u valkey-server --no-pager -n 100
 ```
 
 ### PostgreSQL administrative access fails

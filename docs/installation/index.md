@@ -81,7 +81,7 @@ The normal updater preserves runtime data and configuration while updating manag
 
 The installation documentation includes:
 
-- system prerequisites such as Conda, PostgreSQL, Redis, ports, and permissions
+- system prerequisites such as Conda, PostgreSQL, Valkey, ports, and permissions
 - guided installation through the public `install.sh`
 - manual download and extraction of release bundles
 - one-shot `provision` for controlled/manual installs

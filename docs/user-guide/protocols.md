@@ -120,7 +120,7 @@ Check:
 
 - browser network errors
 - backend and worker logs
-- Redis and Celery health
+- Valkey and Celery health
 - whether the protocol parameters were saved correctly before launch
 - whether you are looking at the correct protocol run and project state
 
@@ -129,7 +129,7 @@ Useful checks for administrators or developers:
 ```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
-redis-cli ping
+valkey-cli ping
 ```
 
 If tasks remain pending, see [Known Issues and Workarounds](../support/known-issues.md).

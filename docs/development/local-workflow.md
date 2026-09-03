@@ -6,7 +6,7 @@ It assumes:
 
 - Linux environment
 - Conda installed
-- PostgreSQL and Redis running locally
+- PostgreSQL and Valkey running locally
 
 ---
 

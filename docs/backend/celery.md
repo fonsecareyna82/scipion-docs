@@ -3,11 +3,11 @@ hide:
   - toc
 ---
 
-# Celery and Redis
+# Celery and Valkey
 
 ScipionAPI uses **Celery** for background task execution.
 
-Redis acts as:
+Valkey acts as:
 
 - **Broker**
 - **Result backend**
@@ -24,8 +24,8 @@ Defined in `.env`:
 BROKER_URL=redis://localhost:6379/0
 ```
 
-!!! note "Redis role"
-    In this backend architecture, Redis is used by Celery infrastructure and must be available for task dispatching and processing.
+!!! note "Valkey role"
+    In this backend architecture, Valkey is used by Celery infrastructure and must be available for task dispatching and processing.
 
 ---
 
@@ -81,7 +81,7 @@ Background tasks are useful for:
 High-level task lifecycle:
 
 ```text
-API → Celery Broker (Redis) → Worker → Redis (result/state) → API / client polling
+API → Celery Broker (Valkey) → Worker → Valkey (result/state) → API / client polling
 ```
 
 !!! note "Response model"
@@ -95,17 +95,17 @@ Operational behavior typically includes:
 
 - Configurable retries (task-dependent)
 - Error logging in worker logs (for example `celery.log`)
-- Redis connectivity dependency for enqueue/processing
+- Valkey connectivity dependency for enqueue/processing
 
 !!! warning "Silent queueing assumptions"
-    If the API is healthy but work is not progressing, confirm the worker is running and Redis is reachable before debugging task code.
+    If the API is healthy but work is not progressing, confirm the worker is running and Valkey is reachable before debugging task code.
 
 ---
 
 ## Production Recommendations
 
 - Run the worker via `systemd`
-- Monitor Redis health and memory usage
+- Monitor Valkey health and memory usage
 - Configure log rotation for worker logs
 - Track worker restarts/failures
 - Separate API and worker service supervision
@@ -118,13 +118,13 @@ Operational behavior typically includes:
 ## Common Issues
 
 !!! warning "Tasks are not processed"
-    Check that the worker is running and connected to the same Redis instance configured in `BROKER_URL`.
+    Check that the worker is running and connected to the same Valkey instance configured in `BROKER_URL`.
 
 !!! warning "Worker starts but crashes"
     Inspect dependency imports, runtime environment activation, and backend logs (`celery.log`).
 
 !!! warning "API enqueues task but no result appears"
-    Verify Redis connectivity, task registration, and result backend behavior.
+    Verify Valkey connectivity, task registration, and result backend behavior.
 
 !!! warning "Works locally, fails in production"
     Compare `.env`, systemd service environment, and filesystem permissions between environments.
@@ -136,13 +136,13 @@ Operational behavior typically includes:
 ```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
-sudo systemctl status redis-server
+sudo systemctl status valkey-server
 ```
 
 Look for:
 
 - worker process running
-- Redis healthy
+- Valkey healthy
 - task exceptions in `celery.log`
 
 ---
@@ -201,8 +201,8 @@ scipion_home/.env
 
 This allows manual worker commands to use the same Scipion runtime configuration as the backend without requiring a separate shell `source` of that file.
 
-!!! note "Current Redis configuration"
-    In the current implementation, the Celery broker and result backend are defined in `app/workers/celeryconfig.py` as `redis://localhost:6379/0`. Treat that file as the runtime source of truth when diagnosing broker connectivity.
+!!! note "Current Valkey configuration"
+    Valkey is the supported Celery broker/result-backend server. Celery intentionally keeps the Redis-compatible `redis://` transport scheme. `BROKER_URL` configures the broker, while `RESULT_BACKEND_URL` optionally overrides the result backend and otherwise defaults to `BROKER_URL`.
 
 ### Verify both workers
 

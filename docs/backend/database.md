@@ -161,6 +161,6 @@ psql -U user -d db -c "\dt"
     ← Previous: Authentication and JWT
   </a>
   <a href="../celery/" style="text-decoration:none; display:inline-block; margin-left:auto;">
-    Next: Celery and Redis →
+    Next: Celery and Valkey →
   </a>
 </div>

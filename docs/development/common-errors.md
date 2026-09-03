@@ -15,7 +15,7 @@ Before going deep, verify the basics:
 conda activate scipion4Web
 ./scripts/scipionapi status
 curl http://localhost:8080/health
-redis-cli ping
+valkey-cli ping
 ```
 
 Then confirm:
@@ -23,7 +23,7 @@ Then confirm:
 - you are using the expected Conda environment
 - `SCIPION_HOME` points to the right runtime workspace
 - `.env` exists and contains the expected values
-- PostgreSQL and Redis are reachable
+- PostgreSQL and Valkey are reachable
 - API and Celery are reading the same runtime configuration
 
 ---
@@ -92,14 +92,14 @@ For real deployments, create a database backup before stamping or repairing migr
 
 ---
 
-## 4. Redis connection refused
+## 4. Valkey connection refused
 
 ### Fix
 
 ```
-sudo systemctl start redis-server
-sudo systemctl status redis-server
-redis-cli ping
+sudo systemctl start valkey-server
+sudo systemctl status valkey-server
+valkey-cli ping
 ```
 
 Expected output:
@@ -115,7 +115,7 @@ PONG
 ### Check
 
 - the worker is running
-- Redis is reachable
+- Valkey is reachable
 - the broker URL matches between API and worker
 - worker logs show task receipt/execution
 - `SCIPION_HOME` is available to the worker process
@@ -125,7 +125,7 @@ PONG
 ```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
-redis-cli ping
+valkey-cli ping
 ```
 
 If tasks stay in `PENDING`, confirm both the API and the worker are using the same runtime configuration.
@@ -234,7 +234,7 @@ Go to [Backend Troubleshooting](../backend/troubleshooting/) when the issue invo
 
 - deployed services that do not start correctly
 - database connectivity in shared or production environments
-- Redis or Celery runtime mismatches
+- Valkey or Celery runtime mismatches
 - authentication problems that reproduce outside local development
 
 For recurring operational problems, also check [Known Issues and Workarounds](../support/known-issues/).
@@ -245,6 +245,6 @@ For recurring operational problems, also check [Known Issues and Workarounds](..
 
 1. Check the active Conda environment
 2. Validate `SCIPION_HOME` and `.env`
-3. Test PostgreSQL and Redis reachability
+3. Test PostgreSQL and Valkey reachability
 4. Review API and Celery logs
 5. Restart services and retry the failing workflow

@@ -65,7 +65,7 @@ The guided installer resolves/downloads the paired release and then delegates ru
 | Update | `update` | Update an existing installation from published release artifacts |
 | Release | `release` | Maintainer-only publication of API/Web ZIPs, `install.sh`, and `manifest.json` |
 | Runtime | `start`, `stop`, `restart`, `status`, `logs` | Manage API/Celery processes and inspect runtime logs |
-| Diagnostics | `doctor` | Read-only checks for config, Conda, DB, Redis, imports, and runtime state |
+| Diagnostics | `doctor` | Read-only checks for config, Conda, DB, Valkey, imports, and runtime state |
 | Removal | `uninstall` | Selective runtime cleanup or protected full packaged-install removal |
 | Info | `version` | Show installed ScipionAPI CLI version |
 

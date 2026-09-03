@@ -17,7 +17,7 @@ This page summarizes practical security guidance for deploying ScipionWeb in pro
 - Use **HTTPS**
 - Protect `SECRET_KEY`
 - Restrict **CORS**
-- Keep PostgreSQL and Redis **non-public**
+- Keep PostgreSQL and Valkey **non-public**
 - Enforce proper file permissions
 - Monitor logs and automate backups
 
@@ -98,17 +98,17 @@ Recommended controls:
 
 ---
 
-## 5. Redis Security
+## 5. Valkey Security
 
 Recommended controls:
 
-- Bind Redis to `localhost`
-- Do **not** expose Redis publicly
-- Consider authentication if Redis must be remote
+- Bind Valkey to `localhost`
+- Do **not** expose Valkey publicly
+- Consider authentication if Valkey must be remote
 - Restrict network access with firewall rules
 
 !!! warning "High-risk exposure"
-    Public Redis exposure is a common operational mistake and can lead to severe compromise.
+    Public Valkey exposure is a common operational mistake and can lead to severe compromise.
 
 ---
 
@@ -119,7 +119,7 @@ Typical port policy:
 - **80 / 443** → public (if internet-facing)
 - **8080** → internal only (when reverse proxy is used)
 - **5432** (PostgreSQL) → **not public**
-- **6379** (Redis) → **not public**
+- **6379** (Valkey) → **not public**
 
 Use host firewall rules and/or cloud security groups to enforce this.
 
@@ -168,7 +168,7 @@ chown -R youruser:yourgroup scipion_home
 - [ ] `SECRET_KEY` secured
 - [ ] CORS restricted to trusted origins
 - [ ] PostgreSQL not publicly exposed
-- [ ] Redis not publicly exposed
+- [ ] Valkey not publicly exposed
 - [ ] Runtime permissions hardened (`.env`, `SCIPION_HOME`)
 - [ ] Logs monitored
 - [ ] Backups automated and tested

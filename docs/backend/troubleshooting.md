@@ -13,7 +13,7 @@ This page collects common backend issues and a practical debugging workflow for 
     - wrong Conda environment
     - invalid `.env` values
     - database connectivity problems
-    - Redis / Celery runtime issues
+    - Valkey / Celery runtime issues
     - CORS or auth misconfiguration
 
 ---
@@ -32,7 +32,7 @@ Then verify:
 
 - `SCIPION_HOME` points to the expected runtime workspace
 - `.env` exists and has the expected values
-- PostgreSQL and Redis are reachable
+- PostgreSQL and Valkey are reachable
 
 ---
 
@@ -93,12 +93,12 @@ psql -U user -d db
 
 ---
 
-## 4. Redis Connection Error
+## 4. Valkey Connection Error
 
-Check Redis service status:
+Check Valkey service status:
 
 ```
-sudo systemctl status redis-server
+sudo systemctl status valkey-server
 ```
 
 Also verify the broker URL in `.env`:
@@ -114,7 +114,7 @@ BROKER_URL=redis://localhost:6379/0
 ### Check
 
 - Worker is running
-- Redis is reachable
+- Valkey is reachable
 - Worker logs (`celery.log`) show task receipt/execution
 - `BROKER_URL` matches between API and worker runtime
 
@@ -164,7 +164,7 @@ Recommended sequence:
 2. Check logs
 3. Validate `.env`
 4. Validate DB connectivity
-5. Validate Redis connectivity
+5. Validate Valkey connectivity
 6. Restart services
 7. Re-test `/health` and failing endpoint
 
@@ -184,7 +184,7 @@ If the problem persists, isolate by subsystem:
 
 - API startup only
 - DB connectivity only
-- Redis/Celery only
+- Valkey/Celery only
 - Auth/CORS path only
 
 ---
@@ -209,7 +209,7 @@ When reporting backend issues to teammates, include:
 
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
   <a href="../celery/" style="text-decoration:none; display:inline-block;">
-    ← Previous: Celery and Redis
+    ← Previous: Celery and Valkey
   </a>
   <span></span>
 </div>

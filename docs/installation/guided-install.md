@@ -34,7 +34,7 @@ The preflight validates the supported Linux runtime and checks the important ins
 - `sudo`
 - Conda and its base Python
 - PostgreSQL client/server access
-- Redis client/server availability
+- Valkey client/server availability
 - local PostgreSQL administrative access through `sudo -u postgres psql`
 
 The installer **does not automatically install missing system packages**. If something is missing or misconfigured, it reports the problems and exits so the host can be fixed explicitly.

@@ -239,7 +239,7 @@ Prerequisites → install.sh --check-only → install.sh
     Keep runtime database values aligned with the role/database you actually created.
 
 !!! warning "Starting only one side of the runtime"
-    Verify both API and Celery/Redis behavior with `status`, `doctor`, and logs.
+    Verify both API and Celery/Valkey behavior with `status`, `doctor`, and logs.
 
 !!! warning "Using manual installation when a managed update is enough"
     For an existing packaged installation, use `./scripts/scipionapi update` for normal version changes.
