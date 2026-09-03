@@ -158,4 +158,4 @@ For an installed packaged release that needs a newer version, use `update` rathe
     Read `API_PORT` from `.env`; automatic port selection is supported.
 
 !!! warning "Environment looks inconsistent"
-    Run `./scripts/scipionapi doctor` to inspect Conda, `.env`, PostgreSQL, Redis, imports, and runtime state.
+    Run `./scripts/scipionapi doctor` to inspect Conda, `.env`, PostgreSQL, Valkey, imports, and runtime state.

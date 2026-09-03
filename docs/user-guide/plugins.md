@@ -29,7 +29,7 @@ In normal use, you may need to:
 
 - you are working in the intended environment
 - the backend and worker are running correctly
-- Redis and Celery are healthy
+- Valkey and Celery are healthy
 - the plugin action is allowed for your role or workflow
 - you understand whether the change affects only your current workflow or the whole instance
 
@@ -65,7 +65,7 @@ Problems often appear when:
 Check:
 
 - worker logs
-- Redis availability
+- Valkey availability
 - task status endpoint responses
 - whether the plugin introduced environment-specific dependency issues
 - whether the final state requires a refresh, restart, or explicit reload of backend-managed data

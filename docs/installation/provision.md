@@ -225,8 +225,8 @@ For an already-installed packaged release that simply needs a newer version, pre
 !!! warning "PostgreSQL administrative access failed"
     The standard local bootstrap expects working PostgreSQL plus sufficient privileges. Use the manual database path for custom/remote setups.
 
-!!! warning "Redis not responding"
-    Verify `redis-cli ping` returns `PONG`.
+!!! warning "Valkey not responding"
+    Verify `valkey-cli ping` returns `PONG`.
 
 !!! warning "Web UI does not load"
     Confirm `--web-dist` points to the intended ScipionWeb release ZIP and inspect `status`, `doctor`, and `logs`.

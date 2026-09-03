@@ -17,7 +17,7 @@ It is designed to:
 
 - run inside a Scipion-capable Python environment
 - use PostgreSQL for persistence
-- use Redis for background task brokering
+- use Valkey for background task brokering
 - support both integrated and distributed deployments
 
 !!! note "Scope of this section"
@@ -74,7 +74,7 @@ At startup, ScipionAPI typically:
 4. applies middleware and error handlers
 5. starts serving API requests
 
-If background execution is expected, a healthy Celery worker and Redis broker are also part of the effective runtime, even though they are not the same process as the API server.
+If background execution is expected, a healthy Celery worker and Valkey broker are also part of the effective runtime, even though they are not the same process as the API server.
 
 ---
 
@@ -86,14 +86,14 @@ If background execution is expected, a healthy Celery worker and Redis broker ar
 2. [FastAPI App and Routers](fastapi/)
 3. [Database and Alembic Migrations](database/)
 4. [Authentication and JWT](auth/)
-5. [Celery and Redis](celery/)
+5. [Celery and Valkey](celery/)
 6. [Backend Troubleshooting](troubleshooting/)
 
 ### Ops / deployment debugging
 
 1. [FastAPI App and Routers](fastapi/)
 2. [Database and Alembic Migrations](database/)
-3. [Celery and Redis](celery/)
+3. [Celery and Valkey](celery/)
 4. [Backend Troubleshooting](troubleshooting/)
 5. [Logs and PID Files](../operations/logs-and-pids/)
 

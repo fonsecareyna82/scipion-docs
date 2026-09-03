@@ -7,7 +7,7 @@ hide:
 
 The `doctor` command runs **read-only diagnostics** for a ScipionAPI installation.
 
-Use it to verify the repository layout, Python environment, Conda setup, `.env` configuration, database connectivity, Redis broker connectivity, imports, runtime PID files, and optional Web deployment state.
+Use it to verify the repository layout, Python environment, Conda setup, `.env` configuration, database connectivity, Valkey broker connectivity, imports, runtime PID files, and optional Web deployment state.
 
 !!! tip "Safe to run anytime"
     `doctor` does not modify files, databases, Conda environments, or running services. It is designed for troubleshooting and validation.
@@ -53,10 +53,10 @@ You can combine both options:
 - active Conda environment
 - `.env` presence and required variables
 - `SCIPION_HOME`, logs, projects, and Scipion config files
-- availability of commands such as `alembic`, `psql`, and `redis-server`
+- availability of commands such as `alembic`, `psql`, and `valkey-server`
 - imports for key Python dependencies
 - PostgreSQL connectivity using `DATABASE_URL`
-- Redis broker TCP connectivity using `BROKER_URL`
+- Valkey broker TCP connectivity using `BROKER_URL`
 - API TCP reachability
 - API and worker PID files
 - integrated Web bundle layout when `SERVE_WEB=1`
@@ -111,8 +111,8 @@ A common pre-install result is a warning about the missing `.env` file. That is 
 !!! warning "PostgreSQL is unreachable"
     Check `DATABASE_URL`, local PostgreSQL service status, role permissions, and whether the target database exists.
 
-!!! warning "Redis is unreachable"
-    Start Redis or update `BROKER_URL` to point to the correct broker.
+!!! warning "Valkey is unreachable"
+    Start Valkey or update `BROKER_URL` to point to the correct broker.
 
 !!! warning "API TCP check failed"
     The services may not be running yet. Try `./scripts/scipionapi start` and then run `doctor` again.

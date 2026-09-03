@@ -91,8 +91,8 @@ Create the service file:
 ```ini
 [Unit]
 Description=ScipionAPI Service
-After=network.target postgresql.service redis-server.service
-Wants=postgresql.service redis-server.service
+After=network.target postgresql.service valkey-server.service
+Wants=postgresql.service valkey-server.service
 
 [Service]
 Type=simple
@@ -108,7 +108,7 @@ WantedBy=multi-user.target
 ```
 
 !!! note "Service dependencies"
-    `After=` controls startup order. `Wants=` asks `systemd` to also start PostgreSQL and Redis when starting the API service.
+    `After=` controls startup order. `Wants=` asks `systemd` to also start PostgreSQL and Valkey when starting the API service.
 
 ---
 
@@ -125,8 +125,8 @@ Create the service file:
 ```ini
 [Unit]
 Description=ScipionAPI Celery Worker
-After=network.target redis-server.service
-Wants=redis-server.service
+After=network.target valkey-server.service
+Wants=valkey-server.service
 
 [Service]
 Type=simple
@@ -177,7 +177,7 @@ sudo systemctl start scipion-celery
 ```
 
 !!! tip "Start order"
-    Start order between API and Celery is usually flexible, but **Redis** must be available before the worker can process tasks.
+    Start order between API and Celery is usually flexible, but **Valkey** must be available before the worker can process tasks.
 
 ---
 
@@ -291,7 +291,7 @@ sudo systemctl status scipionapi scipion-celery
     - `WorkingDirectory` exists
     - `ExecStart` points to the correct Conda environment binaries
     - `SCIPION_HOME` is correct
-    - PostgreSQL and Redis are running
+    - PostgreSQL and Valkey are running
     - The installation works when started manually
 
 !!! warning "`ModuleNotFoundError` in systemd logs"
@@ -301,7 +301,7 @@ sudo systemctl status scipionapi scipion-celery
     Another process is already bound to the port. Stop the conflicting process or change the API port.
 
 !!! warning "Celery starts but tasks do not run"
-    Verify Redis connectivity, broker URL configuration, and check worker logs for import/configuration errors.
+    Verify Valkey connectivity, broker URL configuration, and check worker logs for import/configuration errors.
 
 ---
 
@@ -319,7 +319,7 @@ A minimal production setup typically includes:
 - `scipionapi.service`
 - `scipion-celery.service`
 - PostgreSQL
-- Redis
+- Valkey
 - nginx (recommended for HTTPS/public exposure)
 
 

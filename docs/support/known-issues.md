@@ -17,7 +17,7 @@ This page is intentionally curated. GitHub Issues and Discussions may contain ne
 ### Common causes
 
 - The Celery worker is not running.
-- Redis is not reachable from the API or worker.
+- Valkey is not reachable from the API or worker.
 - The API and worker are using different `.env` files or different broker URLs.
 - The worker started without the expected `SCIPION_HOME`.
 
@@ -26,10 +26,10 @@ This page is intentionally curated. GitHub Issues and Discussions may contain ne
 ```
 ./scripts/scipionapi status
 ./scripts/scipionapi logs
-redis-cli ping
+valkey-cli ping
 ```
 
-Expected Redis response:
+Expected Valkey response:
 
 ```text
 PONG
@@ -45,33 +45,33 @@ Restart the runtime after verifying that `SCIPION_HOME`, `CELERY_BROKER_URL`, an
 
 ---
 
-## Redis reports no nodes replied within time constraint
+## Valkey broker reports no nodes replied within time constraint
 
 ### Symptoms
 
 - Celery status commands fail or time out.
 - Background tasks do not progress.
-- Logs mention that no Redis nodes replied within the expected time.
+- Logs mention that no Valkey nodes replied within the expected time.
 
 ### Common causes
 
-- Redis is stopped or overloaded.
-- The configured Redis URL points to the wrong host, port, or database.
+- Valkey is stopped or overloaded.
+- The configured broker URL points to the wrong Valkey host, port, or database.
 - Firewall or network restrictions block access in a distributed deployment.
 
 ### Checks
 
 ```
-sudo systemctl status redis-server
-redis-cli ping
+sudo systemctl status valkey-server
+valkey-cli ping
 ```
 
 ### Workaround
 
-Start or restart Redis, then restart ScipionAPI services:
+Start or restart Valkey, then restart ScipionAPI services:
 
 ```
-sudo systemctl restart redis-server
+sudo systemctl restart valkey-server
 ./scripts/scipionapi restart
 ```
 

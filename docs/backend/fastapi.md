@@ -190,7 +190,7 @@ If requests fail in browser but `curl` works, inspect:
     Confirm `allow_origins` matches the real frontend origin exactly (scheme, domain, port).
 
 !!! warning "Startup succeeds but runtime fails later"
-    Validate database/Redis connectivity and inspect `logs/app.log`.
+    Validate database/Valkey connectivity and inspect `logs/app.log`.
 
 ---
 

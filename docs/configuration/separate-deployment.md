@@ -22,14 +22,14 @@ Typical architecture:
 A simplified request flow looks like this:
 
 ```text
-User Browser → Web Server / CDN → REST API → PostgreSQL / Redis
+User Browser → Web Server / CDN → REST API → PostgreSQL / Valkey
 ```
 
 In practice:
 
 - The browser loads the frontend from a web host (or CDN)
 - The frontend sends API requests to the ScipionAPI host
-- The API talks to PostgreSQL and Redis
+- The API talks to PostgreSQL and Valkey
 
 ---
 
@@ -141,7 +141,7 @@ Allow inbound access only to what is needed:
 
 - Public web ports (`80` / `443`) on frontend host
 - Public or controlled access to API host (usually `443` behind a reverse proxy)
-- Internal database/Redis access restricted to trusted hosts/services
+- Internal database/Valkey access restricted to trusted hosts/services
 
 ### Reverse proxy alignment
 

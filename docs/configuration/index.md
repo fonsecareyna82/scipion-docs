@@ -25,7 +25,7 @@ The configuration model is designed to keep persistent runtime state separate fr
 
 ScipionWeb configuration operates at three levels:
 
-1. **System** — Conda, PostgreSQL, Redis, OS/network services
+1. **System** — Conda, PostgreSQL, Valkey, OS/network services
 2. **Runtime workspace** — `SCIPION_HOME`
 3. **Application** — `.env` values and deployment mode
 
@@ -65,7 +65,7 @@ The stable separation between managed application files and `SCIPION_HOME` is wh
 It commonly defines:
 
 - PostgreSQL connection/bootstrap values
-- Redis/Celery settings
+- Valkey/Celery settings
 - API host and selected port
 - logs/projects/Web paths
 - `SECRET_KEY`
@@ -97,7 +97,7 @@ A normal local installation commonly uses:
 ```text
 SCIPION_HOME=<installation-root>/scipion_home
 PostgreSQL=localhost:5432
-Redis=localhost:6379
+Valkey=localhost:6379
 ```
 
 The API/Web port is intentionally **not documented as a fixed `8080` default**.

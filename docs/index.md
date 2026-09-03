@@ -140,6 +140,6 @@ Advanced users can still download bundles and invoke `provision` manually when n
     - User authentication and sharing workflows
     - Plugin-related workflows
     - PostgreSQL persistence
-    - Celery + Redis background task execution
+    - Celery + Valkey background task execution
     - Integrated API + Web deployment mode
     - CLI tools for installation, provisioning, updates, diagnostics, runtime control, release publication, and cleanup

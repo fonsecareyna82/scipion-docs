@@ -33,7 +33,7 @@ Common configuration groups include:
 - PostgreSQL connection/bootstrap values
 - application secret key
 - API host and selected port
-- Redis/Celery settings
+- Valkey/Celery settings
 - logs/projects/runtime paths
 - integrated Web deployment settings
 - Conda executable/activation metadata
@@ -102,7 +102,7 @@ If a fixed port is operationally required, pass `--api-port PORT` during install
 
 ---
 
-## Redis / Celery
+## Valkey / Celery
 
 Typical broker configuration:
 
@@ -111,7 +111,7 @@ BROKER_URL=redis://localhost:6379/0
 CELERY_LOGLEVEL=info
 ```
 
-Redis must remain reachable for Celery background processing.
+Valkey must remain reachable for Celery background processing.
 
 ---
 

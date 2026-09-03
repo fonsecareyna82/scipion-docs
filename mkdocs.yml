@@ -113,7 +113,7 @@ nav:
           - FastAPI App and Routers: backend/fastapi.md
           - Authentication and JWT: backend/auth.md
           - Database and Alembic Migrations: backend/database.md
-          - Celery and Redis: backend/celery.md
+          - Celery and Valkey: backend/celery.md
           - Troubleshooting: backend/troubleshooting.md
       - Frontend:
           - Overview: frontend/index.md
