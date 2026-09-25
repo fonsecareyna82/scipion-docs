@@ -328,4 +328,7 @@ A minimal production setup typically includes:
   <a href="../upgrade/" style="text-decoration:none; display:inline-block;">
     ← Previous: Upgrade
   </a>
+  <a href="../multi-node-cluster/" style="text-decoration:none; display:inline-block; margin-left:auto;">
+    Next: Multi-Node Cluster Deployment →
+  </a>
 </div>

@@ -115,6 +115,20 @@ Valkey must remain reachable for Celery background processing.
 
 ---
 
+## Multi-node deployment
+
+These are only needed for a [Multi-Node Cluster Deployment](../installation/multi-node-cluster.md); an ordinary single-node installation does not need to set either of them.
+
+```dotenv
+SCIPIONAPI_DEPLOYMENT_MODE=multi-node
+PROTOCOLS_CELERY_QUEUE=protocols-gpu
+```
+
+- `SCIPIONAPI_DEPLOYMENT_MODE` — set on every node to `multi-node` so `./scripts/scipionapi doctor --strict` escalates loopback broker/database URLs and a non-shared `PROJECTS_PATH` from warnings to failures. Defaults to `single-node` behavior when unset.
+- `PROTOCOLS_CELERY_QUEUE` — persists a custom Celery queue name for that node's protocol worker (equivalent to `runtime start --role protocols --queue <name>`, but also honored when the worker is restarted from the web UI). Defaults to `protocols`.
+
+---
+
 ## Runtime filesystem paths
 
 Examples:

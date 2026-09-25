@@ -214,6 +214,42 @@ A healthy local runtime should report both `plugins@...` and `protocols@...` wor
 
 ---
 
+## Multi-Node Task Routing
+
+In a [Multi-Node Cluster Deployment](../installation/multi-node-cluster.md), a protocol worker on any node can consume from the shared `protocols` queue by default — Celery distributes purely by availability, with no awareness of which node has which plugins or GPUs installed.
+
+To send specific protocols to a specific node, `_enqueuePostgresqlProtocolTask` (in `app/backend/project/postgresql_project.py`) looks up the protocol's configured **Host** name (the same value used for SLURM partition selection — see [Hosts and Queues](../user-guide/hosts-and-queues.md)) in:
+
+```text
+scipion_home/config/celery_queue_routing.json
+```
+
+```json
+{ "gpu-cluster": "protocols-gpu" }
+```
+
+If the Host has a mapping, `apply_async(..., queue=<mapped-name>)` sends the task straight to that named queue instead of the default `protocols` queue — consumed only by a worker started with `runtime start --role protocols --queue protocols-gpu` (or `PROTOCOLS_CELERY_QUEUE` in that node's `.env`). Unmapped hosts keep going to `protocols`, so this file is entirely optional and has no effect on a single-node deployment.
+
+The mapping is read fresh from disk on every dispatch (best-effort — a missing or malformed file is treated as "no routing configured", not an error), so changes take effect immediately without restarting anything.
+
+---
+
+## Node Capability Reporting
+
+The `report_node_capabilities` Celery control command (in `app/workers/task_queue.py`) lets the **Settings > Jobs** dashboard's "Refresh nodes" button ask every online worker what it actually has available: its hostname, NVIDIA GPU inventory, and locally installed plugins. `JobMonitoringService.getNodeCapabilities()` broadcasts it via `celeryApp.control.broadcast(..., reply=True)` and merges replies by hostname.
+
+!!! danger "This command must never touch the network"
+    Celery control commands run **synchronously on the worker's control channel** — the same channel used for `inspect`/`ping` and, in some transport configurations, closely tied to the worker's ability to keep consuming its task queue. An early version of this command listed plugins via `PluginService.getPlugins()`, which calls `PluginRepository` and fetches the remote plugin catalog from `scipion.i2pc.es`. In an environment without outbound internet access, that network call stalled inside the control command handler — and the worker stopped consuming from its task queue entirely, even though the process stayed alive and looked "ready" in its own log.
+
+    The fix (and the rule for anything added to this command in the future) is to only report what is already known **locally and synchronously**:
+
+    - GPUs: `_getNvidiaGpuResources()` (a bounded, 3-second-timeout `nvidia-smi` subprocess call — no network)
+    - Plugins: `Domain.getPlugins()` from `pyworkflow.plugin` — the plugin entry points already discovered locally via `importlib.metadata` when the worker started (`prepareEnvironment()` forces this discovery at startup), plus a best-effort `importlib.metadata.version()` lookup per plugin. No network call, no remote catalog fetch.
+
+    If a worker ever appears to go idle (stops picking up tasks) right after someone clicks "Refresh nodes", suspect a blocking call reintroduced into this control command before anything else.
+
+---
+
 ## Navigation
 
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">

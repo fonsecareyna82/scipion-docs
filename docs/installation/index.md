@@ -88,6 +88,7 @@ The installation documentation includes:
 - low-level manual installation for advanced setups
 - upgrade workflow and rollback guidance
 - production deployment considerations
+- multi-node cluster topology (master + worker nodes)
 
 ---
 
@@ -134,6 +135,12 @@ Update an existing installation safely.
 Review service-management and production deployment guidance.
 
 ➡️ [Open Production Deployment](deployment-systemd.md)
+
+### 8. Multi-Node Cluster Deployment
+
+Run the API/database/broker on a master node and protocol execution on separate worker nodes.
+
+➡️ [Open Multi-Node Cluster Deployment](multi-node-cluster.md)
 
 ---
 
