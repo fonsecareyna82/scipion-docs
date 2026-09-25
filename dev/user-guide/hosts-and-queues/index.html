@@ -476,6 +476,8 @@
       
         
       
+        
+      
     
     
       
@@ -659,6 +661,27 @@
   
   <span class="md-ellipsis">
     Production Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Node Cluster Deployment
   </span>
   
 
@@ -3078,6 +3101,10 @@
 <pre><code class="language-ini">mpirun -np %_(JOB_NODES)d %_(COMMAND)s
 </code></pre>
 <p>The important point is that ScipionWeb does not hardcode the scheduler behavior. Instead, it keeps the scheduler-specific logic in the Host settings.</p>
+<div class="admonition tip">
+<p class="admonition-title">This same Host name can also route Celery dispatch</p>
+<p>In a <a href="../../installation/multi-node-cluster/">Multi-Node Cluster Deployment</a>, the Host name configured here can additionally be mapped to a Celery queue name so protocols using that Host are dispatched straight to a specific worker node — see <a href="../../backend/celery/#multi-node-task-routing">Multi-Node Task Routing</a>. This is independent of, and does not require, SLURM.</p>
+</div>
 <hr />
 <h2 id="submit-configuration">Submit configuration<a class="headerlink" href="#submit-configuration" title="Permanent link">&para;</a></h2>
 <p>The submit section defines how ScipionWeb talks to the queue system.</p>

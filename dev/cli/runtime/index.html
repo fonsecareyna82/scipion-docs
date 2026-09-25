@@ -478,6 +478,8 @@
       
         
       
+        
+      
     
     
       
@@ -661,6 +663,27 @@
   
   <span class="md-ellipsis">
     Production Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Node Cluster Deployment
   </span>
   
 
@@ -1904,6 +1927,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-role-per-node-service-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      --role (per-node service selection)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-queue-custom-celery-queue-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      --queue (custom Celery queue name)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-issues" class="md-nav__link">
     <span class="md-ellipsis">
       Common issues
@@ -2670,6 +2711,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-role-per-node-service-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      --role (per-node service selection)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-queue-custom-celery-queue-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      --queue (custom Celery queue name)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-issues" class="md-nav__link">
     <span class="md-ellipsis">
       Common issues
@@ -2808,6 +2867,58 @@
 </code></pre>
 <p>This typically shows the API log and the worker log together.</p>
 <hr />
+<h2 id="-role-per-node-service-selection"><code>--role</code> (per-node service selection)<a class="headerlink" href="#-role-per-node-service-selection" title="Permanent link">&para;</a></h2>
+<p><code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code>, and <code>logs</code> all accept <code>--role</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Manages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>all</code> (default)</td>
+<td>API + plugin worker + protocol worker — identical to pre-<code>--role</code> behavior</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td>FastAPI/uvicorn only</td>
+</tr>
+<tr>
+<td><code>plugins</code></td>
+<td>Plugin Celery worker only</td>
+</tr>
+<tr>
+<td><code>protocols</code></td>
+<td>Protocol Celery worker only</td>
+</tr>
+</tbody>
+</table>
+<p>This is the mechanism used to run only part of the stack on a given node in a <a href="../../installation/multi-node-cluster/">Multi-Node Cluster Deployment</a> — for example, a compute node that should run the protocol worker but never the API:</p>
+<pre><code class="language-bash">./scripts/scipionapi runtime start --role protocols
+./scripts/scipionapi runtime status --role protocols
+./scripts/scipionapi runtime stop --role protocols
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Default behavior is unchanged</p>
+<p>Omitting <code>--role</code> (or passing <code>--role all</code>) behaves exactly as before this option existed: all three processes are managed together.</p>
+</div>
+<p>An unrecognized role is rejected immediately with a clear error rather than silently falling back to <code>all</code>.</p>
+<hr />
+<h2 id="-queue-custom-celery-queue-name"><code>--queue</code> (custom Celery queue name)<a class="headerlink" href="#-queue-custom-celery-queue-name" title="Permanent link">&para;</a></h2>
+<p><code>start</code>, <code>restart</code>, and <code>status</code> also accept <code>--queue</code>, which overrides the Celery queue name the <strong>protocol</strong> worker listens on (default: <code>protocols</code>). This is normally combined with <code>--role protocols</code> on a dedicated node:</p>
+<pre><code class="language-bash">./scripts/scipionapi runtime start --role protocols --queue protocols-gpu
+</code></pre>
+<p><code>--queue</code> only affects that single invocation. To make the same queue name survive future restarts — including ones triggered from the web UI's worker restart button, which does not go through the CLI — set it in that node's <code>.env</code> instead:</p>
+<pre><code class="language-dotenv">PROTOCOLS_CELERY_QUEUE=protocols-gpu
+</code></pre>
+<p>A custom queue name only receives tasks once something is actually routed to it. See <a href="../../backend/celery/#multi-node-task-routing">Multi-Node Task Routing</a> for how <code>scipion_home/config/celery_queue_routing.json</code> maps a protocol's configured Host to a Celery queue name.</p>
+<div class="admonition note">
+<p class="admonition-title">The worker's Celery identity does not change</p>
+<p>Only the <code>-Q &lt;queue&gt;</code> flag changes. The worker still registers as <code>protocols@&lt;hostname&gt;</code>, so remote Stop and other host-targeted operations are unaffected by a custom queue name.</p>
+</div>
+<hr />
 <h2 id="common-issues">Common issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">API starts but exits quickly</p>
@@ -2857,6 +2968,7 @@
 </table>
 <p>When started by the CLI, the workers use the hostnames <code>plugins@%h</code> and <code>protocols@%h</code> and set <code>--prefetch-multiplier 1</code>.</p>
 <p>The runtime also tracks the workers independently, so <code>status</code> can distinguish a healthy API from a missing plugin worker or protocol worker.</p>
+<p>On a single node, all three processes normally run together (<code>--role all</code>, the default). On a <a href="../../installation/multi-node-cluster/">multi-node deployment</a>, each node manages only the subset relevant to it — for example a compute node running only <code>--role protocols</code>, optionally with its own <code>--queue</code> — while the master runs <code>--role api</code> and <code>--role plugins</code>.</p>
 
 
 

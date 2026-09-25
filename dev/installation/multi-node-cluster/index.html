@@ -12,13 +12,13 @@
         <meta name="author" content="Scipion Team">
       
       
-        <link rel="canonical" href="https://fonsecareyna82.github.io/scipion-docs/dev/cli/update/">
+        <link rel="canonical" href="https://fonsecareyna82.github.io/scipion-docs/dev/installation/multi-node-cluster/">
       
       
-        <link rel="prev" href="../provision/">
+        <link rel="prev" href="../deployment-systemd/">
       
       
-        <link rel="next" href="../release/">
+        <link rel="next" href="../../user-guide/">
       
       
       <link rel="icon" href="../../assets/images/scipion_icon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Update - ScipionWeb Documentation</title>
+        <title>Multi-Node Cluster Deployment - ScipionWeb Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#update" class="md-skip">
+        <a href="#multi-node-cluster-deployment" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Update
+              Multi-Node Cluster Deployment
             
           </span>
         </div>
@@ -242,11 +242,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../installation/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
     
@@ -331,21 +333,17 @@
         
   
   
-    
-  
   
     
     
       
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../cli/" class="md-tabs__link">
           
   
     
@@ -397,6 +395,8 @@
         <div class="md-main__inner md-grid">
           
             
+              
+                
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
@@ -455,6 +455,8 @@
       
   
   
+    
+  
   
   
     
@@ -483,23 +485,24 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../installation/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -510,13 +513,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Installation
@@ -532,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/prerequisites/" class="md-nav__link">
+      <a href="../prerequisites/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -553,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/guided-install/" class="md-nav__link">
+      <a href="../guided-install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -574,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/download-bundles/" class="md-nav__link">
+      <a href="../download-bundles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -595,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/provision/" class="md-nav__link">
+      <a href="../provision/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -616,7 +619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/manual-install/" class="md-nav__link">
+      <a href="../manual-install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -637,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/upgrade/" class="md-nav__link">
+      <a href="../upgrade/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -658,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-systemd/" class="md-nav__link">
+      <a href="../deployment-systemd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -676,10 +679,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../installation/multi-node-cluster/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Multi-Node Cluster Deployment
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -688,6 +711,242 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-master-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1 — Master Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1 — Master Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-point-env-at-routable-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Point .env at routable addresses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-export-the-shared-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Export the shared filesystem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-validate-before-starting-anything" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Validate before starting anything
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-start-only-the-masters-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Start only the master's services
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-each-worker-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2 — Each Worker Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2 — Each Worker Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-mount-the-shared-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Mount the shared filesystem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-install-scipionapi-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Install ScipionAPI locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-install-the-plugins-this-node-should-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Install the plugins this node should run
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-point-env-at-the-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Point .env at the master
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-validate" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Validate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-start-only-the-protocol-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Start only the protocol worker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-route-protocols-to-the-right-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3 — Route Protocols to the Right Node
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-verify-the-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4 — Verify the Cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4 — Verify the Cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-confirm-every-worker-answers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Confirm every worker answers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-check-the-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Check the dashboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-launch-a-test-protocol-on-the-routed-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Launch a test protocol on the routed queue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networking-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networking Checklist
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1536,10 +1795,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1554,22 +1811,21 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1580,7 +1836,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Developer Reference
@@ -1591,8 +1847,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1623,22 +1877,21 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_1" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../cli/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1649,13 +1902,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_1" id="__nav_6_1_label" tabindex="">
+              <label class="md-nav__link " for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_1">
             <span class="md-nav__icon md-icon"></span>
             Command Line Reference
@@ -1671,7 +1924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bootstrap/" class="md-nav__link">
+      <a href="../../cli/bootstrap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1692,7 +1945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+      <a href="../../cli/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1713,7 +1966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../provision/" class="md-nav__link">
+      <a href="../../cli/provision/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1731,30 +1984,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Update
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../cli/update/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1763,152 +1996,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      Purpose
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#default-update" class="md-nav__link">
-    <span class="md-ellipsis">
-      Default update
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dry-run" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dry run
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specific-version" class="md-nav__link">
-    <span class="md-ellipsis">
-      Specific version
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#force-reinstall" class="md-nav__link">
-    <span class="md-ellipsis">
-      Force reinstall
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-only-or-web-only-updates" class="md-nav__link">
-    <span class="md-ellipsis">
-      API-only or Web-only updates
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#do-not-restart-automatically" class="md-nav__link">
-    <span class="md-ellipsis">
-      Do not restart automatically
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Release source
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#manifest-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manifest contract
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generated-release-manifest" class="md-nav__link">
-    <span class="md-ellipsis">
-      Generated release manifest
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#publication-order" class="md-nav__link">
-    <span class="md-ellipsis">
-      Publication order
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-production-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example production flow
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related endpoints
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related pages
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1921,7 +2008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release/" class="md-nav__link">
+      <a href="../../cli/release/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1942,7 +2029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../uninstall/" class="md-nav__link">
+      <a href="../../cli/uninstall/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1963,7 +2050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../doctor/" class="md-nav__link">
+      <a href="../../cli/doctor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1984,7 +2071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../runtime/" class="md-nav__link">
+      <a href="../../cli/runtime/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2036,13 +2123,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -2064,7 +2148,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_2" id="__nav_6_2_label" tabindex="">
+              <label class="md-nav__link " for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2235,13 +2319,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -2263,7 +2344,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_3" id="__nav_6_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2350,13 +2431,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -2365,7 +2443,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_4" >
         
           
-          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2656,7 +2734,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -2675,126 +2755,216 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#architecture-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Purpose
+      Architecture Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#default-update" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Default update
+      Prerequisites
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dry-run" class="md-nav__link">
+  <a href="#step-1-master-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Dry run
+      Step 1 — Master Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1 — Master Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-point-env-at-routable-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Point .env at routable addresses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-export-the-shared-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Export the shared filesystem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-validate-before-starting-anything" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Validate before starting anything
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-start-only-the-masters-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Start only the master's services
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-each-worker-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2 — Each Worker Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2 — Each Worker Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-mount-the-shared-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Mount the shared filesystem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-install-scipionapi-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Install ScipionAPI locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-install-the-plugins-this-node-should-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Install the plugins this node should run
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-point-env-at-the-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Point .env at the master
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-validate" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Validate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-start-only-the-protocol-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Start only the protocol worker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-route-protocols-to-the-right-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3 — Route Protocols to the Right Node
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#specific-version" class="md-nav__link">
+  <a href="#step-4-verify-the-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Specific version
+      Step 4 — Verify the Cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4 — Verify the Cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-confirm-every-worker-answers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Confirm every worker answers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-check-the-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Check the dashboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-launch-a-test-protocol-on-the-routed-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Launch a test protocol on the routed queue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networking-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networking Checklist
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#force-reinstall" class="md-nav__link">
+  <a href="#common-issues" class="md-nav__link">
     <span class="md-ellipsis">
-      Force reinstall
+      Common Issues
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-only-or-web-only-updates" class="md-nav__link">
+  <a href="#navigation" class="md-nav__link">
     <span class="md-ellipsis">
-      API-only or Web-only updates
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#do-not-restart-automatically" class="md-nav__link">
-    <span class="md-ellipsis">
-      Do not restart automatically
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Release source
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#manifest-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manifest contract
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generated-release-manifest" class="md-nav__link">
-    <span class="md-ellipsis">
-      Generated release manifest
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#publication-order" class="md-nav__link">
-    <span class="md-ellipsis">
-      Publication order
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-production-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example production flow
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related endpoints
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related pages
+      Navigation
     </span>
   </a>
   
@@ -2818,156 +2988,151 @@
   
 
 
-<h1 id="update">update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h1>
-<p>The <code>update</code> command upgrades an existing ScipionAPI installation and, when integrated mode is enabled, the bundled ScipionWeb frontend.</p>
-<p>Use it from the current ScipionAPI installation directory:</p>
-<pre><code class="language-bash">./scripts/scipionapi update
-</code></pre>
+<h1 id="multi-node-cluster-deployment">Multi-Node Cluster Deployment<a class="headerlink" href="#multi-node-cluster-deployment" title="Permanent link">&para;</a></h1>
+<p>This guide explains how to run <strong>ScipionWeb</strong> across several machines: one <strong>master</strong> node (API + PostgreSQL + Valkey) and one or more <strong>worker</strong> nodes that only execute protocols or handle plugin installation.</p>
+<div class="admonition note">
+<p class="admonition-title">Scope</p>
+<p>This page covers the <em>ScipionWeb-level</em> multi-node topology: which services run where, how they find each other, and how protocol execution gets routed to a specific node. It does not replace <a href="../../user-guide/hosts-and-queues/">Hosts and Queues</a>, which configures a scheduler (SLURM) <em>inside</em> a single node. The two are complementary and can be combined.</p>
+</div>
 <hr />
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p><code>update</code> is intended for existing deployments. It preserves the runtime workspace while replacing managed application files with the selected release.</p>
-<p>It is designed to:</p>
+<h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">Master node
+├── FastAPI / uvicorn (API + web UI)
+├── PostgreSQL
+├── Valkey (Celery broker)
+└── Plugin Celery worker
+
+Worker node 1                      Worker node 2                      Worker node 3
+└── Protocol Celery worker         └── Protocol Celery worker         └── Protocol Celery worker
+    queue: protocols                   queue: protocols                   queue: protocols-gpu
+</code></pre>
+<p>Every worker node points <code>DATABASE_URL</code> / <code>BROKER_URL</code> at the master's routable hostname (not <code>localhost</code>), and all nodes mount the same shared filesystem for <code>scipion_home/projects</code>.</p>
+<p>Only the <strong>master</strong> serves the web UI and REST API. Worker nodes never run <code>uvicorn</code>; they only run Celery workers that pull protocol-execution (and optionally plugin-install) tasks from the shared broker.</p>
+<div class="admonition tip">
+<p class="admonition-title">Start smaller if you are unsure</p>
+<p>If you only need to keep the API off the compute nodes, a single worker node already exercises this entire setup. Add the remaining nodes once the first one works end to end.</p>
+</div>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
-<li>read the current <code>.env</code></li>
-<li>preserve <code>SCIPION_HOME</code></li>
-<li>download the matching ScipionAPI and ScipionWeb release ZIPs</li>
-<li>verify checksums when available</li>
-<li>create a rollback backup</li>
-<li>stop services</li>
-<li>update API files</li>
-<li>install updated Python dependencies</li>
-<li>run database migrations</li>
-<li>deploy Web assets in integrated mode</li>
-<li>restart services</li>
+<li>A <strong>shared filesystem</strong> mounted at the same path on every node (NFS or equivalent), holding at least <code>scipion_home/projects</code>. Sharing <code>scipion_home/config</code> too is strongly recommended so <code>hosts.conf</code> and <code>celery_queue_routing.json</code> (see below) stay identical everywhere without manual copying.</li>
+<li><strong>PostgreSQL</strong> and <strong>Valkey</strong> reachable from every worker node over the network (not <code>localhost</code>).</li>
+<li>The <strong>same ScipionAPI checkout and Conda environment</strong> installed independently on every node (code and the Python environment are <em>not</em> shared over NFS for performance reasons — only project data is).</li>
+<li>The plugins each worker actually needs installed <strong>on that worker</strong>. A shared filesystem does not make a plugin "installed" on a node that never ran its installer.</li>
 </ul>
 <hr />
-<h2 id="default-update">Default update<a class="headerlink" href="#default-update" title="Permanent link">&para;</a></h2>
-<p>Install the latest published release:</p>
-<pre><code class="language-bash">./scripts/scipionapi update
+<h2 id="step-1-master-setup">Step 1 — Master Setup<a class="headerlink" href="#step-1-master-setup" title="Permanent link">&para;</a></h2>
+<p>Install ScipionAPI on the master exactly as in a normal single-node install (see <a href="../guided-install/">Guided Installation</a> or <a href="../manual-install/">Manual Installation</a>).</p>
+<h3 id="11-point-env-at-routable-addresses">1.1 Point <code>.env</code> at routable addresses<a class="headerlink" href="#11-point-env-at-routable-addresses" title="Permanent link">&para;</a></h3>
+<p>Edit <code>scipion_home/.env</code> so <code>DATABASE_URL</code> and <code>BROKER_URL</code> use the master's <strong>LAN hostname or IP</strong>, not <code>localhost</code> / <code>127.0.0.1</code>:</p>
+<pre><code class="language-dotenv">DATABASE_URL=postgresql://scipion_user:&lt;password&gt;@master.internal:5432/scipion_db
+BROKER_URL=redis://master.internal:6379/0
 </code></pre>
-<p>The updater resolves <code>latest</code> using:</p>
-<pre><code class="language-text">https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/manifest.json
+<div class="admonition warning">
+<p class="admonition-title">This is the single most common multi-node mistake</p>
+<p>If these stay on <code>localhost</code>, worker nodes will start, look healthy in their own logs, and simply never receive any task — because they are talking to a broker on <em>themselves</em>, not the master.</p>
+</div>
+<h3 id="12-export-the-shared-filesystem">1.2 Export the shared filesystem<a class="headerlink" href="#12-export-the-shared-filesystem" title="Permanent link">&para;</a></h3>
+<p>Export <code>scipion_home/projects</code> (and ideally <code>scipion_home/config</code>) over NFS, or place them on whatever shared storage your infrastructure provides. Make sure the worker node IPs are allowed in the export.</p>
+<h3 id="13-validate-before-starting-anything">1.3 Validate before starting anything<a class="headerlink" href="#13-validate-before-starting-anything" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">SCIPIONAPI_DEPLOYMENT_MODE=multi-node ./scripts/scipionapi doctor --strict
 </code></pre>
-<p>The manifest maps a release version to both ZIP files:</p>
-<pre><code class="language-text">ScipionAPI-vX.Y.Z.zip
-ScipionWeb-vX.Y.Z-dist.zip
+<p>With <code>SCIPIONAPI_DEPLOYMENT_MODE=multi-node</code>, <code>doctor</code> escalates three checks from warnings to hard failures: <strong>Broker reachability</strong>, <strong>Database reachability</strong>, and <strong>Projects filesystem</strong> (rejecting local-only filesystem types such as <code>ext4</code> when it cannot confirm the path is shared). See <a href="../../cli/doctor/#multi-node-deployment-checks"><code>doctor</code> — Multi-Node Deployment Checks</a> for what each check does.</p>
+<p>Fix everything <code>doctor --strict</code> reports before moving to the worker nodes.</p>
+<h3 id="14-start-only-the-masters-services">1.4 Start only the master's services<a class="headerlink" href="#14-start-only-the-masters-services" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">./scripts/scipionapi runtime start --role api
+./scripts/scipionapi runtime start --role plugins
 </code></pre>
+<p>Protocol execution is normally <strong>not</strong> run on the master, so the machine serving the web UI stays responsive. If the master also has spare capacity, <code>--role protocols</code> (or <code>--role all</code>) is a valid choice too. See <a href="../../cli/runtime/#-role-per-node-service-selection"><code>start</code> / <code>stop</code> / <code>restart</code> / <code>status</code> / <code>logs</code> — <code>--role</code></a>.</p>
 <hr />
-<h2 id="dry-run">Dry run<a class="headerlink" href="#dry-run" title="Permanent link">&para;</a></h2>
-<p>Preview what would happen without changing files:</p>
-<pre><code class="language-bash">./scripts/scipionapi update --dry-run
+<h2 id="step-2-each-worker-node">Step 2 — Each Worker Node<a class="headerlink" href="#step-2-each-worker-node" title="Permanent link">&para;</a></h2>
+<p>Repeat this for every worker node.</p>
+<h3 id="21-mount-the-shared-filesystem">2.1 Mount the shared filesystem<a class="headerlink" href="#21-mount-the-shared-filesystem" title="Permanent link">&para;</a></h3>
+<p>Mount the master's NFS export at the exact same path used on the master (for example <code>scipion_home/projects</code>).</p>
+<h3 id="22-install-scipionapi-locally">2.2 Install ScipionAPI locally<a class="headerlink" href="#22-install-scipionapi-locally" title="Permanent link">&para;</a></h3>
+<p>Install the same ScipionAPI version with its own Conda environment on this node (<a href="../manual-install/">Manual Installation</a> or <a href="../provision/">Provision</a> are the usual paths for a worker-only node — you do not need to run <code>provision</code>'s admin-user bootstrap again if the database already exists).</p>
+<h3 id="23-install-the-plugins-this-node-should-run">2.3 Install the plugins this node should run<a class="headerlink" href="#23-install-the-plugins-this-node-should-run" title="Permanent link">&para;</a></h3>
+<p>Install (via the plugin manager or <code>scipionapi_cli</code>) whatever plugins the protocols routed to this node actually need. GPU-heavy plugins typically only make sense on GPU-equipped nodes.</p>
+<h3 id="24-point-env-at-the-master">2.4 Point <code>.env</code> at the master<a class="headerlink" href="#24-point-env-at-the-master" title="Permanent link">&para;</a></h3>
+<pre><code class="language-dotenv">DATABASE_URL=postgresql://scipion_user:&lt;password&gt;@master.internal:5432/scipion_db
+BROKER_URL=redis://master.internal:6379/0
 </code></pre>
-<p>Use this before updating a production or shared instance.</p>
+<h3 id="25-validate">2.5 Validate<a class="headerlink" href="#25-validate" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">SCIPIONAPI_DEPLOYMENT_MODE=multi-node ./scripts/scipionapi doctor --strict
+</code></pre>
+<h3 id="26-start-only-the-protocol-worker">2.6 Start only the protocol worker<a class="headerlink" href="#26-start-only-the-protocol-worker" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">./scripts/scipionapi runtime start --role protocols
+</code></pre>
+<p>For a node that should only receive a specific class of protocol (for example, a GPU node), give it its own Celery queue name instead of the shared default:</p>
+<pre><code class="language-bash">./scripts/scipionapi runtime start --role protocols --queue protocols-gpu
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Make the queue name persistent</p>
+<p>A <code>--queue</code> passed on the command line only applies to that one <code>start</code>/<code>restart</code> invocation. To have the same queue name survive future restarts — including ones triggered from the web UI's worker restart button — set it in that node's <code>.env</code> instead:</p>
+<p><code>dotenv
+PROTOCOLS_CELERY_QUEUE=protocols-gpu</code></p>
+</div>
 <hr />
-<h2 id="specific-version">Specific version<a class="headerlink" href="#specific-version" title="Permanent link">&para;</a></h2>
-<p>Install a specific version:</p>
-<pre><code class="language-bash">./scripts/scipionapi update --version v4.0.1
+<h2 id="step-3-route-protocols-to-the-right-node">Step 3 — Route Protocols to the Right Node<a class="headerlink" href="#step-3-route-protocols-to-the-right-node" title="Permanent link">&para;</a></h2>
+<p>By default every protocol dispatch goes to the shared <code>protocols</code> queue, and any protocol worker listening on it can pick it up — this is unchanged and safe even if you never touch queue routing.</p>
+<p>To send specific protocols to a specific node, reuse the <strong>Host</strong> name you already assign per protocol in <a href="../../user-guide/hosts-and-queues/">Hosts and Queues</a> (the same value used for SLURM partition selection). Create or edit:</p>
+<pre><code class="language-text">scipion_home/config/celery_queue_routing.json
 </code></pre>
-<p>This is useful when you want to pin the deployment to a known release instead of automatically using <code>latest</code>.</p>
-<hr />
-<h2 id="force-reinstall">Force reinstall<a class="headerlink" href="#force-reinstall" title="Permanent link">&para;</a></h2>
-<p>If the installed version already matches the target version, use <code>--force</code> to reinstall it:</p>
-<pre><code class="language-bash">./scripts/scipionapi update --version v4.0.1 --force
-</code></pre>
-<p>This can be useful when validating release packages, repairing a partial update, or redeploying the Web bundle from the same release.</p>
-<hr />
-<h2 id="api-only-or-web-only-updates">API-only or Web-only updates<a class="headerlink" href="#api-only-or-web-only-updates" title="Permanent link">&para;</a></h2>
-<p>Normal releases should keep ScipionAPI and ScipionWeb aligned. For controlled maintenance or debugging, you may update only one side:</p>
-<pre><code class="language-bash">./scripts/scipionapi update --api-only
-./scripts/scipionapi update --web-only
-</code></pre>
-<p>Use these options carefully. A mismatched API/Web pair may load but still behave incorrectly.</p>
-<hr />
-<h2 id="do-not-restart-automatically">Do not restart automatically<a class="headerlink" href="#do-not-restart-automatically" title="Permanent link">&para;</a></h2>
-<p>To leave services stopped after the update:</p>
-<pre><code class="language-bash">./scripts/scipionapi update --no-restart
-</code></pre>
-<p>This is useful if you want to inspect files, logs, or migrations before bringing the instance back online.</p>
-<hr />
-<h2 id="release-source">Release source<a class="headerlink" href="#release-source" title="Permanent link">&para;</a></h2>
-<p>By default, updates are resolved from:</p>
-<pre><code class="language-text">https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
-</code></pre>
-<p>The base URL can be configured through:</p>
-<pre><code class="language-env">SCIPIONAPI_UPDATE_BASE_URL=https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
-</code></pre>
-<p>This is useful for mirrors, staging release directories, or private deployments.</p>
-<hr />
-<h2 id="manifest-contract">Manifest contract<a class="headerlink" href="#manifest-contract" title="Permanent link">&para;</a></h2>
-<p>The updater expects a <code>manifest.json</code> similar to:</p>
 <pre><code class="language-json">{
-  &quot;latest&quot;: &quot;v4.0.1&quot;,
-  &quot;releases&quot;: {
-    &quot;v4.0.1&quot;: {
-      &quot;api&quot;: {
-        &quot;file&quot;: &quot;ScipionAPI-v4.0.1.zip&quot;,
-        &quot;sha256&quot;: &quot;...&quot;,
-        &quot;size&quot;: 123456
-      },
-      &quot;web&quot;: {
-        &quot;file&quot;: &quot;ScipionWeb-v4.0.1-dist.zip&quot;,
-        &quot;sha256&quot;: &quot;...&quot;,
-        &quot;size&quot;: 123456
-      }
-    }
-  }
+  &quot;gpu-cluster&quot;: &quot;protocols-gpu&quot;
 }
 </code></pre>
-<p>The manifest should be cumulative. When publishing <code>v4.0.1</code>, keep previous releases such as <code>v4.0.0</code> in the <code>releases</code> object.</p>
+<p><code>"gpu-cluster"</code> here is a Host name as configured in <strong>Settings &gt; Host</strong> / <code>hosts.conf</code>, not a Celery worker name. Any protocol launched with that host now dispatches straight to the <code>protocols-gpu</code> queue — which only the node started with <code>--queue protocols-gpu</code> consumes. Hosts with no entry in this file keep going to the plain <code>protocols</code> queue, exactly like a single-node deployment.</p>
+<p>Because <code>scipion_home/config</code> is on the shared filesystem, this file only needs to exist once and every node/master sees the same mapping immediately.</p>
 <hr />
-<h2 id="generated-release-manifest">Generated release manifest<a class="headerlink" href="#generated-release-manifest" title="Permanent link">&para;</a></h2>
-<p>Maintainers can generate or update the manifest with:</p>
-<pre><code class="language-bash">python scripts/update_release_manifest.py \
-  --version v4.0.1 \
-  --downloads-dir /path/to/releases
+<h2 id="step-4-verify-the-cluster">Step 4 — Verify the Cluster<a class="headerlink" href="#step-4-verify-the-cluster" title="Permanent link">&para;</a></h2>
+<h3 id="41-confirm-every-worker-answers">4.1 Confirm every worker answers<a class="headerlink" href="#41-confirm-every-worker-answers" title="Permanent link">&para;</a></h3>
+<p>From the master (or any node with network access to Valkey):</p>
+<pre><code class="language-bash">python -m celery -A app.workers.task_queue inspect ping
 </code></pre>
-<p>The release directory should contain:</p>
-<pre><code class="language-text">manifest.json
-ScipionAPI-v4.0.1.zip
-ScipionWeb-v4.0.1-dist.zip
-</code></pre>
-<p>If <code>manifest.json</code> already exists, the script preserves previous releases and adds or replaces the selected version.</p>
+<p>You should see one <code>protocols@&lt;hostname&gt;</code> entry per worker node, plus <code>plugins@&lt;master-hostname&gt;</code>.</p>
+<h3 id="42-check-the-dashboard">4.2 Check the dashboard<a class="headerlink" href="#42-check-the-dashboard" title="Permanent link">&para;</a></h3>
+<p>Open <strong>Settings &gt; Jobs</strong> in the web UI (admin only). Each worker shows up as its own card. Click <strong>Refresh nodes</strong> to broadcast a capability report to every node and confirm, per node, which GPUs and plugins are actually installed there — this is the fastest way to catch "I forgot to install this plugin on worker 2" before a protocol launch fails on it.</p>
+<h3 id="43-launch-a-test-protocol-on-the-routed-queue">4.3 Launch a test protocol on the routed queue<a class="headerlink" href="#43-launch-a-test-protocol-on-the-routed-queue" title="Permanent link">&para;</a></h3>
+<p>Launch a protocol whose Host maps to <code>protocols-gpu</code> in <code>celery_queue_routing.json</code>, and confirm in <strong>Settings &gt; Jobs &gt; Active jobs</strong> that its <code>worker</code> column shows the GPU node's hostname, not one of the plain <code>protocols</code> workers.</p>
 <hr />
-<h2 id="publication-order">Publication order<a class="headerlink" href="#publication-order" title="Permanent link">&para;</a></h2>
-<p>When publishing a new release:</p>
-<ol>
-<li>create <code>ScipionAPI-vX.Y.Z.zip</code></li>
-<li>create <code>ScipionWeb-vX.Y.Z-dist.zip</code></li>
-<li>generate or update <code>manifest.json</code></li>
-<li>upload both ZIP files</li>
-<li>upload <code>manifest.json</code> last</li>
-</ol>
-<p>Uploading <code>manifest.json</code> last prevents users from seeing a latest version whose ZIP files are not yet available.</p>
-<hr />
-<h2 id="example-production-flow">Example production flow<a class="headerlink" href="#example-production-flow" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">./scripts/scipionapi update --dry-run
-./scripts/scipionapi update --version v4.0.1
-./scripts/scipionapi status
-./scripts/scipionapi doctor --quick
-./scripts/scipionapi logs
-</code></pre>
-<p>Then verify the Web UI:</p>
+<h2 id="networking-checklist">Networking Checklist<a class="headerlink" href="#networking-checklist" title="Permanent link">&para;</a></h2>
 <ul>
-<li>login</li>
-<li>project list</li>
-<li>project loading</li>
-<li>one basic workflow or protocol action</li>
+<li>[ ] <code>DATABASE_URL</code> / <code>BROKER_URL</code> on every worker point to the master's routable hostname/IP, not <code>localhost</code></li>
+<li>[ ] PostgreSQL (<code>5432</code>) and Valkey (<code>6379</code>) accept connections from every worker's IP (firewall / security group / <code>pg_hba.conf</code>)</li>
+<li>[ ] The NFS (or equivalent) export allows every worker's IP</li>
+<li>[ ] <code>SCIPIONAPI_DEPLOYMENT_MODE=multi-node ./scripts/scipionapi doctor --strict</code> passes on the master and on every worker</li>
+<li>[ ] Each worker node has the plugins it needs installed locally</li>
+<li>[ ] <code>scipion_home/config/celery_queue_routing.json</code> (if used) is reachable from every node through the shared filesystem</li>
 </ul>
 <hr />
-<h2 id="related-endpoints">Related endpoints<a class="headerlink" href="#related-endpoints" title="Permanent link">&para;</a></h2>
-<p>ScipionAPI exposes system endpoints that ScipionWeb can use to show update information:</p>
-<pre><code class="language-http">GET /api/system/version
-GET /api/system/update-check
-</code></pre>
-<p>These endpoints are informational. They do not run the update automatically.</p>
+<h2 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Worker looks 'ready' in its own log but never runs anything</p>
+<p>Almost always <code>DATABASE_URL</code>/<code>BROKER_URL</code> still pointing at <code>localhost</code> on that node. Re-run <code>doctor --strict</code> with <code>SCIPIONAPI_DEPLOYMENT_MODE=multi-node</code> — this is exactly the case it is designed to catch.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Protocol stays in Scheduled/Launched forever</p>
+<p>Confirm the Celery broker queue actually has a consumer: <code>python -m celery -A app.workers.task_queue inspect active_queues</code>. If a worker was started and then the broker connection was interrupted (network blip, VPN drop), the process can stay alive without actually consuming tasks. Restarting that one worker (<code>./scripts/scipionapi runtime restart --role protocols</code>) recovers it; this is an operational Celery/Redis quirk, not something specific to this deployment mode.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">A protocol fails immediately with an import/plugin error on one node but not another</p>
+<p>The plugin it needs is not installed on the node that picked it up. Use <strong>Settings &gt; Jobs &gt; Refresh nodes</strong> to confirm per-node plugin inventory before assuming code is broken, and route that protocol's Host to a queue only consumed by nodes that have the plugin.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><code>celery_queue_routing.json</code> changes do not seem to take effect</p>
+<p>The mapping is read fresh on every dispatch, so no restart is needed — but it is read from <code>SCIPION_HOME/config/</code>, so double-check the file actually landed on the shared mount and not on a single node's local disk.</p>
+</div>
 <hr />
-<h2 id="related-pages">Related pages<a class="headerlink" href="#related-pages" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../../installation/upgrade/">Upgrade Guide</a></li>
-<li><a href="../runtime/">Runtime Commands</a></li>
-<li><a href="../../operations/backup-restore/">Backup and Restore</a></li>
-<li><a href="../../release/checklist/">Release Checklist</a></li>
-</ul>
+<h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">
+  <a href="../deployment-systemd/" style="text-decoration:none; display:inline-block;">
+    ← Previous: Production Deployment
+  </a>
+  <a href="../../cli/doctor/" style="text-decoration:none; display:inline-block; margin-left:auto;">
+    Next: doctor command →
+  </a>
+</div>
 
 
 
@@ -2975,8 +3140,13 @@ GET /api/system/update-check
 
 
 
+  
+  
 
 
+
+
+  
 
 
 

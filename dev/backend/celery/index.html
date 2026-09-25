@@ -480,6 +480,8 @@
       
         
       
+        
+      
     
     
       
@@ -663,6 +665,27 @@
   
   <span class="md-ellipsis">
     Production Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Node Cluster Deployment
   </span>
   
 
@@ -2194,6 +2217,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multi-node-task-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Node Task Routing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-capability-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Node Capability Reporting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#navigation" class="md-nav__link">
     <span class="md-ellipsis">
       Navigation
@@ -2869,6 +2910,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multi-node-task-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Node Task Routing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-capability-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Node Capability Reporting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#navigation" class="md-nav__link">
     <span class="md-ellipsis">
       Navigation
@@ -3069,6 +3128,29 @@ protocols queue
 <pre><code class="language-bash">python -m celery -A app.workers.task_queue inspect ping
 </code></pre>
 <p>A healthy local runtime should report both <code>plugins@...</code> and <code>protocols@...</code> workers.</p>
+<hr />
+<h2 id="multi-node-task-routing">Multi-Node Task Routing<a class="headerlink" href="#multi-node-task-routing" title="Permanent link">&para;</a></h2>
+<p>In a <a href="../../installation/multi-node-cluster/">Multi-Node Cluster Deployment</a>, a protocol worker on any node can consume from the shared <code>protocols</code> queue by default — Celery distributes purely by availability, with no awareness of which node has which plugins or GPUs installed.</p>
+<p>To send specific protocols to a specific node, <code>_enqueuePostgresqlProtocolTask</code> (in <code>app/backend/project/postgresql_project.py</code>) looks up the protocol's configured <strong>Host</strong> name (the same value used for SLURM partition selection — see <a href="../../user-guide/hosts-and-queues/">Hosts and Queues</a>) in:</p>
+<pre><code class="language-text">scipion_home/config/celery_queue_routing.json
+</code></pre>
+<pre><code class="language-json">{ &quot;gpu-cluster&quot;: &quot;protocols-gpu&quot; }
+</code></pre>
+<p>If the Host has a mapping, <code>apply_async(..., queue=&lt;mapped-name&gt;)</code> sends the task straight to that named queue instead of the default <code>protocols</code> queue — consumed only by a worker started with <code>runtime start --role protocols --queue protocols-gpu</code> (or <code>PROTOCOLS_CELERY_QUEUE</code> in that node's <code>.env</code>). Unmapped hosts keep going to <code>protocols</code>, so this file is entirely optional and has no effect on a single-node deployment.</p>
+<p>The mapping is read fresh from disk on every dispatch (best-effort — a missing or malformed file is treated as "no routing configured", not an error), so changes take effect immediately without restarting anything.</p>
+<hr />
+<h2 id="node-capability-reporting">Node Capability Reporting<a class="headerlink" href="#node-capability-reporting" title="Permanent link">&para;</a></h2>
+<p>The <code>report_node_capabilities</code> Celery control command (in <code>app/workers/task_queue.py</code>) lets the <strong>Settings &gt; Jobs</strong> dashboard's "Refresh nodes" button ask every online worker what it actually has available: its hostname, NVIDIA GPU inventory, and locally installed plugins. <code>JobMonitoringService.getNodeCapabilities()</code> broadcasts it via <code>celeryApp.control.broadcast(..., reply=True)</code> and merges replies by hostname.</p>
+<div class="admonition danger">
+<p class="admonition-title">This command must never touch the network</p>
+<p>Celery control commands run <strong>synchronously on the worker's control channel</strong> — the same channel used for <code>inspect</code>/<code>ping</code> and, in some transport configurations, closely tied to the worker's ability to keep consuming its task queue. An early version of this command listed plugins via <code>PluginService.getPlugins()</code>, which calls <code>PluginRepository</code> and fetches the remote plugin catalog from <code>scipion.i2pc.es</code>. In an environment without outbound internet access, that network call stalled inside the control command handler — and the worker stopped consuming from its task queue entirely, even though the process stayed alive and looked "ready" in its own log.</p>
+<p>The fix (and the rule for anything added to this command in the future) is to only report what is already known <strong>locally and synchronously</strong>:</p>
+<ul>
+<li>GPUs: <code>_getNvidiaGpuResources()</code> (a bounded, 3-second-timeout <code>nvidia-smi</code> subprocess call — no network)</li>
+<li>Plugins: <code>Domain.getPlugins()</code> from <code>pyworkflow.plugin</code> — the plugin entry points already discovered locally via <code>importlib.metadata</code> when the worker started (<code>prepareEnvironment()</code> forces this discovery at startup), plus a best-effort <code>importlib.metadata.version()</code> lookup per plugin. No network call, no remote catalog fetch.</li>
+</ul>
+<p>If a worker ever appears to go idle (stops picking up tasks) right after someone clicks "Refresh nodes", suspect a blocking call reintroduced into this control command before anything else.</p>
+</div>
 <hr />
 <h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
 <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2rem; gap:1rem;">

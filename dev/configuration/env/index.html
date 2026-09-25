@@ -480,6 +480,8 @@
       
         
       
+        
+      
     
     
       
@@ -663,6 +665,27 @@
   
   <span class="md-ellipsis">
     Production Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Node Cluster Deployment
   </span>
   
 
@@ -1425,6 +1448,15 @@
   <a href="#valkey-celery" class="md-nav__link">
     <span class="md-ellipsis">
       Valkey / Celery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-node-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-node deployment
     </span>
   </a>
   
@@ -2743,6 +2775,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multi-node-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-node deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#runtime-filesystem-paths" class="md-nav__link">
     <span class="md-ellipsis">
       Runtime filesystem paths
@@ -2930,6 +2971,16 @@ API_PORT=&lt;selected-port&gt;
 CELERY_LOGLEVEL=info
 </code></pre>
 <p>Valkey must remain reachable for Celery background processing.</p>
+<hr />
+<h2 id="multi-node-deployment">Multi-node deployment<a class="headerlink" href="#multi-node-deployment" title="Permanent link">&para;</a></h2>
+<p>These are only needed for a <a href="../../installation/multi-node-cluster/">Multi-Node Cluster Deployment</a>; an ordinary single-node installation does not need to set either of them.</p>
+<pre><code class="language-dotenv">SCIPIONAPI_DEPLOYMENT_MODE=multi-node
+PROTOCOLS_CELERY_QUEUE=protocols-gpu
+</code></pre>
+<ul>
+<li><code>SCIPIONAPI_DEPLOYMENT_MODE</code> — set on every node to <code>multi-node</code> so <code>./scripts/scipionapi doctor --strict</code> escalates loopback broker/database URLs and a non-shared <code>PROJECTS_PATH</code> from warnings to failures. Defaults to <code>single-node</code> behavior when unset.</li>
+<li><code>PROTOCOLS_CELERY_QUEUE</code> — persists a custom Celery queue name for that node's protocol worker (equivalent to <code>runtime start --role protocols --queue &lt;name&gt;</code>, but also honored when the worker is restarted from the web UI). Defaults to <code>protocols</code>.</li>
+</ul>
 <hr />
 <h2 id="runtime-filesystem-paths">Runtime filesystem paths<a class="headerlink" href="#runtime-filesystem-paths" title="Permanent link">&para;</a></h2>
 <p>Examples:</p>

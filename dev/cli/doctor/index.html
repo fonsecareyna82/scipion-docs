@@ -480,6 +480,8 @@
       
         
       
+        
+      
     
     
       
@@ -663,6 +665,27 @@
   
   <span class="md-ellipsis">
     Production Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Node Cluster Deployment
   </span>
   
 
@@ -1840,6 +1863,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multi-node-deployment-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Node Deployment Checks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#when-to-use-it" class="md-nav__link">
     <span class="md-ellipsis">
       When to Use It
@@ -2602,6 +2634,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multi-node-deployment-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Node Deployment Checks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#when-to-use-it" class="md-nav__link">
     <span class="md-ellipsis">
       When to Use It
@@ -2695,7 +2736,50 @@
 <li>API and worker PID files</li>
 <li>integrated Web bundle layout when <code>SERVE_WEB=1</code></li>
 <li>Alembic current revision in full mode</li>
+<li>multi-node deployment readiness (see below)</li>
 </ul>
+<hr />
+<h2 id="multi-node-deployment-checks">Multi-Node Deployment Checks<a class="headerlink" href="#multi-node-deployment-checks" title="Permanent link">&para;</a></h2>
+<p><code>doctor</code> also validates configuration that only matters once more than one node participates in the same deployment (see <a href="../../installation/multi-node-cluster/">Multi-Node Cluster Deployment</a>).</p>
+<p>By default, <code>doctor</code> assumes a single-node deployment and only <strong>warns</strong> about the conditions below, so an ordinary local installation never fails these checks. Opt into strict multi-node validation with:</p>
+<pre><code class="language-bash">SCIPIONAPI_DEPLOYMENT_MODE=multi-node ./scripts/scipionapi doctor --strict
+</code></pre>
+<p>With <code>SCIPIONAPI_DEPLOYMENT_MODE=multi-node</code>, three checks escalate from <code>WARN</code> to <code>FAIL</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>What it verifies</th>
+<th>Fails when (multi-node mode)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Broker reachability</strong></td>
+<td><code>BROKER_URL</code> does not resolve to <code>localhost</code>/<code>127.0.0.1</code></td>
+<td>The broker host is a loopback address — unreachable from any other node</td>
+</tr>
+<tr>
+<td><strong>Database reachability</strong></td>
+<td><code>DATABASE_URL</code> does not resolve to <code>localhost</code>/<code>127.0.0.1</code></td>
+<td>The database host is a loopback address — unreachable from any other node</td>
+</tr>
+<tr>
+<td><strong>Projects filesystem</strong></td>
+<td><code>PROJECTS_PATH</code> is mounted from a filesystem type that looks shared (<code>nfs</code>, <code>nfs4</code>, <code>cifs</code>, <code>glusterfs</code>, <code>ceph</code>, ...) rather than local-only (<code>ext4</code>, <code>xfs</code>, <code>btrfs</code>, <code>tmpfs</code>, ...)</td>
+<td>The filesystem type looks local-only, meaning other nodes would not see the same project/run files</td>
+</tr>
+</tbody>
+</table>
+<p>A fourth informational row, <strong>Deployment mode</strong>, always reports whether <code>SCIPIONAPI_DEPLOYMENT_MODE</code> is <code>single-node</code> (default) or <code>multi-node</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Run this on every node</p>
+<p>Run <code>SCIPIONAPI_DEPLOYMENT_MODE=multi-node ./scripts/scipionapi doctor --strict</code> on the master <strong>and</strong> on every worker node before starting services. It is the fastest way to catch a worker that would otherwise start, look healthy in its own log, and never actually receive any work because it is still pointed at its own <code>localhost</code> broker/database.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Unset <code>SCIPIONAPI_DEPLOYMENT_MODE</code> is safe</p>
+<p>Leaving the variable unset (or set to <code>single-node</code>) preserves the original behavior exactly: loopback broker/database URLs and a local filesystem for <code>PROJECTS_PATH</code> remain informational <code>WARN</code>s, never <code>FAIL</code>s.</p>
+</div>
 <hr />
 <h2 id="when-to-use-it">When to Use It<a class="headerlink" href="#when-to-use-it" title="Permanent link">&para;</a></h2>
 <p>Run <code>doctor</code> after installation:</p>
