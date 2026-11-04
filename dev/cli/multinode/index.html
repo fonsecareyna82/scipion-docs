@@ -486,6 +486,8 @@
       
         
       
+        
+      
     
     
       
@@ -627,6 +629,27 @@
   
   <span class="md-ellipsis">
     Several Machines (Multi-Node)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node-example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example: A Three-Machine Cluster
   </span>
   
 
@@ -1965,6 +1988,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multinode-compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      multinode compute
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#node-join" class="md-nav__link">
     <span class="md-ellipsis">
       node join
@@ -2695,6 +2727,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multinode-compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      multinode compute
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#node-join" class="md-nav__link">
     <span class="md-ellipsis">
       node join
@@ -2763,6 +2804,11 @@
 <td><code>multinode enable</code></td>
 <td>main node</td>
 <td>Open PostgreSQL and Valkey to the nodes' network and mark the installation as multi-node</td>
+</tr>
+<tr>
+<td><code>multinode compute off</code> / <code>on</code></td>
+<td>main node</td>
+<td>Leave every protocol to the compute nodes, or run them on the main node again</td>
 </tr>
 <tr>
 <td><code>node join</code></td>
@@ -2835,6 +2881,22 @@
 <p>After them, it checks that the database and Valkey answer on the host name.</p>
 <p>When the database or Valkey runs on <strong>another</strong> machine, the plan says so and leaves it alone: open it to the network yourself.</p>
 <p>The changed files are copied first to <code>scipion_home/multinode/backup-&lt;date&gt;-&lt;time&gt;/</code>.</p>
+<hr />
+<h2 id="multinode-compute"><code>multinode compute</code><a class="headerlink" href="#multinode-compute" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">./scripts/scipionapi multinode compute off [--force]
+./scripts/scipionapi multinode compute on
+</code></pre>
+<p><strong><code>off</code></strong> stops the main node's protocol worker and writes <code>SCIPIONAPI_MAIN_RUNS_PROTOCOLS=0</code> to the <code>.env</code>. After it:</p>
+<ul>
+<li><code>start</code>, <code>restart</code> and <code>update</code> start the API and the plugin worker only;</li>
+<li><code>start --role protocols</code>, and the web's protocol-worker buttons, are refused with a message.</li>
+</ul>
+<p>It refuses while protocols run on the main node, unless <code>--force</code> is given (they are killed). It warns when no compute node answers.</p>
+<p><strong><code>on</code></strong> writes <code>1</code> and starts the worker again.</p>
+<div class="admonition danger">
+<p class="admonition-title">Not when protocols go to SLURM</p>
+<p>The main node's protocol worker is the one that submits SLURM jobs (<code>sbatch</code>) and follows them. Turn it off only when every protocol runs on compute nodes joined with <code>node join</code>.</p>
+</div>
 <hr />
 <h2 id="node-join"><code>node join</code><a class="headerlink" href="#node-join" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash">./scripts/scipionapi node join [--queue NAME] [--concurrency N] [--host NAME]

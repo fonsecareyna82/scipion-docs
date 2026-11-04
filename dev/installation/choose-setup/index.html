@@ -488,6 +488,8 @@
       
         
       
+        
+      
     
     
       
@@ -706,6 +708,27 @@
   
   <span class="md-ellipsis">
     Several Machines (Multi-Node)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-node-example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example: A Three-Machine Cluster
   </span>
   
 
@@ -2745,16 +2768,16 @@
 <td><a href="../offline-install/">Installing Without Internet</a></td>
 </tr>
 <tr>
-<td>A server for the web plus <strong>more machines to compute</strong> (GPU nodes, a small cluster)</td>
+<td>A server for the web plus <strong>more machines to compute</strong>, <strong>without SLURM</strong> (GPU machines of a lab)</td>
 <td><strong>Several machines</strong></td>
 <td><code>multinode enable</code> on the main one, <code>install.sh --join</code> on each node</td>
 <td><a href="../multi-node/">Several Machines (Multi-Node)</a></td>
 </tr>
 <tr>
-<td>Your machines already share a <strong>SLURM</strong> cluster</td>
-<td>One machine + SLURM queues</td>
-<td><code>./install.sh</code>, then configure a host</td>
-<td><a href="../../user-guide/hosts-and-queues/">Hosts and Queues</a></td>
+<td>A cluster <strong>with SLURM</strong> (or an HPC)</td>
+<td>One machine + SLURM</td>
+<td><code>./install.sh</code>, then a host with a queue</td>
+<td><a href="../multi-node/#with-slurm">Several Machines → With SLURM</a></td>
 </tr>
 </tbody>
 </table>
@@ -2786,7 +2809,14 @@ chmod +x install.sh
 <p>➡️ <a href="../offline-install/">Installing Without Internet</a></p>
 <hr />
 <h2 id="several-machines">Several machines<a class="headerlink" href="#several-machines" title="Permanent link">&para;</a></h2>
-<p>One <strong>main node</strong> runs the web, the database and the job queue. <strong>Compute nodes</strong> take protocols from the queue and run them. They all see the same installation on a shared disk.</p>
+<div class="admonition question">
+<p class="admonition-title">Does your cluster have SLURM?</p>
+<ul>
+<li><strong>Yes:</strong> let SLURM run the protocols and share out the GPUs. Install ScipionWeb on one machine and create a host with a queue. ➡️ <a href="../multi-node/#with-slurm">With SLURM</a></li>
+<li><strong>No:</strong> join your GPU machines as compute nodes, as below. The users choose the GPUs.</li>
+</ul>
+</div>
+<p>One <strong>main node</strong> runs the web, the database and the job queue. <strong>Compute nodes</strong> take protocols from the queue and run them; the main node can leave all the computing to them (<code>multinode compute off</code>). They all see the same installation on a shared disk.</p>
 <pre><code class="language-text">                 ┌──────────── MAIN NODE ────────────┐
    browser ──────┤  web + API · PostgreSQL · Valkey  │
                  └────────────────┬──────────────────┘
@@ -2805,8 +2835,11 @@ chmod +x install.sh
 
 # 2. On each compute node
 ./install.sh --join ~/scipionweb
+
+# 3. On the main node, once the nodes work: leave the computing to them
+~/scipionweb/scripts/scipionapi multinode compute off
 </code></pre>
-<p>➡️ <a href="../multi-node/">Several Machines (Multi-Node)</a></p>
+<p>➡️ <a href="../multi-node/">Several Machines (Multi-Node)</a> · <a href="../multi-node-example/">Example: a three-machine cluster, step by step</a></p>
 <hr />
 <h2 id="what-you-need-in-every-setup">What you need in every setup<a class="headerlink" href="#what-you-need-in-every-setup" title="Permanent link">&para;</a></h2>
 <ul>

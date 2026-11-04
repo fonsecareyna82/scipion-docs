@@ -18,7 +18,7 @@
         <link rel="prev" href="../offline-install/">
       
       
-        <link rel="next" href="../download-bundles/">
+        <link rel="next" href="../multi-node-example/">
       
       
       <link rel="icon" href="../../assets/images/scipion_icon.png">
@@ -486,6 +486,8 @@
       
         
       
+        
+      
     
     
       
@@ -669,6 +671,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#without-slurm-compute-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Without SLURM: compute nodes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#before-you-start-three-requirements" class="md-nav__link">
     <span class="md-ellipsis">
       Before you start: three requirements
@@ -705,9 +716,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#step-4-keep-the-main-node-from-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4 — Keep the main node from computing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#send-some-protocols-to-some-nodes-gpu-nodes" class="md-nav__link">
     <span class="md-ellipsis">
       Send some protocols to some nodes (GPU nodes)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#with-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      With SLURM
     </span>
   </a>
   
@@ -753,6 +782,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-node-example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example: A Three-Machine Cluster
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2708,6 +2758,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#without-slurm-compute-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Without SLURM: compute nodes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#before-you-start-three-requirements" class="md-nav__link">
     <span class="md-ellipsis">
       Before you start: three requirements
@@ -2744,9 +2803,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#step-4-keep-the-main-node-from-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4 — Keep the main node from computing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#send-some-protocols-to-some-nodes-gpu-nodes" class="md-nav__link">
     <span class="md-ellipsis">
       Send some protocols to some nodes (GPU nodes)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#with-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      With SLURM
     </span>
   </a>
   
@@ -2807,10 +2884,59 @@
 
 
 <h1 id="several-machines-multi-node">Several Machines (Multi-Node)<a class="headerlink" href="#several-machines-multi-node" title="Permanent link">&para;</a></h1>
-<p>Run the web on one machine and the protocols on several. You install ScipionWeb <strong>once</strong>, on the main node. Each compute node joins with <strong>one command</strong>, and new nodes can be added or removed at any time.</p>
+<p>Run the web on one machine and the protocols on several. There are two ways. Choose by one question: <strong>does your cluster have SLURM?</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Without SLURM</strong>: compute nodes join ScipionWeb</th>
+<th><strong>With SLURM</strong>: SLURM runs the protocols</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who runs a protocol</td>
+<td>A ScipionWeb worker on a compute node, directly</td>
+<td>A SLURM job, on the node SLURM chooses</td>
+</tr>
+<tr>
+<td>Who chooses the GPUs</td>
+<td><strong>The user</strong>, with the protocol's GPU IDs</td>
+<td><strong>SLURM</strong> (<code>--gres</code>), so jobs never share a GPU</td>
+</tr>
+<tr>
+<td>Queues, priorities, limits per user</td>
+<td>No: first come, first served</td>
+<td>Yes, SLURM's</td>
+</tr>
+<tr>
+<td>What to set up</td>
+<td><code>multinode enable</code> on the main node, <code>install.sh --join</code> on each node</td>
+<td>A host with a queue in <strong>Settings → Hosts and Queues</strong></td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Two or three GPU machines of a lab</td>
+<td>A real cluster or an HPC</td>
+</tr>
+<tr>
+<td>Guide</td>
+<td>this page, from <a href="#before-you-start-three-requirements">Before you start</a></td>
+<td><a href="#with-slurm">With SLURM</a> below, and <a href="../../user-guide/hosts-and-queues/">Hosts and Queues</a></td>
+</tr>
+</tbody>
+</table>
+<p>Both can be used together: each protocol runs where its <strong>host</strong> says (the host is chosen in the protocol's form).</p>
+<div class="admonition example">
+<p class="admonition-title">Prefer an example?</p>
+<p><a href="../multi-node-example/">Example: A Three-Machine Cluster</a> builds a master without GPUs plus two GPU nodes from scratch, command by command, and shows the same cluster with SLURM.</p>
+</div>
+<hr />
+<h2 id="without-slurm-compute-nodes">Without SLURM: compute nodes<a class="headerlink" href="#without-slurm-compute-nodes" title="Permanent link">&para;</a></h2>
+<p>You install ScipionWeb <strong>once</strong>, on the main node. Each compute node joins with <strong>one command</strong>, and new nodes can be added or removed at any time.</p>
 <pre><code class="language-text">                 ┌──────────── MAIN NODE ────────────┐
    browser ──────┤  web + API · PostgreSQL · Valkey  │
-                 │  (it can run protocols too)       │
+                 │  (no protocols: step 4)           │
                  └────────────────┬──────────────────┘
                                   │  job queue (Valkey)
               ┌───────────────────┼───────────────────┐
@@ -2829,6 +2955,16 @@
 <li>A free worker on any node takes it, runs it and writes its results to the shared disk and the main node's database.</li>
 </ol>
 <p>Nodes listening to the same queue share the work. A node with its own queue (for example, the GPU nodes) only takes the protocols sent to that queue.</p>
+<div class="admonition warning">
+<p class="admonition-title">The GPUs are the user's choice</p>
+<p>Without SLURM, nobody shares out a node's GPUs. A protocol uses the GPU IDs written in its form, on whichever node takes it.</p>
+<ul>
+<li>Two protocols on the same node with the same GPU ID share that GPU, and can fail for lack of memory.</li>
+<li>Users must choose different GPU IDs for protocols running at the same time.</li>
+<li>Alternatively, give a node a <code>--concurrency</code> no higher than the protocols its GPUs can hold.</li>
+</ul>
+<p>If something fails, the protocol's log says so. For automatic GPU sharing, use SLURM.</p>
+</div>
 <hr />
 <h2 id="before-you-start-three-requirements">Before you start: three requirements<a class="headerlink" href="#before-you-start-three-requirements" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
@@ -2970,6 +3106,30 @@ The worker of node-01 answers: it takes protocols from now on.
 </tbody>
 </table>
 <hr />
+<h2 id="step-4-keep-the-main-node-from-computing">Step 4 — Keep the main node from computing<a class="headerlink" href="#step-4-keep-the-main-node-from-computing" title="Permanent link">&para;</a></h2>
+<p>Until now the main node runs protocols too, which is handy while you add the nodes. Once they work, leave all the computing to them, so the web, the database and the viewers always respond fast. On the main node:</p>
+<pre><code class="language-bash">~/scipionweb/scripts/scipionapi multinode compute off
+</code></pre>
+<p>What it does:</p>
+<ul>
+<li>It stops the main node's protocol worker.</li>
+<li>It writes <code>SCIPIONAPI_MAIN_RUNS_PROTOCOLS=0</code> to the <code>.env</code>, so the worker does not start again with <code>start</code>, <code>restart</code> or <code>update</code>, and the web's worker buttons do not start it either.</li>
+<li>From then on, every protocol waits in the queue for a compute node.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Protocols running on the main node</p>
+<p>If protocols are running on the main node, it refuses: stopping its worker would kill them. Wait until they finish, or add <code>--force</code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">No node answering?</p>
+<p>It tells you when no compute node answers. Protocols launched meanwhile are not lost: they wait in the queue until a node joins or starts.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Not with SLURM</p>
+<p>Protocols sent to SLURM are submitted (<code>sbatch</code>) and followed by the main node's protocol worker, which only submits and waits. With <code>compute off</code> nobody submits them. If you use SLURM, leave the main node's worker on.</p>
+</div>
+<p>To let the main node compute again: <code>scipionapi multinode compute on</code>.</p>
+<hr />
 <h2 id="send-some-protocols-to-some-nodes-gpu-nodes">Send some protocols to some nodes (GPU nodes)<a class="headerlink" href="#send-some-protocols-to-some-nodes-gpu-nodes" title="Permanent link">&para;</a></h2>
 <p>By default every node shares one queue: any protocol can run on any node. To send, for example, GPU protocols to the GPU nodes only, give those nodes their own queue and a <strong>host</strong> name:</p>
 <pre><code class="language-bash"># on each GPU node
@@ -2985,6 +3145,34 @@ The worker of node-01 answers: it takes protocols from now on.
 <div class="admonition tip">
 <p class="admonition-title">Several groups of nodes</p>
 <p>Repeat with other names: <code>--queue protocols-bigmem --host bigmem-nodes</code>, and so on. The mapping is kept in <code>scipion_home/config/celery_queue_routing.json</code>. Edit a host's settings in <strong>Settings → Hosts and Queues</strong>.</p>
+</div>
+<hr />
+<h2 id="with-slurm">With SLURM<a class="headerlink" href="#with-slurm" title="Permanent link">&para;</a></h2>
+<p>When the cluster has SLURM, ScipionWeb does not need compute nodes of its own:</p>
+<pre><code class="language-text">   browser ──► main node (web, database, protocol worker)
+                  │   the worker only submits and waits
+                  ▼   sbatch
+               SLURM ──► node-01 · node-02 · gpu-01 …   (SLURM chooses node, GPUs, memory, time)
+</code></pre>
+<ol>
+<li><strong>Install ScipionWeb on a machine that can submit to SLURM</strong>, the one where <code>sbatch</code> and <code>squeue</code> work, in a folder on the shared disk (<a href="../guided-install/">Guided Installation</a>).</li>
+<li><strong>Check that the SLURM nodes see the same paths:</strong> the installation, the Conda environment and the data. A SLURM job runs Scipion from there.</li>
+<li><strong>Create a host with a queue</strong> in <strong>Settings → Hosts and Queues</strong>: the submit, check and cancel commands, a submit template asking for <code>--gres=gpu:%_(GPU_COUNT)s</code>, and your partitions. Step by step: <a href="../../user-guide/hosts-and-queues/">Hosts and Queues</a>.</li>
+<li><strong>Users choose that host</strong> in the protocol's form, with its partition, time, memory and number of GPUs.</li>
+</ol>
+<p><strong>The GPUs.</strong></p>
+<ul>
+<li>SLURM gives each job its own GPUs, and the job only sees those (with <code>gres</code> and cgroups configured).</li>
+<li>A protocol asking for GPU <code>0</code> uses the first GPU <strong>of its job</strong>, never another job's.</li>
+<li>So, with SLURM, users can leave the GPU IDs at <code>0</code> (or <code>0 1</code> for two).</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Keep the main node's protocol worker on</p>
+<p>It runs no science: it submits the job and follows it until it ends. Do not use <code>multinode compute off</code> here.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Mixing both ways</p>
+<p>A cluster with SLURM can also have compute nodes joined to ScipionWeb, for example a GPU workstation outside SLURM. Protocols on the SLURM host go to SLURM; protocols on the node's host go to the node (<a href="#send-some-protocols-to-some-nodes-gpu-nodes">Send some protocols to some nodes</a>).</p>
 </div>
 <hr />
 <h2 id="check-the-installation">Check the installation<a class="headerlink" href="#check-the-installation" title="Permanent link">&para;</a></h2>
@@ -3127,7 +3315,7 @@ The worker of node-01 answers: it takes protocols from now on.
 </tr>
 <tr>
 <td>Protocols</td>
-<td>✅ (unless you stop its worker)</td>
+<td>only until <code>multinode compute off</code></td>
 <td>✅</td>
 </tr>
 <tr>
