@@ -166,11 +166,44 @@ SCIPIONWEB_ADMIN_EMAIL
 SCIPIONWEB_ADMIN_PASSWORD
 SCIPIONWEB_VERSION
 SCIPIONWEB_DOWNLOAD_BASE_URL
+SCIPIONWEB_LOCAL_DIR
 SCIPIONWEB_API_PORT
 SCIPIONAPI_CONDA_EXE
 ```
 
 Avoid placing real passwords directly in shell command arguments.
+
+---
+
+## Install from the release files, without downloading
+
+When `ScipionAPI-<version>.zip` and `ScipionWeb-<version>-dist.zip` (and optionally `manifest.json`) are in the installer's folder, or in the folder given with `--local-dir`, the installer uses them and downloads nothing:
+
+```bash
+./install.sh --local-dir /media/usb/scipionweb-v4.0.0
+```
+
+➡️ [Installing Without Internet](offline-install.md)
+
+---
+
+## Add this machine as a compute node
+
+On a machine that should only **run protocols** for an existing installation (seen on a shared disk at the same path), `--join` installs nothing and joins it instead:
+
+```bash
+./install.sh --join /home/scipion/scipionweb
+./install.sh --join /home/scipion/scipionweb --queue protocols-gpu --host gpu-nodes   # a GPU node
+```
+
+| Option | Meaning |
+|---|---|
+| `--join PATH` | The main node's installation folder |
+| `--queue NAME` | The queue the node takes protocols from (default `protocols`) |
+| `--concurrency N` | Protocols at a time (default: its GPUs, or 4) |
+| `--host NAME` | The Scipion host whose protocols go to the node's queue |
+
+➡️ [Several Machines (Multi-Node)](multi-node.md)
 
 ---
 

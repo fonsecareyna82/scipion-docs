@@ -42,10 +42,17 @@ scipion_home/
 ├── .env
 ├── logs/
 │   ├── app.log
-│   └── celery.log
+│   ├── celery.log
+│   ├── celery-protocols.log
+│   └── nodes/<node>/            (compute nodes' logs)
 ├── projects/
-│   └── <project folders>
+│   ├── <user>/<project>         (new projects, in their owner's folder)
+│   └── <project folders>        (projects made before)
 ├── config/
+│   ├── hosts.conf
+│   └── celery_queue_routing.json  (several machines: Scipion host → queue)
+├── nodes/<node>.env             (several machines: each compute node's profile)
+├── multinode/backup-<date>/     (what `multinode enable` changed, before it changed it)
 └── web/
     └── dist/
 ```
@@ -100,7 +107,9 @@ Stores project runtime data, such as:
 - Generated previews
 - Runtime artifacts
 
-This directory can grow significantly over time depending on project size and usage patterns.
+Each user's new projects go into a folder of their own, `projects/<user>/`, named after their email (`ana@cnb.csic.es` → `ana`), as Scipion's `ScipionUserData` does for each Linux user. Projects made before stay where they are.
+
+This directory can grow significantly over time depending on project size and usage patterns. **Settings → Disk usage** shows how much each user, group and project takes.
 
 !!! warning "Disk usage growth"
     Monitor available disk space and define a backup/retention strategy, especially for production or shared environments.

@@ -9,11 +9,12 @@ Use this section to install **ScipionWeb for users**, understand the underlying 
 
 For a new Linux installation, the recommended path is now the **guided `install.sh` installer**. It resolves a matched API + Web release from the public release manifest, downloads the required ZIP files, verifies checksums, and runs the normal ScipionAPI provisioning workflow for you.
 
-!!! success "Recommended path for most new installations"
-    Follow this sequence:
+!!! success "Start here: Choose Your Setup"
+    [Choose Your Setup](choose-setup.md) shows the three ways to run ScipionWeb, each in one or two commands:
 
-    1. [Prerequisites](prerequisites.md)
-    2. [Guided Installation](guided-install.md)
+    - **one machine**: `./install.sh` ([Guided Installation](guided-install.md));
+    - **one machine without Internet**: the release files next to `install.sh` ([Installing Without Internet](offline-install.md));
+    - **several machines**: a main node plus compute nodes that join with `install.sh --join` ([Several Machines](multi-node.md)).
 
     The normal user-facing installation no longer requires manually downloading and pairing the API/Web ZIP files.
 
@@ -33,6 +34,14 @@ The installer defaults to the release identified as `latest` in the public `mani
 ---
 
 ## Which path should I use?
+
+### Installing without Internet
+
+Use [Installing Without Internet](offline-install.md) when the machine cannot reach the release server: copy the release files next to `install.sh` and run it; nothing is downloaded.
+
+### Several machines
+
+Use [Several Machines (Multi-Node)](multi-node.md) to run the protocols on more machines (GPU nodes, a small cluster) with the web on one of them.
 
 ### Guided installation — recommended
 
@@ -82,6 +91,8 @@ The normal updater preserves runtime data and configuration while updating manag
 The installation documentation includes:
 
 - system prerequisites such as Conda, PostgreSQL, Valkey, ports, and permissions
+- installing without Internet, from the release files
+- several machines: a main node and compute nodes
 - guided installation through the public `install.sh`
 - manual download and extraction of release bundles
 - one-shot `provision` for controlled/manual installs
@@ -93,6 +104,12 @@ The installation documentation includes:
 ---
 
 ## Installation pages
+
+### 0. Choose Your Setup
+
+One machine, one machine offline, or several machines.
+
+➡️ [Open Choose Your Setup](choose-setup.md)
 
 ### 1. Prerequisites
 

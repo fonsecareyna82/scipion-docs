@@ -58,14 +58,17 @@ nav:
   - Home: index.md
   - Installation:
       - Overview: installation/index.md
+      - Choose Your Setup: installation/choose-setup.md
       - Prerequisites: installation/prerequisites.md
       - Guided Installation: installation/guided-install.md
+      - Installing Without Internet: installation/offline-install.md
+      - Several Machines (Multi-Node): installation/multi-node.md
       - Download Bundles (Manual): installation/download-bundles.md
       - Provision (Advanced): installation/provision.md
       - Manual Installation: installation/manual-install.md
       - Upgrade / Reinstall Notes: installation/upgrade.md
       - Production Deployment: installation/deployment-systemd.md
-      - Multi-Node Cluster Deployment: installation/multi-node-cluster.md
+      - "Multi-Node: Manual Setup": installation/multi-node-cluster.md
   - User Guide:
       - Overview: user-guide/index.md
       - Sign Up: user-guide/sign-up.md
@@ -108,6 +111,7 @@ nav:
           - Uninstall: cli/uninstall.md
           - Doctor: cli/doctor.md
           - start / stop / restart / status / logs: cli/runtime.md
+          - Several Machines (multinode, node): cli/multinode.md
       - Backend:
           - Overview: backend/index.md
           - Architecture: backend/architecture.md

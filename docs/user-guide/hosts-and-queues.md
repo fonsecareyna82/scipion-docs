@@ -73,7 +73,7 @@ mpirun -np %_(JOB_NODES)d %_(COMMAND)s
 The important point is that ScipionWeb does not hardcode the scheduler behavior. Instead, it keeps the scheduler-specific logic in the Host settings.
 
 !!! tip "This same Host name can also route Celery dispatch"
-    In a [Multi-Node Cluster Deployment](../installation/multi-node-cluster.md), the Host name configured here can additionally be mapped to a Celery queue name so protocols using that Host are dispatched straight to a specific worker node — see [Multi-Node Task Routing](../backend/celery.md#multi-node-task-routing). This is independent of, and does not require, SLURM.
+    In a [Multi-Node Cluster Deployment](../installation/multi-node-cluster.md), the Host name configured here can additionally be mapped to a Celery queue name so protocols using that Host are dispatched straight to a specific worker node — see [Multi-Node Task Routing](../backend/celery.md#multi-node-task-routing). This is independent of, and does not require, SLURM. A node joined with `install.sh --join <installation> --queue protocols-gpu --host gpu-nodes` creates the Host `gpu-nodes` and its mapping for you: users then pick **gpu-nodes** in the protocol's form. ➡️ [Several Machines](../installation/multi-node.md#send-some-protocols-to-some-nodes-gpu-nodes)
 
 ---
 

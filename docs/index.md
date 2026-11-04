@@ -31,6 +31,12 @@ chmod +x install.sh
 ./install.sh
 ```
 
+!!! tip "No Internet, or several machines?"
+    [Choose Your Setup](installation/choose-setup.md) covers them too, each in one or two commands:
+
+    - **without Internet**: the release files next to `install.sh`;
+    - **several machines**: `multinode enable` on the main node, `install.sh --join` on each compute node.
+
 ### Use ScipionWeb
 
 Start here if you already have access to a running ScipionWeb instance and want to work with projects, protocols, outputs, viewers, settings, plugins, or sharing.

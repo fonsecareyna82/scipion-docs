@@ -84,6 +84,31 @@ Use the dedicated guide when you need to configure protocol execution through SL
 
 ---
 
+### Users, roles, groups, audit and disk usage (administrators)
+
+These tabs appear only to whoever holds the permission each needs:
+
+| Tab | Permission | What it is for |
+|---|---|---|
+| **Users** | `users.manage` | Activate new accounts (they start inactive), give them roles and groups |
+| **Roles** | `roles.manage` | Create roles and choose their permissions; *Administrator* holds them all |
+| **Groups** | `groups.manage` | Labs: members, PIs, and what PIs may do in their members' projects |
+| **Audit** | `audit.view` | Who did what: sign-ins, accounts, sharing, settings, plugins |
+| **Disk usage** | `storage.view` | How much disk each user, group and project takes |
+
+**Disk usage** answers "who is filling the disk?":
+
+- **The figures.** The free space of the projects' disk. Tables **by user**, **by group** and **by project**, largest first; click a user to see their projects.
+- **Cleanup candidates.** Projects not used for three months are marked.
+- **How it is measured.**
+    - ScipionWeb measures each project in the background, slowly so it does not load the disk: once a day, an hour after a protocol changes it, and whenever you press **Measure all again** or a project's ruler button.
+    - Imported movies are usually links to the microscope's data, so they are not counted.
+    - A user in two groups counts in both.
+
+Each user also sees what their own projects take at the top of the **Projects** page.
+
+---
+
 ### Advanced configuration
 
 Some deployments may expose advanced or read-only configuration views.

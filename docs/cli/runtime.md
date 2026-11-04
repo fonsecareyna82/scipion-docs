@@ -126,9 +126,9 @@ This typically shows the API log and the worker log together.
 This is the mechanism used to run only part of the stack on a given node in a [Multi-Node Cluster Deployment](../installation/multi-node-cluster.md) — for example, a compute node that should run the protocol worker but never the API:
 
 ```bash
-./scripts/scipionapi runtime start --role protocols
-./scripts/scipionapi runtime status --role protocols
-./scripts/scipionapi runtime stop --role protocols
+./scripts/scipionapi start --role protocols
+./scripts/scipionapi status --role protocols
+./scripts/scipionapi stop --role protocols
 ```
 
 !!! note "Default behavior is unchanged"
@@ -143,7 +143,7 @@ An unrecognized role is rejected immediately with a clear error rather than sile
 `start`, `restart`, and `status` also accept `--queue`, which overrides the Celery queue name the **protocol** worker listens on (default: `protocols`). This is normally combined with `--role protocols` on a dedicated node:
 
 ```bash
-./scripts/scipionapi runtime start --role protocols --queue protocols-gpu
+./scripts/scipionapi start --role protocols --queue protocols-gpu
 ```
 
 `--queue` only affects that single invocation. To make the same queue name survive future restarts — including ones triggered from the web UI's worker restart button, which does not go through the CLI — set it in that node's `.env` instead:
@@ -156,6 +156,9 @@ A custom queue name only receives tasks once something is actually routed to it.
 
 !!! note "The worker's Celery identity does not change"
     Only the `-Q <queue>` flag changes. The worker still registers as `protocols@<hostname>`, so remote Stop and other host-targeted operations are unaffected by a custom queue name.
+
+!!! tip "Compute nodes do this for you"
+    On a machine that joined with `node join` (or `install.sh --join`), the node's profile sets the role, the queue and the concurrency. There, plain `start`, `stop`, `restart`, `status` and `logs` act on its protocol worker only, and its PID files and logs are kept apart. ➡️ [Several Machines (`multinode`, `node`)](multinode.md)
 
 ---
 

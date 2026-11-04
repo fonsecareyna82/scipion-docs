@@ -228,7 +228,9 @@ scipion_home/config/celery_queue_routing.json
 { "gpu-cluster": "protocols-gpu" }
 ```
 
-If the Host has a mapping, `apply_async(..., queue=<mapped-name>)` sends the task straight to that named queue instead of the default `protocols` queue — consumed only by a worker started with `runtime start --role protocols --queue protocols-gpu` (or `PROTOCOLS_CELERY_QUEUE` in that node's `.env`). Unmapped hosts keep going to `protocols`, so this file is entirely optional and has no effect on a single-node deployment.
+If the Host has a mapping, `apply_async(..., queue=<mapped-name>)` sends the task straight to that named queue instead of the default `protocols` queue — consumed only by a worker started with `start --role protocols --queue protocols-gpu` (or `PROTOCOLS_CELERY_QUEUE` in that node's `.env`). Unmapped hosts keep going to `protocols`, so this file is entirely optional and has no effect on a single-node deployment.
+
+`scipionapi node join --queue protocols-gpu --host gpu-cluster` writes the mapping (and creates the Host as a copy of `localhost` when it does not exist), so it rarely needs editing by hand. ➡️ [Several Machines](../installation/multi-node.md#send-some-protocols-to-some-nodes-gpu-nodes)
 
 The mapping is read fresh from disk on every dispatch (best-effort — a missing or malformed file is treated as "no routing configured", not an error), so changes take effect immediately without restarting anything.
 
