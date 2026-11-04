@@ -482,6 +482,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -534,6 +540,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/prerequisites/" class="md-nav__link">
         
   
@@ -560,6 +587,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -685,7 +754,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1618,6 +1687,8 @@
       
         
       
+        
+      
     
     
       
@@ -1825,6 +1896,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -3136,7 +3228,8 @@ protocols queue
 </code></pre>
 <pre><code class="language-json">{ &quot;gpu-cluster&quot;: &quot;protocols-gpu&quot; }
 </code></pre>
-<p>If the Host has a mapping, <code>apply_async(..., queue=&lt;mapped-name&gt;)</code> sends the task straight to that named queue instead of the default <code>protocols</code> queue — consumed only by a worker started with <code>runtime start --role protocols --queue protocols-gpu</code> (or <code>PROTOCOLS_CELERY_QUEUE</code> in that node's <code>.env</code>). Unmapped hosts keep going to <code>protocols</code>, so this file is entirely optional and has no effect on a single-node deployment.</p>
+<p>If the Host has a mapping, <code>apply_async(..., queue=&lt;mapped-name&gt;)</code> sends the task straight to that named queue instead of the default <code>protocols</code> queue — consumed only by a worker started with <code>start --role protocols --queue protocols-gpu</code> (or <code>PROTOCOLS_CELERY_QUEUE</code> in that node's <code>.env</code>). Unmapped hosts keep going to <code>protocols</code>, so this file is entirely optional and has no effect on a single-node deployment.</p>
+<p><code>scipionapi node join --queue protocols-gpu --host gpu-cluster</code> writes the mapping (and creates the Host as a copy of <code>localhost</code> when it does not exist), so it rarely needs editing by hand. ➡️ <a href="../../installation/multi-node/#send-some-protocols-to-some-nodes-gpu-nodes">Several Machines</a></p>
 <p>The mapping is read fresh from disk on every dispatch (best-effort — a missing or malformed file is treated as "no routing configured", not an error), so changes take effect immediately without restarting anything.</p>
 <hr />
 <h2 id="node-capability-reporting">Node Capability Reporting<a class="headerlink" href="#node-capability-reporting" title="Permanent link">&para;</a></h2>

@@ -480,6 +480,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -533,6 +539,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../prerequisites/" class="md-nav__link">
         
   
@@ -559,6 +586,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -774,6 +843,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#update-without-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update without Internet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-several-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update several machines
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#backup-and-rollback-thinking" class="md-nav__link">
     <span class="md-ellipsis">
       Backup and rollback thinking
@@ -859,7 +946,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1789,6 +1876,8 @@
       
         
       
+        
+      
     
     
       
@@ -1993,6 +2082,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -2760,6 +2870,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#update-without-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update without Internet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-several-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update several machines
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#backup-and-rollback-thinking" class="md-nav__link">
     <span class="md-ellipsis">
       Backup and rollback thinking
@@ -2928,6 +3056,19 @@ GET /api/system/update-check
 ./scripts/scipionapi update --no-restart
 </code></pre>
 <p>Use <code>--api-only</code> and <code>--web-only</code> for controlled maintenance/debugging. Normal releases should move API and Web together.</p>
+<hr />
+<h2 id="update-without-internet">Update without Internet<a class="headerlink" href="#update-without-internet" title="Permanent link">&para;</a></h2>
+<p>Put the new release's <code>ScipionAPI-&lt;version&gt;.zip</code>, <code>ScipionWeb-&lt;version&gt;-dist.zip</code> and <code>manifest.json</code> in a folder and point the updater at it with a <code>file://</code> address:</p>
+<pre><code class="language-bash">./scripts/scipionapi update --base-url file:///media/usb/scipionweb-v4.1.0/ --dry-run
+./scripts/scipionapi update --base-url file:///media/usb/scipionweb-v4.1.0/
+</code></pre>
+<p>➡️ <a href="../offline-install/">Installing Without Internet</a></p>
+<hr />
+<h2 id="update-several-machines">Update several machines<a class="headerlink" href="#update-several-machines" title="Permanent link">&para;</a></h2>
+<p>On a <a href="../multi-node/">multi-node installation</a> sharing the installation folder, update <strong>once, on the main node</strong>: the nodes see the new files on the shared disk. Then restart each compute node's worker on that node:</p>
+<pre><code class="language-bash">./scripts/scipionapi restart
+</code></pre>
+<p>A node that is restarted later keeps running the old code until then, so restart them all right after the update.</p>
 <hr />
 <h2 id="backup-and-rollback-thinking">Backup and rollback thinking<a class="headerlink" href="#backup-and-rollback-thinking" title="Permanent link">&para;</a></h2>
 <p>The updater creates a filesystem rollback backup before replacing managed API files.</p>

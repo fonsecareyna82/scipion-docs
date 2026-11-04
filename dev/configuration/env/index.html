@@ -482,6 +482,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -534,6 +540,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/prerequisites/" class="md-nav__link">
         
   
@@ -560,6 +587,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -685,7 +754,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1832,6 +1901,8 @@
       
         
       
+        
+      
     
     
       
@@ -2036,6 +2107,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -2973,14 +3065,47 @@ CELERY_LOGLEVEL=info
 <p>Valkey must remain reachable for Celery background processing.</p>
 <hr />
 <h2 id="multi-node-deployment">Multi-node deployment<a class="headerlink" href="#multi-node-deployment" title="Permanent link">&para;</a></h2>
-<p>These are only needed for a <a href="../../installation/multi-node-cluster/">Multi-Node Cluster Deployment</a>; an ordinary single-node installation does not need to set either of them.</p>
+<p>These are only needed on <a href="../../installation/multi-node/">several machines</a>; an ordinary single-node installation does not need any of them. <code>scipionapi multinode enable</code> and <code>scipionapi node join</code> write them for you.</p>
 <pre><code class="language-dotenv">SCIPIONAPI_DEPLOYMENT_MODE=multi-node
 PROTOCOLS_CELERY_QUEUE=protocols-gpu
 </code></pre>
 <ul>
 <li><code>SCIPIONAPI_DEPLOYMENT_MODE</code> — set on every node to <code>multi-node</code> so <code>./scripts/scipionapi doctor --strict</code> escalates loopback broker/database URLs and a non-shared <code>PROJECTS_PATH</code> from warnings to failures. Defaults to <code>single-node</code> behavior when unset.</li>
-<li><code>PROTOCOLS_CELERY_QUEUE</code> — persists a custom Celery queue name for that node's protocol worker (equivalent to <code>runtime start --role protocols --queue &lt;name&gt;</code>, but also honored when the worker is restarted from the web UI). Defaults to <code>protocols</code>.</li>
+<li>
+<p><code>PROTOCOLS_CELERY_QUEUE</code> — persists a custom Celery queue name for that node's protocol worker (equivalent to <code>runtime start --role protocols --queue &lt;name&gt;</code>, but also honored when the worker is restarted from the web UI). Defaults to <code>protocols</code>.</p>
+</li>
+<li>
+<p><code>SCIPIONAPI_MAIN_NODE</code> and <code>SCIPIONAPI_MULTINODE_NETWORK</code> — written by <code>multinode enable</code>: the main node's name (a node never joins as itself) and the nodes' network.</p>
+</li>
+<li><code>POSTGRES_HOST</code> / <code>POSTGRES_PORT</code> — the database server the API and every worker connect to. <code>localhost</code> on one machine; the main node's network name on several.</li>
 </ul>
+<p><strong>A compute node's own values</strong> live in its profile, <code>scipion_home/nodes/&lt;node&gt;.env</code>, read over the shared <code>.env</code> on that machine only (written by <code>node join</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SCIPIONAPI_NODE_ROLE</code></td>
+<td>What <code>start</code> runs there: <code>protocols</code></td>
+</tr>
+<tr>
+<td><code>PROTOCOLS_CELERY_QUEUE</code></td>
+<td>The node's queue</td>
+</tr>
+<tr>
+<td><code>PROTOCOL_WORKER_CONCURRENCY</code></td>
+<td>Protocols at a time</td>
+</tr>
+<tr>
+<td><code>LOGS_PATH</code></td>
+<td><code>scipion_home/logs/nodes/&lt;node&gt;</code></td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="runtime-filesystem-paths">Runtime filesystem paths<a class="headerlink" href="#runtime-filesystem-paths" title="Permanent link">&para;</a></h2>
 <p>Examples:</p>

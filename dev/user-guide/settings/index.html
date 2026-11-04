@@ -478,6 +478,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -530,6 +536,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/prerequisites/" class="md-nav__link">
         
   
@@ -556,6 +583,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -681,7 +750,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1041,6 +1110,15 @@
   <a href="#hosts-and-queues" class="md-nav__link">
     <span class="md-ellipsis">
       Hosts and queues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users-roles-groups-audit-and-disk-usage-administrators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users, roles, groups, audit and disk usage (administrators)
     </span>
   </a>
   
@@ -1777,6 +1855,8 @@
       
         
       
+        
+      
     
     
       
@@ -1981,6 +2061,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -2722,6 +2823,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#users-roles-groups-audit-and-disk-usage-administrators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users, roles, groups, audit and disk usage (administrators)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#advanced-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Advanced configuration
@@ -2847,6 +2957,57 @@
 <p>This is where SLURM-related queue execution can be configured from the web interface, including submit commands, cancel commands, check commands, submit templates, queues, memory, time, CPU, and GPU parameters.</p>
 <p>Use the dedicated guide when you need to configure protocol execution through SLURM or another queue system:</p>
 <p><a href="../hosts-and-queues/">Open the Hosts and Queues guide</a></p>
+<hr />
+<h3 id="users-roles-groups-audit-and-disk-usage-administrators">Users, roles, groups, audit and disk usage (administrators)<a class="headerlink" href="#users-roles-groups-audit-and-disk-usage-administrators" title="Permanent link">&para;</a></h3>
+<p>These tabs appear only to whoever holds the permission each needs:</p>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>Permission</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Users</strong></td>
+<td><code>users.manage</code></td>
+<td>Activate new accounts (they start inactive), give them roles and groups</td>
+</tr>
+<tr>
+<td><strong>Roles</strong></td>
+<td><code>roles.manage</code></td>
+<td>Create roles and choose their permissions; <em>Administrator</em> holds them all</td>
+</tr>
+<tr>
+<td><strong>Groups</strong></td>
+<td><code>groups.manage</code></td>
+<td>Labs: members, PIs, and what PIs may do in their members' projects</td>
+</tr>
+<tr>
+<td><strong>Audit</strong></td>
+<td><code>audit.view</code></td>
+<td>Who did what: sign-ins, accounts, sharing, settings, plugins</td>
+</tr>
+<tr>
+<td><strong>Disk usage</strong></td>
+<td><code>storage.view</code></td>
+<td>How much disk each user, group and project takes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Disk usage</strong> answers "who is filling the disk?":</p>
+<ul>
+<li><strong>The figures.</strong> The free space of the projects' disk. Tables <strong>by user</strong>, <strong>by group</strong> and <strong>by project</strong>, largest first; click a user to see their projects.</li>
+<li><strong>Cleanup candidates.</strong> Projects not used for three months are marked.</li>
+<li><strong>How it is measured.</strong><ul>
+<li>ScipionWeb measures each project in the background, slowly so it does not load the disk: once a day, an hour after a protocol changes it, and whenever you press <strong>Measure all again</strong> or a project's ruler button.</li>
+<li>Imported movies are usually links to the microscope's data, so they are not counted.</li>
+<li>A user in two groups counts in both.</li>
+</ul>
+</li>
+</ul>
+<p>Each user also sees what their own projects take at the top of the <strong>Projects</strong> page.</p>
 <hr />
 <h3 id="advanced-configuration">Advanced configuration<a class="headerlink" href="#advanced-configuration" title="Permanent link">&para;</a></h3>
 <p>Some deployments may expose advanced or read-only configuration views.</p>

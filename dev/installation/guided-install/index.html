@@ -18,7 +18,7 @@
         <link rel="prev" href="../prerequisites/">
       
       
-        <link rel="next" href="../download-bundles/">
+        <link rel="next" href="../offline-install/">
       
       
       <link rel="icon" href="../../assets/images/scipion_icon.png">
@@ -480,6 +480,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -524,6 +530,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -672,6 +699,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#install-from-the-release-files-without-downloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install from the release files, without downloading
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-this-machine-as-a-compute-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add this machine as a compute node
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#verify-the-installation" class="md-nav__link">
     <span class="md-ellipsis">
       Verify the installation
@@ -720,6 +765,48 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -841,7 +928,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1771,6 +1858,8 @@
       
         
       
+        
+      
     
     
       
@@ -1975,6 +2064,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -2724,6 +2834,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#install-from-the-release-files-without-downloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install from the release files, without downloading
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-this-machine-as-a-compute-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add this machine as a compute node
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#verify-the-installation" class="md-nav__link">
     <span class="md-ellipsis">
       Verify the installation
@@ -2893,10 +3021,50 @@ SCIPIONWEB_ADMIN_EMAIL
 SCIPIONWEB_ADMIN_PASSWORD
 SCIPIONWEB_VERSION
 SCIPIONWEB_DOWNLOAD_BASE_URL
+SCIPIONWEB_LOCAL_DIR
 SCIPIONWEB_API_PORT
 SCIPIONAPI_CONDA_EXE
 </code></pre>
 <p>Avoid placing real passwords directly in shell command arguments.</p>
+<hr />
+<h2 id="install-from-the-release-files-without-downloading">Install from the release files, without downloading<a class="headerlink" href="#install-from-the-release-files-without-downloading" title="Permanent link">&para;</a></h2>
+<p>When <code>ScipionAPI-&lt;version&gt;.zip</code> and <code>ScipionWeb-&lt;version&gt;-dist.zip</code> (and optionally <code>manifest.json</code>) are in the installer's folder, or in the folder given with <code>--local-dir</code>, the installer uses them and downloads nothing:</p>
+<pre><code class="language-bash">./install.sh --local-dir /media/usb/scipionweb-v4.0.0
+</code></pre>
+<p>➡️ <a href="../offline-install/">Installing Without Internet</a></p>
+<hr />
+<h2 id="add-this-machine-as-a-compute-node">Add this machine as a compute node<a class="headerlink" href="#add-this-machine-as-a-compute-node" title="Permanent link">&para;</a></h2>
+<p>On a machine that should only <strong>run protocols</strong> for an existing installation (seen on a shared disk at the same path), <code>--join</code> installs nothing and joins it instead:</p>
+<pre><code class="language-bash">./install.sh --join /home/scipion/scipionweb
+./install.sh --join /home/scipion/scipionweb --queue protocols-gpu --host gpu-nodes   # a GPU node
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--join PATH</code></td>
+<td>The main node's installation folder</td>
+</tr>
+<tr>
+<td><code>--queue NAME</code></td>
+<td>The queue the node takes protocols from (default <code>protocols</code>)</td>
+</tr>
+<tr>
+<td><code>--concurrency N</code></td>
+<td>Protocols at a time (default: its GPUs, or 4)</td>
+</tr>
+<tr>
+<td><code>--host NAME</code></td>
+<td>The Scipion host whose protocols go to the node's queue</td>
+</tr>
+</tbody>
+</table>
+<p>➡️ <a href="../multi-node/">Several Machines (Multi-Node)</a></p>
 <hr />
 <h2 id="verify-the-installation">Verify the installation<a class="headerlink" href="#verify-the-installation" title="Permanent link">&para;</a></h2>
 <p>From the installed directory, run:</p>

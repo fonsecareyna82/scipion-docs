@@ -478,6 +478,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -530,6 +536,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/prerequisites/" class="md-nav__link">
         
   
@@ -556,6 +583,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -681,7 +750,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1900,6 +1969,8 @@
       
         
       
+        
+      
     
     
       
@@ -2104,6 +2175,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -3103,7 +3195,7 @@
 <p>The important point is that ScipionWeb does not hardcode the scheduler behavior. Instead, it keeps the scheduler-specific logic in the Host settings.</p>
 <div class="admonition tip">
 <p class="admonition-title">This same Host name can also route Celery dispatch</p>
-<p>In a <a href="../../installation/multi-node-cluster/">Multi-Node Cluster Deployment</a>, the Host name configured here can additionally be mapped to a Celery queue name so protocols using that Host are dispatched straight to a specific worker node — see <a href="../../backend/celery/#multi-node-task-routing">Multi-Node Task Routing</a>. This is independent of, and does not require, SLURM.</p>
+<p>In a <a href="../../installation/multi-node-cluster/">Multi-Node Cluster Deployment</a>, the Host name configured here can additionally be mapped to a Celery queue name so protocols using that Host are dispatched straight to a specific worker node — see <a href="../../backend/celery/#multi-node-task-routing">Multi-Node Task Routing</a>. This is independent of, and does not require, SLURM. A node joined with <code>install.sh --join &lt;installation&gt; --queue protocols-gpu --host gpu-nodes</code> creates the Host <code>gpu-nodes</code> and its mapping for you: users then pick <strong>gpu-nodes</strong> in the protocol's form. ➡️ <a href="../../installation/multi-node/#send-some-protocols-to-some-nodes-gpu-nodes">Several Machines</a></p>
 </div>
 <hr />
 <h2 id="submit-configuration">Submit configuration<a class="headerlink" href="#submit-configuration" title="Permanent link">&para;</a></h2>

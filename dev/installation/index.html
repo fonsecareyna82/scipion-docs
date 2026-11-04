@@ -18,7 +18,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="prerequisites/">
+        <link rel="next" href="choose-setup/">
       
       
       <link rel="icon" href="../assets/images/scipion_icon.png">
@@ -482,6 +482,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -535,6 +541,27 @@
   
   
     <li class="md-nav__item">
+      <a href="choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="prerequisites/" class="md-nav__link">
         
   
@@ -561,6 +588,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -686,7 +755,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1616,6 +1685,8 @@
       
         
       
+        
+      
     
     
       
@@ -1820,6 +1891,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -2518,6 +2610,24 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#installing-without-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing without Internet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#several-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Several machines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#guided-installation-recommended" class="md-nav__link">
     <span class="md-ellipsis">
       Guided installation — recommended
@@ -2576,6 +2686,15 @@
   
     <nav class="md-nav" aria-label="Installation pages">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-choose-your-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Choose Your Setup
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#1-prerequisites" class="md-nav__link">
@@ -2703,12 +2822,13 @@
 <p>Use this section to install <strong>ScipionWeb for users</strong>, understand the underlying packaged deployment, or upgrade an existing installation.</p>
 <p>For a new Linux installation, the recommended path is now the <strong>guided <code>install.sh</code> installer</strong>. It resolves a matched API + Web release from the public release manifest, downloads the required ZIP files, verifies checksums, and runs the normal ScipionAPI provisioning workflow for you.</p>
 <div class="admonition success">
-<p class="admonition-title">Recommended path for most new installations</p>
-<p>Follow this sequence:</p>
-<ol>
-<li><a href="prerequisites/">Prerequisites</a></li>
-<li><a href="guided-install/">Guided Installation</a></li>
-</ol>
+<p class="admonition-title">Start here: Choose Your Setup</p>
+<p><a href="choose-setup/">Choose Your Setup</a> shows the three ways to run ScipionWeb, each in one or two commands:</p>
+<ul>
+<li><strong>one machine</strong>: <code>./install.sh</code> (<a href="guided-install/">Guided Installation</a>);</li>
+<li><strong>one machine without Internet</strong>: the release files next to <code>install.sh</code> (<a href="offline-install/">Installing Without Internet</a>);</li>
+<li><strong>several machines</strong>: a main node plus compute nodes that join with <code>install.sh --join</code> (<a href="multi-node/">Several Machines</a>).</li>
+</ul>
 <p>The normal user-facing installation no longer requires manually downloading and pairing the API/Web ZIP files.</p>
 </div>
 <hr />
@@ -2721,6 +2841,10 @@ chmod +x install.sh
 <p>The installer defaults to the release identified as <code>latest</code> in the public <code>manifest.json</code>.</p>
 <hr />
 <h2 id="which-path-should-i-use">Which path should I use?<a class="headerlink" href="#which-path-should-i-use" title="Permanent link">&para;</a></h2>
+<h3 id="installing-without-internet">Installing without Internet<a class="headerlink" href="#installing-without-internet" title="Permanent link">&para;</a></h3>
+<p>Use <a href="offline-install/">Installing Without Internet</a> when the machine cannot reach the release server: copy the release files next to <code>install.sh</code> and run it; nothing is downloaded.</p>
+<h3 id="several-machines">Several machines<a class="headerlink" href="#several-machines" title="Permanent link">&para;</a></h3>
+<p>Use <a href="multi-node/">Several Machines (Multi-Node)</a> to run the protocols on more machines (GPU nodes, a small cluster) with the web on one of them.</p>
 <h3 id="guided-installation-recommended">Guided installation — recommended<a class="headerlink" href="#guided-installation-recommended" title="Permanent link">&para;</a></h3>
 <p>Use <a href="guided-install/">Guided Installation</a> when you want:</p>
 <ul>
@@ -2759,6 +2883,8 @@ chmod +x install.sh
 <p>The installation documentation includes:</p>
 <ul>
 <li>system prerequisites such as Conda, PostgreSQL, Valkey, ports, and permissions</li>
+<li>installing without Internet, from the release files</li>
+<li>several machines: a main node and compute nodes</li>
 <li>guided installation through the public <code>install.sh</code></li>
 <li>manual download and extraction of release bundles</li>
 <li>one-shot <code>provision</code> for controlled/manual installs</li>
@@ -2769,6 +2895,9 @@ chmod +x install.sh
 </ul>
 <hr />
 <h2 id="installation-pages">Installation pages<a class="headerlink" href="#installation-pages" title="Permanent link">&para;</a></h2>
+<h3 id="0-choose-your-setup">0. Choose Your Setup<a class="headerlink" href="#0-choose-your-setup" title="Permanent link">&para;</a></h3>
+<p>One machine, one machine offline, or several machines.</p>
+<p>➡️ <a href="choose-setup/">Open Choose Your Setup</a></p>
 <h3 id="1-prerequisites">1. Prerequisites<a class="headerlink" href="#1-prerequisites" title="Permanent link">&para;</a></h3>
 <p>Prepare the machine and validate required services.</p>
 <p>➡️ <a href="prerequisites/">Open Prerequisites</a></p>

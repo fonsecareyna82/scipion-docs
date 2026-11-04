@@ -18,7 +18,7 @@
         <link rel="prev" href="../doctor/">
       
       
-        <link rel="next" href="../../backend/">
+        <link rel="next" href="../multinode/">
       
       
       <link rel="icon" href="../../assets/images/scipion_icon.png">
@@ -480,6 +480,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -532,6 +538,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/prerequisites/" class="md-nav__link">
         
   
@@ -558,6 +585,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -683,7 +752,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1618,6 +1687,8 @@
       
         
       
+        
+      
     
     
       
@@ -1966,6 +2037,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2896,9 +2988,9 @@
 </tbody>
 </table>
 <p>This is the mechanism used to run only part of the stack on a given node in a <a href="../../installation/multi-node-cluster/">Multi-Node Cluster Deployment</a> — for example, a compute node that should run the protocol worker but never the API:</p>
-<pre><code class="language-bash">./scripts/scipionapi runtime start --role protocols
-./scripts/scipionapi runtime status --role protocols
-./scripts/scipionapi runtime stop --role protocols
+<pre><code class="language-bash">./scripts/scipionapi start --role protocols
+./scripts/scipionapi status --role protocols
+./scripts/scipionapi stop --role protocols
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Default behavior is unchanged</p>
@@ -2908,7 +3000,7 @@
 <hr />
 <h2 id="-queue-custom-celery-queue-name"><code>--queue</code> (custom Celery queue name)<a class="headerlink" href="#-queue-custom-celery-queue-name" title="Permanent link">&para;</a></h2>
 <p><code>start</code>, <code>restart</code>, and <code>status</code> also accept <code>--queue</code>, which overrides the Celery queue name the <strong>protocol</strong> worker listens on (default: <code>protocols</code>). This is normally combined with <code>--role protocols</code> on a dedicated node:</p>
-<pre><code class="language-bash">./scripts/scipionapi runtime start --role protocols --queue protocols-gpu
+<pre><code class="language-bash">./scripts/scipionapi start --role protocols --queue protocols-gpu
 </code></pre>
 <p><code>--queue</code> only affects that single invocation. To make the same queue name survive future restarts — including ones triggered from the web UI's worker restart button, which does not go through the CLI — set it in that node's <code>.env</code> instead:</p>
 <pre><code class="language-dotenv">PROTOCOLS_CELERY_QUEUE=protocols-gpu
@@ -2917,6 +3009,10 @@
 <div class="admonition note">
 <p class="admonition-title">The worker's Celery identity does not change</p>
 <p>Only the <code>-Q &lt;queue&gt;</code> flag changes. The worker still registers as <code>protocols@&lt;hostname&gt;</code>, so remote Stop and other host-targeted operations are unaffected by a custom queue name.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Compute nodes do this for you</p>
+<p>On a machine that joined with <code>node join</code> (or <code>install.sh --join</code>), the node's profile sets the role, the queue and the concurrency. There, plain <code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code> and <code>logs</code> act on its protocol worker only, and its PID files and logs are kept apart. ➡️ <a href="../multinode/">Several Machines (<code>multinode</code>, <code>node</code>)</a></p>
 </div>
 <hr />
 <h2 id="common-issues">Common issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>

@@ -482,6 +482,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -534,6 +540,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/prerequisites/" class="md-nav__link">
         
   
@@ -560,6 +587,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -685,7 +754,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1772,6 +1841,8 @@
       
         
       
+        
+      
     
     
       
@@ -1976,6 +2047,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -2877,6 +2969,16 @@ https://api.yourdomain.com
 <li><strong>6379</strong> (Valkey) → <strong>not public</strong></li>
 </ul>
 <p>Use host firewall rules and/or cloud security groups to enforce this.</p>
+<div class="admonition note">
+<p class="admonition-title">Several machines</p>
+<p>With <a href="../../installation/multi-node/">compute nodes</a>, ports <code>5432</code> and <code>6379</code> must reach them, and only them. <code>scipionapi multinode enable --network &lt;CIDR&gt;</code>:</p>
+<ul>
+<li>lets PostgreSQL accept only ScipionWeb's user and database, only from that network;</li>
+<li>gives Valkey a password;</li>
+<li>opens the ports in <code>ufw</code> only for that network.</li>
+</ul>
+<p>Keep that network as small as possible and never use one reachable from outside.</p>
+</div>
 <hr />
 <h2 id="7-jwt-security-practices">7. JWT Security Practices<a class="headerlink" href="#7-jwt-security-practices" title="Permanent link">&para;</a></h2>
 <p>JWT security depends on both backend behavior and deployment choices.</p>

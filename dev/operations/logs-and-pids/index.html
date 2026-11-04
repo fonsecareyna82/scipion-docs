@@ -480,6 +480,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -532,6 +538,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/prerequisites/" class="md-nav__link">
         
   
@@ -558,6 +585,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -683,7 +752,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1635,6 +1704,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#compute-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compute nodes
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1764,6 +1842,8 @@
       
         
           
+        
+      
         
       
         
@@ -1986,6 +2066,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -2782,6 +2883,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#compute-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compute nodes
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2916,6 +3026,13 @@ tail -f scipion_home/logs/celery.log
 <pre><code class="language-bash">tail -f scipion_home/logs/celery-protocols.log
 </code></pre>
 <p>This separation is useful when API requests work correctly but only plugin tasks or protocol executions are failing.</p>
+<hr />
+<h2 id="compute-nodes">Compute nodes<a class="headerlink" href="#compute-nodes" title="Permanent link">&para;</a></h2>
+<p>On a compute node of a <a href="../../installation/multi-node/">multi-node installation</a>, the installation folder is shared, so each node keeps its files apart:</p>
+<pre><code class="language-text">.run/nodes/&lt;node&gt;/protocol-worker.pid
+SCIPION_HOME/logs/nodes/&lt;node&gt;/celery-protocols.log
+</code></pre>
+<p><code>&lt;node&gt;</code> is the machine's short host name. Run <code>scipionapi logs</code> and <code>scipionapi status</code> <strong>on the node</strong> to see its own.</p>
 
 
 

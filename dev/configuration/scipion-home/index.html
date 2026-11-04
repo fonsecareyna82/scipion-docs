@@ -482,6 +482,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -534,6 +540,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../installation/choose-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose Your Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/prerequisites/" class="md-nav__link">
         
   
@@ -560,6 +587,48 @@
   
   <span class="md-ellipsis">
     Guided Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/offline-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Without Internet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (Multi-Node)
   </span>
   
 
@@ -685,7 +754,7 @@
         
   
   <span class="md-ellipsis">
-    Multi-Node Cluster Deployment
+    Multi-Node: Manual Setup
   </span>
   
 
@@ -1787,6 +1856,8 @@
       
         
       
+        
+      
     
     
       
@@ -1991,6 +2062,27 @@
   
   <span class="md-ellipsis">
     start / stop / restart / status / logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/multinode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Several Machines (multinode, node)
   </span>
   
 
@@ -2836,10 +2928,17 @@
 ├── .env
 ├── logs/
 │   ├── app.log
-│   └── celery.log
+│   ├── celery.log
+│   ├── celery-protocols.log
+│   └── nodes/&lt;node&gt;/            (compute nodes' logs)
 ├── projects/
-│   └── &lt;project folders&gt;
+│   ├── &lt;user&gt;/&lt;project&gt;         (new projects, in their owner's folder)
+│   └── &lt;project folders&gt;        (projects made before)
 ├── config/
+│   ├── hosts.conf
+│   └── celery_queue_routing.json  (several machines: Scipion host → queue)
+├── nodes/&lt;node&gt;.env             (several machines: each compute node's profile)
+├── multinode/backup-&lt;date&gt;/     (what `multinode enable` changed, before it changed it)
 └── web/
     └── dist/
 </code></pre>
@@ -2888,7 +2987,8 @@
 <li>Generated previews</li>
 <li>Runtime artifacts</li>
 </ul>
-<p>This directory can grow significantly over time depending on project size and usage patterns.</p>
+<p>Each user's new projects go into a folder of their own, <code>projects/&lt;user&gt;/</code>, named after their email (<code>ana@cnb.csic.es</code> → <code>ana</code>), as Scipion's <code>ScipionUserData</code> does for each Linux user. Projects made before stay where they are.</p>
+<p>This directory can grow significantly over time depending on project size and usage patterns. <strong>Settings → Disk usage</strong> shows how much each user, group and project takes.</p>
 <div class="admonition warning">
 <p class="admonition-title">Disk usage growth</p>
 <p>Monitor available disk space and define a backup/retention strategy, especially for production or shared environments.</p>
