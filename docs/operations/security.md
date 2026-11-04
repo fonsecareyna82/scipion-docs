@@ -123,6 +123,15 @@ Typical port policy:
 
 Use host firewall rules and/or cloud security groups to enforce this.
 
+!!! note "Several machines"
+    With [compute nodes](../installation/multi-node.md), ports `5432` and `6379` must reach them, and only them. `scipionapi multinode enable --network <CIDR>`:
+
+    - lets PostgreSQL accept only ScipionWeb's user and database, only from that network;
+    - gives Valkey a password;
+    - opens the ports in `ufw` only for that network.
+
+    Keep that network as small as possible and never use one reachable from outside.
+
 ---
 
 ## 7. JWT Security Practices

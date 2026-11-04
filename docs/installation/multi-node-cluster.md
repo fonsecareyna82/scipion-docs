@@ -7,6 +7,14 @@ hide:
 
 This guide explains how to run **ScipionWeb** across several machines: one **master** node (API + PostgreSQL + Valkey) and one or more **worker** nodes that only execute protocols or handle plugin installation.
 
+!!! success "The easy way: two commands"
+    When your nodes share the installation folder and the Conda environment (an NFS home, for example), [Several Machines (Multi-Node)](multi-node.md) does everything on this page automatically:
+
+    - `scipionapi multinode enable --network <CIDR>` on the master;
+    - `install.sh --join <installation>` on each node.
+
+    Use this page for the **manual** setup, for example when each node has its own local installation and plugins.
+
 !!! note "Scope"
     This page covers the *ScipionWeb-level* multi-node topology: which services run where, how they find each other, and how protocol execution gets routed to a specific node. It does not replace [Hosts and Queues](../user-guide/hosts-and-queues.md), which configures a scheduler (SLURM) *inside* a single node. The two are complementary and can be combined.
 
@@ -53,9 +61,15 @@ Install ScipionAPI on the master exactly as in a normal single-node install (see
 Edit `scipion_home/.env` so `DATABASE_URL` and `BROKER_URL` use the master's **LAN hostname or IP**, not `localhost` / `127.0.0.1`:
 
 ```dotenv
+POSTGRES_HOST=master.internal
 DATABASE_URL=postgresql://scipion_user:<password>@master.internal:5432/scipion_db
-BROKER_URL=redis://master.internal:6379/0
+BROKER_URL=redis://:<valkey password>@master.internal:6379/0
 ```
+
+`POSTGRES_HOST` is what the API and the workers connect to; `DATABASE_URL` is used by the migrations.
+
+!!! tip "Let ScipionWeb do it"
+    `./scripts/scipionapi multinode enable --network <nodes' CIDR>` changes these lines, makes PostgreSQL and Valkey listen on the network (Valkey with a password, PostgreSQL only for that network), and opens the firewall. Try it with `--dry-run` first. ➡️ [`multinode enable`](../cli/multinode.md#multinode-enable)
 
 !!! warning "This is the single most common multi-node mistake"
     If these stay on `localhost`, worker nodes will start, look healthy in their own logs, and simply never receive any task — because they are talking to a broker on *themselves*, not the master.
@@ -77,8 +91,8 @@ Fix everything `doctor --strict` reports before moving to the worker nodes.
 ### 1.4 Start only the master's services
 
 ```bash
-./scripts/scipionapi runtime start --role api
-./scripts/scipionapi runtime start --role plugins
+./scripts/scipionapi start --role api
+./scripts/scipionapi start --role plugins
 ```
 
 Protocol execution is normally **not** run on the master, so the machine serving the web UI stays responsive. If the master also has spare capacity, `--role protocols` (or `--role all`) is a valid choice too. See [`start` / `stop` / `restart` / `status` / `logs` — `--role`](../cli/runtime.md#-role-per-node-service-selection).
@@ -104,9 +118,12 @@ Install (via the plugin manager or `scipionapi_cli`) whatever plugins the protoc
 ### 2.4 Point `.env` at the master
 
 ```dotenv
+POSTGRES_HOST=master.internal
 DATABASE_URL=postgresql://scipion_user:<password>@master.internal:5432/scipion_db
-BROKER_URL=redis://master.internal:6379/0
+BROKER_URL=redis://:<valkey password>@master.internal:6379/0
 ```
+
+Copy these from the master's `.env` (with `SECRET_KEY` and the database credentials): every node must use the same ones.
 
 ### 2.5 Validate
 
@@ -117,13 +134,13 @@ SCIPIONAPI_DEPLOYMENT_MODE=multi-node ./scripts/scipionapi doctor --strict
 ### 2.6 Start only the protocol worker
 
 ```bash
-./scripts/scipionapi runtime start --role protocols
+./scripts/scipionapi start --role protocols
 ```
 
 For a node that should only receive a specific class of protocol (for example, a GPU node), give it its own Celery queue name instead of the shared default:
 
 ```bash
-./scripts/scipionapi runtime start --role protocols --queue protocols-gpu
+./scripts/scipionapi start --role protocols --queue protocols-gpu
 ```
 
 !!! tip "Make the queue name persistent"

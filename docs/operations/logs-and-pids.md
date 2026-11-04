@@ -149,3 +149,16 @@ tail -f scipion_home/logs/celery-protocols.log
 ```
 
 This separation is useful when API requests work correctly but only plugin tasks or protocol executions are failing.
+
+---
+
+## Compute nodes
+
+On a compute node of a [multi-node installation](../installation/multi-node.md), the installation folder is shared, so each node keeps its files apart:
+
+```text
+.run/nodes/<node>/protocol-worker.pid
+SCIPION_HOME/logs/nodes/<node>/celery-protocols.log
+```
+
+`<node>` is the machine's short host name. Run `scipionapi logs` and `scipionapi status` **on the node** to see its own.

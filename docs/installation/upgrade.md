@@ -165,6 +165,31 @@ Use `--api-only` and `--web-only` for controlled maintenance/debugging. Normal r
 
 ---
 
+## Update without Internet
+
+Put the new release's `ScipionAPI-<version>.zip`, `ScipionWeb-<version>-dist.zip` and `manifest.json` in a folder and point the updater at it with a `file://` address:
+
+```bash
+./scripts/scipionapi update --base-url file:///media/usb/scipionweb-v4.1.0/ --dry-run
+./scripts/scipionapi update --base-url file:///media/usb/scipionweb-v4.1.0/
+```
+
+➡️ [Installing Without Internet](offline-install.md)
+
+---
+
+## Update several machines
+
+On a [multi-node installation](multi-node.md) sharing the installation folder, update **once, on the main node**: the nodes see the new files on the shared disk. Then restart each compute node's worker on that node:
+
+```bash
+./scripts/scipionapi restart
+```
+
+A node that is restarted later keeps running the old code until then, so restart them all right after the update.
+
+---
+
 ## Backup and rollback thinking
 
 The updater creates a filesystem rollback backup before replacing managed API files.

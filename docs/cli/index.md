@@ -66,6 +66,7 @@ The guided installer resolves/downloads the paired release and then delegates ru
 | Release | `release` | Maintainer-only publication of API/Web ZIPs, `install.sh`, and `manifest.json` |
 | Runtime | `start`, `stop`, `restart`, `status`, `logs` | Manage API/Celery processes and inspect runtime logs |
 | Diagnostics | `doctor` | Read-only checks for config, Conda, DB, Valkey, imports, and runtime state |
+| Several machines | `multinode enable`, `node join`, `node leave`, `node list` | Open the main node to compute nodes, and join or remove them ([details](multinode.md)) |
 | Removal | `uninstall` | Selective runtime cleanup or protected full packaged-install removal |
 | Info | `version` | Show installed ScipionAPI CLI version |
 
@@ -86,6 +87,8 @@ status
 logs
 doctor
 version
+multinode enable
+node join | leave | list
 ```
 
 The wrapper also handles:

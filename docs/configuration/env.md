@@ -117,7 +117,7 @@ Valkey must remain reachable for Celery background processing.
 
 ## Multi-node deployment
 
-These are only needed for a [Multi-Node Cluster Deployment](../installation/multi-node-cluster.md); an ordinary single-node installation does not need to set either of them.
+These are only needed on [several machines](../installation/multi-node.md); an ordinary single-node installation does not need any of them. `scipionapi multinode enable` and `scipionapi node join` write them for you.
 
 ```dotenv
 SCIPIONAPI_DEPLOYMENT_MODE=multi-node
@@ -126,6 +126,18 @@ PROTOCOLS_CELERY_QUEUE=protocols-gpu
 
 - `SCIPIONAPI_DEPLOYMENT_MODE` — set on every node to `multi-node` so `./scripts/scipionapi doctor --strict` escalates loopback broker/database URLs and a non-shared `PROJECTS_PATH` from warnings to failures. Defaults to `single-node` behavior when unset.
 - `PROTOCOLS_CELERY_QUEUE` — persists a custom Celery queue name for that node's protocol worker (equivalent to `runtime start --role protocols --queue <name>`, but also honored when the worker is restarted from the web UI). Defaults to `protocols`.
+
+- `SCIPIONAPI_MAIN_NODE` and `SCIPIONAPI_MULTINODE_NETWORK` — written by `multinode enable`: the main node's name (a node never joins as itself) and the nodes' network.
+- `POSTGRES_HOST` / `POSTGRES_PORT` — the database server the API and every worker connect to. `localhost` on one machine; the main node's network name on several.
+
+**A compute node's own values** live in its profile, `scipion_home/nodes/<node>.env`, read over the shared `.env` on that machine only (written by `node join`):
+
+| Variable | Meaning |
+|---|---|
+| `SCIPIONAPI_NODE_ROLE` | What `start` runs there: `protocols` |
+| `PROTOCOLS_CELERY_QUEUE` | The node's queue |
+| `PROTOCOL_WORKER_CONCURRENCY` | Protocols at a time |
+| `LOGS_PATH` | `scipion_home/logs/nodes/<node>` |
 
 ---
 
