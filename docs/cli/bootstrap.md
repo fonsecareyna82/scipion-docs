@@ -34,7 +34,7 @@ When executed, `bootstrap` typically:
 
 1. Checks whether Conda is available
 2. Creates the environment (default: `scipion4Web`) if it does not exist
-3. Installs the Python version (default: `3.8`)
+3. Installs the Python version (default: `3.11`; choose another with `--python` or `SCIPIONAPI_PYTHON_VERSION`; an existing environment keeps its own)
 4. Upgrades `pip`
 5. Installs dependencies from `requirements.txt`
 6. Installs the package in editable mode (`pip install -e .`)

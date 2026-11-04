@@ -49,7 +49,7 @@ alembic.ini
 Example development/manual environment:
 
 ```bash
-conda create -n scipion4Web python=3.8 -y
+conda create -n scipion4Web python=3.11 -y
 conda activate scipion4Web
 python -m pip install --upgrade pip
 ```
