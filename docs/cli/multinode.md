@@ -5,6 +5,7 @@ These commands turn an installation into a main node with compute nodes. Step by
 | Command | Where | Purpose |
 |---|---|---|
 | `multinode enable` | main node | Open PostgreSQL and Valkey to the nodes' network and mark the installation as multi-node |
+| `multinode compute off` / `on` | main node | Leave every protocol to the compute nodes, or run them on the main node again |
 | `node join` | each compute node | Check the machine, save its profile and start its protocol worker |
 | `node leave` | a compute node | Stop its worker and forget its profile |
 | `node list` | anywhere | The compute nodes and the workers answering now |
@@ -44,6 +45,27 @@ After them, it checks that the database and Valkey answer on the host name.
 When the database or Valkey runs on **another** machine, the plan says so and leaves it alone: open it to the network yourself.
 
 The changed files are copied first to `scipion_home/multinode/backup-<date>-<time>/`.
+
+---
+
+## `multinode compute`
+
+```bash
+./scripts/scipionapi multinode compute off [--force]
+./scripts/scipionapi multinode compute on
+```
+
+**`off`** stops the main node's protocol worker and writes `SCIPIONAPI_MAIN_RUNS_PROTOCOLS=0` to the `.env`. After it:
+
+- `start`, `restart` and `update` start the API and the plugin worker only;
+- `start --role protocols`, and the web's protocol-worker buttons, are refused with a message.
+
+It refuses while protocols run on the main node, unless `--force` is given (they are killed). It warns when no compute node answers.
+
+**`on`** writes `1` and starts the worker again.
+
+!!! danger "Not when protocols go to SLURM"
+    The main node's protocol worker is the one that submits SLURM jobs (`sbatch`) and follows them. Turn it off only when every protocol runs on compute nodes joined with `node join`.
 
 ---
 
