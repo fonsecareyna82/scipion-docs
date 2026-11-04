@@ -11,8 +11,8 @@ ScipionWeb can run on one machine or on several. Each setup below takes **one or
 |---|---|---|---|
 | One workstation or server with Internet | **One machine** | `./install.sh` | [Guided Installation](guided-install.md) |
 | One machine with **no Internet** (or a slow or blocked connection) | **One machine, offline** | copy 3 files, then `./install.sh` | [Installing Without Internet](offline-install.md) |
-| A server for the web plus **more machines to compute** (GPU nodes, a small cluster) | **Several machines** | `multinode enable` on the main one, `install.sh --join` on each node | [Several Machines (Multi-Node)](multi-node.md) |
-| Your machines already share a **SLURM** cluster | One machine + SLURM queues | `./install.sh`, then configure a host | [Hosts and Queues](../user-guide/hosts-and-queues.md) |
+| A server for the web plus **more machines to compute**, **without SLURM** (GPU machines of a lab) | **Several machines** | `multinode enable` on the main one, `install.sh --join` on each node | [Several Machines (Multi-Node)](multi-node.md) |
+| A cluster **with SLURM** (or an HPC) | One machine + SLURM | `./install.sh`, then a host with a queue | [Several Machines → With SLURM](multi-node.md#with-slurm) |
 
 !!! success "Not sure? Start with one machine"
     Everything you install on one machine stays valid. You can add compute nodes later without reinstalling: the main node keeps its projects, users and settings.
@@ -57,7 +57,11 @@ cd my-folder
 
 ## Several machines
 
-One **main node** runs the web, the database and the job queue. **Compute nodes** take protocols from the queue and run them. They all see the same installation on a shared disk.
+!!! question "Does your cluster have SLURM?"
+    - **Yes:** let SLURM run the protocols and share out the GPUs. Install ScipionWeb on one machine and create a host with a queue. ➡️ [With SLURM](multi-node.md#with-slurm)
+    - **No:** join your GPU machines as compute nodes, as below. The users choose the GPUs.
+
+One **main node** runs the web, the database and the job queue. **Compute nodes** take protocols from the queue and run them; the main node can leave all the computing to them (`multinode compute off`). They all see the same installation on a shared disk.
 
 ```text
                  ┌──────────── MAIN NODE ────────────┐
@@ -80,9 +84,12 @@ One **main node** runs the web, the database and the job queue. **Compute nodes*
 
 # 2. On each compute node
 ./install.sh --join ~/scipionweb
+
+# 3. On the main node, once the nodes work: leave the computing to them
+~/scipionweb/scripts/scipionapi multinode compute off
 ```
 
-➡️ [Several Machines (Multi-Node)](multi-node.md)
+➡️ [Several Machines (Multi-Node)](multi-node.md) · [Example: a three-machine cluster, step by step](multi-node-example.md)
 
 ---
 

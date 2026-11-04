@@ -63,6 +63,7 @@ nav:
       - Guided Installation: installation/guided-install.md
       - Installing Without Internet: installation/offline-install.md
       - Several Machines (Multi-Node): installation/multi-node.md
+      - "Example: A Three-Machine Cluster": installation/multi-node-example.md
       - Download Bundles (Manual): installation/download-bundles.md
       - Provision (Advanced): installation/provision.md
       - Manual Installation: installation/manual-install.md
