@@ -48,6 +48,13 @@ They may control runtime behavior, global defaults, or administrative options th
 
 Only change instance settings when you understand the deployment impact and can validate the result afterward.
 
+**Max concurrent runs per user** limits how many protocols one user runs at the same time on the server.
+
+- **`0`, the default, means no limit.** Set a limit only on a server shared by several groups without a queue system (with SLURM, the queue already shares out the resources).
+- **Protocols launched together count as one:** *Run all*, *Continue all* or a facility session's processing.
+- **Streaming protocols that are still receiving data never count.** An import watching its folder, or a protocol whose input protocol is still running, spends most of its time waiting for data; counting them would hold a streaming chain in *launched* for the whole session.
+- **A protocol waiting for a slot stays in *launched*.** Its status reads "launched · waiting for a run slot", with how many of your protocols are running and the limit. It starts by itself when one of them ends.
+
 ---
 
 ### Tags
