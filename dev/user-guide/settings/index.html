@@ -2963,6 +2963,13 @@
 <p>Instance settings affect the ScipionWeb deployment as a whole.</p>
 <p>They may control runtime behavior, global defaults, or administrative options that should remain consistent across users.</p>
 <p>Only change instance settings when you understand the deployment impact and can validate the result afterward.</p>
+<p><strong>Max concurrent runs per user</strong> limits how many protocols one user runs at the same time on the server.</p>
+<ul>
+<li><strong><code>0</code>, the default, means no limit.</strong> Set a limit only on a server shared by several groups without a queue system (with SLURM, the queue already shares out the resources).</li>
+<li><strong>Protocols launched together count as one:</strong> <em>Run all</em>, <em>Continue all</em> or a facility session's processing.</li>
+<li><strong>Streaming protocols that are still receiving data never count.</strong> An import watching its folder, or a protocol whose input protocol is still running, spends most of its time waiting for data; counting them would hold a streaming chain in <em>launched</em> for the whole session.</li>
+<li><strong>A protocol waiting for a slot stays in <em>launched</em>.</strong> Its status reads "launched · waiting for a run slot", with how many of your protocols are running and the limit. It starts by itself when one of them ends.</li>
+</ul>
 <hr />
 <h3 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h3>
 <p>Tags help users organize protocols visually inside a project. They can be used to mark workflow stages, review status, candidate results, deprecated branches, or any team-specific classification.</p>
