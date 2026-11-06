@@ -91,7 +91,7 @@ Use the dedicated guide when you need to configure protocol execution through SL
 
 ---
 
-### Users, roles, groups, audit and disk usage (administrators)
+### Users, roles, groups, audit and usage (administrators)
 
 These tabs appear only to whoever holds the permission each needs:
 
@@ -101,9 +101,11 @@ These tabs appear only to whoever holds the permission each needs:
 | **Roles** | `roles.manage` | Create roles and choose their permissions; *Administrator* holds them all |
 | **Groups** | `groups.manage` | Labs: members, PIs, and what PIs may do in their members' projects |
 | **Audit** | `audit.view` | Who did what: sign-ins, accounts, sharing, settings, plugins |
-| **Disk usage** | `storage.view` | How much disk each user, group and project takes |
+| **Usage** | `storage.view` | How much disk and computing each user, group and project takes |
 
-**Disk usage** answers "who is filling the disk?":
+**Usage** has two parts: **Disk** and **Computing**.
+
+**Disk** answers "who is filling the disk?":
 
 - **The figures.** The free space of the projects' disk. Tables **by user**, **by group** and **by project**, largest first; click a user to see their projects.
 - **Cleanup candidates.** Projects not used for three months are marked.
@@ -112,7 +114,23 @@ These tabs appear only to whoever holds the permission each needs:
     - Imported movies are usually links to the microscope's data, so they are not counted.
     - A user in two groups counts in both.
 
-Each user also sees what their own projects take at the top of the **Projects** page.
+**Computing** answers "who is using the machines?":
+
+- **The period.** This week, this month, last month, the last 30 days, this year, or a range of days.
+- **The figures.**
+    - GPU hours, run hours, runs and failed runs.
+    - Tables **by user**, **by group**, **by protocol** and **by machine**, most GPU hours first.
+    - Click a user to see their runs: project, protocol, start, hours, GPUs, machine, queue job and status.
+    - The runs running now.
+    - **Export CSV** saves the table shown.
+- **How it is counted.**
+    - ScipionWeb records each run when it starts and when it ends, with the user who launched it.
+    - **Run hours** are the time a run ran inside the period. **GPU hours** are those hours times the GPUs the run was given, whether it kept them busy or not.
+    - With a queue (SLURM…), the run is recorded where the job ran, with its job id.
+    - A run whose worker stopped (a machine restarted, a killed process) counts until its last sign of life, a minute before at most.
+    - Only runs launched since this version are counted.
+
+Each user also sees, at the top of the **Projects** page, what their own projects take and what they ran this month.
 
 ---
 
