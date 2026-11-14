@@ -136,10 +136,12 @@ After a successful update, metadata can include values such as:
 ```env
 SCIPIONAPI_LAST_UPDATE_VERSION=v4.0.1
 SCIPIONAPI_LAST_UPDATE_AT=20260812T143000Z
-SCIPIONAPI_UPDATE_BASE_URL=https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
+SCIPIONAPI_LAST_UPDATE_SOURCE=https://github.com/fonsecareyna82/ScipionWeb/releases/download/v4.0.1/
 ```
 
-ScipionWeb can use backend system endpoints to expose the installed version and update availability.
+`SCIPIONAPI_LAST_UPDATE_SOURCE` only records where the update came from. Set `SCIPIONAPI_UPDATE_BASE_URL` yourself only to make updates use one address alone. Older updates wrote the CNB address there; that value is ignored, so they also look on GitHub first.
+
+ScipionWeb can use backend system endpoints to expose the installed version and update availability. The dashboard's check also looks on GitHub first and on the CNB server next, and waits at most 15 seconds.
 
 ---
 
