@@ -25,11 +25,14 @@ For a normal new Linux installation, use the guided installer. It checks prerequ
 Fast path:
 
 ```bash
-wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+wget https://github.com/fonsecareyna82/ScipionWeb/releases/download/v4.0.0/install.sh
 chmod +x install.sh
 ./install.sh --check-only
 ./install.sh
 ```
+
+!!! note "Where it downloads from"
+    The installer looks for the release on [GitHub](https://github.com/fonsecareyna82/ScipionWeb/releases) first and on the CNB download server when GitHub does not have it or does not answer. The installer itself is in both places too: `https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh`.
 
 !!! tip "No Internet, or several machines?"
     [Choose Your Setup](installation/choose-setup.md) covers them too, each in one or two commands:
