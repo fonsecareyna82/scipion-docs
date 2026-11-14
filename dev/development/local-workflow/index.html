@@ -2726,7 +2726,7 @@ mkdir -p &quot;$SCIPION_HOME&quot;
 <h2 id="terminal-3-protocol-worker">Terminal 3: Protocol worker<a class="headerlink" href="#terminal-3-protocol-worker" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash">python -m celery -A app.workers.task_queue worker --loglevel info --hostname protocols@%h -Q protocols --concurrency 4 --prefetch-multiplier 1
 </code></pre>
-<p>The plugin worker deliberately runs with concurrency <code>1</code>. Protocol-worker concurrency defaults to <code>4</code> and can be adjusted through <code>PROTOCOL_WORKER_CONCURRENCY</code> when the runtime is started through the ScipionAPI CLI.</p>
+<p>The plugin worker deliberately runs with concurrency <code>1</code>. Protocol-worker concurrency defaults to <code>12</code> and can be adjusted through <code>PROTOCOL_WORKER_CONCURRENCY</code> when the runtime is started through the ScipionAPI CLI.</p>
 <p>Verify worker connectivity with:</p>
 <pre><code class="language-bash">python -m celery -A app.workers.task_queue inspect ping
 </code></pre>

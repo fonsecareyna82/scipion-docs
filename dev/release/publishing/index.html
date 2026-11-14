@@ -2984,6 +2984,14 @@
 <p>The corresponding public endpoint is:</p>
 <pre><code class="language-text">https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
 </code></pre>
+<p>The same command also publishes the release on GitHub, as a release of <a href="https://github.com/fonsecareyna82/ScipionWeb/releases">ScipionWeb</a> with both archives, <code>manifest.json</code> and <code>install.sh</code>. Installs and updates look there first.</p>
+<ul>
+<li>It needs <code>GITHUB_TOKEN</code>: a GitHub token that can write the contents of that repository.</li>
+<li>The GitHub release is a test release (pre-release) unless <code>--official</code> is given.</li>
+<li><code>--force</code> replaces the earlier release with the same version, as on the CNB server, so a version such as <code>v4.0.0</code> can be published again and again.</li>
+<li>When one place fails, the other one is still published and the command fails saying which. <code>--no-cnb</code> or <code>--no-github</code> publish in one place only.</li>
+<li>The release's tag points to ScipionWeb's current commit, so push ScipionWeb first.</li>
+</ul>
 <hr />
 <h2 id="3-review-the-release-plan">3. Review the release plan<a class="headerlink" href="#3-review-the-release-plan" title="Permanent link">&para;</a></h2>
 <p>Confirm at minimum:</p>
@@ -3075,7 +3083,7 @@ ScipionWeb-vX.Y.Z-dist.zip
 <h2 id="6-validate-the-user-paths">6. Validate the user paths<a class="headerlink" href="#6-validate-the-user-paths" title="Permanent link">&para;</a></h2>
 <p>Test both new-user and existing-user flows against the published release.</p>
 <h3 id="new-installation">New installation<a class="headerlink" href="#new-installation" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bash">wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+<pre><code class="language-bash">wget https://github.com/fonsecareyna82/ScipionWeb/releases/download/vX.Y.Z/install.sh
 chmod +x install.sh
 ./install.sh --check-only
 ./install.sh --version vX.Y.Z

@@ -2958,11 +2958,15 @@
 <li><a href="installation/guided-install/">Guided Installation</a></li>
 </ol>
 <p>Fast path:</p>
-<pre><code class="language-bash">wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+<pre><code class="language-bash">wget https://github.com/fonsecareyna82/ScipionWeb/releases/download/v4.0.0/install.sh
 chmod +x install.sh
 ./install.sh --check-only
 ./install.sh
 </code></pre>
+<div class="admonition note">
+<p class="admonition-title">Where it downloads from</p>
+<p>The installer looks for the release on <a href="https://github.com/fonsecareyna82/ScipionWeb/releases">GitHub</a> first and on the CNB download server when GitHub does not have it or does not answer. The installer itself is in both places too: <code>https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh</code>.</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">No Internet, or several machines?</p>
 <p><a href="installation/choose-setup/">Choose Your Setup</a> covers them too, each in one or two commands:</p>

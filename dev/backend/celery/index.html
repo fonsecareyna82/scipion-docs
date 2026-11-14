@@ -3209,7 +3209,7 @@ sudo systemctl status valkey-server
 </tr>
 </tbody>
 </table>
-<p>The protocol-worker concurrency is configurable through <code>PROTOCOL_WORKER_CONCURRENCY</code>; the runtime default is <code>4</code>.</p>
+<p>The protocol-worker concurrency is configurable through <code>PROTOCOL_WORKER_CONCURRENCY</code>; the runtime default is <code>12</code>.</p>
 <h3 id="manual-plugin-worker">Manual plugin worker<a class="headerlink" href="#manual-plugin-worker" title="Permanent link">&para;</a></h3>
 <p>Run from the ScipionAPI repository root with the correct Python environment activated:</p>
 <pre><code class="language-bash">python -m celery -A app.workers.task_queue worker --loglevel info --hostname plugins@%h -Q plugins --concurrency 1 --prefetch-multiplier 1

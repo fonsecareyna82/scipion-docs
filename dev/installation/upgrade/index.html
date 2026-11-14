@@ -2993,9 +2993,13 @@
 <p>From the installed ScipionAPI root:</p>
 <pre><code class="language-bash">./scripts/scipionapi update
 </code></pre>
-<p>This resolves the release identified as <code>latest</code> from:</p>
+<p>This resolves the newest release, test releases included, from the releases of ScipionWeb on GitHub first:</p>
+<pre><code class="language-text">https://github.com/fonsecareyna82/ScipionWeb/releases
+</code></pre>
+<p>When GitHub does not have it or does not answer, it uses the <code>latest</code> release of the CNB download server:</p>
 <pre><code class="language-text">https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/manifest.json
 </code></pre>
+<p>If the files of a release found on GitHub do not download, the same release is taken from the CNB server. <code>--base-url</code> (or <code>SCIPIONAPI_UPDATE_BASE_URL</code>) makes the update use only the address given.</p>
 <p>The manifest identifies the matching API and Web artifacts and contains their checksum metadata.</p>
 <hr />
 <h2 id="preview-before-changing-anything">Preview before changing anything<a class="headerlink" href="#preview-before-changing-anything" title="Permanent link">&para;</a></h2>

@@ -1139,9 +1139,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#users-roles-groups-audit-and-disk-usage-administrators" class="md-nav__link">
+  <a href="#users-roles-groups-audit-and-usage-administrators" class="md-nav__link">
     <span class="md-ellipsis">
-      Users, roles, groups, audit and disk usage (administrators)
+      Users, roles, groups, audit and usage (administrators)
     </span>
   </a>
   
@@ -2846,9 +2846,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#users-roles-groups-audit-and-disk-usage-administrators" class="md-nav__link">
+  <a href="#users-roles-groups-audit-and-usage-administrators" class="md-nav__link">
     <span class="md-ellipsis">
-      Users, roles, groups, audit and disk usage (administrators)
+      Users, roles, groups, audit and usage (administrators)
     </span>
   </a>
   
@@ -2988,7 +2988,7 @@
 <p>Use the dedicated guide when you need to configure protocol execution through SLURM or another queue system:</p>
 <p><a href="../hosts-and-queues/">Open the Hosts and Queues guide</a></p>
 <hr />
-<h3 id="users-roles-groups-audit-and-disk-usage-administrators">Users, roles, groups, audit and disk usage (administrators)<a class="headerlink" href="#users-roles-groups-audit-and-disk-usage-administrators" title="Permanent link">&para;</a></h3>
+<h3 id="users-roles-groups-audit-and-usage-administrators">Users, roles, groups, audit and usage (administrators)<a class="headerlink" href="#users-roles-groups-audit-and-usage-administrators" title="Permanent link">&para;</a></h3>
 <p>These tabs appear only to whoever holds the permission each needs:</p>
 <table>
 <thead>
@@ -3020,13 +3020,14 @@
 <td>Who did what: sign-ins, accounts, sharing, settings, plugins</td>
 </tr>
 <tr>
-<td><strong>Disk usage</strong></td>
+<td><strong>Usage</strong></td>
 <td><code>storage.view</code></td>
-<td>How much disk each user, group and project takes</td>
+<td>How much disk and computing each user, group and project takes</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Disk usage</strong> answers "who is filling the disk?":</p>
+<p><strong>Usage</strong> has two parts: <strong>Disk</strong> and <strong>Computing</strong>.</p>
+<p><strong>Disk</strong> answers "who is filling the disk?":</p>
 <ul>
 <li><strong>The figures.</strong> The free space of the projects' disk. Tables <strong>by user</strong>, <strong>by group</strong> and <strong>by project</strong>, largest first; click a user to see their projects.</li>
 <li><strong>Cleanup candidates.</strong> Projects not used for three months are marked.</li>
@@ -3037,7 +3038,27 @@
 </ul>
 </li>
 </ul>
-<p>Each user also sees what their own projects take at the top of the <strong>Projects</strong> page.</p>
+<p><strong>Computing</strong> answers "who is using the machines?":</p>
+<ul>
+<li><strong>The period.</strong> This week, this month, last month, the last 30 days, this year, or a range of days.</li>
+<li><strong>The figures.</strong><ul>
+<li>GPU hours, run hours, runs and failed runs.</li>
+<li>Tables <strong>by user</strong>, <strong>by group</strong>, <strong>by protocol</strong> and <strong>by machine</strong>, most GPU hours first.</li>
+<li>Click a user to see their runs: project, protocol, start, hours, GPUs, machine, queue job and status.</li>
+<li>The runs running now.</li>
+<li><strong>Export CSV</strong> saves the table shown.</li>
+</ul>
+</li>
+<li><strong>How it is counted.</strong><ul>
+<li>ScipionWeb records each run when it starts and when it ends, with the user who launched it.</li>
+<li><strong>Run hours</strong> are the time a run ran inside the period. <strong>GPU hours</strong> are those hours times the GPUs the run was given, whether it kept them busy or not.</li>
+<li>With a queue (SLURM…), the run is recorded where the job ran, with its job id.</li>
+<li>A run whose worker stopped (a machine restarted, a killed process) counts until its last sign of life, a minute before at most.</li>
+<li>Only runs launched since this version are counted.</li>
+</ul>
+</li>
+</ul>
+<p>Each user also sees, at the top of the <strong>Projects</strong> page, what their own projects take and what they ran this month.</p>
 <hr />
 <h3 id="advanced-configuration">Advanced configuration<a class="headerlink" href="#advanced-configuration" title="Permanent link">&para;</a></h3>
 <p>Some deployments may expose advanced or read-only configuration views.</p>
