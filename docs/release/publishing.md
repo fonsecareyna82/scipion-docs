@@ -75,6 +75,14 @@ The corresponding public endpoint is:
 https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/
 ```
 
+The same command also publishes the release on GitHub, as a release of [ScipionWeb](https://github.com/fonsecareyna82/ScipionWeb/releases) with both archives, `manifest.json` and `install.sh`. Installs and updates look there first.
+
+- It needs `GITHUB_TOKEN`: a GitHub token that can write the contents of that repository.
+- The GitHub release is a test release (pre-release) unless `--official` is given.
+- `--force` replaces the earlier release with the same version, as on the CNB server, so a version such as `v4.0.0` can be published again and again.
+- When one place fails, the other one is still published and the command fails saying which. `--no-cnb` or `--no-github` publish in one place only.
+- The release's tag points to ScipionWeb's current commit, so push ScipionWeb first.
+
 ---
 
 ## 3. Review the release plan
@@ -207,7 +215,7 @@ Test both new-user and existing-user flows against the published release.
 ### New installation
 
 ```bash
-wget https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/install.sh
+wget https://github.com/fonsecareyna82/ScipionWeb/releases/download/vX.Y.Z/install.sh
 chmod +x install.sh
 ./install.sh --check-only
 ./install.sh --version vX.Y.Z

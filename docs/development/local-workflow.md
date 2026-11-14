@@ -141,7 +141,7 @@ python -m celery -A app.workers.task_queue worker --loglevel info --hostname plu
 python -m celery -A app.workers.task_queue worker --loglevel info --hostname protocols@%h -Q protocols --concurrency 4 --prefetch-multiplier 1
 ```
 
-The plugin worker deliberately runs with concurrency `1`. Protocol-worker concurrency defaults to `4` and can be adjusted through `PROTOCOL_WORKER_CONCURRENCY` when the runtime is started through the ScipionAPI CLI.
+The plugin worker deliberately runs with concurrency `1`. Protocol-worker concurrency defaults to `12` and can be adjusted through `PROTOCOL_WORKER_CONCURRENCY` when the runtime is started through the ScipionAPI CLI.
 
 Verify worker connectivity with:
 

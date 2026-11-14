@@ -194,7 +194,7 @@ The two Celery workers consume different queues:
 | Runtime process | Queue | Concurrency |
 |---|---|---:|
 | Plugin worker | `plugins` | `1` |
-| Protocol worker | `protocols` | `PROTOCOL_WORKER_CONCURRENCY` (default `4`) |
+| Protocol worker | `protocols` | `PROTOCOL_WORKER_CONCURRENCY` (default `12`) |
 
 When started by the CLI, the workers use the hostnames `plugins@%h` and `protocols@%h` and set `--prefetch-multiplier 1`.
 

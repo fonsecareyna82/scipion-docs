@@ -136,7 +136,7 @@ PROTOCOLS_CELERY_QUEUE=protocols-gpu
 |---|---|
 | `SCIPIONAPI_NODE_ROLE` | What `start` runs there: `protocols` |
 | `PROTOCOLS_CELERY_QUEUE` | The node's queue |
-| `PROTOCOL_WORKER_CONCURRENCY` | Protocols at a time |
+| `PROTOCOL_WORKER_CONCURRENCY` | Protocols the machine runs at once, of all users (default `12`; a protocol in streaming keeps its place all along). Not the same as Max concurrent runs per user (Settings → Instance), which shares them out among users |
 | `LOGS_PATH` | `scipion_home/logs/nodes/<node>` |
 
 ---

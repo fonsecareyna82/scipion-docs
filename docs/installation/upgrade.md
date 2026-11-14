@@ -27,11 +27,19 @@ From the installed ScipionAPI root:
 ./scripts/scipionapi update
 ```
 
-This resolves the release identified as `latest` from:
+This resolves the newest release, test releases included, from the releases of ScipionWeb on GitHub first:
+
+```text
+https://github.com/fonsecareyna82/ScipionWeb/releases
+```
+
+When GitHub does not have it or does not answer, it uses the `latest` release of the CNB download server:
 
 ```text
 https://scipion.cnb.csic.es/downloads/scipion/scipionWeb/manifest.json
 ```
+
+If the files of a release found on GitHub do not download, the same release is taken from the CNB server. `--base-url` (or `SCIPIONAPI_UPDATE_BASE_URL`) makes the update use only the address given.
 
 The manifest identifies the matching API and Web artifacts and contains their checksum metadata.
 

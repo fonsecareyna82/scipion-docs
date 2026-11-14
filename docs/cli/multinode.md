@@ -80,7 +80,7 @@ It refuses while protocols run on the main node, unless `--force` is given (they
 | Option | Meaning | Default |
 |---|---|---|
 | `--queue NAME` | The Celery queue the node takes protocols from | `protocols` |
-| `--concurrency N` | Protocols at a time | number of GPUs, or `4` |
+| `--concurrency N` | Protocols at a time | `12` |
 | `--host NAME` | With `--queue`: make the Scipion host `NAME` (a copy of `localhost` if it does not exist) and send its protocols to this queue | — |
 
 Checks, all from this machine:
@@ -98,7 +98,7 @@ If any of them fails, nothing is written. Otherwise:
     ```text
     SCIPIONAPI_NODE_ROLE=protocols
     PROTOCOLS_CELERY_QUEUE=protocols-gpu
-    PROTOCOL_WORKER_CONCURRENCY=2
+    PROTOCOL_WORKER_CONCURRENCY=12
     LOGS_PATH=/home/scipion/scipionweb/scipion_home/logs/nodes/gpu-01
     ```
 

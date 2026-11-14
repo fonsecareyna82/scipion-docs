@@ -109,7 +109,7 @@ Stores project runtime data, such as:
 
 Each user's new projects go into a folder of their own, `projects/<user>/`, named after their email (`ana@cnb.csic.es` → `ana`), as Scipion's `ScipionUserData` does for each Linux user. Projects made before stay where they are.
 
-This directory can grow significantly over time depending on project size and usage patterns. **Settings → Disk usage** shows how much each user, group and project takes.
+This directory can grow significantly over time depending on project size and usage patterns. **Settings → Usage → Disk** shows how much each user, group and project takes.
 
 !!! warning "Disk usage growth"
     Monitor available disk space and define a backup/retention strategy, especially for production or shared environments.

@@ -156,7 +156,7 @@ The current ScipionAPI runtime uses **two dedicated Celery workers** rather than
 | Plugin worker | `plugins` | `1` | `plugins@%h` |
 | Protocol worker | `protocols` | `4` | `protocols@%h` |
 
-The protocol-worker concurrency is configurable through `PROTOCOL_WORKER_CONCURRENCY`; the runtime default is `4`.
+The protocol-worker concurrency is configurable through `PROTOCOL_WORKER_CONCURRENCY`; the runtime default is `12`.
 
 ### Manual plugin worker
 
