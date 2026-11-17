@@ -69,6 +69,7 @@ nav:
       - Manual Installation: installation/manual-install.md
       - Upgrade / Reinstall Notes: installation/upgrade.md
       - Production Deployment: installation/deployment-systemd.md
+      - "Optional: Desktop Viewers in the Browser": installation/remote-viewers.md
       - "Multi-Node: Manual Setup": installation/multi-node-cluster.md
   - User Guide:
       - Overview: user-guide/index.md
