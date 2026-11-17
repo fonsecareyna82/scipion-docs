@@ -59,6 +59,19 @@ The exact viewer depends on the output class and the backend data available for 
 
 ---
 
+## Desktop viewers from another computer
+
+Some outputs can also be opened in a desktop viewer (for example, a volume in ChimeraX). When you work from another computer and the server allows it, the viewer runs **on the server** and appears in a **floating window inside ScipionWeb**. The data stays on the server and you install nothing.
+
+- Move and resize the floating window as any other; the program follows its size.
+- Close the floating window to close the program, or close the program from its own menu.
+- If you reload the page, the viewers you had open come back.
+- You can have up to 3 viewers open. A viewer you do not use for 15 minutes is closed.
+
+If your administrator has not enabled this (see [Desktop Viewers in the Browser](../installation/remote-viewers.md)), the viewer opens on the server's screen instead.
+
+---
+
 ## While inspecting results
 
 Review outputs with these questions in mind:
