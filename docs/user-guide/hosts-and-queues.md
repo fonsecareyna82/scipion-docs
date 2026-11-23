@@ -52,6 +52,33 @@ This means the Host configuration is the bridge between Scipion protocol executi
 
 ---
 
+## Set it up automatically
+
+ScipionWeb can fill in this page from the scheduler installed on the server. It works with **SLURM**, **PBS/Torque** and **SGE**.
+
+1. Open **Settings → Host** and press **Detect** (top right of the *Cluster* card).
+2. ScipionWeb looks for the scheduler's commands (`sbatch`, `qsub`…) and reads its queues and their limits (cores, memory, GPUs, time).
+3. Choose the queues to offer to users and press **Use this**. The form is filled in with the scheduler's commands, a job script and one queue per partition. Each queue's memory, time and GPUs stay within that queue's limits.
+4. Review the result, then press **Save**. Nothing is saved before that.
+
+Then press **Send a test job**, choose a queue, and send it. It submits a tiny job with the form as it is (saved or not). You see it wait in the queue, run, and print the machine it ran on. If it fails, the error is shown. Closing the dialog cancels a job that is still waiting.
+
+!!! note "What cannot be detected"
+    Settings that only your cluster knows still go in the job script by hand. Examples: an account to charge (`--account`), a QoS, or modules to load.
+
+!!! tip "Clusters that start machines when a job comes (cloud)"
+    On a cloud cluster (for example SLURM on Azure CycleCloud), machines are off until a job needs them. Detection still works: what the machines have (cores, memory, GPUs) is read from the scheduler's configuration, and those queues show *machines start when a job comes*. If that configuration cannot be read, the queue says so and you check memory and GPUs by hand. The first job of a queue, including the test job, waits a few minutes while a machine starts.
+
+**At installation.** When `hosts.conf` has no queues set up yet, the installer does the same detection and writes the result. The previous file is kept as `hosts.conf.before-detect`.
+
+**In `scipionapi doctor`.** The *Queues* line warns when:
+
+- a scheduler is installed but not set up;
+- a configured queue no longer exists in the scheduler;
+- queues are configured but the server has no scheduler commands.
+
+---
+
 ## General host configuration
 
 The general section defines the identity and basic behavior of the execution host.
